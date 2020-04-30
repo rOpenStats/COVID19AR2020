@@ -1,16 +1,15 @@
 Package: COVID19AR
 Type: Package
-Title: What the Package Does (Title Case)
+Title:  for analysing COVID-19 Argentina's outbreak
 Version: 0.1.0
 Authors@R: c(
     person("Alejandro", "Baranek",,"abaranek@dc.uba.ar", c("aut","com","cre", "cph"))
     )
 Maintainer: Alejandro Baranek <abaranek@dc.uba.ar>
-Description: Tools for analysing COVID19 Argentina's outbreak
+Description: Tools for analysing COVID-19 Argentina's outbreak
 License: copyright
 Encoding: UTF-8
 LazyData: true
-Suggest: sdmxRR
 Depends: R (>= 3.6),
          readr,
          readxl,
@@ -26,6 +25,6 @@ Depends: R (>= 3.6),
          jsonlite,
          testthat
 Collate:
-        'retriever-lib.R'
+        'deaths-lib.R'
         'util-lib.R'
 RoxygenNote: 7.1.0
