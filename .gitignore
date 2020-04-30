@@ -1,0 +1,71 @@
+#Latex
+*.aux
+*.nav
+*.out
+*.snm
+*.toc
+report/*.pdf
+*.log*
+*.synctex.gz
+*.pdf
+*.glo
+*.ist
+*.idx
+*.bbl
+#ken4rab
+*.ilg
+*.ind
+*.ist
+
+hfcpi_main-concordance.tex
+
+#solidity
+build
+node_modules
+*.log
+*.tex
+
+#
+*.blg
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+######################
+# OSX
+######################
+
+*.DS_Store
+.svn
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+
+# R
+**/.Rproj.user
+**/.Rhistory
+**/.RData
+**/qbx-config.R
+.Rproj.user
+
+# STL
+**/*.stl
+/bin/
+
+#exclude dia's autosave files.
+*.autosave
+.Ruserdata
+src/*.o
+src/*.so
+src/*.dll
+
+#exclude the files produced by tex
+hfcpi_main* 
