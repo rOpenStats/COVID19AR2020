@@ -13,9 +13,13 @@ LazyData: true
 Suggest: sdmxRR
 Depends: R (>= 3.6),
          readr,
+         readxl,
          R6,
          checkmate,
          rvest,
+         dplyr,
+         lgr,
+         reshape2,
          COVID19analytics,
          httr,
          jsonlite,
