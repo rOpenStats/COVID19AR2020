@@ -130,7 +130,13 @@ ConsolidatedDeathsData.class <- R6Class("ConsolidatedDeathsData",
           data.deaths.current <- self$readDeathsStats(data.file)
           ret <- rbind(ret, data.deaths.current)
         }
-        ret
+        self$data <- ret
+        self$postProcess()
+        self$data
+    },
+    postProcess = function(){
+      self$data$codigo.causas <- apply(self$data[, c("CAUSA", "CAUSA_description")], MARGIN = 1, FUN = function(x){paste(x, collapse ="|")})
+      self$data
     },
     readDeathsStats = function(filename, fail.on.error = FALSE){
       data.deaths <- read_csv(file.path(self$data.dir, filename),
