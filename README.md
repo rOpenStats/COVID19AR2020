@@ -102,43 +102,6 @@ influenza.deaths.tab$Otras_respiratorias.perc <- round(influenza.deaths.tab[,"Ot
 kable(influenza.deaths.tab)
 ```
 
-
-
-```
-influenza.deaths.edad.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "edad.media")
-kable(influenza.deaths.edad.tab)
-
-
-causas.descriptions <- sort(unique(data.deaths$CAUSA_description))
-causas.descriptions[grep(regexp.neumonia.influenza, causas.descriptions, ignore.case = TRUE)]
-
- [1] Influenza debida a ciertos virus de la influenza identificados                   
- [2] Influenza debida a otro virus de la influenza identificado                       
- [3] Influenza debida a virus no identificado                                         
- [4] Neumonía bacteriana no clasificada en otra parte                                 
- [5] Neumonía congénita                                                               
- [6] Neumonía debida a Haemophilus influenzae                                         
- [7] Neumonía debida a otros microorganismos infecciosos no clasificados en otra parte
- [8] Neumonía debida a Streptococcus pneumoniae                                       
- [9] Neumonía organismo no especificado                                               
-[10] Neumonía viral no clasificada en otra parte                                      
-[11] Neumonitis debida a hipersensibilidad al polvo orgánico                          
-[12] Neumonitis debida a sólidos y líquidos    
-
-data.deaths$causa_agg <- "Otra"
-data.deaths[grep(regexp.neumonia.influenza, data.deaths$CAUSA_description, ignore.case = TRUE),]$causa_agg <- "Influenza_Neumonia"
-
-influenza.deaths <- data.deaths %>%
-                      group_by(year, causa_agg) %>%
-                      summarize (total = sum(CUENTA),
-                                 edad.media = mean(EDAD_MEDIA, na.rm = TRUE))
-
-influenza.deaths.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "total")
-influenza.deaths.tab$total <- apply(influenza.deaths.tab[,2:3], MARGIN = 1, FUN = sum)
-influenza.deaths.tab$Influenza_Neumonia.perc <- round(influenza.deaths.tab[,"Influenza_Neumonia"]/influenza.deaths.tab$total, 2)
-influenza.deaths.tab$Otra.perc <- round(influenza.deaths.tab[,"Otra"]/influenza.deaths.tab$total, 2)
-kable(influenza.deaths.tab)
-```
 | year| Influenza_Neumonia|   Otra| Otras_respiratorias|  total| Influenza_Neumonia.perc| Otra.perc| Otras_respiratorias.perc|
 |----:|------------------:|------:|-------------------:|------:|-----------------------:|---------:|------------------------:|
 | 2012|              20009| 270283|               29247| 319539|                    0.06|      0.85|                     0.09|
@@ -150,7 +113,7 @@ kable(influenza.deaths.tab)
 | 2018|              31916| 275155|               29752| 336823|                    0.09|      0.82|                     0.09|
 ```
 influenza.deaths.edad.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "edad.media")
-# Edad media is aproximated by the mean of age ranges
+# Edad media is aproximated by the average of the mean of age ranges
 kable(influenza.deaths.edad.tab)
 ```
 
