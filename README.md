@@ -35,6 +35,7 @@ First add variable with data dir in `~/.Renviron`. You will recieve a message if
 ```.Renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
 ```
+You have to manually create the destination folder
 
 # Example script for calculating proportion of influenza/Neumonia deaths in total deaths by year
 
