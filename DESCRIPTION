@@ -23,6 +23,7 @@ Depends: R (>= 3.6),
          COVID19analytics,
          httr,
          jsonlite,
+         knitr,
          testthat
 Collate:
         'deaths-lib.R'

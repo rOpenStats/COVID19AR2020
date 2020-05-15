@@ -1,0 +1,112 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  dpi=200,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+
+# COVID19AR
+
+A package for analysing COVID-19 Argentina's outbreak
+
+ <!-- . -->
+
+
+
+
+# Package
+
+| Release | Usage | Development |
+|:--------|:------|:------------|
+| | [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.6.0-blue.svg)](https://cran.r-project.org/) | [![Travis](https://travis-ci.org/rOpenStats/COVID19AR.svg?branch=master)](https://travis-ci.org/rOpenStats/COVID19AR) |
+| [![CRAN](http://www.r-pkg.org/badges/version/COVID19AR)](https://cran.r-project.org/package=COVID19AR) | | [![codecov](https://codecov.io/gh/rOpenStats/COVID19AR/branch/master/graph/badge.svg)](https://codecov.io/gh/rOpenStats/COVID19AR) |
+|||[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)|
+
+
+
+
+# How to get started (Development version)
+
+Install the R package using the following commands on the R console:
+
+The repository is private so it have to be cloned first for installation
+```R
+# install.packages("devtools")
+devtools::install()
+```
+
+# How to use it
+
+First add variable with data dir in `~/.Renviron`. You will recieve a message if you didn't do it. 
+
+```.Renviron
+COVID19AR_data_dir = "~/.R/COVID19AR"
+```
+
+# Example script for calculating proportion of influenza/Neumonia deaths in total deaths by year
+
+```{r}
+library(COVID19AR)
+# Downloads csv from official source at:
+# http://www.deis.msal.gov.ar/index.php/base-de-datos/
+retrieveArgentinasDeathsStatistics()
+
+
+consolidated.deaths.stats <- ConsolidatedDeathsData.class$new()
+# Consolidates all years and includes the different codes as factor in the data frame
+data.deaths <- consolidated.deaths.stats$consolidate()
+
+# How many records do we have?
+nrow(data.deaths)
+# [1] 347549
+
+# Cases with missing codes in CAUSA
+kable(consolidated.deaths.stats$warnings)
+```
+
+
+```{r}
+regexp.neumonia.influenza <- "^J(09|1[0-8])"
+regexp.otras.respiratorias <- "^J"
+
+# List all Causas related to Influenza|Neumonía considered for classification
+
+causas.descriptions <- sort(unique(data.deaths$codigo.causas))
+causas.descriptions[grep(regexp.neumonia.influenza, causas.descriptions, ignore.case = TRUE)]
+
+data.deaths$causa_agg <- "Otra"
+data.deaths[grep(regexp.neumonia.influenza, data.deaths$codigo.causa, ignore.case = TRUE),]$causa_agg <- "Influenza_Neumonia"
+data.deaths[which(grepl(regexp.otras.respiratorias, data.deaths$codigo.causa, ignore.case = TRUE) & data.deaths$causa_agg == "Otra"),]$causa_agg <- "Otras_respiratorias"
+
+influenza.deaths <- data.deaths %>%
+                      group_by(year, causa_agg) %>%
+                      summarize (total = sum(CUENTA),
+                                 edad.media = mean(EDAD_MEDIA, na.rm = TRUE))
+influenza.deaths %>% filter(year == 2018)
+
+influenza.deaths.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "total")
+influenza.deaths.tab$total <- apply(influenza.deaths.tab[,2:4], MARGIN = 1, FUN = sum)
+influenza.deaths.tab$Influenza_Neumonia.perc <- round(influenza.deaths.tab[,"Influenza_Neumonia"]/influenza.deaths.tab$total, 2)
+influenza.deaths.tab$Otra.perc <- round(influenza.deaths.tab[,"Otra"]/influenza.deaths.tab$total, 2)
+influenza.deaths.tab$Otras_respiratorias.perc <- round(influenza.deaths.tab[,"Otras_respiratorias"]/influenza.deaths.tab$total, 2)
+kable(influenza.deaths.tab)
+```
+
+```{r}
+influenza.deaths.edad.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "edad.media")
+# Edad media is aproximated by the average of the mean of age ranges
+kable(influenza.deaths.edad.tab)
+```
+
+
