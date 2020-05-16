@@ -74,3 +74,39 @@ nrow(data.deaths)
 # Cases with missing codes in CAUSA
 kable(consolidated.deaths.stats$warnings)
 ```
+
+
+```{r}
+regexp.neumonia.influenza <- "^J(09|1[0-8])"
+regexp.otras.respiratorias <- "^J"
+
+# List all Causas related to Influenza|Neumonía considered for classification
+
+causas.descriptions <- sort(unique(data.deaths$codigo.causas))
+causas.descriptions[grep(regexp.neumonia.influenza, causas.descriptions, ignore.case = TRUE)]
+
+data.deaths$causa_agg <- "Otra"
+data.deaths[grep(regexp.neumonia.influenza, data.deaths$codigo.causa, ignore.case = TRUE),]$causa_agg <- "Influenza_Neumonia"
+data.deaths[which(grepl(regexp.otras.respiratorias, data.deaths$codigo.causa, ignore.case = TRUE) & data.deaths$causa_agg == "Otra"),]$causa_agg <- "Otras_respiratorias"
+
+influenza.deaths <- data.deaths %>%
+                      group_by(year, causa_agg) %>%
+                      summarize (total = sum(CUENTA),
+                                 edad.media = mean(EDAD_MEDIA, na.rm = TRUE))
+influenza.deaths %>% filter(year == 2018)
+
+influenza.deaths.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "total")
+influenza.deaths.tab$total <- apply(influenza.deaths.tab[,2:4], MARGIN = 1, FUN = sum)
+influenza.deaths.tab$Influenza_Neumonia.perc <- round(influenza.deaths.tab[,"Influenza_Neumonia"]/influenza.deaths.tab$total, 2)
+influenza.deaths.tab$Otra.perc <- round(influenza.deaths.tab[,"Otra"]/influenza.deaths.tab$total, 2)
+influenza.deaths.tab$Otras_respiratorias.perc <- round(influenza.deaths.tab[,"Otras_respiratorias"]/influenza.deaths.tab$total, 2)
+kable(influenza.deaths.tab)
+```
+
+```{r}
+influenza.deaths.edad.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "edad.media")
+# Edad media is aproximated by the average of the mean of age ranges
+kable(influenza.deaths.edad.tab)
+```
+
+

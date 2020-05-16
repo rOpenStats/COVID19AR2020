@@ -100,45 +100,45 @@ retrieveArgentinasDeathsStatistics()
 consolidated.deaths.stats <- ConsolidatedDeathsData.class$new()
 # Consolidates all years and includes the different codes as factor in the data frame
 data.deaths <- consolidated.deaths.stats$consolidate()
-#> INFO  [16:08:47.235] Reading {file: DefWeb12.csv}
-#> WARN  [16:08:47.654] 2012 
-#> WARN  [16:08:47.654] CAUSA 
-#> WARN  [16:08:47.654] Codes I84 in field CAUSA not coded 
-#> WARN  [16:08:47.654] I84 
-#> WARN  [16:08:47.654] 1 
-#> INFO  [16:08:47.788] NA values {count: 47155, field: MAT}
-#> INFO  [16:08:47.817] Reading {file: DefWeb13.csv}
-#> WARN  [16:08:48.147] 2013 
-#> WARN  [16:08:48.147] CAUSA 
-#> WARN  [16:08:48.147] Codes I84 in field CAUSA not coded 
-#> WARN  [16:08:48.147] I84 
-#> WARN  [16:08:48.147] 1 
-#> INFO  [16:08:48.174] NA values {count: 48249, field: MAT}
-#> INFO  [16:08:48.244] Reading {file: DefWeb14.csv}
-#> WARN  [16:08:48.626] 2014 
-#> WARN  [16:08:48.626] CAUSA 
-#> WARN  [16:08:48.626] Codes I84 in field CAUSA not coded 
-#> WARN  [16:08:48.626] I84 
-#> WARN  [16:08:48.626] 2 
-#> INFO  [16:08:48.651] NA values {count: 48105, field: MAT}
-#> INFO  [16:08:48.822] Reading {file: DefWeb15.csv}
-#> WARN  [16:08:49.124] 2015 
-#> WARN  [16:08:49.124] CAUSA 
-#> WARN  [16:08:49.124] Codes I84 in field CAUSA not coded 
-#> WARN  [16:08:49.124] I84 
-#> WARN  [16:08:49.124] 3 
-#> INFO  [16:08:49.154] NA values {count: 52250, field: MAT}
-#> INFO  [16:08:49.286] Reading {file: DefWeb16.csv}
-#> WARN  [16:08:49.679] 2016 
-#> WARN  [16:08:49.679] CAUSA 
-#> WARN  [16:08:49.679] Codes R97 in field CAUSA not coded 
-#> WARN  [16:08:49.679] R97 
-#> WARN  [16:08:49.679] 10 
-#> INFO  [16:08:49.713] NA values {count: 50951, field: MAT}
-#> INFO  [16:08:49.955] Reading {file: DefWeb17.csv}
-#> INFO  [16:08:50.286] NA values {count: 49630, field: MAT}
-#> INFO  [16:08:50.557] Reading {file: DefWeb18.csv}
-#> INFO  [16:08:50.885] NA values {count: 49602, field: MAT}
+#> INFO  [16:30:16.675] Reading {file: DefWeb12.csv}
+#> WARN  [16:30:17.157] 2012 
+#> WARN  [16:30:17.157] CAUSA 
+#> WARN  [16:30:17.157] Codes I84 in field CAUSA not coded 
+#> WARN  [16:30:17.157] I84 
+#> WARN  [16:30:17.157] 1 
+#> INFO  [16:30:17.190] NA values {count: 47155, field: MAT}
+#> INFO  [16:30:17.219] Reading {file: DefWeb13.csv}
+#> WARN  [16:30:17.540] 2013 
+#> WARN  [16:30:17.540] CAUSA 
+#> WARN  [16:30:17.540] Codes I84 in field CAUSA not coded 
+#> WARN  [16:30:17.540] I84 
+#> WARN  [16:30:17.540] 1 
+#> INFO  [16:30:17.567] NA values {count: 48249, field: MAT}
+#> INFO  [16:30:17.632] Reading {file: DefWeb14.csv}
+#> WARN  [16:30:18.058] 2014 
+#> WARN  [16:30:18.058] CAUSA 
+#> WARN  [16:30:18.058] Codes I84 in field CAUSA not coded 
+#> WARN  [16:30:18.058] I84 
+#> WARN  [16:30:18.058] 2 
+#> INFO  [16:30:18.092] NA values {count: 48105, field: MAT}
+#> INFO  [16:30:18.204] Reading {file: DefWeb15.csv}
+#> WARN  [16:30:18.662] 2015 
+#> WARN  [16:30:18.662] CAUSA 
+#> WARN  [16:30:18.662] Codes I84 in field CAUSA not coded 
+#> WARN  [16:30:18.662] I84 
+#> WARN  [16:30:18.662] 3 
+#> INFO  [16:30:18.708] NA values {count: 52250, field: MAT}
+#> INFO  [16:30:19.007] Reading {file: DefWeb16.csv}
+#> WARN  [16:30:19.379] 2016 
+#> WARN  [16:30:19.379] CAUSA 
+#> WARN  [16:30:19.379] Codes R97 in field CAUSA not coded 
+#> WARN  [16:30:19.379] R97 
+#> WARN  [16:30:19.379] 10 
+#> INFO  [16:30:19.417] NA values {count: 50951, field: MAT}
+#> INFO  [16:30:19.629] Reading {file: DefWeb17.csv}
+#> INFO  [16:30:20.109] NA values {count: 49630, field: MAT}
+#> INFO  [16:30:20.339] Reading {file: DefWeb18.csv}
+#> INFO  [16:30:20.780] NA values {count: 49602, field: MAT}
 
 # How many records do we have?
 nrow(data.deaths)
@@ -156,72 +156,3 @@ kable(consolidated.deaths.stats$warnings)
 | 2014 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     2 |
 | 2015 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     3 |
 | 2016 | CAUSA | Codes R97 in field CAUSA not coded | R97          |    10 |
-
-``` r
-regexp.neumonia.influenza <- "^J(09|1[0-8])"
-regexp.otras.respiratorias <- "^J"
-
-# List all Causas related to Influenza|Neumonía considered for classification
-
-causas.descriptions <- sort(unique(data.deaths$codigo.causas))
-causas.descriptions[grep(regexp.neumonia.influenza, causas.descriptions, ignore.case = TRUE)]
-#> [1] "J09|Influenza debida a ciertos virus de la influenza identificados"                   
-#> [2] "J10|Influenza debida a otro virus de la influenza identificado"                       
-#> [3] "J11|Influenza debida a virus no identificado"                                         
-#> [4] "J12|Neumonía viral no clasificada en otra parte"                                      
-#> [5] "J13|Neumonía debida a Streptococcus pneumoniae"                                       
-#> [6] "J14|Neumonía debida a Haemophilus influenzae"                                         
-#> [7] "J15|Neumonía bacteriana no clasificada en otra parte"                                 
-#> [8] "J16|Neumonía debida a otros microorganismos infecciosos no clasificados en otra parte"
-#> [9] "J18|Neumonía organismo no especificado"
-
-data.deaths$causa_agg <- "Otra"
-data.deaths[grep(regexp.neumonia.influenza, data.deaths$codigo.causa, ignore.case = TRUE),]$causa_agg <- "Influenza_Neumonia"
-data.deaths[which(grepl(regexp.otras.respiratorias, data.deaths$codigo.causa, ignore.case = TRUE) & data.deaths$causa_agg == "Otra"),]$causa_agg <- "Otras_respiratorias"
-
-influenza.deaths <- data.deaths %>%
-                      group_by(year, causa_agg) %>%
-                      summarize (total = sum(CUENTA),
-                                 edad.media = mean(EDAD_MEDIA, na.rm = TRUE))
-influenza.deaths %>% filter(year == 2018)
-#> # A tibble: 3 x 4
-#> # Groups:   year [1]
-#>    year causa_agg            total edad.media
-#>   <dbl> <chr>                <dbl>      <dbl>
-#> 1  2018 Influenza_Neumonia   31916       46.8
-#> 2  2018 Otra                275155       50.9
-#> 3  2018 Otras_respiratorias  29752       54.5
-
-influenza.deaths.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "total")
-influenza.deaths.tab$total <- apply(influenza.deaths.tab[,2:4], MARGIN = 1, FUN = sum)
-influenza.deaths.tab$Influenza_Neumonia.perc <- round(influenza.deaths.tab[,"Influenza_Neumonia"]/influenza.deaths.tab$total, 2)
-influenza.deaths.tab$Otra.perc <- round(influenza.deaths.tab[,"Otra"]/influenza.deaths.tab$total, 2)
-influenza.deaths.tab$Otras_respiratorias.perc <- round(influenza.deaths.tab[,"Otras_respiratorias"]/influenza.deaths.tab$total, 2)
-kable(influenza.deaths.tab)
-```
-
-| year | Influenza\_Neumonia |   Otra | Otras\_respiratorias |  total | Influenza\_Neumonia.perc | Otra.perc | Otras\_respiratorias.perc |
-| ---: | ------------------: | -----: | -------------------: | -----: | -----------------------: | --------: | ------------------------: |
-| 2012 |               20009 | 270283 |                29247 | 319539 |                     0.06 |      0.85 |                      0.09 |
-| 2013 |               23389 | 273675 |                29133 | 326197 |                     0.07 |      0.84 |                      0.09 |
-| 2014 |               24583 | 271289 |                29667 | 325539 |                     0.08 |      0.83 |                      0.09 |
-| 2015 |               27804 | 276506 |                29097 | 333407 |                     0.08 |      0.83 |                      0.09 |
-| 2016 |               33632 | 287807 |                31553 | 352992 |                     0.10 |      0.82 |                      0.09 |
-| 2017 |               33504 | 276819 |                31365 | 341688 |                     0.10 |      0.81 |                      0.09 |
-| 2018 |               31916 | 275155 |                29752 | 336823 |                     0.09 |      0.82 |                      0.09 |
-
-``` r
-influenza.deaths.edad.tab <- dcast(influenza.deaths, formula = year~causa_agg, value.var = "edad.media")
-# Edad media is aproximated by the average of the mean of age ranges
-kable(influenza.deaths.edad.tab)
-```
-
-| year | Influenza\_Neumonia |     Otra | Otras\_respiratorias |
-| ---: | ------------------: | -------: | -------------------: |
-| 2012 |            46.15945 | 50.16380 |             53.24300 |
-| 2013 |            46.59759 | 50.37501 |             54.32957 |
-| 2014 |            47.00361 | 50.50093 |             53.47351 |
-| 2015 |            47.91418 | 50.75700 |             54.46687 |
-| 2016 |            46.37225 | 50.67127 |             53.76223 |
-| 2017 |            47.20525 | 50.68764 |             54.23077 |
-| 2018 |            46.79927 | 50.86007 |             54.53614 |
