@@ -59,10 +59,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     makeSummary = function(group.vars = c("provincia_residencia", "edad.rango", "sepi_apertura", "origen_financiamiento")){
      logger <- getLogger(self)
      self$curateData()
-     logger$info("Mutating data")
      #self$data$edad.rango <- NA
      #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-     names(self$data)
      self$data.summary <- self$data %>%
       group_by_at(group.vars) %>%
       summarize(n = n(),

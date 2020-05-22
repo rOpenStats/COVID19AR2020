@@ -59,9 +59,11 @@ library(COVID19AR)
 ```
 
 
-# COVID19AR open data cases
+# COVID19AR open data From Ministerio de Salud de la Nación Argentina
 
 ```{r, covid19curator}
+# Data from
+# http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
 self <- covid19.curator
 covid19.curator$loadData()

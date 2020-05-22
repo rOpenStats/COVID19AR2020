@@ -97,9 +97,11 @@ library(COVID19AR)
 #>     matches
 ```
 
-# COVID19AR open data cases
+# COVID19AR open data From Ministerio de Salud de la Nación Argentina
 
 ``` r
+# Data from
+# http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
 self <- covid19.curator
 covid19.curator$loadData()
@@ -121,8 +123,8 @@ covid19.curator$loadData()
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
-#> INFO  [09:55:40.393] Mutating data 
-#> INFO  [09:55:50.592] Mutating data
+#> INFO  [09:57:31.777] Mutating data 
+#> INFO  [09:57:42.703] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 25
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -143,7 +145,7 @@ porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 #> # … with 15 more rows
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "sexo"))
-#> INFO  [09:55:50.852] Mutating data
+#> INFO  [09:57:43.026] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 67
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -167,7 +169,7 @@ porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "origen_financiamiento"))
-#> INFO  [09:55:51.025] Mutating data
+#> INFO  [09:57:43.214] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 36
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -191,7 +193,7 @@ porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "origen_financiamiento"))
-#> INFO  [09:55:51.184] Mutating data
+#> INFO  [09:57:43.406] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 50
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
