@@ -32,6 +32,7 @@ message if you didn’t.
 ``` .renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
 ```
+You have to manually create the destination folder
 
 ``` r
 library(COVID19AR)
