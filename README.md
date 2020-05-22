@@ -35,8 +35,6 @@ message if you didn’t do it.
 COVID19AR_data_dir = "~/.R/COVID19AR"
 ```
 
-# Example script for calculating proportion of influenza/Neumonia deaths in total deaths by year
-
 ``` r
 library(COVID19AR)
 #> Loading required package: readr
@@ -59,6 +57,7 @@ library(COVID19AR)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+#> Loading required package: magrittr
 #> Loading required package: lgr
 #> Loading required package: reshape2
 #> Loading required package: knitr
@@ -71,6 +70,8 @@ library(COVID19AR)
 #> loading 'COVID19analytics'
 #> Warning: replacing previous import 'dplyr::setdiff' by 'lubridate::setdiff' when
 #> loading 'COVID19analytics'
+#> Warning: replacing previous import 'readr::col_factor' by 'scales::col_factor'
+#> when loading 'COVID19analytics'
 #> Warning: replacing previous import 'magrittr::equals' by 'testthat::equals' when
 #> loading 'COVID19analytics'
 #> Warning: replacing previous import 'magrittr::not' by 'testthat::not' when
@@ -88,71 +89,127 @@ library(COVID19AR)
 #> Loading required package: testthat
 #> 
 #> Attaching package: 'testthat'
+#> The following objects are masked from 'package:magrittr':
+#> 
+#>     equals, is_less_than, not
 #> The following object is masked from 'package:dplyr':
 #> 
 #>     matches
-# Downloads csv from official source at:
-# http://www.deis.msal.gov.ar/index.php/base-de-datos/
-retrieveArgentinasDeathsStatistics()
-#> [1] FALSE
-
-
-consolidated.deaths.stats <- ConsolidatedDeathsData.class$new()
-# Consolidates all years and includes the different codes as factor in the data frame
-data.deaths <- consolidated.deaths.stats$consolidate()
-#> INFO  [16:30:16.675] Reading {file: DefWeb12.csv}
-#> WARN  [16:30:17.157] 2012 
-#> WARN  [16:30:17.157] CAUSA 
-#> WARN  [16:30:17.157] Codes I84 in field CAUSA not coded 
-#> WARN  [16:30:17.157] I84 
-#> WARN  [16:30:17.157] 1 
-#> INFO  [16:30:17.190] NA values {count: 47155, field: MAT}
-#> INFO  [16:30:17.219] Reading {file: DefWeb13.csv}
-#> WARN  [16:30:17.540] 2013 
-#> WARN  [16:30:17.540] CAUSA 
-#> WARN  [16:30:17.540] Codes I84 in field CAUSA not coded 
-#> WARN  [16:30:17.540] I84 
-#> WARN  [16:30:17.540] 1 
-#> INFO  [16:30:17.567] NA values {count: 48249, field: MAT}
-#> INFO  [16:30:17.632] Reading {file: DefWeb14.csv}
-#> WARN  [16:30:18.058] 2014 
-#> WARN  [16:30:18.058] CAUSA 
-#> WARN  [16:30:18.058] Codes I84 in field CAUSA not coded 
-#> WARN  [16:30:18.058] I84 
-#> WARN  [16:30:18.058] 2 
-#> INFO  [16:30:18.092] NA values {count: 48105, field: MAT}
-#> INFO  [16:30:18.204] Reading {file: DefWeb15.csv}
-#> WARN  [16:30:18.662] 2015 
-#> WARN  [16:30:18.662] CAUSA 
-#> WARN  [16:30:18.662] Codes I84 in field CAUSA not coded 
-#> WARN  [16:30:18.662] I84 
-#> WARN  [16:30:18.662] 3 
-#> INFO  [16:30:18.708] NA values {count: 52250, field: MAT}
-#> INFO  [16:30:19.007] Reading {file: DefWeb16.csv}
-#> WARN  [16:30:19.379] 2016 
-#> WARN  [16:30:19.379] CAUSA 
-#> WARN  [16:30:19.379] Codes R97 in field CAUSA not coded 
-#> WARN  [16:30:19.379] R97 
-#> WARN  [16:30:19.379] 10 
-#> INFO  [16:30:19.417] NA values {count: 50951, field: MAT}
-#> INFO  [16:30:19.629] Reading {file: DefWeb17.csv}
-#> INFO  [16:30:20.109] NA values {count: 49630, field: MAT}
-#> INFO  [16:30:20.339] Reading {file: DefWeb18.csv}
-#> INFO  [16:30:20.780] NA values {count: 49602, field: MAT}
-
-# How many records do we have?
-nrow(data.deaths)
-#> [1] 347549
-# [1] 347549
-
-# Cases with missing codes in CAUSA
-kable(consolidated.deaths.stats$warnings)
 ```
 
-| year | field | message                            | missed.codes | cases |
-| ---: | :---- | :--------------------------------- | :----------- | ----: |
-| 2012 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     1 |
-| 2013 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     1 |
-| 2014 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     2 |
-| 2015 | CAUSA | Codes I84 in field CAUSA not coded | I84          |     3 |
-| 2016 | CAUSA | Codes R97 in field CAUSA not coded | R97          |    10 |
+# COVID19AR open data cases
+
+``` r
+covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
+self <- covid19.curator
+covid19.curator$loadData()
+#> <COVID19ARCurator>
+#>   Public:
+#>     clone: function (deep = FALSE) 
+#>     curated: FALSE
+#>     curateData: function () 
+#>     data: spec_tbl_df, tbl_df, tbl, data.frame
+#>     data.dir: ~/.R/COVID19AR
+#>     data.summary: NA
+#>     edad.coder: EdadCoder, R6
+#>     initialize: function (url, data.dir = getEnv("data_dir")) 
+#>     loadData: function () 
+#>     logger: Logger, Filterable, R6
+#>     makeSummary: function (group.vars = c("provincia_residencia", "edad.rango", 
+#>     url: http://170.150.153.128/covid/covid_19_casos.csv
+```
+
+``` r
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
+#> INFO  [09:55:40.393] Mutating data 
+#> INFO  [09:55:50.592] Mutating data
+nrow(covid19.ar.summary)
+#> [1] 25
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("provincia_residencia", "confirmados", porc.cols))
+#> # A tibble: 25 x 5
+#>    provincia_resid… confirmados internados.porc cuidado.intensi… respirador.porc
+#>    <chr>                  <dbl>           <dbl>            <dbl>           <dbl>
+#>  1 CABA                    3575          0.455            0.0431          0.0210
+#>  2 Buenos Aires            2947          0.419            0.0526          0.0271
+#>  3 Chaco                    635          0.157            0.0740          0.0394
+#>  4 Córdoba                  427          0.237            0.0539          0.0187
+#>  5 Río Negro                331          0.598            0.0332          0.0181
+#>  6 Santa Fe                 249          0.193            0.0482          0.0201
+#>  7 Tierra del Fuego         135          0.0444           0.0148          0.0148
+#>  8 Neuquén                  114          0.728            0.0263          0.0263
+#>  9 Mendoza                   89          0.933            0.124           0.0562
+#> 10 Corrientes                78          0.0128           0.0128          0     
+#> # … with 15 more rows
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "sexo"))
+#> INFO  [09:55:50.852] Mutating data
+nrow(covid19.ar.summary)
+#> [1] 67
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "sexo", "confirmados", "internados", porc.cols))
+#> # A tibble: 67 x 7
+#> # Groups:   provincia_residencia [25]
+#>    provincia_resid… sexo  confirmados internados internados.porc
+#>    <chr>            <chr>       <dbl>      <dbl>           <dbl>
+#>  1 CABA             M            1829        831           0.454
+#>  2 CABA             F            1737        791           0.455
+#>  3 Buenos Aires     M            1491        640           0.429
+#>  4 Buenos Aires     F            1449        591           0.408
+#>  5 Río Negro        M             168        102           0.607
+#>  6 Río Negro        F             163         96           0.589
+#>  7 Córdoba          F             225         59           0.262
+#>  8 Chaco            F             321         51           0.159
+#>  9 Chaco            M             313         49           0.157
+#> 10 Neuquén          M              61         45           0.738
+#> # … with 57 more rows, and 2 more variables: cuidado.intensivo.porc <dbl>,
+#> #   respirador.porc <dbl>
+
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "origen_financiamiento"))
+#> INFO  [09:55:51.025] Mutating data
+nrow(covid19.ar.summary)
+#> [1] 36
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("edad.rango", "origen_financiamiento", "confirmados", "internados", porc.cols))
+#> # A tibble: 36 x 7
+#> # Groups:   edad.rango [18]
+#>    edad.rango origen_financia… confirmados internados internados.porc
+#>    <chr>      <chr>                  <dbl>      <dbl>           <dbl>
+#>  1 80+        Privado                  285        184           0.646
+#>  2 30-34      Privado                  395        181           0.458
+#>  3 30-34      Público                  641        177           0.276
+#>  4 25-29      Público                  627        173           0.276
+#>  5 40-44      Público                  531        170           0.320
+#>  6 35-39      Público                  556        158           0.284
+#>  7 45-49      Público                  460        154           0.335
+#>  8 80+        Público                  204        149           0.730
+#>  9 50-54      Público                  415        137           0.330
+#> 10 55-59      Público                  344        135           0.392
+#> # … with 26 more rows, and 2 more variables: cuidado.intensivo.porc <dbl>,
+#> #   respirador.porc <dbl>
+
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "origen_financiamiento"))
+#> INFO  [09:55:51.184] Mutating data
+nrow(covid19.ar.summary)
+#> [1] 50
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "origen_financiamiento", "confirmados", "internados", porc.cols))
+#> # A tibble: 50 x 7
+#> # Groups:   provincia_residencia [25]
+#>    provincia_resid… origen_financia… confirmados internados internados.porc
+#>    <chr>            <chr>                  <dbl>      <dbl>           <dbl>
+#>  1 CABA             Público                 2208        821           0.372
+#>  2 CABA             Privado                 1367        804           0.588
+#>  3 Buenos Aires     Privado                 1550        676           0.436
+#>  4 Buenos Aires     Público                 1397        560           0.401
+#>  5 Río Negro        Público                  320        192           0.6  
+#>  6 Chaco            Público                  630         97           0.154
+#>  7 Neuquén          Público                  110         81           0.736
+#>  8 Córdoba          Público                  279         62           0.222
+#>  9 Mendoza          Público                   62         56           0.903
+#> 10 Córdoba          Privado                  148         39           0.264
+#> # … with 40 more rows, and 2 more variables: cuidado.intensivo.porc <dbl>,
+#> #   respirador.porc <dbl>
+```

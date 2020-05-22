@@ -18,6 +18,19 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
  ret
 }
 
+
+retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
+  url.splitted <- strsplit(url, split = "/")[[1]]
+  filename <- url.splitted[length(url.splitted)]
+  dest.path <- file.path(dest.dir, filename)
+  ret <- FALSE
+  if (!file.exists(dest.path) | force){
+    download.file(url = url, destfile = dest.path)
+    ret <- TRUE
+  }
+  ret
+}
+
 #' getPackagePrefix
 #' @export
 getPackagePrefix <- function(){
@@ -102,4 +115,27 @@ zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALS
    }
   }
  }
+}
+
+
+#' removeAccents
+#' @export
+removeAccents<-function(text){
+  #debug
+  text.debug <<- text
+  ret <- iconv(text, to='ASCII//TRANSLIT')
+  ret <- gsub("'|\\~","",ret)
+  ret
+}
+
+#' normalizeString
+#' @export
+normalizeString<-function(text,lowercase=TRUE){
+  text <- removeAccents(trimws(text))
+  if (lowercase){
+    text <- tolower(text)
+  }
+  else {
+    text <- toupper(text)
+  }
 }

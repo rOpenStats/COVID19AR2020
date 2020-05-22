@@ -54,23 +54,42 @@ First add variable with data dir in `~/.Renviron`. You will recieve a message if
 COVID19AR_data_dir = "~/.R/COVID19AR"
 ```
 
-# Example script for calculating proportion of influenza/Neumonia deaths in total deaths by year
-
-```{r}
+```{r, library}
 library(COVID19AR)
-# Downloads csv from official source at:
-# http://www.deis.msal.gov.ar/index.php/base-de-datos/
-retrieveArgentinasDeathsStatistics()
-
-
-consolidated.deaths.stats <- ConsolidatedDeathsData.class$new()
-# Consolidates all years and includes the different codes as factor in the data frame
-data.deaths <- consolidated.deaths.stats$consolidate()
-
-# How many records do we have?
-nrow(data.deaths)
-# [1] 347549
-
-# Cases with missing codes in CAUSA
-kable(consolidated.deaths.stats$warnings)
 ```
+
+
+# COVID19AR open data cases
+
+```{r, covid19curator}
+covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
+self <- covid19.curator
+covid19.curator$loadData()
+```
+
+```{r, covid19summaries}
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
+nrow(covid19.ar.summary)
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("provincia_residencia", "confirmados", porc.cols))
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "sexo"))
+nrow(covid19.ar.summary)
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "sexo", "confirmados", "internados", porc.cols))
+
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "origen_financiamiento"))
+nrow(covid19.ar.summary)
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("edad.rango", "origen_financiamiento", "confirmados", "internados", porc.cols))
+
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "origen_financiamiento"))
+nrow(covid19.ar.summary)
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "origen_financiamiento", "confirmados", "internados", porc.cols))
+```
+
+
+

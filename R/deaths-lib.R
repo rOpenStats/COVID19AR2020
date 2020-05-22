@@ -1,14 +1,3 @@
-retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
- url.splitted <- strsplit(url, split = "/")[[1]]
- filename <- url.splitted[length(url.splitted)]
- dest.path <- file.path(dest.dir, filename)
- ret <- FALSE
- if (!file.exists(dest.path) | force){
-   download.file(url = url, destfile = dest.path)
-   ret <- TRUE
- }
- ret
-}
 
 
 #'
@@ -63,6 +52,7 @@ readMetadata <- function(file.path){
 #' codeEdad
 #' @export
 codeEdad <- function(data.deaths){
+ logger <- lgr
  all.codes <- sort(unique(data.deaths$GRUPEDAD))
  edad.regexp <- "([0-9]{2})\\_([0-9]{2}) a ([0-9]{2})"
  data.deaths$EDAD_CODE <- NA
@@ -73,33 +63,40 @@ codeEdad <- function(data.deaths){
  codes2correct <- all.codes[grep(edad.regexp, all.codes)]
  data.deaths[rows2correct, "EDAD_CODE"] <- as.numeric(gsub(edad.regexp, "\\1", data2correct))
  data.deaths[rows2correct, "EDAD_MIN"] <- as.numeric(gsub(edad.regexp, "\\2", data2correct))
- data.deaths[rows2correct, "EDAD_MAX"] <- as.numeric(gsub(edad.regexp, "\\2", data2correct))
+ data.deaths[rows2correct, "EDAD_MAX"] <- as.numeric(gsub(edad.regexp, "\\3", data2correct))
  codes.not.recognized <- sort(setdiff(all.codes, codes2correct))
  codes.na <- sort(unique(data.deaths[is.na(data.deaths$EDAD_CODE),]$GRUPEDAD))
  stopifnot(identical( codes.not.recognized, codes.na))
  for (manual.code in codes.not.recognized){
   rows2correct <- which(data.deaths$GRUPEDAD == manual.code)
-
-  if (manual.code == "01_Menor de 1 a\xf1o"){
-    data.deaths[rows2correct,]$EDAD_CODE <- 1
-    data.deaths[rows2correct,]$EDAD_MIN <- 0
-    data.deaths[rows2correct,]$EDAD_MAX <- 1
+  if (grepl("01_Menor de 1", manual.code)){
+    EDAD_CODE <- 1
+    EDAD_MIN <- 0
+    EDAD_MAX <- 1
   }
   if (manual.code == "02_1 a 9"){
-    data.deaths[rows2correct,]$EDAD_CODE <- 2
-    data.deaths[rows2correct,]$EDAD_MIN <- 1
-    data.deaths[rows2correct,]$EDAD_MAX <- 9
+    EDAD_CODE <- 2
+    EDAD_MIN <- 1
+    EDAD_MAX <- 9
   }
-  if (manual.code == "17_80 y m\xe1s"){
-    data.deaths[rows2correct,]$EDAD_CODE <- 17
-    data.deaths[rows2correct,]$EDAD_MIN <- 80
-    data.deaths[rows2correct,]$EDAD_MAX <- 100
+  if (grepl("17_80 y m", manual.code)){
+    EDAD_CODE <- 17
+    EDAD_MIN <- 80
+    EDAD_MAX <- 120
   }
   if (manual.code == "99_Sin especificar"){
-    data.deaths[rows2correct,]$EDAD_CODE <- 99
-    data.deaths[rows2correct,]$EDAD_MIN <- NA
-    data.deaths[rows2correct,]$EDAD_MAX <- NA
+    EDAD_CODE <- 99
+    EDAD_MIN <- NA
+    EDAD_MAX <- NA
   }
+  #debug
+  print(manual.code)
+
+  data.deaths[rows2correct,]$EDAD_CODE <- EDAD_CODE
+  data.deaths[rows2correct,]$EDAD_MIN <- EDAD_MIN
+  data.deaths[rows2correct,]$EDAD_MAX <- EDAD_MAX
+  logger$info(paste("Correct", length(rows2correct), "for manual.code", manual.code), EDAD_MIN = EDAD_MIN, EDAD_MAX = EDAD_MAX)
+
  }
  data.deaths[, "EDAD_MEDIA"] <- (data.deaths[, "EDAD_MIN"] + data.deaths[, "EDAD_MAX"]-1)/2
  data.deaths
@@ -160,6 +157,7 @@ ConsolidatedDeathsData.class <- R6Class("ConsolidatedDeathsData",
       data.deaths$CAUSA <- toupper(data.deaths$CAUSA)
 
       # GRUPEDAD
+      #data.deaths$GRUPEDAD <- normalizeString(data.deaths$GRUPEDAD)
       data.deaths <- codeEdad(data.deaths)
       # Generate factors for fields descriptions
       for (field in names(data.deaths)){

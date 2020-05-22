@@ -17,6 +17,7 @@ Depends: R (>= 3.6),
          checkmate,
          rvest,
          dplyr,
+         magrittr,
          lgr,
          reshape2,
          knitr,
@@ -27,5 +28,6 @@ Depends: R (>= 3.6),
          testthat
 Collate:
         'deaths-lib.R'
+        'COVID19AR-lib.R'
         'util-lib.R'
 RoxygenNote: 7.1.0
