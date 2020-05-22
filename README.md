@@ -32,7 +32,6 @@ message if you didn’t.
 ``` .renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
 ```
-You have to manually create the destination folder
 
 ``` r
 library(COVID19AR)
@@ -80,27 +79,25 @@ library(COVID19AR)
 # http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
 self <- covid19.curator
-covid19.curator$loadData()
-#> INFO  [11:10:03.914] Exists dest path? {dest.path: ~/.R/COVID19AR/covid_19_casos.csv, exists.dest.path: TRUE}
-#> <COVID19ARCurator>
-#>   Public:
-#>     clone: function (deep = FALSE) 
-#>     curated: FALSE
-#>     curateData: function () 
-#>     data: spec_tbl_df, tbl_df, tbl, data.frame
-#>     data.dir: ~/.R/COVID19AR
-#>     data.summary: NA
-#>     edad.coder: EdadCoder, R6
-#>     initialize: function (url, data.dir = getEnv("data_dir")) 
-#>     loadData: function () 
-#>     logger: Logger, Filterable, R6
-#>     makeSummary: function (group.vars = c("provincia_residencia", "edad.rango", 
-#>     url: http://170.150.153.128/covid/covid_19_casos.csv
+dummy <- covid19.curator$loadData()
+#> INFO  [11:55:48.695] Exists dest path? {dest.path: ~/.R/COVID19AR/covid_19_casos.csv, exists.dest.path: TRUE}
+
+# Dates of current processed file
+max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
+#> [1] "2020-05-19"
+
+# Inicio de síntomas
+max(covid19.curator$data$fis,  na.rm = TRUE)
+#> [1] "2020-05-19"
+
+# Ultima muerte
+max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
+#> [1] "2020-05-19"
 ```
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
-#> INFO  [11:10:04.367] Mutating data
+#> INFO  [11:55:49.342] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 23
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
