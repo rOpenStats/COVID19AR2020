@@ -18,13 +18,19 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
  ret
 }
 
-
+#' retrieveURL
+#' @import lgr
+#' @export
 retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
+  logger <- lgr
   url.splitted <- strsplit(url, split = "/")[[1]]
   filename <- url.splitted[length(url.splitted)]
   dest.path <- file.path(dest.dir, filename)
   ret <- FALSE
-  if (!file.exists(dest.path) | force){
+  exists.dest.path <- file.exists(dest.path)
+  lgr$info("Exists dest path?", dest.path = dest.path, exists.dest.path = exists.dest.path)
+  if (!exists.dest.path | force){
+    lgr$info("Retrieving", url = url, dest.path = dest.path)
     download.file(url = url, destfile = dest.path)
     ret <- TRUE
   }
@@ -138,4 +144,32 @@ normalizeString<-function(text,lowercase=TRUE){
   else {
     text <- toupper(text)
   }
+}
+
+#' genLogger
+#' @author kenarab
+#' @export
+genLogger <- function(r6.object){
+  lgr::get_logger(class(r6.object)[[1]])
+}
+
+#' getLogger
+#' @author kenarab
+#' @export
+getLogger <- function(r6.object){
+  #debug
+  #r6.object <<- r6.object
+  #TODO check if not a better solution
+  ret <- r6.object$logger
+  if (is.null(ret)){
+    class <- class(r6.object)[[1]]
+    stop(paste("Class", class, "don't seems to have a configured logger"))
+  }
+  else{
+    ret.class <- class(ret)[[1]]
+    if (ret.class == "logical"){
+      stop(paste("Class", class, "needs to initialize logger: self$logger <- genLogger(self)"))
+    }
+  }
+  ret
 }

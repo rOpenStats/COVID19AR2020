@@ -19,21 +19,22 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      self
     },
     loadData = function(){
-     retrieveURL(self$url, dest.dir = data.dir)
+     retrieveURL(self$url, dest.dir = self$data.dir)
      self$data <- read_delim("~/.R/COVID19AR/sources/200521/covid_19_casos.csv",
                                  delim = ";",
                                  col_types = cols(
                                   .default = col_character(),
-                                  id_evento_caso = col_integer(),
-                                  edad_actual_anios = col_double(),
-                                  prov_residencia_id = col_double(),
-                                  prov_carga_id = col_double(),
-                                  fis = col_date(format = ""),
-                                  fecha_apertura = col_date(format = ""),
-                                  sepi_apertura = col_double(),
-                                  fecha_internacion = col_date(format = ""),
+                                  id_evento_caso      = col_integer(),
+                                  edad_actual_anios   = col_integer(),
+                                  prov_residencia_id  = col_integer(),
+                                  prov_carga_id       = col_integer(),
+                                  fis                 = col_date(format = ""),
+                                  fecha_apertura      = col_date(format = ""),
+                                  sepi_apertura       = col_double(),
+                                  #fecha_cui_intensivo = col_date(format = ""),
+                                  fecha_internacion   = col_date(format = ""),
                                   fecha_fallecimiento = col_date(format = ""),
-                                  fecha_diagnostico = col_date(format = "")
+                                  fecha_diagnostico   = col_date(format = "")
                                  ))
       self$edad.coder <- EdadCoder$new()
       self$edad.coder$setupCoder()
@@ -48,6 +49,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       self$data$edad.rango <- vapply(self$data$edad_actual_anios,
                                      FUN = self$edad.coder$codeEdad,
                                      FUN.VALUE = character(1))
+      # TODO import as date
+      self$data$fecha_cui_intensivo <- as.Date(self$data$fecha_cui_intensivo, format = "%d/%m/%Y")
+
       self$data %<>% mutate(confirmado = ifelse(clasificacion_resumen == "Confirmado", 1, 0))
       self$data %<>% mutate(descartado = ifelse(clasificacion_resumen == "Descartado", 1, 0))
       self$data %<>% mutate(sospechoso = ifelse(clasificacion_resumen == "Sospechoso", 1, 0))
@@ -64,20 +68,25 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      self$data.summary <- self$data %>%
       group_by_at(group.vars) %>%
       summarize(n = n(),
-                tiempo.diagnostico = mean(fecha_diagnostico - fecha_apertura),
                 confirmados = sum(ifelse(confirmado, 1, 0)),
                 descartados = sum(ifelse(descartado, 1, 0)),
                 sospechosos = sum(ifelse(sospechoso, 1, 0)),
-                fallecidos  = sum(ifelse(confirmado & fallecido == "SI", 1, 0)),
+                fallecidos  = sum(ifelse(confirmado & !is.na(fallecido) & fallecido == "SI", 1, 0)),
                 sin.clasificar = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
-                positividad = confirmados / (confirmados+descartados),
+                letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
+                letalidad.max.porc = round(fallecidos / confirmados, 3),
+                positividad.porc = round(confirmados / (confirmados+descartados), 3),
                 internados  = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
-                internados.porc = internados/confirmados,
+                internados.porc = round(internados/confirmados, 3),
                 cuidado.intensivo = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
-                cuidado.intensivo.porc = cuidado.intensivo/confirmados,
+                cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
                 respirador  = sum(ifelse(confirmado & !is.na(asist_resp_mecanica) & asist_resp_mecanica == "SI", 1, 0)),
-                respirador.porc = respirador/confirmados,
-                )
+                respirador.porc = round(respirador / confirmados, 3),
+                dias.diagnostico = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_apertura), NA), na.rm = TRUE), 1),
+                dias.atencion = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fis), NA), na.rm = TRUE), 1),
+                dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fis), NA), na.rm = TRUE), 1),
+                dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fis), NA), na.rm = TRUE), 1)
+      )  %>% filter (confirmados > 0)
      if ("sepi_apertura" %in% group.vars){
        semanas <- self$data %>% group_by(sepi_apertura) %>% summarize(min.fecha = min(fecha_apertura),
                                                                       max.fecha = max(fecha_apertura)

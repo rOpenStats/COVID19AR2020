@@ -40,15 +40,14 @@ A package for analysing COVID-19 Argentina's outbreak
 
 Install the R package using the following commands on the R console:
 
-The repository is private so it have to be cloned first for installation
 ```R
 # install.packages("devtools")
-devtools::install()
+devtools::install_github("rOpenStats/COVID19AR")
 ```
 
 # How to use it
 
-First add variable with data dir in `~/.Renviron`. You will recieve a message if you didn't do it. 
+First add variable with data dir in `~/.Renviron`. You will recieve a message if you didn't. 
 
 ```.Renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
@@ -73,24 +72,24 @@ covid19.curator$loadData()
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-(covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("provincia_residencia", "confirmados", porc.cols))
+kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("provincia_residencia", "confirmados", "fallecidos", "dias.fallecimiento", porc.cols)))
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "sexo"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "sexo", "confirmados", "internados", porc.cols))
+kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("provincia_residencia", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 
 
-covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "origen_financiamiento"))
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "sexo"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("edad.rango", "origen_financiamiento", "confirmados", "internados", porc.cols))
+kable(covid19.ar.summary %>% arrange(desc(internados), desc(confirmados)) %>% select_at(c("edad.rango", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 
 
-covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "origen_financiamiento"))
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia", "sepi_apertura"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-(covid19.ar.summary %>% arrange(desc(internados))) %>% select_at(c("provincia_residencia", "origen_financiamiento", "confirmados", "internados", porc.cols))
+kable(covid19.ar.summary %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("provincia_residencia", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
 ```
 
 
