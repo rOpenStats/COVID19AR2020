@@ -175,7 +175,8 @@ getLogger <- function(r6.object){
 }
 
 
-#'@noRd
+#' @noRd
+#' @export
 getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
   ret <- "credit @ken4rab"
   if (add.date){
