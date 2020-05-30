@@ -173,3 +173,14 @@ getLogger <- function(r6.object){
   }
   ret
 }
+
+
+#'@noRd
+getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
+  ret <- "credit @ken4rab"
+  if (add.date){
+    ret <- paste(ret, report.date)
+  }
+  ret <- paste(ret, "\nsource: https://github.com/rOpenStats/COVID19AR/ based on", data.provider.abv)
+  ret
+}

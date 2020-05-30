@@ -80,7 +80,7 @@ library(COVID19AR)
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
 self <- covid19.curator
 dummy <- covid19.curator$loadData()
-#> INFO  [11:55:48.695] Exists dest path? {dest.path: ~/.R/COVID19AR/covid_19_casos.csv, exists.dest.path: TRUE}
+#> INFO  [21:08:27.168] Exists dest path? {dest.path: ~/.R/COVID19AR/covid_19_casos.csv, exists.dest.path: TRUE}
 
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
@@ -97,7 +97,7 @@ max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("provincia_residencia"))
-#> INFO  [11:55:49.342] Mutating data
+#> INFO  [21:08:27.633] Mutating data
 nrow(covid19.ar.summary)
 #> [1] 23
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]

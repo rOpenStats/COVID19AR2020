@@ -64,7 +64,6 @@ library(COVID19AR)
 # Data from
 # http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
-self <- covid19.curator
 dummy <- covid19.curator$loadData()
 
 # Dates of current processed file
