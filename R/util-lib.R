@@ -34,7 +34,7 @@ retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
     download.file(url = url, destfile = dest.path)
     ret <- TRUE
   }
-  ret
+  dest.path
 }
 
 #' getPackagePrefix
@@ -184,4 +184,10 @@ getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
   }
   ret <- paste(ret, "\nsource: https://github.com/rOpenStats/COVID19AR/ based on", data.provider.abv)
   ret
+}
+
+#'
+#' @export
+installAnalytics <- function(){
+  devtools::install_github("RopenStats/COVID19analytics")
 }

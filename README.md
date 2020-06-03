@@ -19,7 +19,7 @@ A package for analysing COVID-19 Argentina’s outbreak
 
 Install the R package using the following commands on the R console:
 
-``` r
+```r
 # install.packages("devtools")
 devtools::install_github("rOpenStats/COVID19AR")
 ```
@@ -31,6 +31,11 @@ message if you didn’t.
 
 ``` .renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
+```
+Is recommended to install COVID19analytics project
+
+```r
+installAnalytics()
 ```
 
 ``` r

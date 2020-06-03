@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get -y install libudunits2-dev # For units package
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 r_github_packages:
-  - rOpenStats/COVID19analytics
+#  - rOpenStats/COVID19analytics
 r_packages:
   - covr
   - lintr

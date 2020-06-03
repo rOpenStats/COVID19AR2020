@@ -10,6 +10,9 @@ Description: Tools for analysing COVID-19 Argentina's outbreak
 License: copyright
 Encoding: UTF-8
 LazyData: true
+Suggests:
+         devtools,
+         COVID19analytics
 Depends: R (>= 3.6),
          readr,
          readxl,
