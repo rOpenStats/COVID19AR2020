@@ -63,7 +63,7 @@ COVID19ARCurator
 \if{latex}{\out{\hypertarget{method-checkSoundness}{}}}
 \subsection{Method \code{checkSoundness()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$checkSoundness()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$checkSoundness(fix.dates = TRUE)}\if{html}{\out{</div>}}
 }
 
 }
@@ -82,7 +82,8 @@ COVID19ARCurator
 \subsection{Method \code{makeSummary()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$makeSummary(
-  group.vars = c("residencia_provincia_nombre", "sepi_apertura")
+  group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
+  temporal.acum = TRUE
 )}\if{html}{\out{</div>}}
 }
 

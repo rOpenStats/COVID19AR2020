@@ -65,16 +65,29 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       }
       self$curate.functions[[self$specification]]()
     },
-    checkSoundness = function(){
+    checkSoundness = function(fix.dates = TRUE){
+      logger$info("checkSoundness")
+
       #self$data %<>% mutate(cal_semana_apertura = as.numeric(as.character(fecha_apertura, format = "%V")))
       #self$data %<>% mutate(cal_dow = as.character(fecha_apertura, format = "%a"))
       #self$data %<>% mutate(cal_sepi_apertura_match = cal_semana_apertura == sepi_apertura)
       #$tail(self$data %>% filter(!cal_sepi_apertura_match) %>% select(semana_apertura, sepi_apertura, fecha_apertura))
       #self$data %>% group_by(cal_sepi_apertura_match, cal_dow) %>% summarize(n = n(), dif)
+
+      #rows.fix.apertura <- which(covid19.curator$data$fecha_apertura > covid19.curator$data$fecha_diagnostico)
+      #covid19.curator$data %>% filter(fecha_apertura > fecha_diagnostico) %>% select(fecha_inicio_sintomas, fecha_apertura, fecha_internacion, fecha_diagnostico, fecha_fallecimiento)
+    },
+    normalize = function(){
+      logger$info("Normalize")
+      self$data$fixed <- ""
+      self$data %<>% mutate(clasificacion = tolower(clasificacion))
+      self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
+      self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
     },
     curateData200603 = function(){
       logger <- getLogger(self)
       if (!self$curated){
+        self$normalize()
         self$checkSoundness()
         logger$info("Mutating data")
         #self$data$edad.rango <- NA
@@ -90,15 +103,16 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         # TODO import as date
         self$data$fecha_cui_intensivo <- as.Date(self$data$fecha_cui_intensivo, format = "%d/%m/%Y")
         unique(self$data$clasificacion_resumen)
-        self$data %<>% mutate(confirmado = ifelse(clasificacion_resumen == "Confirmado", 1, 0))
-        self$data %<>% mutate(descartado = ifelse(clasificacion_resumen == "Descartado", 1, 0))
-        self$data %<>% mutate(sospechoso = ifelse(clasificacion_resumen == "Sospechoso", 1, 0))
-        self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "SI", 1, 0))
+        self$data %<>% mutate(confirmado = ifelse(clasificacion_resumen == "confirmado", 1, 0))
+        self$data %<>% mutate(descartado = ifelse(clasificacion_resumen == "descartado", 1, 0))
+        self$data %<>% mutate(sospechoso = ifelse(clasificacion_resumen == "sospechoso", 1, 0))
+        self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "si", 1, 0))
         self$curated <- TRUE
       }
     },
 
-    makeSummary = function(group.vars = c("residencia_provincia_nombre", "sepi_apertura")){
+    makeSummary = function(group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
+                           temporal.acum = TRUE){
      logger <- getLogger(self)
      self$curateData()
      #self$data$edad.rango <- NA
@@ -110,7 +124,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        summarise( .groups = "keep") %>%
        arrange_at(non.temporal.fields.agg)
      if(length(temporal.fields.agg) == 0){
-       self$data.summary <- self$getAggregatedData(group.fields = group.vars, self$data)
+       self$data.summary <- self$getAggregatedData(group.fields = group.vars, current.data = self$data)
      }
      else{
        self$data.summary <- NULL
@@ -123,11 +137,15 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                              group_by_at(temporal.fields.agg) %>%
                              summarise( .groups = "keep") %>%
                              arrange_at(temporal.fields.agg)
-         group.acum <- NULL
+         current.temporal.group.acum <- NULL
          current.group.data.agg <- NULL
          for (j in seq_len(nrow(temporal.groups))){
            current.temporal.group <- temporal.groups[j,]
-           current.temporal.group.acum <- rbind(group.acum, current.temporal.group)
+           if (!temporal.acum){
+             current.temporal.group.acum <- NULL
+           }
+           current.temporal.group.acum <- rbind(current.temporal.group.acum,
+                                                current.temporal.group)
            current.temporal.group.data <- current.group.data %>% inner_join(current.temporal.group.acum,
                                                                             by = names(current.temporal.group))
            for (field in names(current.temporal.group)){
@@ -140,6 +158,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                          nrow = nrow(current.temporal.group.data))
              current.temporal.group.data.agg <- self$getAggregatedData(group.fields = group.vars,
                                                                        current.data = current.temporal.group.data)
+
              current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
            }
          }
@@ -164,25 +183,25 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        current.data %>%
          group_by_at(group.fields) %>%
          summarize(n = n(),
-                   confirmados = sum(ifelse(confirmado, 1, 0)),
-                   descartados = sum(ifelse(descartado, 1, 0)),
-                   sospechosos = sum(ifelse(sospechoso, 1, 0)),
-                   fallecidos  = sum(ifelse(fallecido, 1, 0)),
-                   sin.clasificar = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
+                   confirmados        = sum(ifelse(confirmado, 1, 0)),
+                   descartados        = sum(ifelse(descartado, 1, 0)),
+                   sospechosos        = sum(ifelse(sospechoso, 1, 0)),
+                   fallecidos         = sum(ifelse(fallecido, 1, 0)),
+                   sin.clasificar     = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
                    letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
                    letalidad.max.porc = round(fallecidos / confirmados, 3),
-                   positividad.porc = round(confirmados / (confirmados+descartados), 3),
-                   internados  = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
-                   internados.porc = round(internados/confirmados, 3),
-                   cuidado.intensivo = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
+                   positividad.porc   = round(confirmados / (confirmados+descartados), 3),
+                   internados         = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
+                   internados.porc    = round(internados/confirmados, 3),
+                   cuidado.intensivo  = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
                    cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
-                   respirador  = sum(ifelse(confirmado & !is.na(asistencia_respiratoria_mecanica) & asistencia_respiratoria_mecanica == "SI", 1, 0)),
-                   respirador.porc = round(respirador / confirmados, 3),
-                   dias.diagnostico = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_apertura), NA), na.rm = TRUE), 1),
-                   dias.atencion = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                   respirador         = sum(ifelse(confirmado & !is.na(asistencia_respiratoria_mecanica) & asistencia_respiratoria_mecanica == "SI", 1, 0)),
+                   respirador.porc    = round(respirador / confirmados, 3),
+                   dias.diagnostico   = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                   dias.apertura      = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
                    dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
                    dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fecha_inicio_sintomas), NA), na.rm = TRUE), 1)
-         )  %>% filter (confirmados > min.confirmados)
+         )  %>% filter (confirmados >= min.confirmados)
      }
     ))
 
@@ -190,6 +209,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 #' @importFrom R6 R6Class
 #' @import dplyr
 #' @import magrittr
+#' @import readr
 #' @export
 COVID19ARCurator200519 <- R6Class("COVID19ARCurator200519",
   public = list(
@@ -337,13 +357,23 @@ EdadCoder <- R6Class("EdadCoder",
   }
   ))
 
-#'
+#' exportAggregatedTables
+#' @import readr
+#' @import lgr
 #' @export
-exportAggregatedTables <- function(covid.ar.curator, ouput.dir,
+exportAggregatedTables <- function(covid.ar.curator, output.dir,
                                    aggrupation.criteria = list(provincia_residencia = c("provincia_residencia"),
                                                                provincia_residencia_sexo = c("provincia_residencia", "sexo"),
                                                                edad_rango_sexo = c("edad.rango", "sexo"),
                                                                provincia_residencia_sepi_apertura = c("provincia_residencia", "sepi_apertura"),
-                                                               provincia_residencia_fecha_ = c("provincia_residencia", "fecha_apertura"))){
-
+                                                               provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")))
+  {
+  logger <- lgr
+  for (group.vars in aggrupation.criteria){
+    current.filename <- paste("covid19ar_",paste(group.vars, collapse = "-"), ".csv", sep = "")
+    logger$info("Generating ", filename = current.filename)
+    data.summary <- covid.ar.curator$makeSummary(group.vars = group.vars)
+    output.path <- file.path(output.dir, current.filename)
+    write_csv(data.summary, output.path)
+  }
 }
