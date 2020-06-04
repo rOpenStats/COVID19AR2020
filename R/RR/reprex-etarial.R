@@ -4,7 +4,7 @@ library(reprex)
 reprex({
  library(COVID19AR)
  library(ggplot2)
- covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/covid_19_casos.csv")
+ covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/Covid19Casos.csv")
  dummy <- covid19.curator$loadData()
  dummy <- covid19.curator$curateData()
 
@@ -16,7 +16,6 @@ reprex({
  report.date <- max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
  covid19.ar.provincia.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
 
- covid19.ar.provincia.summary %>% arrange(desc(confirmados))
  covid19.ar.provincia.summary.selected <- covid19.ar.provincia.summary %>% filter(confirmados >= 100)
 
  covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "edad.rango"))
@@ -25,8 +24,8 @@ reprex({
  porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
  porc.cols <- porc.cols[grep("letalidad.min|cuidado.intensivo|positividad", porc.cols)]
 
-
- ggplot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre) %>%
+data2plot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre)
+ ggplot <- data2plot %>%
    ggplot(aes(x = edad.rango, y = cuidado.intensivo.porc, fill = edad.rango)) +
    geom_bar(stat = "identity") + facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
  ggplot <- setupTheme(ggplot, report.date = report.date, x.values = NULL, x.type = NULL,
@@ -34,7 +33,7 @@ reprex({
                       data.provider.abv = "@msalnacion", base.size = 6)
  ggplot
 
- ggplot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre) %>%
+ ggplot <- data2plot %>%
    ggplot(aes(x = edad.rango, y = respirador.porc, fill = edad.rango)) +
    geom_bar(stat = "identity") +
    facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
@@ -43,7 +42,7 @@ reprex({
                       data.provider.abv = "@msalnacion", base.size = 6)
  ggplot
 
- ggplot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre) %>%
+ ggplot <- data2plot %>%
   ggplot(aes(x = edad.rango, y = letalidad.min.porc, fill = edad.rango)) +
   geom_bar(stat = "identity") +
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
