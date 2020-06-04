@@ -28,7 +28,7 @@ COVID19ARCurator
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$new(url, data.dir = getEnv("data_dir"))}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$new(data.dir = getEnv("data_dir"))}\if{html}{\out{</div>}}
 }
 
 }

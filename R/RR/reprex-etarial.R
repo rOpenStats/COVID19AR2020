@@ -3,7 +3,6 @@ library(reprex)
 
 reprex({
  library(COVID19AR)
- library(ggplot2)
  covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/Covid19Casos.csv")
  dummy <- covid19.curator$loadData()
  dummy <- covid19.curator$curateData()
@@ -52,8 +51,6 @@ data2plot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covi
  ggplot
 
 
- kable(covid19.ar.summary %>% arrange(desc(edad.rango)) %>%
-        select_at(c("residencia_provincia_nombre", "edad.rango", "confirmados", "internados", "fallecidos",  porc.cols)))
 })
 
 

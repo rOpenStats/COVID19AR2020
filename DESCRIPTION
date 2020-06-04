@@ -11,7 +11,6 @@ License: copyright
 Encoding: UTF-8
 LazyData: true
 Suggests:
-         devtools,
          COVID19analytics
 Depends: R (>= 3.6),
          R6,
@@ -20,6 +19,7 @@ Depends: R (>= 3.6),
          readxl,
          rvest,
          dplyr,
+         ggplot2,
          RColorBrewer,
          magrittr,
          lgr,

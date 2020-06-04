@@ -18,9 +18,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     data                = NA,
     data.summary        = NA,
     logger              = NA,
-    initialize = function(url, data.dir = getEnv("data_dir")){
+    initialize = function(data.dir = getEnv("data_dir")){
      self$data.dir <- data.dir
-     self$url      <- url
+     self$url      <- "http://170.150.153.128/covid/Covid19Casos.csv"
      self$logger   <- genLogger(self)
      self$setupColsSpecifications()
      self
@@ -76,6 +76,13 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 
       #rows.fix.apertura <- which(covid19.curator$data$fecha_apertura > covid19.curator$data$fecha_diagnostico)
       #covid19.curator$data %>% filter(fecha_apertura > fecha_diagnostico) %>% select(fecha_inicio_sintomas, fecha_apertura, fecha_internacion, fecha_diagnostico, fecha_fallecimiento)
+
+      #self$data %>% filter(abs(fecha_apertura- fecha_inicio_sintomas) > 60) %>% select(fecha_apertura, fecha_inicio_sintomas, confirmado, fallecido) %>% group_by(confirmado, fallecido) %>% summarize(n = n())
+
+      current_sepi <- as.numeric(as.character(max(self$data$fecha_apertura), format = "%V"))
+      # Removing data from future sepi
+      self$data %<>% filter(sepi_apertura <= current_sepi + 1)
+
     },
     normalize = function(){
       logger <- getLogger(self)
@@ -164,7 +171,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
            }
          }
          self$data.summary <- rbind(self$data.summary, current.group.data.agg)
-         logger$info("Total data after aggregating group",
+         logger$debug("Total data after aggregating group",
                      current.group = paste(names(current.group), current.group,
                                                    sep =" = ", collapse = "|"),
                      nrow = nrow(self$data.summary))

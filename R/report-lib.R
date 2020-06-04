@@ -2,6 +2,7 @@
 #' @import RColorBrewer
 #' @importFrom grDevices colorRampPalette
 #' @import scales
+#' @import ggplot2
 #' @export
 setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.colors, x.type = "dates", base.size = 6){
  if (!is.null(x.type)){
