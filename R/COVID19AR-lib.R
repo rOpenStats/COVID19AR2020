@@ -11,10 +11,10 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     specification       = NA,
     cols.delim          = NA,
     cols.specifications = NA,
-    curate.functions     = NA,
+    curate.functions    = NA,
     edad.coder          = NA,
     curated             = FALSE,
-    fields.date         = c("sepi_apertura", "fecha_apertura"),
+    fields.temporal         = c("sepi_apertura", "fecha_apertura"),
     data                = NA,
     data.summary        = NA,
     logger              = NA,
@@ -118,7 +118,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      self$curateData()
      #self$data$edad.rango <- NA
      #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-     temporal.fields.agg<- group.vars[group.vars %in% self$fields.date]
+     temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
      non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
      non.temporal.groups <- self$data %>%
        group_by_at(non.temporal.fields.agg) %>%

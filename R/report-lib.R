@@ -45,23 +45,21 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
   else{
    colors.palette <- colors.palette[seq_len(total.colors)]
   }
-
   ggplot <- ggplot +
    #scale_fill_brewer(palette = selected.palette)
    scale_fill_manual(values = colors.palette) +
-   scale_color_manual(values = colors.palette) +
-   theme_bw(base_size = base.size,
-
-            #base_family = "courier")
-            base_family = "mono",
-   ) +
-   scale_y_continuous(labels = comma) +
-   theme(legend.title = element_blank(),
-         #TODO caption size is not working. Fix it
-         plot.caption = element_text(size = 5),
-         axis.text.x = element_text(angle = 90)) +
-   labs(caption = getCitationNote(report.date = report.date, data.provider = data.provider.abv))
+   scale_color_manual(values = colors.palette)
  }
+ ggplot <- ggplot +
+      theme_bw(base_size = base.size,
+               #base_family = "Courier"
+               base_family = "mono",
+      ) +
+      scale_y_continuous(labels = comma) +
+      theme(legend.title = element_blank(),
+            plot.caption = element_text(size = 5),
+            axis.text.x = element_text(angle = 90)) +
+      labs(caption = getCitationNote(report.date = report.date, data.provider = data.provider.abv))
  ggplot
 }
 
