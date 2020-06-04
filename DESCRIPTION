@@ -14,12 +14,13 @@ Suggests:
          devtools,
          COVID19analytics
 Depends: R (>= 3.6),
-         readr,
-         readxl,
          R6,
          checkmate,
+         readr,
+         readxl,
          rvest,
          dplyr,
+         RColorBrewer,
          magrittr,
          lgr,
          reshape2,
@@ -31,5 +32,6 @@ Depends: R (>= 3.6),
 Collate:
         'deaths-lib.R'
         'COVID19AR-lib.R'
+        'report-lib.R'
         'util-lib.R'
 RoxygenNote: 7.1.0

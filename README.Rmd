@@ -47,7 +47,7 @@ devtools::install_github("rOpenStats/COVID19AR")
 
 # How to use it
 
-First add variable with data dir in `~/.Renviron`. You will recieve a message if you didn't. 
+First add variable with your prefered data dir configuration in `~/.Renviron`. You will receive a message if you didn't. 
 
 ```.Renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
@@ -58,9 +58,16 @@ library(COVID19AR)
 ```
 
 
-# COVID19AR open data From Ministerio de Salud de la Nación Argentina
+# COVID19AR datos abiertos del Ministerio de Salud de la Nación / open data From Ministerio de Salud de la Nación Argentina
 
 ```{r, covid19curator}
+log.dir <- file.path(getEnv("data_dir"), "logs")
+dir.create(log.dir, recursive = TRUE, showWarnings = FALSE)
+log.file <- file.path(log.dir, "covid19ar.log")
+lgr::get_logger("root")$add_appender(AppenderFile$new(log.file))
+lgr::threshold("info", lgr::get_logger("root"))
+lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
+
 # Data from
 # http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/Covid19Casos.csv")
@@ -77,6 +84,14 @@ max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
 max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
 ```
 
+
+```{r, sepi_apertura}
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
+nrow(covid19.ar.summary)
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+kable(covid19.ar.summary %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("sepi_apertura", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
+```
+
 ```{r, residencia_provincia_nombre}
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
 nrow(covid19.ar.summary)
@@ -84,6 +99,8 @@ porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% 
         select_at(c("residencia_provincia_nombre", "confirmados", "fallecidos", "dias.fallecimiento",porc.cols)))
 ```
+
+
 
 ```{r, residencia_provincia_nombre-sexo}
 
@@ -111,4 +128,39 @@ kable(covid19.ar.summary %>% filter(residencia_provincia_nombre %in% c("Buenos A
 ```
 
 
+# Generar diferentes agregaciones y guardar csv / Generate different aggregations
 
+```R
+output.dir <- "~/.R/COVID19AR/"
+dir.create(output.dir, showWarnings = FALSE, recursive = TRUE)
+exportAggregatedTables(covid19.curator, output.dir = output.dir,
+                       aggrupation.criteria = list(provincia_residencia = c("residencia_provincia_nombre"),
+                                                   provincia_localidad_residencia = c("residencia_provincia_nombre", "residencia_departamento_nombre"),
+                                                   provincia_residencia_sexo = c("residencia_provincia_nombre", "sexo"),
+                                                   edad_rango_sexo = c("edad.rango", "sexo"),
+                                                   provincia_residencia_edad_rango = c("residencia_provincia_nombre", "edad.rango"),
+                                                   provincia_residencia_sepi_apertura = c("residencia_provincia_nombre", "sepi_apertura"),
+                                                   provincia_residencia = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
+                                                   provincia_residencia_fecha_apertura = c("residencia_provincia_nombre", "fecha_apertura")))
+                                                   
+                                                  
+```
+All this tables are accesible at [COVID19ARdata](https://github.com/rOpenStats/COVID19ARdata/tree/master/curated) 
+
+# How to Cite This Work
+
+
+Citation
+```
+Alejandro Baranek, COVID19AR, 2020. URL: https://github.com/rOpenStats/COVID19AR
+```
+
+```bibtex
+BibTex
+@techreport{baranek2020Covid19AR,
+Author = {Alejandro Baranek},
+Institution = {rOpenStats},
+Title = {COVID19AR: a package for analysing Argentina COVID-19 outbreak},
+Url = {https://github.com/rOpenStats/COVID19AR},
+Year = {2020}}
+```

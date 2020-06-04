@@ -16,6 +16,7 @@ COVID19ARCurator
 \item \href{#method-loadData}{\code{COVID19ARCurator$loadData()}}
 \item \href{#method-curateData}{\code{COVID19ARCurator$curateData()}}
 \item \href{#method-checkSoundness}{\code{COVID19ARCurator$checkSoundness()}}
+\item \href{#method-normalize}{\code{COVID19ARCurator$normalize()}}
 \item \href{#method-curateData200603}{\code{COVID19ARCurator$curateData200603()}}
 \item \href{#method-makeSummary}{\code{COVID19ARCurator$makeSummary()}}
 \item \href{#method-getAggregatedData}{\code{COVID19ARCurator$getAggregatedData()}}
@@ -64,6 +65,15 @@ COVID19ARCurator
 \subsection{Method \code{checkSoundness()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$checkSoundness(fix.dates = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-normalize"></a>}}
+\if{latex}{\out{\hypertarget{method-normalize}{}}}
+\subsection{Method \code{normalize()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$normalize()}\if{html}{\out{</div>}}
 }
 
 }

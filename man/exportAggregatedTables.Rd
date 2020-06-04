@@ -10,8 +10,10 @@ exportAggregatedTables(
   aggrupation.criteria = list(provincia_residencia = c("provincia_residencia"),
     provincia_residencia_sexo = c("provincia_residencia", "sexo"), edad_rango_sexo =
     c("edad.rango", "sexo"), provincia_residencia_sepi_apertura =
-    c("provincia_residencia", "sepi_apertura"), provincia_residencia_fecha_apertura =
-    c("provincia_residencia", "fecha_apertura"))
+    c("provincia_residencia", "sepi_apertura"),
+    provincia_departamento_residencia_sepi_apertura = c("residencia_provincia_nombre",
+    "residencia_departamento_nombre", "sepi_apertura"),
+    provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura"))
 )
 }
 \description{

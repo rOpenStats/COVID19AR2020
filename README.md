@@ -26,8 +26,8 @@ devtools::install_github("rOpenStats/COVID19AR")
 
 # How to use it
 
-First add variable with data dir in `~/.Renviron`. You will recieve a
-message if you didn’t.
+First add variable with your prefered data dir configuration in
+`~/.Renviron`. You will receive a message if you didn’t.
 
 ``` .renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
@@ -35,10 +35,10 @@ COVID19AR_data_dir = "~/.R/COVID19AR"
 
 ``` r
 library(COVID19AR)
-#> Loading required package: readr
-#> Loading required package: readxl
 #> Loading required package: R6
 #> Loading required package: checkmate
+#> Loading required package: readr
+#> Loading required package: readxl
 #> Loading required package: rvest
 #> Loading required package: xml2
 #> 
@@ -55,6 +55,7 @@ library(COVID19AR)
 #> The following objects are masked from 'package:base':
 #> 
 #>     intersect, setdiff, setequal, union
+#> Loading required package: RColorBrewer
 #> Loading required package: magrittr
 #> Loading required package: lgr
 #> Loading required package: reshape2
@@ -70,19 +71,32 @@ library(COVID19AR)
 #> The following object is masked from 'package:dplyr':
 #> 
 #>     matches
+#> Warning: replacing previous import 'readr::guess_encoding' by
+#> 'rvest::guess_encoding' when loading 'COVID19AR'
+#> Warning: replacing previous import 'readr::col_factor' by 'scales::col_factor'
+#> when loading 'COVID19AR'
 ```
 
-# COVID19AR open data From Ministerio de Salud de la Nación Argentina
+# COVID19AR datos abiertos del Ministerio de Salud de la Nación / open data From Ministerio de Salud de la Nación Argentina
 
 ``` r
+log.dir <- file.path(getEnv("data_dir"), "logs")
+dir.create(log.dir, recursive = TRUE, showWarnings = FALSE)
+log.file <- file.path(log.dir, "covid19ar.log")
+lgr::get_logger("root")$add_appender(AppenderFile$new(log.file))
+lgr::threshold("info", lgr::get_logger("root"))
+lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
+
 # Data from
 # http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
 covid19.curator <- COVID19ARCurator$new(url = "http://170.150.153.128/covid/Covid19Casos.csv")
 
 dummy <- covid19.curator$loadData()
-#> INFO  [12:34:30.574] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
+#> INFO  [14:32:24.028] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [12:34:32.169] Mutating data
+#> INFO  [14:32:24.825] Normalize 
+#> INFO  [14:32:25.066] checkSoundness 
+#> INFO  [14:32:25.068] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
 #> [1] "2020-06-02"
@@ -97,9 +111,42 @@ max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
 ```
 
 ``` r
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
+#> INFO  [14:32:39.150] Processing {current.group: }
+#> INFO  [14:32:42.069] Total data after aggregating group {current.group: , nrow: 20}
+nrow(covid19.ar.summary)
+#> [1] 20
+porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
+kable(covid19.ar.summary %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("sepi_apertura", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
+```
+
+| sepi\_apertura | confirmados | internados | fallecidos | letalidad.min.porc | letalidad.max.porc | positividad.porc | internados.porc | cuidado.intensivo.porc | respirador.porc |
+| -------------: | ----------: | ---------: | ---------: | -----------------: | -----------------: | ---------------: | --------------: | ---------------------: | --------------: |
+|              5 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+|              6 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+|              7 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+|              8 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+|              9 |           0 |          0 |          0 |              0.000 |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+|             10 |          15 |          9 |          1 |              0.045 |              0.067 |            0.125 |           0.600 |                  0.133 |           0.133 |
+|             11 |          92 |         63 |          8 |              0.060 |              0.087 |            0.120 |           0.685 |                  0.130 |           0.065 |
+|             12 |         406 |        250 |         16 |              0.031 |              0.039 |            0.179 |           0.616 |                  0.091 |           0.052 |
+|             13 |        1063 |        587 |         60 |              0.046 |              0.056 |            0.181 |           0.552 |                  0.095 |           0.056 |
+|             14 |        1720 |        942 |        109 |              0.050 |              0.063 |            0.144 |           0.548 |                  0.095 |           0.055 |
+|             15 |        2346 |       1265 |        167 |              0.055 |              0.071 |            0.113 |           0.539 |                  0.091 |           0.050 |
+|             16 |        3068 |       1587 |        216 |              0.053 |              0.070 |            0.095 |           0.517 |                  0.082 |           0.044 |
+|             17 |        4062 |       2058 |        307 |              0.057 |              0.076 |            0.088 |           0.507 |                  0.075 |           0.039 |
+|             18 |        4936 |       2421 |        358 |              0.054 |              0.073 |            0.083 |           0.490 |                  0.068 |           0.035 |
+|             19 |        6240 |       2928 |        414 |              0.049 |              0.066 |            0.085 |           0.469 |                  0.062 |           0.031 |
+|             20 |        8436 |       3659 |        466 |              0.042 |              0.055 |            0.093 |           0.434 |                  0.055 |           0.027 |
+|             21 |       12481 |       4768 |        535 |              0.033 |              0.043 |            0.110 |           0.382 |                  0.046 |           0.022 |
+|             22 |       17201 |       5810 |        568 |              0.025 |              0.033 |            0.124 |           0.338 |                  0.038 |           0.018 |
+|             23 |       18178 |       5990 |        569 |              0.020 |              0.031 |            0.127 |           0.330 |                  0.036 |           0.017 |
+|             44 |       18178 |       5990 |        569 |              0.020 |              0.031 |            0.127 |           0.330 |                  0.036 |           0.017 |
+
+``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
 nrow(covid19.ar.summary)
-#> [1] 23
+#> [1] 25
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% 
         select_at(c("residencia_provincia_nombre", "confirmados", "fallecidos", "dias.fallecimiento",porc.cols)))
@@ -130,12 +177,14 @@ kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>%
 | Jujuy                         |           8 |          0 |                NaN |              0.000 |              0.000 |            0.004 |           0.125 |                  0.000 |           0.000 |
 | La Pampa                      |           5 |          0 |                NaN |              0.000 |              0.000 |            0.022 |           0.200 |                  0.000 |           0.000 |
 | San Juan                      |           5 |          0 |                NaN |              0.000 |              0.000 |            0.008 |           1.000 |                  0.200 |           0.000 |
+| Catamarca                     |           0 |          0 |                NaN |              0.000 |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| Formosa                       |           0 |          0 |                NaN |              0.000 |                NaN |            0.000 |             NaN |                    NaN |             NaN |
 
 ``` r
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sexo"))
 nrow(covid19.ar.summary)
-#> [1] 52
+#> [1] 70
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable((covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(confirmados))) %>% select_at(c("residencia_provincia_nombre", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 ```
@@ -182,7 +231,7 @@ kable((covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(confirm
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "sexo"))
 nrow(covid19.ar.summary)
-#> [1] 52
+#> [1] 54
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable(covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(internados), desc(confirmados)) %>% select_at(c("edad.rango", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 ```
@@ -226,89 +275,134 @@ kable(covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(internad
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [12:35:07.186] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
-#> INFO  [12:35:08.515] Total data after aggregating group {current.group: residencia_provincia_nombre = Buenos Aires, nrow: 14}
-#> INFO  [12:35:08.518] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [12:35:09.522] Total data after aggregating group {current.group: residencia_provincia_nombre = CABA, nrow: 28}
-#> INFO  [12:35:09.525] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [12:35:10.338] Total data after aggregating group {current.group: residencia_provincia_nombre = Catamarca, nrow: 28}
-#> INFO  [12:35:10.344] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [12:35:11.280] Total data after aggregating group {current.group: residencia_provincia_nombre = Chaco, nrow: 42}
-#> INFO  [12:35:11.284] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [12:35:11.987] Total data after aggregating group {current.group: residencia_provincia_nombre = Chubut, nrow: 46}
-#> INFO  [12:35:11.991] Processing {current.group: residencia_provincia_nombre = Córdoba}
-#> INFO  [12:35:12.911] Total data after aggregating group {current.group: residencia_provincia_nombre = Córdoba, nrow: 60}
-#> INFO  [12:35:12.914] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [12:35:13.705] Total data after aggregating group {current.group: residencia_provincia_nombre = Corrientes, nrow: 72}
-#> INFO  [12:35:13.708] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [12:35:14.509] Total data after aggregating group {current.group: residencia_provincia_nombre = Entre Ríos, nrow: 83}
-#> INFO  [12:35:14.512] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [12:35:15.412] Total data after aggregating group {current.group: residencia_provincia_nombre = Formosa, nrow: 83}
-#> INFO  [12:35:15.415] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [12:35:16.333] Total data after aggregating group {current.group: residencia_provincia_nombre = Jujuy, nrow: 88}
-#> INFO  [12:35:16.337] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [12:35:17.067] Total data after aggregating group {current.group: residencia_provincia_nombre = La Pampa, nrow: 91}
-#> INFO  [12:35:17.070] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [12:35:17.883] Total data after aggregating group {current.group: residencia_provincia_nombre = La Rioja, nrow: 100}
-#> INFO  [12:35:17.887] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [12:35:18.804] Total data after aggregating group {current.group: residencia_provincia_nombre = Mendoza, nrow: 111}
-#> INFO  [12:35:18.807] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [12:35:19.506] Total data after aggregating group {current.group: residencia_provincia_nombre = Misiones, nrow: 118}
-#> INFO  [12:35:19.509] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [12:35:20.279] Total data after aggregating group {current.group: residencia_provincia_nombre = Neuquén, nrow: 130}
-#> INFO  [12:35:20.282] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [12:35:21.191] Total data after aggregating group {current.group: residencia_provincia_nombre = Río Negro, nrow: 144}
-#> INFO  [12:35:21.195] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [12:35:21.963] Total data after aggregating group {current.group: residencia_provincia_nombre = Salta, nrow: 152}
-#> INFO  [12:35:21.966] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [12:35:22.757] Total data after aggregating group {current.group: residencia_provincia_nombre = San Juan, nrow: 156}
-#> INFO  [12:35:22.760] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [12:35:23.527] Total data after aggregating group {current.group: residencia_provincia_nombre = San Luis, nrow: 160}
-#> INFO  [12:35:23.531] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [12:35:24.566] Total data after aggregating group {current.group: residencia_provincia_nombre = Santa Cruz, nrow: 169}
-#> INFO  [12:35:24.570] Processing {current.group: residencia_provincia_nombre = Santa Fe}
-#> INFO  [12:35:25.493] Total data after aggregating group {current.group: residencia_provincia_nombre = Santa Fe, nrow: 182}
-#> INFO  [12:35:25.497] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [12:35:26.569] Total data after aggregating group {current.group: residencia_provincia_nombre = Santiago del Estero, nrow: 191}
-#> INFO  [12:35:26.574] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
-#> INFO  [12:35:28.199] Total data after aggregating group {current.group: residencia_provincia_nombre = SIN ESPECIFICAR, nrow: 200}
-#> INFO  [12:35:28.202] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [12:35:29.114] Total data after aggregating group {current.group: residencia_provincia_nombre = Tierra del Fuego, nrow: 210}
-#> INFO  [12:35:29.118] Processing {current.group: residencia_provincia_nombre = Tucumán}
-#> INFO  [12:35:30.002] Total data after aggregating group {current.group: residencia_provincia_nombre = Tucumán, nrow: 222}
+#> INFO  [14:32:43.073] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [14:32:44.912] Total data after aggregating group {current.group: residencia_provincia_nombre = Buenos Aires, nrow: 19}
+#> INFO  [14:32:44.916] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [14:32:46.194] Total data after aggregating group {current.group: residencia_provincia_nombre = CABA, nrow: 36}
+#> INFO  [14:32:46.198] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [14:32:47.018] Total data after aggregating group {current.group: residencia_provincia_nombre = Catamarca, nrow: 49}
+#> INFO  [14:32:47.021] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [14:32:47.934] Total data after aggregating group {current.group: residencia_provincia_nombre = Chaco, nrow: 63}
+#> INFO  [14:32:47.938] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [14:32:48.749] Total data after aggregating group {current.group: residencia_provincia_nombre = Chubut, nrow: 76}
+#> INFO  [14:32:48.753] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [14:32:49.898] Total data after aggregating group {current.group: residencia_provincia_nombre = Córdoba, nrow: 92}
+#> INFO  [14:32:49.901] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [14:32:50.782] Total data after aggregating group {current.group: residencia_provincia_nombre = Corrientes, nrow: 106}
+#> INFO  [14:32:50.786] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [14:32:51.675] Total data after aggregating group {current.group: residencia_provincia_nombre = Entre Ríos, nrow: 120}
+#> INFO  [14:32:51.679] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [14:32:52.619] Total data after aggregating group {current.group: residencia_provincia_nombre = Formosa, nrow: 135}
+#> INFO  [14:32:52.623] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [14:32:53.450] Total data after aggregating group {current.group: residencia_provincia_nombre = Jujuy, nrow: 148}
+#> INFO  [14:32:53.453] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [14:32:54.281] Total data after aggregating group {current.group: residencia_provincia_nombre = La Pampa, nrow: 161}
+#> INFO  [14:32:54.285] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [14:32:55.169] Total data after aggregating group {current.group: residencia_provincia_nombre = La Rioja, nrow: 175}
+#> INFO  [14:32:55.173] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [14:32:56.126] Total data after aggregating group {current.group: residencia_provincia_nombre = Mendoza, nrow: 190}
+#> INFO  [14:32:56.130] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [14:32:56.909] Total data after aggregating group {current.group: residencia_provincia_nombre = Misiones, nrow: 202}
+#> INFO  [14:32:56.913] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [14:32:57.742] Total data after aggregating group {current.group: residencia_provincia_nombre = Neuquén, nrow: 215}
+#> INFO  [14:32:57.746] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [14:32:58.635] Total data after aggregating group {current.group: residencia_provincia_nombre = Río Negro, nrow: 229}
+#> INFO  [14:32:58.639] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [14:32:59.549] Total data after aggregating group {current.group: residencia_provincia_nombre = Salta, nrow: 242}
+#> INFO  [14:32:59.553] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [14:33:00.386] Total data after aggregating group {current.group: residencia_provincia_nombre = San Juan, nrow: 255}
+#> INFO  [14:33:00.390] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [14:33:01.290] Total data after aggregating group {current.group: residencia_provincia_nombre = San Luis, nrow: 268}
+#> INFO  [14:33:01.295] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [14:33:02.127] Total data after aggregating group {current.group: residencia_provincia_nombre = Santa Cruz, nrow: 281}
+#> INFO  [14:33:02.131] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [14:33:03.171] Total data after aggregating group {current.group: residencia_provincia_nombre = Santa Fe, nrow: 296}
+#> INFO  [14:33:03.175] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [14:33:04.029] Total data after aggregating group {current.group: residencia_provincia_nombre = Santiago del Estero, nrow: 309}
+#> INFO  [14:33:04.035] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [14:33:05.085] Total data after aggregating group {current.group: residencia_provincia_nombre = SIN ESPECIFICAR, nrow: 324}
+#> INFO  [14:33:05.089] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [14:33:06.001] Total data after aggregating group {current.group: residencia_provincia_nombre = Tierra del Fuego, nrow: 339}
+#> INFO  [14:33:06.005] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [14:33:06.962] Total data after aggregating group {current.group: residencia_provincia_nombre = Tucumán, nrow: 352}
 nrow(covid19.ar.summary)
-#> [1] 222
+#> [1] 352
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable(covid19.ar.summary %>% filter(residencia_provincia_nombre %in% c("Buenos Aires","CABA")) %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("residencia_provincia_nombre", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
 ```
 
 | residencia\_provincia\_nombre | sepi\_apertura | confirmados | internados | fallecidos | letalidad.min.porc | letalidad.max.porc | positividad.porc | internados.porc | cuidado.intensivo.porc | respirador.porc |
 | :---------------------------- | -------------: | ----------: | ---------: | ---------: | -----------------: | -----------------: | ---------------: | --------------: | ---------------------: | --------------: |
-| CABA                          |             10 |           8 |          5 |          1 |              0.091 |              0.125 |            0.235 |           0.625 |                  0.125 |           0.125 |
-| Buenos Aires                  |             10 |           2 |          2 |          0 |              0.000 |              0.000 |            0.069 |           1.000 |                  0.500 |           0.500 |
-| CABA                          |             11 |          27 |         21 |          1 |              0.026 |              0.037 |            0.148 |           0.778 |                  0.148 |           0.074 |
-| Buenos Aires                  |             11 |          22 |         22 |          2 |              0.061 |              0.091 |            0.114 |           1.000 |                  0.136 |           0.091 |
-| CABA                          |             12 |         105 |         78 |          2 |              0.016 |              0.019 |            0.286 |           0.743 |                  0.057 |           0.048 |
-| Buenos Aires                  |             12 |          88 |         66 |          2 |              0.018 |              0.023 |            0.202 |           0.750 |                  0.102 |           0.045 |
-| Buenos Aires                  |             13 |         177 |        121 |         16 |              0.078 |              0.090 |            0.192 |           0.684 |                  0.119 |           0.085 |
-| CABA                          |             13 |         172 |        141 |         15 |              0.077 |              0.087 |            0.260 |           0.820 |                  0.122 |           0.064 |
-| CABA                          |             14 |         175 |        136 |         16 |              0.074 |              0.091 |            0.137 |           0.777 |                  0.097 |           0.051 |
-| Buenos Aires                  |             14 |         172 |        125 |         21 |              0.092 |              0.122 |            0.087 |           0.727 |                  0.128 |           0.087 |
-| Buenos Aires                  |             15 |         184 |        107 |         27 |              0.105 |              0.147 |            0.066 |           0.582 |                  0.125 |           0.060 |
-| CABA                          |             15 |         132 |         86 |         16 |              0.074 |              0.121 |            0.079 |           0.652 |                  0.106 |           0.061 |
-| Buenos Aires                  |             16 |         311 |        141 |         19 |              0.049 |              0.061 |            0.073 |           0.453 |                  0.045 |           0.019 |
-| CABA                          |             16 |         129 |         78 |         11 |              0.041 |              0.085 |            0.066 |           0.605 |                  0.054 |           0.031 |
-| Buenos Aires                  |             17 |         456 |        180 |         38 |              0.067 |              0.083 |            0.074 |           0.395 |                  0.050 |           0.022 |
-| CABA                          |             17 |         335 |        212 |         42 |              0.093 |              0.125 |            0.131 |           0.633 |                  0.054 |           0.030 |
-| Buenos Aires                  |             18 |         381 |        124 |         28 |              0.058 |              0.073 |            0.070 |           0.325 |                  0.031 |           0.016 |
-| CABA                          |             18 |         285 |        144 |         10 |              0.027 |              0.035 |            0.114 |           0.505 |                  0.021 |           0.014 |
-| CABA                          |             19 |         701 |        327 |         23 |              0.029 |              0.033 |            0.234 |           0.466 |                  0.033 |           0.013 |
-| Buenos Aires                  |             19 |         382 |        121 |         21 |              0.040 |              0.055 |            0.070 |           0.317 |                  0.037 |           0.005 |
-| CABA                          |             20 |        1310 |        423 |         16 |              0.011 |              0.012 |            0.308 |           0.323 |                  0.027 |           0.010 |
-| Buenos Aires                  |             20 |         629 |        225 |         22 |              0.026 |              0.035 |            0.092 |           0.358 |                  0.033 |           0.016 |
-| CABA                          |             21 |        2237 |        606 |         26 |              0.010 |              0.012 |            0.359 |           0.271 |                  0.025 |           0.012 |
-| Buenos Aires                  |             21 |        1468 |        437 |         29 |              0.016 |              0.020 |            0.157 |           0.298 |                  0.031 |           0.010 |
-| CABA                          |             22 |        2563 |        536 |         10 |              0.003 |              0.004 |            0.358 |           0.209 |                  0.014 |           0.006 |
-| Buenos Aires                  |             22 |        1885 |        434 |         18 |              0.007 |              0.010 |            0.177 |           0.230 |                  0.022 |           0.005 |
-| CABA                          |             23 |         512 |         88 |          0 |              0.000 |              0.000 |            0.351 |           0.172 |                  0.004 |           0.000 |
-| Buenos Aires                  |             23 |         382 |         75 |          1 |              0.000 |              0.003 |            0.203 |           0.196 |                  0.010 |           0.000 |
+| Buenos Aires                  |              5 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| CABA                          |              5 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| Buenos Aires                  |              6 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| CABA                          |              6 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| Buenos Aires                  |              7 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| Buenos Aires                  |              9 |           0 |          0 |          0 |              0.000 |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| CABA                          |              9 |           0 |          0 |          0 |                NaN |                NaN |            0.000 |             NaN |                    NaN |             NaN |
+| CABA                          |             10 |           8 |          5 |          1 |              0.091 |              0.125 |            0.182 |           0.625 |                  0.125 |           0.125 |
+| Buenos Aires                  |             10 |           2 |          2 |          0 |              0.000 |              0.000 |            0.043 |           1.000 |                  0.500 |           0.500 |
+| CABA                          |             11 |          35 |         26 |          2 |              0.041 |              0.057 |            0.154 |           0.743 |                  0.143 |           0.086 |
+| Buenos Aires                  |             11 |          24 |         24 |          2 |              0.056 |              0.083 |            0.100 |           1.000 |                  0.167 |           0.125 |
+| CABA                          |             12 |         140 |        104 |          4 |              0.023 |              0.029 |            0.236 |           0.743 |                  0.079 |           0.057 |
+| Buenos Aires                  |             12 |         112 |         90 |          4 |              0.027 |              0.036 |            0.166 |           0.804 |                  0.116 |           0.062 |
+| CABA                          |             13 |         312 |        245 |         19 |              0.051 |              0.061 |            0.249 |           0.785 |                  0.103 |           0.061 |
+| Buenos Aires                  |             13 |         289 |        211 |         20 |              0.057 |              0.069 |            0.181 |           0.730 |                  0.118 |           0.076 |
+| CABA                          |             14 |         487 |        381 |         35 |              0.060 |              0.072 |            0.193 |           0.782 |                  0.101 |           0.057 |
+| Buenos Aires                  |             14 |         461 |        336 |         41 |              0.071 |              0.089 |            0.129 |           0.729 |                  0.121 |           0.080 |
+| Buenos Aires                  |             15 |         645 |        443 |         68 |              0.081 |              0.105 |            0.101 |           0.687 |                  0.122 |           0.074 |
+| CABA                          |             15 |         619 |        467 |         51 |              0.064 |              0.082 |            0.148 |           0.754 |                  0.102 |           0.058 |
+| Buenos Aires                  |             16 |         956 |        584 |         87 |              0.071 |              0.091 |            0.090 |           0.611 |                  0.097 |           0.056 |
+| CABA                          |             16 |         748 |        545 |         62 |              0.058 |              0.083 |            0.122 |           0.729 |                  0.094 |           0.053 |
+| Buenos Aires                  |             17 |        1412 |        764 |        125 |              0.070 |              0.089 |            0.084 |           0.541 |                  0.082 |           0.045 |
+| CABA                          |             17 |        1083 |        757 |        104 |              0.068 |              0.096 |            0.124 |           0.699 |                  0.081 |           0.046 |
+| Buenos Aires                  |             18 |        1793 |        888 |        153 |              0.067 |              0.085 |            0.080 |           0.495 |                  0.071 |           0.039 |
+| CABA                          |             18 |        1368 |        901 |        114 |              0.060 |              0.083 |            0.122 |           0.659 |                  0.069 |           0.039 |
+| Buenos Aires                  |             19 |        2175 |       1009 |        174 |              0.062 |              0.080 |            0.078 |           0.464 |                  0.065 |           0.033 |
+| CABA                          |             19 |        2069 |       1228 |        137 |              0.051 |              0.066 |            0.146 |           0.594 |                  0.057 |           0.030 |
+| CABA                          |             20 |        3379 |       1651 |        153 |              0.036 |              0.045 |            0.183 |           0.489 |                  0.045 |           0.022 |
+| Buenos Aires                  |             20 |        2804 |       1234 |        196 |              0.054 |              0.070 |            0.081 |           0.440 |                  0.058 |           0.029 |
+| CABA                          |             21 |        5616 |       2257 |        179 |              0.026 |              0.032 |            0.227 |           0.402 |                  0.037 |           0.018 |
+| Buenos Aires                  |             21 |        4272 |       1671 |        225 |              0.041 |              0.053 |            0.097 |           0.391 |                  0.049 |           0.022 |
+| CABA                          |             22 |        8179 |       2793 |        189 |              0.019 |              0.023 |            0.257 |           0.341 |                  0.030 |           0.014 |
+| Buenos Aires                  |             22 |        6157 |       2105 |        243 |              0.030 |              0.039 |            0.113 |           0.342 |                  0.041 |           0.017 |
+| CABA                          |             23 |        8691 |       2881 |        189 |              0.016 |              0.022 |            0.261 |           0.331 |                  0.028 |           0.014 |
+| Buenos Aires                  |             23 |        6539 |       2180 |        244 |              0.022 |              0.037 |            0.116 |           0.333 |                  0.039 |           0.016 |
+| Buenos Aires                  |             44 |        6539 |       2180 |        244 |              0.022 |              0.037 |            0.116 |           0.333 |                  0.039 |           0.016 |
+
+# Generar diferentes agregaciones y guardar csv / Generate different aggregations
+
+``` r
+output.dir <- "~/.R/COVID19AR/"
+dir.create(output.dir, showWarnings = FALSE, recursive = TRUE)
+exportAggregatedTables(covid19.curator, output.dir = output.dir,
+                       aggrupation.criteria = list(provincia_residencia = c("residencia_provincia_nombre"),
+                                                   provincia_localidad_residencia = c("residencia_provincia_nombre", "residencia_departamento_nombre"),
+                                                   provincia_residencia_sexo = c("residencia_provincia_nombre", "sexo"),
+                                                   edad_rango_sexo = c("edad.rango", "sexo"),
+                                                   provincia_residencia_edad_rango = c("residencia_provincia_nombre", "edad.rango"),
+                                                   provincia_residencia_sepi_apertura = c("residencia_provincia_nombre", "sepi_apertura"),
+                                                   provincia_residencia = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
+                                                   provincia_residencia_fecha_apertura = c("residencia_provincia_nombre", "fecha_apertura")))
+                                                   
+                                                  
+```
+
+All this tables are accesible at
+[COVID19ARdata](https://github.com/rOpenStats/COVID19ARdata/tree/master/curated)
+
+# How to Cite This Work
+
+Citation
+
+    Alejandro Baranek, COVID19AR, 2020. URL: https://github.com/rOpenStats/COVID19AR
+
+``` bibtex
+BibTex
+@techreport{baranek2020Covid19AR,
+Author = {Alejandro Baranek},
+Institution = {rOpenStats},
+Title = {COVID19AR: a package for analysing Argentina COVID-19 outbreak},
+Url = {https://github.com/rOpenStats/COVID19AR},
+Year = {2020}}
+```

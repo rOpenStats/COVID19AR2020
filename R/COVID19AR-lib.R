@@ -66,8 +66,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       self$curate.functions[[self$specification]]()
     },
     checkSoundness = function(fix.dates = TRUE){
+      logger <- getLogger(self)
       logger$info("checkSoundness")
-
       #self$data %<>% mutate(cal_semana_apertura = as.numeric(as.character(fecha_apertura, format = "%V")))
       #self$data %<>% mutate(cal_dow = as.character(fecha_apertura, format = "%a"))
       #self$data %<>% mutate(cal_sepi_apertura_match = cal_semana_apertura == sepi_apertura)
@@ -78,11 +78,12 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       #covid19.curator$data %>% filter(fecha_apertura > fecha_diagnostico) %>% select(fecha_inicio_sintomas, fecha_apertura, fecha_internacion, fecha_diagnostico, fecha_fallecimiento)
     },
     normalize = function(){
+      logger <- getLogger(self)
       logger$info("Normalize")
       self$data$fixed <- ""
       self$data %<>% mutate(clasificacion = tolower(clasificacion))
       self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
-      self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
+      self$data %<>% mutate(fallecido = tolower(fallecido))
     },
     curateData200603 = function(){
       logger <- getLogger(self)
@@ -187,7 +188,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                    descartados        = sum(ifelse(descartado, 1, 0)),
                    sospechosos        = sum(ifelse(sospechoso, 1, 0)),
                    fallecidos         = sum(ifelse(fallecido, 1, 0)),
-                   sin.clasificar     = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
+                   sin.clasificar     = sum(ifelse(clasificacion_resumen == "sin clasificar", 1, 0)),
                    letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
                    letalidad.max.porc = round(fallecidos / confirmados, 3),
                    positividad.porc   = round(confirmados / (confirmados+descartados), 3),
@@ -366,6 +367,7 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
                                                                provincia_residencia_sexo = c("provincia_residencia", "sexo"),
                                                                edad_rango_sexo = c("edad.rango", "sexo"),
                                                                provincia_residencia_sepi_apertura = c("provincia_residencia", "sepi_apertura"),
+                                                               provincia_departamento_residencia_sepi_apertura = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
                                                                provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")))
   {
   logger <- lgr
