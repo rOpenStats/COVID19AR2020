@@ -77,29 +77,37 @@ max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
 max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
 ```
 
-```{r, covid19summaries}
+```{r, residencia_provincia_nombre}
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% 
-        select_at(c("residencia_provincia_nombre", "confirmados", "fallecidos", "dias.fallecimiento", porc.cols)))
+        select_at(c("residencia_provincia_nombre", "confirmados", "fallecidos", "dias.fallecimiento",porc.cols)))
+```
+
+```{r, residencia_provincia_nombre-sexo}
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sexo"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-kable((covid19.ar.summary %>% arrange(desc(confirmados))) %>% select_at(c("residencia_provincia_nombre", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
+kable((covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(confirmados))) %>% select_at(c("residencia_provincia_nombre", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 
+```
+
+```{r, edad.rango-sexo}
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("edad.rango", "sexo"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-kable(covid19.ar.summary %>% arrange(desc(internados), desc(confirmados)) %>% select_at(c("edad.rango", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
+kable(covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(internados), desc(confirmados)) %>% select_at(c("edad.rango", "sexo", "confirmados", "internados", "fallecidos",  porc.cols)))
 
+```
 
+```{r, residencia_provincia_nombre-sepi_apertura}
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-kable(covid19.ar.summary %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("residencia_provincia_nombre", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
+kable(covid19.ar.summary %>% filter(residencia_provincia_nombre %in% c("Buenos Aires","CABA")) %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("residencia_provincia_nombre", "sepi_apertura", "confirmados", "internados", "fallecidos",  porc.cols)))
 ```
 
 

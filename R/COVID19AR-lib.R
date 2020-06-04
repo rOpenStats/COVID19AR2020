@@ -110,7 +110,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        summarise( .groups = "keep") %>%
        arrange_at(non.temporal.fields.agg)
      if(length(temporal.fields.agg) == 0){
-       self$data.summary <- self$getAggregatedData(non.temporal.groups[1,], self$data)
+       self$data.summary <- self$getAggregatedData(group.fields = group.vars, self$data)
      }
      else{
        self$data.summary <- NULL
@@ -134,7 +134,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
              current.temporal.group.data[, field] <- current.temporal.group[, field]
            }
            if (nrow(current.temporal.group.data) > 0){
-             logger$info("Summarizing adding temporal group",
+             logger$debug("Summarizing adding temporal group",
                          group = paste(names(current.temporal.group),
                                        current.temporal.group, sep = "=", collapse = ","),
                          nrow = nrow(current.temporal.group.data))
@@ -162,12 +162,12 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      },
      getAggregatedData = function(group.fields, current.data, min.confirmados = 0){
        current.data %>%
-         group_by_at(names(group.fields)) %>%
+         group_by_at(group.fields) %>%
          summarize(n = n(),
                    confirmados = sum(ifelse(confirmado, 1, 0)),
                    descartados = sum(ifelse(descartado, 1, 0)),
                    sospechosos = sum(ifelse(sospechoso, 1, 0)),
-                   fallecidos  = sum(ifelse(confirmado & !is.na(fallecido) & fallecido == "SI", 1, 0)),
+                   fallecidos  = sum(ifelse(fallecido, 1, 0)),
                    sin.clasificar = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
                    letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
                    letalidad.max.porc = round(fallecidos / confirmados, 3),

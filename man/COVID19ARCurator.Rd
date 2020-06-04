@@ -12,9 +12,13 @@ COVID19ARCurator
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{COVID19ARCurator$new()}}
+\item \href{#method-setupColsSpecifications}{\code{COVID19ARCurator$setupColsSpecifications()}}
 \item \href{#method-loadData}{\code{COVID19ARCurator$loadData()}}
 \item \href{#method-curateData}{\code{COVID19ARCurator$curateData()}}
+\item \href{#method-checkSoundness}{\code{COVID19ARCurator$checkSoundness()}}
+\item \href{#method-curateData200603}{\code{COVID19ARCurator$curateData200603()}}
 \item \href{#method-makeSummary}{\code{COVID19ARCurator$makeSummary()}}
+\item \href{#method-getAggregatedData}{\code{COVID19ARCurator$getAggregatedData()}}
 \item \href{#method-clone}{\code{COVID19ARCurator$clone()}}
 }
 }
@@ -24,6 +28,15 @@ COVID19ARCurator
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$new(url, data.dir = getEnv("data_dir"))}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setupColsSpecifications"></a>}}
+\if{latex}{\out{\hypertarget{method-setupColsSpecifications}{}}}
+\subsection{Method \code{setupColsSpecifications()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$setupColsSpecifications()}\if{html}{\out{</div>}}
 }
 
 }
@@ -46,13 +59,43 @@ COVID19ARCurator
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-checkSoundness"></a>}}
+\if{latex}{\out{\hypertarget{method-checkSoundness}{}}}
+\subsection{Method \code{checkSoundness()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$checkSoundness()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-curateData200603"></a>}}
+\if{latex}{\out{\hypertarget{method-curateData200603}{}}}
+\subsection{Method \code{curateData200603()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$curateData200603()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-makeSummary"></a>}}
 \if{latex}{\out{\hypertarget{method-makeSummary}{}}}
 \subsection{Method \code{makeSummary()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$makeSummary(
-  group.vars = c("provincia_residencia", "edad.rango", "sepi_apertura",
-    "origen_financiamiento")
+  group.vars = c("residencia_provincia_nombre", "sepi_apertura")
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getAggregatedData"></a>}}
+\if{latex}{\out{\hypertarget{method-getAggregatedData}{}}}
+\subsection{Method \code{getAggregatedData()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$getAggregatedData(
+  group.fields,
+  current.data,
+  min.confirmados = 0
 )}\if{html}{\out{</div>}}
 }
 
