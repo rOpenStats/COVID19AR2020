@@ -9,3 +9,6 @@ retrieveURL(url, dest.dir = getEnv("data_dir"), force = FALSE)
 \description{
 retrieveURL
 }
+\author{
+kenarab
+}

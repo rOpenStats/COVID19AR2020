@@ -7,22 +7,22 @@ Authors@R: c(
     )
 Maintainer: Alejandro Baranek <abaranek@dc.uba.ar>
 Description: Tools for analysing COVID-19 Argentina's outbreak
-License: copyright
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests:
          COVID19analytics,
          testthat
 Depends: R (>= 3.6),
-         R6,
          dplyr,
          knitr,
          magrittr,
+         lgr
+Imports: R6,
          ggplot2,
          readr,
          readxl,
-         lgr
-Imports: checkmate,
+         checkmate,
          scales,
          RColorBrewer,
          reshape2,
@@ -30,6 +30,7 @@ Imports: checkmate,
          jsonlite
 Collate:
         'deaths-lib.R'
+        'test-lib.R'
         'COVID19AR-lib.R'
         'report-lib.R'
         'util-lib.R'

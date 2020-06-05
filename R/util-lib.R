@@ -1,4 +1,5 @@
 #' getEnv
+#' @author kenarab
 #' @export
 getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.empty = TRUE, env.file = "~/.Renviron", call.counter = 0){
  prefixed.variable.name <- paste(package.prefix, variable.name, sep ="")
@@ -20,6 +21,7 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
 
 #' retrieveURL
 #' @import lgr
+#' @author kenarab
 #' @export
 retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
   logger <- lgr
@@ -38,12 +40,14 @@ retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
 }
 
 #' getPackagePrefix
+#' @author kenarab
 #' @export
 getPackagePrefix <- function(){
  "COVID19AR_"
 }
 
 #' getAPIKey
+#' @author kenarab
 #' @export
 getAPIKey <- function(){
  ret <- list()
@@ -54,6 +58,9 @@ getAPIKey <- function(){
 
 
 #' apiCall
+#' @import httr
+#' @imort jsonlite
+#' @author kenarab
 #' @export
 apiCall <- function(url){
  tmp <- getAPIKey()
@@ -76,6 +83,7 @@ apiCall <- function(url){
 }
 
 #' genDateSubdir
+#' @author kenarab
 #' @export
 genDateSubdir <- function(home.dir, create.dir = TRUE){
  current.date <- Sys.Date()
@@ -87,6 +95,8 @@ genDateSubdir <- function(home.dir, create.dir = TRUE){
 
 
 #' zipFile
+#' @import utils
+#' @author kenarab
 #' @export
 zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALSE, minimum.size.accepted = 2000){
  logger <- lgr
@@ -125,16 +135,16 @@ zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALS
 
 
 #' removeAccents
+#' @author kenarab
 #' @export
 removeAccents<-function(text){
-  #debug
-  text.debug <<- text
   ret <- iconv(text, to='ASCII//TRANSLIT')
   ret <- gsub("'|\\~","",ret)
   ret
 }
 
 #' normalizeString
+#' @author kenarab
 #' @export
 normalizeString<-function(text,lowercase=TRUE){
   text <- removeAccents(trimws(text))
@@ -154,11 +164,10 @@ genLogger <- function(r6.object){
 }
 
 #' getLogger
+#' @import lgr
 #' @author kenarab
 #' @export
 getLogger <- function(r6.object){
-  #debug
-  #r6.object <<- r6.object
   #TODO check if not a better solution
   ret <- r6.object$logger
   if (is.null(ret)){

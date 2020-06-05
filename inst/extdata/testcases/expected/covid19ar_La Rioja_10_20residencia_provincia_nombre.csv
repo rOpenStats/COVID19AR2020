@@ -1,0 +1,2 @@
+residencia_provincia_nombre,n,confirmados,descartados,sospechosos,fallecidos,tests,sin.clasificar,letalidad.min.porc,letalidad.max.porc,positividad.porc,internados,internados.porc,cuidado.intensivo,cuidado.intensivo.porc,respirador,respirador.porc,dias.diagnostico,dias.apertura,dias.cuidado.intensivo,dias.fallecimiento
+La Rioja,894,61,817,16,7,878,0,0.091,0.115,0.069,10,0.164,4,0.066,1,0.016,8.9,8.2,9.8,13

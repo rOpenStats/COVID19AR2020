@@ -60,7 +60,7 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
       theme(legend.title = element_blank(),
             plot.caption = element_text(size = 5),
             axis.text.x = element_text(angle = 90)) +
-      labs(caption = getCitationNote(report.date = report.date, data.provider = data.provider.abv))
+      labs(caption = getCitationNote(report.date = report.date, data.provider.abv = data.provider.abv))
  ggplot
 }
 

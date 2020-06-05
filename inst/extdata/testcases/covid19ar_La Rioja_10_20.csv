@@ -1,0 +1,895 @@
+id_evento_caso,sexo,edad,edad_años_meses,residencia_pais_nombre,residencia_provincia_nombre,residencia_departamento_nombre,carga_provincia_nombre,fecha_inicio_sintomas,fecha_apertura,sepi_apertura,fecha_internacion,cuidado_intensivo,fecha_cui_intensivo,fallecido,fecha_fallecimiento,asistencia_respiratoria_mecanica,carga_provincia_id,origen_financiamiento,clasificacion,clasificacion_resumen,residencia_provincia_id,fecha_diagnostico,residencia_departamento_id,ultima_actualizacion,fixed,edad_actual_anios,edad.rango,confirmado,descartado,sospechoso
+738393,M,62,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-02,2020-03-05,10,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,62,60-64,0,0,1
+739694,M,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-02-20,2020-03-06,10,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-08,014,2020-06-02,,22,20-24,0,1,0
+741563,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-06,2020-03-09,11,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,28,25-29,0,0,1
+750699,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-06,2020-03-14,11,2020-03-14,SI,2020-03-14,0,2020-03-14,SI,46,Público,caso descartado,descartado,46,2020-03-17,014,2020-06-02,,43,40-44,0,1,0
+750704,M,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-09,2020-03-14,11,2020-03-14,SI,2020-03-14,0,2020-03-14,SI,46,Público,caso descartado,descartado,46,2020-03-17,014,2020-06-02,,49,45-49,0,1,0
+759811,F,27,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-18,2020-03-19,12,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-21,014,2020-06-02,,27,25-29,0,1,0
+765938,M,1,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-21,2020-03-24,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,1,1-9,0,0,1
+765952,M,56,Años,Argentina,La Rioja,Capital,Córdoba,2020-03-21,2020-03-24,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,014,2020-06-02,,56,55-59,0,1,0
+767991,M,39,Años,SIN ESPECIFICAR,La Rioja,Chilecito,Córdoba,2020-03-20,2020-03-25,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,042,2020-06-02,,39,35-39,0,1,0
+768008,F,30,Años,Argentina,La Rioja,Chilecito,Córdoba,2020-03-20,2020-03-25,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,042,2020-06-02,,30,30-34,0,1,0
+769130,F,12,Años,Argentina,La Rioja,Chilecito,Córdoba,2020-03-23,2020-03-25,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,042,2020-06-02,,12,10-14,0,1,0
+769149,M,6,Años,Argentina,La Rioja,Chilecito,Córdoba,2020-03-23,2020-03-25,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,042,2020-06-02,,6,1-9,0,1,0
+769171,F,1,Años,Argentina,La Rioja,Chilecito,Córdoba,2020-03-23,2020-03-25,13,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-03-25,042,2020-06-02,,1,1-9,0,1,0
+769299,F,58,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-03-16,2020-03-25,13,2020-03-17,SI,2020-03-17,0,NA,SI,46,Público,caso descartado,descartado,46,2020-03-26,014,2020-06-02,,58,55-59,0,1,0
+769304,M,77,Años,Argentina,La Rioja,Sanagasta,La Rioja,2020-03-20,2020-03-25,13,2020-03-22,SI,2020-03-22,0,NA,SI,46,Público,caso descartado,descartado,46,2020-03-27,126,2020-06-02,,77,75-79,0,1,0
+769310,F,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-13,2020-03-25,13,2020-03-16,SI,2020-03-16,0,2020-03-24,SI,46,Público,caso descartado,descartado,46,2020-03-26,014,2020-06-02,,49,45-49,0,1,0
+769720,M,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-04,2020-03-26,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-29,014,2020-06-02,,50,50-54,0,1,0
+769759,F,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-11,2020-03-26,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-29,014,2020-06-02,,40,40-44,0,1,0
+769782,F,52,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-21,2020-03-26,13,2020-03-23,SI,2020-03-23,1,2020-03-31,SI,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-03-29,014,2020-06-02,,52,50-54,1,0,0
+769816,M,63,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-22,2020-03-26,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-29,014,2020-06-02,,63,60-64,0,1,0
+769890,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-12,2020-03-26,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-03-29,014,2020-06-02,,34,30-34,0,1,0
+771215,F,64,Años,Argentina,La Rioja,Capital,Córdoba,2020-03-21,2020-03-26,13,NA,NO,NA,0,NA,NO,14,Privado,caso descartado,descartado,46,2020-03-29,014,2020-06-02,,64,60-64,0,1,0
+772637,F,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-21,2020-03-27,13,2020-04-11,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-01,014,2020-06-02,,42,40-44,1,0,0
+772845,M,59,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-21,2020-03-27,13,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,59,55-59,0,0,1
+779368,F,65,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-28,2020-03-30,14,2020-03-29,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-02,014,2020-06-02,,65,65-69,0,1,0
+779653,M,74,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-25,2020-03-30,14,2020-03-27,SI,2020-03-27,0,NA,SI,46,Público,caso descartado,descartado,46,2020-04-01,014,2020-06-02,,74,70-74,0,1,0
+779785,F,64,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-14,2020-03-30,14,2020-03-17,SI,2020-04-17,1,2020-04-17,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-03,014,2020-06-02,,64,60-64,1,0,0
+780817,M,82,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-03-31,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,82,80+,0,1,0
+780820,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-29,2020-03-31,14,2020-03-31,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-01,014,2020-06-02,,35,35-39,0,1,0
+781590,F,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-03-31,14,2020-03-31,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-01,014,2020-06-02,,22,20-24,0,1,0
+784917,F,51,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-21,2020-04-02,14,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-01,014,2020-06-02,,51,50-54,1,0,0
+786106,F,36,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-24,2020-04-02,14,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-01,014,2020-06-02,,36,35-39,1,0,0
+786979,M,45,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-01,2020-04-02,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,042,2020-06-02,,45,45-49,0,1,0
+787175,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-22,2020-04-02,14,2020-04-02,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-05,014,2020-06-02,,41,40-44,1,0,0
+789295,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,25,25-29,0,1,0
+789318,M,51,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,51,50-54,0,1,0
+789347,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,32,30-34,0,1,0
+789362,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,40,40-44,0,1,0
+789364,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,40,40-44,0,1,0
+789377,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-03,014,2020-06-02,,34,30-34,1,0,0
+789416,M,36,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-10,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,36,35-39,0,1,0
+789422,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,33,30-34,0,1,0
+789560,F,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,38,35-39,1,0,0
+789576,F,35,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,35,35-39,0,1,0
+789624,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,35,35-39,0,1,0
+789746,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,39,35-39,0,1,0
+789747,M,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,54,50-54,0,1,0
+789749,F,46,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-28,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,46,45-49,0,1,0
+789756,M,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,48,45-49,0,1,0
+789764,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-29,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,31,30-34,0,1,0
+789770,F,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,50,50-54,0,1,0
+789781,F,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,33,30-34,0,1,0
+789786,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,31,30-34,0,1,0
+789791,M,47,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,47,45-49,0,1,0
+789794,F,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,32,30-34,0,1,0
+789797,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,22,20-24,0,1,0
+789798,F,20,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,20,20-24,0,1,0
+789801,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,40,40-44,0,1,0
+789803,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,32,30-34,0,1,0
+789807,M,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,48,45-49,0,1,0
+789809,M,62,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,62,60-64,0,1,0
+789813,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-06,014,2020-06-02,,34,30-34,1,0,0
+789860,M,41,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,035,2020-06-02,,41,40-44,0,1,0
+789863,M,85,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,85,80+,0,1,0
+789880,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-03,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-03,014,2020-06-02,,31,30-34,0,1,0
+791034,M,21,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-04,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,21,20-24,0,1,0
+791106,F,62,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-29,2020-04-04,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,62,60-64,0,1,0
+791336,M,7,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-04,14,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,7,1-9,0,1,0
+791535,F,57,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-03,2020-04-05,15,2020-04-04,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-04,014,2020-06-02,,57,55-59,1,0,0
+792375,F,10,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-02,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,042,2020-06-02,,10,10-14,0,1,0
+792390,M,32,Años,Argentina,La Rioja,Chamical,La Rioja,2020-04-03,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,035,2020-06-02,,32,30-34,0,1,0
+792399,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,35,35-39,0,1,0
+792408,M,64,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-03-14,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,64,60-64,0,1,0
+792418,F,72,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-27,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,72,70-74,0,1,0
+792426,M,62,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,62,60-64,0,1,0
+792481,F,51,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-02,014,2020-06-02,,51,50-54,0,1,0
+792626,F,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-05,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-04,014,2020-06-02,,37,35-39,0,1,0
+793578,M,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,34,30-34,0,1,0
+794352,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-22,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,34,30-34,0,1,0
+794477,F,29,Años,Argentina,La Rioja,Famatina,La Rioja,2020-04-02,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,049,2020-06-02,,29,25-29,0,1,0
+794513,F,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,014,2020-06-02,,38,35-39,0,1,0
+794535,M,47,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-03-13,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,042,2020-06-02,,47,45-49,0,1,0
+794578,F,48,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-03,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-05,042,2020-06-02,,48,45-49,0,1,0
+795021,F,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,30,30-34,0,1,0
+795241,F,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,45,45-49,0,1,0
+795298,M,35,Años,SIN ESPECIFICAR,La Rioja,Rosario Vera Peñaloza,La Rioja,2020-03-31,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,112,2020-06-02,,35,35-39,0,1,0
+795329,M,26,Años,Argentina,La Rioja,San Blas de los Sauces,La Rioja,2020-04-01,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,119,2020-06-02,,26,25-29,0,1,0
+795425,F,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-23,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,014,2020-06-02,,48,45-49,0,1,0
+795484,M,32,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,NA,2020-04-06,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-06,070,2020-06-02,,32,30-34,0,1,0
+798813,M,39,Años,Argentina,La Rioja,Chilecito,La Rioja,NA,2020-04-07,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,042,2020-06-02,,39,35-39,0,1,0
+798850,M,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-07,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,68,65-69,0,1,0
+798899,M,63,Años,Argentina,La Rioja,Famatina,La Rioja,NA,2020-04-07,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,049,2020-06-02,,63,60-64,0,1,0
+798903,F,52,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-07,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,52,50-54,0,1,0
+800715,F,55,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-08,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-07,014,2020-06-02,,55,55-59,0,1,0
+802487,F,51,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-08,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-08,014,2020-06-02,,51,50-54,1,0,0
+802489,M,46,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-08,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-08,014,2020-06-02,,46,45-49,1,0,0
+802492,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-29,2020-04-08,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-08,014,2020-06-02,,35,35-39,1,0,0
+802497,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-08,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-08,014,2020-06-02,,25,25-29,1,0,0
+803228,M,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-03,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-09,014,2020-06-02,,22,20-24,0,1,0
+803271,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-03,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,014,2020-06-02,,35,35-39,0,1,0
+803394,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,32,30-34,0,1,0
+803453,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,014,2020-06-02,,35,35-39,0,1,0
+803489,M,36,Años,SIN ESPECIFICAR,La Rioja,Arauco,La Rioja,2020-03-21,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,007,2020-06-02,,36,35-39,0,1,0
+803533,M,41,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,007,2020-06-02,,41,40-44,0,1,0
+803539,M,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,49,45-49,0,1,0
+803564,M,56,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-03-27,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,014,2020-06-02,,56,55-59,0,1,0
+803587,M,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-05,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-09,014,2020-06-02,,25,25-29,0,1,0
+803614,M,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-23,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,014,2020-06-02,,68,65-69,0,1,0
+803645,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,25,25-29,0,1,0
+803735,F,24,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-01,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-08,014,2020-06-02,,24,20-24,0,1,0
+803770,F,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,48,45-49,0,1,0
+804150,M,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-09,014,2020-06-02,,43,40-44,1,0,0
+804171,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-09,014,2020-06-02,,41,40-44,0,1,0
+804182,F,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-09,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,48,45-49,0,0,1
+805884,F,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,014,2020-06-02,,26,25-29,0,1,0
+805891,F,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-11,014,2020-06-02,,42,40-44,1,0,0
+805925,F,51,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-11,014,2020-06-02,,51,50-54,1,0,0
+805949,F,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,014,2020-06-02,,44,40-44,0,1,0
+806243,F,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,42,40-44,0,1,0
+806245,F,62,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,62,60-64,0,1,0
+806251,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,28,25-29,0,1,0
+806255,F,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,48,45-49,0,1,0
+806266,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,32,30-34,0,1,0
+806267,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,25,25-29,0,1,0
+806275,M,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-03,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-10,014,2020-06-02,,30,30-34,1,0,0
+806282,M,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,35,35-39,0,1,0
+806291,F,29,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-07,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-10,014,2020-06-02,,29,25-29,1,0,0
+806294,F,46,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,46,45-49,0,1,0
+806315,M,43,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,042,2020-06-02,,43,40-44,0,1,0
+806327,F,93,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,93,80+,0,1,0
+806339,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-20,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,41,40-44,0,1,0
+806369,F,77,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-10,014,2020-06-02,,77,75-79,0,1,0
+806425,M,86,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-06,2020-04-10,15,NA,NO,NA,1,2020-04-21,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-12,056,2020-06-02,,86,80+,1,0,0
+806432,F,76,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,76,75-79,0,1,0
+806436,M,89,Años,Argentina,La Rioja,Sanagasta,La Rioja,2020-04-06,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,126,2020-06-02,,89,80+,0,1,0
+806442,M,78,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,78,75-79,0,1,0
+806468,M,81,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-10,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,81,80+,0,1,0
+808093,M,74,Años,Argentina,La Rioja,Coronel Felipe Varela,La Rioja,NA,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,028,2020-06-02,,74,70-74,0,1,0
+808103,F,65,Años,Argentina,La Rioja,Chilecito,La Rioja,NA,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,042,2020-06-02,,65,65-69,0,1,0
+808110,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,014,2020-06-02,,28,25-29,0,1,0
+808118,M,7,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-11,014,2020-06-02,,7,1-9,0,1,0
+808600,F,75,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,75,75-79,0,1,0
+808667,F,63,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,63,60-64,0,1,0
+808684,M,52,Años,Argentina,La Rioja,Sanagasta,La Rioja,2020-04-04,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,126,2020-06-02,,52,50-54,0,1,0
+808714,M,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,34,30-34,0,1,0
+808816,M,52,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-11,15,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,52,50-54,0,1,0
+810396,M,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,42,40-44,0,1,0
+810416,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,38,35-39,0,1,0
+810426,F,80,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-12,16,NA,NO,NA,1,2020-04-21,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-12,014,2020-06-02,,80,80+,1,0,0
+810466,M,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,50,50-54,0,1,0
+810495,F,79,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-12,16,2020-04-10,SI,2020-04-10,1,2020-04-13,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-12,014,2020-06-02,,79,75-79,1,0,0
+810502,M,86,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,86,80+,0,0,1
+810514,M,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-12,16,2020-05-11,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-12,014,2020-06-02,,23,20-24,1,0,0
+810544,M,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,30,30-34,0,1,0
+810816,F,82,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,82,80+,0,1,0
+810918,M,74,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-12,16,NA,NO,NA,0,2020-04-11,NO,46,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,74,70-74,0,1,0
+810966,F,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-12,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,48,45-49,0,1,0
+812919,F,21,Años,Argentina,La Rioja,Capital,Jujuy,NA,2020-04-13,16,NA,NO,NA,0,NA,NO,38,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,21,20-24,0,1,0
+814363,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,35,35-39,0,1,0
+814380,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,34,30-34,0,1,0
+814400,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,28,25-29,0,1,0
+814428,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-05,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,28,25-29,0,1,0
+814442,F,47,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,47,45-49,0,1,0
+814456,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-14,014,2020-06-02,,32,30-34,1,0,0
+814464,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,41,40-44,0,1,0
+814473,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,32,30-34,0,1,0
+814481,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-05,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,28,25-29,0,1,0
+814487,F,52,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-12,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,52,50-54,0,1,0
+814501,M,49,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,49,45-49,0,1,0
+814611,F,30,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-09,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,30,30-34,0,1,0
+814631,F,29,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-10,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,29,25-29,0,1,0
+814660,F,39,Años,Argentina,La Rioja,General Belgrano,La Rioja,2020-04-12,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,063,2020-06-02,,39,35-39,0,1,0
+814713,F,38,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-12,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,38,35-39,0,1,0
+814738,F,42,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-09,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,42,40-44,0,1,0
+814754,M,55,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-09,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,55,55-59,0,1,0
+814840,M,44,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,44,40-44,1,0,0
+814849,M,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,45,45-49,1,0,0
+814855,F,15,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-05,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,15,15-19,1,0,0
+814891,F,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,39,35-39,0,1,0
+814896,F,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-05,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,48,45-49,1,0,0
+814935,F,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-13,014,2020-06-02,,30,30-34,1,0,0
+815005,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,43,40-44,0,1,0
+815012,M,44,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-05,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-13,014,2020-06-02,,44,40-44,0,1,0
+815030,M,71,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,71,70-74,0,1,0
+815051,F,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-13,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,39,35-39,0,1,0
+817875,F,33,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,2020-04-10,2020-04-14,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,056,2020-06-02,,33,30-34,0,1,0
+817885,F,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-14,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,40,40-44,0,1,0
+817895,F,43,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,NA,2020-04-14,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,43,40-44,0,1,0
+817901,F,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-14,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,014,2020-06-02,,29,25-29,0,1,0
+817928,M,45,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,NA,2020-04-14,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-14,056,2020-06-02,,45,45-49,0,1,0
+821123,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-15,014,2020-06-02,,31,30-34,1,0,0
+821194,M,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-15,014,2020-06-02,,58,55-59,1,0,0
+821211,F,57,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,57,55-59,0,1,0
+821223,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-15,014,2020-06-02,,31,30-34,1,0,0
+821241,M,57,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-30,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,57,55-59,0,1,0
+821269,F,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-15,014,2020-06-02,,58,55-59,1,0,0
+821337,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,33,30-34,0,1,0
+821347,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-07,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-15,014,2020-06-02,,31,30-34,1,0,0
+821367,F,16,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,16,15-19,0,1,0
+821388,M,54,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,54,50-54,0,1,0
+821400,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,35,35-39,0,1,0
+821433,M,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,30,30-34,0,1,0
+821472,M,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,42,40-44,0,1,0
+821494,M,36,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-31,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,36,35-39,0,1,0
+821525,M,75,Años,Argentina,La Rioja,Famatina,La Rioja,2020-04-11,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,049,2020-06-02,,75,75-79,0,1,0
+821557,M,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,41,40-44,0,1,0
+821580,M,16,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-10,2020-04-15,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-15,042,2020-06-02,,16,15-19,0,1,0
+824110,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-06,2020-04-16,16,NA,NO,NA,0,2020-04-13,NO,46,Público,caso descartado,descartado,46,2020-04-15,014,2020-06-02,,43,40-44,0,1,0
+824400,M,15,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,15,15-19,0,1,0
+824470,F,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,26,25-29,0,1,0
+824845,F,64,Años,Argentina,La Rioja,Capital,Córdoba,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-04-12,014,2020-06-02,,64,60-64,0,1,0
+824947,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,014,2020-06-02,,33,30-34,0,1,0
+824958,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,014,2020-06-02,,45,45-49,0,1,0
+824980,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,30,30-34,0,1,0
+824992,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,014,2020-06-02,,38,35-39,0,1,0
+824998,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,31,30-34,0,1,0
+825005,F,37,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-16,014,2020-06-02,,37,35-39,1,0,0
+825018,F,86,Años,Argentina,La Rioja,Castro Barros,La Rioja,NA,2020-04-16,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,021,2020-06-02,,86,80+,0,1,0
+827740,F,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-18,014,2020-06-02,,29,25-29,1,0,0
+827761,F,27,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-18,014,2020-06-02,,27,25-29,0,1,0
+827794,M,41,Años,Argentina,La Rioja,San Blas de los Sauces,La Rioja,2020-03-14,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-18,119,2020-06-02,,41,40-44,0,1,0
+828073,M,54,Años,Argentina,La Rioja,Coronel Felipe Varela,La Rioja,2020-04-11,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-18,028,2020-06-02,,54,50-54,0,1,0
+828091,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-18,014,2020-06-02,,31,30-34,0,1,0
+828119,M,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-18,014,2020-06-02,,30,30-34,0,1,0
+828264,F,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,37,35-39,0,1,0
+828430,M,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,014,2020-06-02,,35,35-39,0,1,0
+828773,F,80,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,056,2020-06-02,,80,80+,0,0,1
+828784,F,39,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,056,2020-06-02,,39,35-39,0,1,0
+828839,M,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,50,50-54,0,1,0
+828847,F,47,Años,Argentina,La Rioja,General Angel V. Peñaloza,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,056,2020-06-02,,47,45-49,0,1,0
+828850,M,40,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,40,40-44,0,1,0
+828857,F,46,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,46,45-49,0,1,0
+828861,F,52,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,52,50-54,0,1,0
+828881,M,42,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,42,40-44,0,1,0
+828887,F,45,Años,SIN ESPECIFICAR,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,45,45-49,0,1,0
+828891,F,52,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,52,50-54,0,1,0
+828906,F,29,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,035,2020-06-02,,29,25-29,0,1,0
+828914,F,80,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,80,80+,0,1,0
+828917,F,69,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,69,65-69,0,1,0
+828920,M,73,Años,Argentina,La Rioja,Chilecito,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,042,2020-06-02,,73,70-74,0,1,0
+828924,F,39,Años,Argentina,La Rioja,Chilecito,La Rioja,NA,2020-04-17,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,042,2020-06-02,,39,35-39,0,1,0
+831332,F,67,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-18,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-19,014,2020-06-02,,67,65-69,1,0,0
+831356,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-18,16,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,40,40-44,0,1,0
+831360,M,94,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-18,16,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-19,014,2020-06-02,,94,80+,1,0,0
+832170,F,29,Años,SIN ESPECIFICAR,La Rioja,Capital,Jujuy,2020-04-16,2020-04-19,17,NA,NO,NA,0,NA,NO,38,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,29,25-29,0,1,0
+832537,M,73,Años,Argentina,La Rioja,Chamical,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,035,2020-06-02,,73,70-74,0,1,0
+832547,F,44,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,44,40-44,0,1,0
+832558,M,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,37,35-39,0,1,0
+832596,F,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,37,35-39,0,1,0
+832634,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,41,40-44,0,1,0
+832643,M,8,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,8,1-9,0,1,0
+832655,F,25,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-16,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,042,2020-06-02,,25,25-29,0,1,0
+832675,F,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,42,40-44,0,1,0
+832682,M,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-19,014,2020-06-02,,39,35-39,1,0,0
+832965,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,31,30-34,0,1,0
+832980,M,4,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,4,1-9,0,1,0
+832991,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,31,30-34,0,1,0
+833068,M,64,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,64,60-64,0,1,0
+833077,M,64,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,64,60-64,0,1,0
+833088,F,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,45,45-49,0,1,0
+833197,F,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,36,35-39,0,1,0
+833302,M,55,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-19,014,2020-06-02,,55,55-59,0,1,0
+833373,F,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-01,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,45,45-49,0,1,0
+833398,M,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-04,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-21,014,2020-06-02,,23,20-24,1,0,0
+833407,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,29,25-29,0,1,0
+833418,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-29,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-20,014,2020-06-02,,31,30-34,1,0,0
+833432,M,19,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-14,2020-04-19,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,042,2020-06-02,,19,15-19,0,1,0
+834490,F,50,Años,Argentina,La Rioja,Capital,Córdoba,2020-04-15,2020-04-20,17,2020-04-17,NO,NA,0,NA,NO,14,Privado,caso descartado,sospechoso,46,NA,014,2020-06-02,,50,50-54,0,0,1
+836020,M,69,Años,Argentina,La Rioja,Arauco,La Rioja,2020-04-18,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,007,2020-06-02,,69,65-69,0,1,0
+836184,F,88,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-18,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,88,80+,0,1,0
+836209,F,56,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,2020-04-18,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,070,2020-06-02,,56,55-59,0,1,0
+836485,M,80,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-17,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,80,80+,0,1,0
+836525,F,71,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,71,70-74,0,1,0
+837843,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-20,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-20,014,2020-06-02,,50,50-54,0,1,0
+840195,M,71,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-17,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,042,2020-06-02,,71,70-74,0,1,0
+840294,F,11,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-11,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,11,10-14,0,1,0
+840456,M,13,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,13,10-14,0,1,0
+840490,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,29,25-29,0,1,0
+840520,M,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,37,35-39,0,1,0
+841329,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,43,40-44,0,1,0
+841349,F,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,23,20-24,0,1,0
+841361,M,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,32,30-34,0,1,0
+841370,F,65,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,65,65-69,0,1,0
+841436,F,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,50,50-54,0,1,0
+841452,M,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-21,014,2020-06-02,,23,20-24,1,0,0
+841460,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,43,40-44,0,1,0
+841468,M,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,44,40-44,0,1,0
+841476,F,33,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-17,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,042,2020-06-02,,33,30-34,0,1,0
+841500,F,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,39,35-39,0,1,0
+841529,M,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-21,014,2020-06-02,,22,20-24,1,0,0
+841590,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,41,40-44,0,1,0
+841603,F,53,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-19,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,53,50-54,0,1,0
+841636,F,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-21,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,38,35-39,0,1,0
+842026,M,79,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-19,2020-04-21,17,2020-04-22,SI,2020-04-22,1,2020-05-08,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-21,014,2020-06-02,,79,75-79,1,0,0
+845107,F,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-21,014,2020-06-02,,38,35-39,0,1,0
+845573,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,35,35-39,0,1,0
+845583,F,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-20,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,37,35-39,0,1,0
+845607,F,59,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,59,55-59,0,1,0
+845627,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,23,20-24,0,1,0
+845629,F,77,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,77,75-79,0,1,0
+845630,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,45,45-49,0,1,0
+845633,M,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,34,30-34,0,1,0
+845656,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,43,40-44,0,1,0
+845684,F,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,48,45-49,0,1,0
+846000,F,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-12,2020-04-22,17,2020-04-24,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-24,014,2020-06-02,,45,45-49,1,0,0
+846004,M,51,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,51,50-54,0,1,0
+846023,F,86,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,86,80+,0,1,0
+846026,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,36,35-39,0,1,0
+846032,F,66,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-04-22,17,2020-05-12,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,66,65-69,0,1,0
+846088,F,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,38,35-39,0,1,0
+846098,F,75,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-22,014,2020-06-02,,75,75-79,0,1,0
+846162,F,30,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-19,2020-04-22,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-21,014,2020-06-02,,30,30-34,1,0,0
+847027,M,73,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-17,014,2020-06-02,,73,70-74,0,1,0
+847061,M,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-10,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,40,40-44,0,1,0
+847151,M,82,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-04-23,17,2020-05-13,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,82,80+,0,1,0
+847197,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-12,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,43,40-44,0,1,0
+847230,F,86,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-04-23,17,NA,NO,NA,1,2020-04-22,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-24,014,2020-06-02,,86,80+,1,0,0
+847294,M,56,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-09,014,2020-06-02,,56,55-59,0,1,0
+848928,M,30,Años,Argentina,La Rioja,Chilecito,Catamarca,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,10,Público,caso descartado,descartado,46,2020-04-23,042,2020-06-02,,30,30-34,0,1,0
+849472,M,66,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,2020-04-20,2020-04-23,17,2020-04-21,SI,2020-04-21,0,NA,SI,46,Público,caso descartado,descartado,46,2020-04-23,070,2020-06-02,,66,65-69,0,1,0
+849512,M,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,28,25-29,0,1,0
+849535,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-19,2020-04-23,17,2020-04-22,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,34,30-34,0,1,0
+849564,F,25,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-20,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,25,25-29,0,1,0
+849585,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,38,35-39,0,1,0
+849645,F,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,58,55-59,0,1,0
+849667,F,41,Años,Argentina,La Rioja,Sanagasta,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,126,2020-06-02,,41,40-44,0,1,0
+849676,F,27,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-19,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,27,25-29,0,1,0
+849691,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,45,45-49,0,1,0
+849695,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,32,30-34,0,1,0
+849722,F,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,48,45-49,0,1,0
+849733,M,34,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-19,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-24,014,2020-06-02,,34,30-34,1,0,0
+849763,M,38,Años,Argentina,La Rioja,Arauco,La Rioja,2020-04-17,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,007,2020-06-02,,38,35-39,0,1,0
+849798,M,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-24,014,2020-06-02,,26,25-29,1,0,0
+849810,M,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,34,30-34,0,1,0
+849818,F,64,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,64,60-64,0,1,0
+849961,F,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,50,50-54,0,1,0
+849980,F,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,31,30-34,0,1,0
+850026,M,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,28,25-29,0,1,0
+850029,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,27,25-29,0,1,0
+850034,M,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,41,40-44,0,1,0
+850042,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,32,30-34,0,1,0
+850047,F,34,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,035,2020-06-02,,34,30-34,0,1,0
+850057,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,39,35-39,0,1,0
+850061,M,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,42,40-44,0,1,0
+850063,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,40,40-44,0,1,0
+850079,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,45,45-49,0,1,0
+850089,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-20,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,28,25-29,0,1,0
+850105,M,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,41,40-44,0,1,0
+850112,F,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,31,30-34,0,1,0
+850126,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,38,35-39,0,1,0
+850145,M,37,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,37,35-39,0,1,0
+850156,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,41,40-44,0,1,0
+850161,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,31,30-34,0,1,0
+850177,M,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,45,45-49,0,1,0
+850179,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,32,30-34,0,1,0
+850180,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,39,35-39,0,1,0
+850187,F,46,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,46,45-49,0,1,0
+850189,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,28,25-29,0,1,0
+850191,M,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,54,50-54,0,1,0
+850193,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,27,25-29,0,1,0
+850203,M,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,28,25-29,0,1,0
+850222,F,29,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-23,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,29,25-29,0,1,0
+851701,M,53,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-04-24,17,2020-04-21,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,53,50-54,0,1,0
+853577,M,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,32,30-34,0,1,0
+853650,F,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-23,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,40,40-44,0,1,0
+853682,M,44,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-24,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-24,014,2020-06-02,,44,40-44,1,0,0
+853689,F,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,40,40-44,0,1,0
+853724,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,50,50-54,0,1,0
+853729,M,80,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-04-24,17,2020-04-22,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,80,80+,0,1,0
+853733,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,30,30-34,0,1,0
+853740,F,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,42,40-44,0,1,0
+853790,M,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-24,17,2020-04-23,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,39,35-39,0,1,0
+853810,M,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,42,40-44,0,1,0
+853812,F,61,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-24,17,2020-04-23,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,61,60-64,0,1,0
+853817,F,46,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,46,45-49,0,1,0
+853821,F,43,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,43,40-44,0,1,0
+853828,F,31,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,31,30-34,0,1,0
+854221,M,95,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,95,80+,0,1,0
+854226,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-09,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,33,30-34,0,1,0
+854230,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-20,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,33,30-34,0,1,0
+854231,F,19,Años,Argentina,La Rioja,Famatina,La Rioja,2020-04-23,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,049,2020-06-02,,19,15-19,0,1,0
+854233,M,21,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,21,20-24,0,1,0
+854236,M,63,Años,Argentina,La Rioja,General Belgrano,La Rioja,2020-04-23,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,063,2020-06-02,,63,60-64,0,1,0
+854241,F,81,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-23,2020-04-24,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-24,014,2020-06-02,,81,80+,0,1,0
+855036,M,43,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,43,40-44,0,1,0
+855051,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,33,30-34,0,1,0
+855061,F,29,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,29,25-29,0,1,0
+855068,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,26,25-29,0,1,0
+855073,M,85,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,85,80+,0,1,0
+855078,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,23,20-24,0,1,0
+855091,M,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,50,50-54,0,1,0
+855096,F,65,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,65,65-69,0,1,0
+855106,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-16,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,43,40-44,0,1,0
+855115,F,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,38,35-39,0,1,0
+855118,M,63,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,63,60-64,0,1,0
+855134,F,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,36,35-39,0,1,0
+855143,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,30,30-34,0,1,0
+855149,F,51,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,51,50-54,0,1,0
+855154,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,40,40-44,0,1,0
+855158,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,41,40-44,0,1,0
+855168,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,35,35-39,0,1,0
+855181,M,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,48,45-49,0,1,0
+855186,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,38,35-39,0,1,0
+855202,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,38,35-39,0,1,0
+855218,M,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-24,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,68,65-69,0,1,0
+855404,F,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,28,25-29,0,1,0
+855421,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,32,30-34,0,1,0
+855636,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,50,50-54,0,1,0
+855647,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,35,35-39,0,1,0
+855661,F,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,54,50-54,0,1,0
+855667,M,29,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,29,25-29,0,1,0
+855670,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,50,50-54,0,1,0
+855672,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,31,30-34,0,1,0
+855676,M,37,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,37,35-39,0,1,0
+855699,F,37,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-21,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,37,35-39,0,1,0
+855727,F,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,54,50-54,0,1,0
+855733,M,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,34,30-34,0,1,0
+855739,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,28,25-29,0,1,0
+855759,M,62,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,62,60-64,0,1,0
+855777,F,46,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,46,45-49,0,1,0
+855786,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,27,25-29,0,1,0
+855791,F,49,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,49,45-49,0,1,0
+855802,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,36,35-39,0,1,0
+855830,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,45,45-49,0,1,0
+855890,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,33,30-34,0,1,0
+855897,F,25,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,25,25-29,0,1,0
+855903,M,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,54,50-54,0,1,0
+855910,M,52,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,52,50-54,0,1,0
+855917,F,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,23,20-24,0,1,0
+855927,M,26,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+855929,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,40,40-44,0,1,0
+855938,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,39,35-39,0,1,0
+855949,F,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,27,25-29,0,1,0
+855956,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,38,35-39,0,1,0
+855963,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,23,20-24,0,1,0
+855971,F,57,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,57,55-59,0,1,0
+855976,F,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,24,20-24,0,1,0
+855992,M,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-25,014,2020-06-02,,44,40-44,1,0,0
+856219,M,71,Años,Argentina,La Rioja,General Ocampo,La Rioja,2020-04-25,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,084,2020-06-02,,71,70-74,0,1,0
+856240,F,77,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,77,75-79,0,1,0
+856251,M,63,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,63,60-64,0,1,0
+856263,M,61,Años,Argentina,La Rioja,Independencia,La Rioja,2020-04-24,2020-04-25,17,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,105,2020-06-02,,61,60-64,0,1,0
+857166,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,39,35-39,0,1,0
+857713,M,46,Años,Argentina,La Rioja,Sanagasta,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,126,2020-06-02,,46,45-49,0,1,0
+857715,M,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,35,35-39,0,1,0
+857716,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,38,35-39,0,1,0
+857723,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,33,30-34,0,1,0
+857727,F,44,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,44,40-44,0,1,0
+857737,M,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,30,30-34,0,1,0
+857739,M,47,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,47,45-49,0,1,0
+857745,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,40,40-44,0,1,0
+857751,M,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,42,40-44,0,1,0
+857760,M,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-26,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,44,40-44,0,1,0
+859083,M,29,Años,Argentina,La Rioja,Capital,Córdoba,2020-04-22,2020-04-27,18,2020-04-23,NO,NA,0,NA,NO,14,Privado,caso descartado,sospechoso,46,NA,014,2020-06-02,,29,25-29,0,0,1
+859541,F,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-18,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,32,30-34,0,1,0
+859602,M,77,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,77,75-79,0,1,0
+859666,F,97,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-20,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,97,80+,0,1,0
+859775,M,70,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,70,70-74,0,1,0
+859799,F,11,Meses,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,0,0,0,1,0
+859819,M,14,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,14,10-14,0,1,0
+859887,F,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,68,65-69,0,1,0
+859916,M,61,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-20,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,61,60-64,0,1,0
+859973,M,72,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,72,70-74,0,1,0
+861878,F,71,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-15,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-27,014,2020-06-02,,71,70-74,1,0,0
+861905,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,40,40-44,0,1,0
+861916,M,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-27,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-27,014,2020-06-02,,48,45-49,0,1,0
+863517,F,66,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-20,2020-04-28,18,2020-04-21,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,66,65-69,0,1,0
+863580,F,39,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-26,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,042,2020-06-02,,39,35-39,0,1,0
+863621,M,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-28,014,2020-06-02,,41,40-44,1,0,0
+863633,F,11,Meses,Argentina,La Rioja,Capital,La Rioja,2020-04-20,2020-04-28,18,2020-04-27,SI,2020-04-27,0,NA,SI,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,0,0,0,1,0
+863638,M,37,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,37,35-39,0,1,0
+863652,F,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-08,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,34,30-34,0,1,0
+863688,F,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,36,35-39,0,1,0
+863699,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,29,25-29,0,1,0
+863723,M,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,30,30-34,0,1,0
+863729,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,22,20-24,0,1,0
+866089,M,20,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,20,20-24,0,1,0
+866199,M,8,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,8,1-9,0,1,0
+866218,F,14,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,14,10-14,0,1,0
+866254,M,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-28,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-28,014,2020-06-02,,48,45-49,0,1,0
+869118,M,53,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-29,18,2020-04-28,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,53,50-54,0,1,0
+869142,F,76,Años,Argentina,La Rioja,Chamical,La Rioja,2020-04-27,2020-04-29,18,2020-04-27,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,035,2020-06-02,,76,75-79,0,1,0
+869177,F,44,Años,Argentina,La Rioja,Arauco,La Rioja,2020-04-27,2020-04-29,18,2020-04-27,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,007,2020-06-02,,44,40-44,0,1,0
+869213,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,28,25-29,0,1,0
+869771,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,34,30-34,0,1,0
+869796,F,52,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,52,50-54,0,1,0
+869819,F,10,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-13,2020-04-29,18,2020-04-25,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,10,10-14,0,1,0
+869879,M,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-26,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,30,30-34,0,1,0
+869902,M,60,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,60,60-64,0,1,0
+869917,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,30,30-34,0,1,0
+869920,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,38,35-39,0,1,0
+869938,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,23,20-24,0,1,0
+869947,F,21,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,21,20-24,0,1,0
+869956,F,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,22,20-24,0,1,0
+869976,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,24,20-24,0,1,0
+869986,M,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-19,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+869992,F,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,23,20-24,0,1,0
+870004,M,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,43,40-44,0,1,0
+870008,M,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-30,014,2020-06-02,,45,45-49,1,0,0
+870021,M,35,Años,Argentina,La Rioja,General Lamadrid,La Rioja,2020-04-27,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,077,2020-06-02,,35,35-39,0,1,0
+870023,F,38,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-14,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-30,014,2020-06-02,,38,35-39,1,0,0
+870040,F,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-26,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,30,30-34,0,1,0
+870048,M,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,28,25-29,0,1,0
+870054,M,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-04-30,014,2020-06-02,,45,45-49,1,0,0
+870061,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+870063,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,34,30-34,0,1,0
+870078,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,34,30-34,0,1,0
+870089,F,55,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,007,2020-06-02,,55,55-59,0,1,0
+870102,F,24,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,007,2020-06-02,,24,20-24,0,1,0
+870109,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,24,20-24,0,1,0
+870128,M,84,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-28,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,042,2020-06-02,,84,80+,0,1,0
+870146,M,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+870158,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-26,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,29,25-29,0,1,0
+870168,NR,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,23,20-24,0,1,0
+870175,M,32,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-26,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,32,30-34,0,1,0
+870190,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+870196,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,31,30-34,0,1,0
+870201,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,27,25-29,0,1,0
+870216,M,16,Años,Argentina,La Rioja,Capital,CABA,2020-04-26,2020-04-29,18,2020-04-28,NO,NA,0,NA,NO,02,Público,caso sospechosos de nuevo coronavirus (2019-ncov),sospechoso,46,NA,014,2020-06-02,,16,15-19,0,0,1
+870369,M,36,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-17,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-25,014,2020-06-02,,36,35-39,0,1,0
+870529,F,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-29,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-26,014,2020-06-02,,23,20-24,0,1,0
+871652,F,26,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,26,25-29,0,1,0
+872195,M,40,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,40,40-44,0,1,0
+872221,M,61,Años,Argentina,La Rioja,General Juan F. Quiroga,San Juan,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,70,Público,caso descartado,descartado,46,2020-05-01,070,2020-06-02,,61,60-64,0,1,0
+872739,F,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,42,40-44,0,1,0
+872757,F,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,48,45-49,0,1,0
+872786,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,34,30-34,0,1,0
+872800,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,34,30-34,0,1,0
+872830,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,40,40-44,0,1,0
+872866,F,54,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-30,18,2020-04-28,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,54,50-54,0,1,0
+872915,F,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,42,40-44,0,1,0
+872936,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,35,35-39,0,1,0
+872953,F,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,26,25-29,0,1,0
+872980,M,48,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,48,45-49,0,1,0
+872992,M,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,44,40-44,0,1,0
+873013,M,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-29,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,50,50-54,0,1,0
+873301,M,63,Años,Argentina,La Rioja,Capital,CABA,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,02,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,63,60-64,0,1,0
+873316,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,22,20-24,0,1,0
+873344,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,36,35-39,0,1,0
+873351,F,51,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,51,50-54,0,1,0
+873358,F,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,44,40-44,0,1,0
+873363,M,47,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,47,45-49,0,1,0
+873366,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,41,40-44,0,1,0
+873373,F,59,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,59,55-59,0,1,0
+873377,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,28,25-29,0,1,0
+873381,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,45,45-49,0,1,0
+873385,F,57,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,57,55-59,0,1,0
+873406,F,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,26,25-29,0,1,0
+873420,M,46,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,46,45-49,0,1,0
+873430,F,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,24,20-24,0,1,0
+873438,M,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,28,25-29,0,1,0
+873445,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,41,40-44,0,1,0
+873452,F,46,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,46,45-49,0,1,0
+873459,F,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,23,20-24,0,1,0
+873464,M,28,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,28,25-29,0,1,0
+873487,F,46,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,46,45-49,0,1,0
+873495,M,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,30,30-34,0,1,0
+873732,F,83,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,007,2020-06-02,,83,80+,0,1,0
+873739,M,75,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-30,18,2020-04-29,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,75,75-79,0,1,0
+873752,M,85,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-29,2020-04-30,18,2020-04-29,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,85,80+,0,1,0
+873790,F,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,38,35-39,0,1,0
+873812,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,28,25-29,0,1,0
+873826,M,65,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-23,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,65,65-69,0,1,0
+873837,F,62,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-29,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,62,60-64,0,1,0
+873854,F,54,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-04-30,18,2020-04-29,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-30,014,2020-06-02,,54,50-54,0,1,0
+873882,F,51,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-26,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,51,50-54,0,0,1
+873918,M,64,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-04-30,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,64,60-64,0,1,0
+875868,F,89,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,070,2020-06-02,,89,80+,0,1,0
+875878,M,76,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-01,18,2020-04-30,SI,2020-04-30,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,76,75-79,0,1,0
+875879,M,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,68,65-69,0,1,0
+875893,F,61,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,61,60-64,0,1,0
+875902,F,69,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,69,65-69,0,1,0
+875911,M,91,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,91,80+,0,1,0
+875914,M,64,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,64,60-64,0,1,0
+875917,F,68,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,68,65-69,0,1,0
+875922,F,82,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,007,2020-06-02,,82,80+,0,1,0
+875930,M,94,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,94,80+,0,1,0
+875937,M,74,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,007,2020-06-02,,74,70-74,0,1,0
+875943,M,88,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,88,80+,0,1,0
+875946,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,33,30-34,0,1,0
+875954,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,38,35-39,0,1,0
+875955,M,72,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,72,70-74,0,1,0
+875956,M,77,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,77,75-79,0,1,0
+875960,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,36,35-39,0,1,0
+875966,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,32,30-34,0,1,0
+875969,F,91,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,91,80+,0,1,0
+875971,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,28,25-29,0,1,0
+875976,F,89,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,89,80+,0,1,0
+875987,F,42,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,2020-04-29,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,070,2020-06-02,,42,40-44,0,1,0
+875998,F,25,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,25,25-29,0,1,0
+876001,M,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,42,40-44,0,1,0
+876007,F,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,38,35-39,0,1,0
+876008,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,26,25-29,0,1,0
+876017,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-14,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,35,35-39,0,1,0
+876019,F,93,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-01,18,2020-04-29,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,93,80+,0,1,0
+876038,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,40,40-44,0,1,0
+876042,M,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-02,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,58,55-59,0,1,0
+876057,M,78,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-04-24,2020-05-01,18,2020-04-24,SI,2020-04-24,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,042,2020-06-02,,78,75-79,0,1,0
+876063,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,39,35-39,0,1,0
+876069,M,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,34,30-34,0,1,0
+876072,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,26,25-29,0,1,0
+876078,F,28,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,28,25-29,0,1,0
+876079,M,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,37,35-39,0,1,0
+876088,M,NA,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,NA,NA,0,1,0
+876090,F,57,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,57,55-59,0,1,0
+876097,F,96,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,96,80+,0,1,0
+876098,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-25,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,28,25-29,0,1,0
+876109,M,81,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-05-01,18,2020-04-30,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,81,80+,0,1,0
+876113,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,27,25-29,0,1,0
+876122,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,50,50-54,0,1,0
+876132,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,39,35-39,0,1,0
+876139,F,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,34,30-34,0,1,0
+876179,F,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,27,25-29,0,1,0
+876200,F,27,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-29,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,27,25-29,0,1,0
+876208,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,26,25-29,0,1,0
+876214,M,29,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,29,25-29,0,1,0
+876527,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-15,2020-05-01,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,014,2020-06-02,,43,40-44,0,1,0
+877943,F,82,Años,Argentina,La Rioja,Rosario Vera Peñaloza,La Rioja,2020-05-01,2020-05-02,18,2020-05-01,SI,2020-05-01,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-02,112,2020-06-02,,82,80+,0,1,0
+877966,M,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-02,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,32,30-34,0,1,0
+877978,M,34,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-02,18,2020-05-01,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,34,30-34,0,1,0
+877992,M,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-05-02,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,33,30-34,0,1,0
+878011,M,75,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-02,18,2020-05-01,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,75,75-79,0,1,0
+878018,M,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-02,18,2020-05-01,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,43,40-44,0,1,0
+878026,F,46,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-21,2020-05-02,18,2020-05-02,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,46,45-49,0,1,0
+878052,F,69,Años,Argentina,La Rioja,Castro Barros,La Rioja,2020-04-22,2020-05-02,18,2020-04-22,SI,2020-04-22,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,021,2020-06-02,,69,65-69,0,1,0
+878069,M,69,Años,Argentina,La Rioja,Chamical,La Rioja,2020-04-29,2020-05-02,18,2020-05-01,SI,2020-05-01,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,035,2020-06-02,,69,65-69,0,1,0
+878447,M,85,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-02,18,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-02,014,2020-06-02,,85,80+,0,1,0
+879126,F,46,Años,Argentina,La Rioja,Capital,Córdoba,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,14,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,46,45-49,0,1,0
+879162,M,23,Años,Argentina,La Rioja,Chilecito,CABA,2020-04-30,2020-05-03,19,2020-05-02,NO,NA,0,NA,NO,02,Privado,caso descartado,descartado,46,2020-05-03,042,2020-06-02,,23,20-24,0,1,0
+879195,F,24,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,24,20-24,0,1,0
+879202,F,27,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,27,25-29,0,1,0
+879277,F,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,27,25-29,0,1,0
+879281,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,27,25-29,0,1,0
+879298,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,24,20-24,0,1,0
+879304,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,31,30-34,0,1,0
+879315,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,24,20-24,0,1,0
+879328,M,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,39,35-39,0,1,0
+879347,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,28,25-29,0,1,0
+879365,M,29,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,29,25-29,0,1,0
+879374,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,31,30-34,0,1,0
+879387,M,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,23,20-24,0,1,0
+879393,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-26,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,43,40-44,0,1,0
+879404,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-03,19,2020-05-02,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,43,40-44,0,1,0
+879414,M,43,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,43,40-44,0,1,0
+879421,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,39,35-39,0,1,0
+879838,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-03,014,2020-06-02,,31,30-34,0,1,0
+880013,M,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,35,35-39,0,1,0
+880014,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,29,25-29,0,1,0
+880020,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,27,25-29,0,1,0
+880023,M,27,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,27,25-29,0,1,0
+880025,F,55,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,55,55-59,0,1,0
+880032,M,67,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,67,65-69,0,1,0
+880035,M,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,45,45-49,0,1,0
+880037,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,24,20-24,0,1,0
+880045,M,52,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,52,50-54,0,1,0
+880047,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-05-05,014,2020-06-02,,36,35-39,1,0,0
+880051,M,32,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,32,30-34,0,1,0
+880069,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,23,20-24,0,1,0
+880071,M,24,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,24,20-24,0,1,0
+880074,M,45,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,45,45-49,0,1,0
+880076,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,38,35-39,0,1,0
+880080,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,39,35-39,0,1,0
+880088,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,22,20-24,0,1,0
+880091,F,43,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,43,40-44,0,1,0
+880114,M,28,Años,Argentina,La Rioja,General San Martín,La Rioja,NA,2020-05-03,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,091,2020-06-02,,28,25-29,0,1,0
+882322,M,52,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,52,50-54,0,1,0
+882357,M,68,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso sospechosos de nuevo coronavirus (2019-ncov),sospechoso,46,NA,014,2020-06-02,,68,65-69,0,0,1
+882424,M,25,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,25,25-29,0,1,0
+882879,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,39,35-39,0,1,0
+882899,F,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,26,25-29,0,1,0
+882922,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,23,20-24,0,1,0
+882947,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,22,20-24,0,1,0
+883029,M,23,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,23,20-24,0,1,0
+884407,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,30,30-34,0,1,0
+884434,M,14,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,14,10-14,0,1,0
+884439,M,16,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,16,15-19,0,1,0
+884448,F,54,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,54,50-54,0,1,0
+884454,F,13,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,13,10-14,0,1,0
+884504,M,77,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,77,75-79,0,1,0
+884560,F,62,Años,Argentina,La Rioja,Chamical,La Rioja,2020-05-01,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,035,2020-06-02,,62,60-64,0,1,0
+884576,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-04,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,26,25-29,0,1,0
+886236,M,60,Años,Argentina,La Rioja,Chilecito,Mendoza,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,50,Privado,caso descartado,descartado,46,2020-05-05,042,2020-06-02,,60,60-64,0,1,0
+887321,M,69,Años,Argentina,La Rioja,Capital,La Rioja,2020-03-28,2020-05-05,19,2020-05-14,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,69,65-69,0,1,0
+887936,F,71,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-28,2020-05-05,19,2020-05-04,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,71,70-74,0,1,0
+887962,F,96,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-05,19,2020-05-03,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,96,80+,0,1,0
+887976,M,42,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,42,40-44,0,1,0
+887983,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,33,30-34,0,1,0
+888012,F,75,Años,Argentina,La Rioja,San Blas de los Sauces,La Rioja,2020-04-30,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,119,2020-06-02,,75,75-79,0,1,0
+888034,F,89,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-03,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,042,2020-06-02,,89,80+,0,1,0
+888073,M,19,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,19,15-19,0,1,0
+888289,M,20,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,20,20-24,0,1,0
+888299,F,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-05-06,014,2020-06-02,,42,40-44,1,0,0
+888302,F,69,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,69,65-69,0,1,0
+888312,M,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,33,30-34,0,1,0
+888343,F,60,Años,Argentina,La Rioja,Chilecito,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,042,2020-06-02,,60,60-64,0,1,0
+888349,M,47,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,47,45-49,0,1,0
+888355,M,43,Años,Argentina,La Rioja,Sanagasta,La Rioja,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,126,2020-06-02,,43,40-44,0,1,0
+888450,F,70,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-05,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-05,014,2020-06-02,,70,70-74,0,1,0
+888523,F,28,Años,Argentina,La Rioja,Capital,Jujuy,NA,2020-05-05,19,NA,NO,NA,0,NA,NO,38,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,28,25-29,0,1,0
+889559,F,41,Años,Argentina,La Rioja,Sanagasta,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-01,126,2020-06-02,,41,40-44,0,1,0
+889932,NR,69,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-06,19,2020-05-02,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-04,014,2020-06-02,,69,65-69,0,1,0
+891148,F,35,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-29,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,35,35-39,0,1,0
+891170,F,66,Años,Argentina,La Rioja,Rosario Vera Peñaloza,La Rioja,2020-05-03,2020-05-06,19,2020-05-05,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,112,2020-06-02,,66,65-69,0,1,0
+891179,M,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,22,20-24,0,1,0
+891203,M,72,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-06,19,2020-05-03,SI,2020-05-03,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,72,70-74,0,1,0
+891210,M,60,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,60,60-64,0,1,0
+891222,M,50,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,50,50-54,0,1,0
+891248,F,83,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-06,19,2020-05-03,SI,2020-05-03,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,83,80+,0,1,0
+891281,F,93,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-05,2020-05-06,19,2020-05-05,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,042,2020-06-02,,93,80+,0,1,0
+891395,M,74,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-06,19,2020-05-05,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,74,70-74,0,1,0
+891407,F,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,41,40-44,0,1,0
+891412,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,38,35-39,0,1,0
+891421,M,34,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-06,014,2020-06-02,,34,30-34,0,1,0
+891447,M,71,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-04,2020-05-06,19,2020-05-05,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,042,2020-06-02,,71,70-74,0,1,0
+891494,M,83,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-05,2020-05-06,19,2020-05-05,SI,2020-05-05,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,042,2020-06-02,,83,80+,0,1,0
+891521,M,39,Años,Argentina,La Rioja,Arauco,La Rioja,2020-05-05,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,007,2020-06-02,,39,35-39,0,1,0
+891530,M,29,Años,Argentina,La Rioja,General San Martín,La Rioja,2020-04-21,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,091,2020-06-02,,29,25-29,0,1,0
+891594,M,36,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,36,35-39,0,1,0
+891632,F,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,58,55-59,0,1,0
+891717,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-06,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,30,30-34,0,1,0
+893216,M,47,Años,Argentina,La Rioja,General San Martín,La Rioja,2020-04-14,2020-05-07,19,2020-04-14,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-16,091,2020-06-02,,47,45-49,0,1,0
+895398,F,42,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-05-07,014,2020-06-02,,42,40-44,1,0,0
+895404,F,49,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,49,45-49,0,1,0
+895429,M,44,Años,Argentina,La Rioja,Arauco,La Rioja,NA,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,007,2020-06-02,,44,40-44,0,1,0
+895447,F,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,49,45-49,0,1,0
+895475,F,15,Años,Argentina,La Rioja,Arauco,La Rioja,2020-05-06,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,007,2020-06-02,,15,15-19,0,1,0
+895487,F,50,Años,Argentina,La Rioja,Arauco,La Rioja,2020-05-06,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,007,2020-06-02,,50,50-54,0,1,0
+895509,F,21,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-26,2020-05-07,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,21,20-24,0,1,0
+895520,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-05,2020-05-07,19,2020-05-05,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,41,40-44,0,1,0
+895549,F,60,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-06,2020-05-07,19,2020-05-06,SI,2020-05-06,0,2020-05-07,SI,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,60,60-64,0,1,0
+895599,F,83,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-07,19,2020-05-03,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,83,80+,0,1,0
+896857,M,58,Años,Argentina,La Rioja,Rosario Vera Peñaloza,Córdoba,2020-05-04,2020-05-08,19,2020-05-04,NO,NA,0,NA,NO,14,Privado,caso descartado,sospechoso,46,NA,112,2020-06-02,,58,55-59,0,0,1
+897780,F,42,Años,Argentina,La Rioja,Capital,CABA,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,02,Público,caso descartado,sospechoso,46,NA,014,2020-06-02,,42,40-44,0,0,1
+898333,M,22,Años,Argentina,La Rioja,Capital,Jujuy,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,38,Público,caso descartado,descartado,46,2020-05-07,014,2020-06-02,,22,20-24,0,1,0
+899503,F,72,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,72,70-74,0,1,0
+899507,F,77,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,77,75-79,0,1,0
+899511,F,88,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,88,80+,0,1,0
+899512,M,71,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,035,2020-06-02,,71,70-74,0,1,0
+899513,F,81,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,81,80+,0,1,0
+899553,M,33,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,33,30-34,0,1,0
+899554,F,93,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-17,2020-05-08,19,2020-05-17,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,93,80+,0,1,0
+899558,F,59,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-08,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,59,55-59,0,1,0
+900300,F,74,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,74,70-74,0,1,0
+900304,M,56,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,56,55-59,0,1,0
+900313,M,72,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,72,70-74,0,1,0
+900315,M,37,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,070,2020-06-02,,37,35-39,0,1,0
+900329,F,58,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,58,55-59,0,1,0
+900336,M,40,Años,Argentina,La Rioja,General Juan F. Quiroga,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,070,2020-06-02,,40,40-44,0,1,0
+900337,F,86,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,86,80+,0,1,0
+900338,F,35,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,35,35-39,0,1,0
+900346,M,56,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,56,55-59,0,1,0
+900350,M,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,22,20-24,0,1,0
+900352,F,26,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,26,25-29,0,1,0
+900359,M,85,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,85,80+,0,1,0
+900365,M,80,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,80,80+,0,1,0
+900372,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,30,30-34,0,1,0
+900374,M,80,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,80,80+,0,1,0
+900380,F,90,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,90,80+,0,1,0
+900386,F,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,43,40-44,0,1,0
+900396,M,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,41,40-44,0,1,0
+900399,F,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,31,30-34,0,1,0
+900406,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,45,45-49,0,1,0
+900410,M,34,Años,Argentina,La Rioja,Sanagasta,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,126,2020-06-02,,34,30-34,0,1,0
+900411,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,39,35-39,0,1,0
+900416,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,50,50-54,0,1,0
+900417,F,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,45,45-49,0,1,0
+900425,F,40,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,40,40-44,0,1,0
+900437,F,95,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,95,80+,0,1,0
+900443,M,86,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-05-10,014,2020-06-02,,86,80+,1,0,0
+900446,F,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,40,40-44,0,1,0
+900452,M,72,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,72,70-74,0,1,0
+900453,F,22,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,22,20-24,0,1,0
+900463,F,80,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,80,80+,0,1,0
+900464,F,37,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,37,35-39,0,1,0
+900466,F,89,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,89,80+,0,1,0
+900474,M,57,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,57,55-59,0,1,0
+900479,F,72,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,72,70-74,0,1,0
+900488,F,88,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,88,80+,0,1,0
+900489,M,88,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,88,80+,0,1,0
+900495,M,78,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,78,75-79,0,1,0
+900509,F,33,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-09,19,2020-05-07,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,33,30-34,0,1,0
+900510,M,86,Años,SIN ESPECIFICAR,La Rioja,General San Martín,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso sospechosos de nuevo coronavirus (2019-ncov),descartado,46,2020-05-08,091,2020-06-02,,86,80+,0,1,0
+900523,F,69,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,69,65-69,0,1,0
+900542,F,81,Años,Argentina,La Rioja,Chamical,La Rioja,2020-04-27,2020-05-09,19,2020-04-27,SI,2020-04-27,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,035,2020-06-02,,81,80+,0,1,0
+900543,M,82,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,82,80+,0,1,0
+900567,M,78,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,78,75-79,0,1,0
+900587,F,79,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,79,75-79,0,1,0
+900588,M,68,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,68,65-69,0,1,0
+900607,F,64,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,64,60-64,0,1,0
+900610,F,87,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,87,80+,0,1,0
+900627,F,75,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,75,75-79,0,1,0
+900634,M,88,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-26,2020-05-09,19,2020-05-26,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,88,80+,0,1,0
+900998,F,84,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,84,80+,0,1,0
+901159,M,38,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-08,2020-05-09,19,2020-05-08,SI,2020-05-08,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,38,35-39,0,1,0
+901186,F,61,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,61,60-64,0,1,0
+901466,M,14,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-08,014,2020-06-02,,14,10-14,0,1,0
+901623,F,47,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,47,45-49,0,1,0
+901632,M,40,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,40,40-44,0,1,0
+901638,F,28,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-05-08,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,28,25-29,0,1,0
+901643,F,27,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,27,25-29,0,1,0
+901656,F,27,Años,Argentina,La Rioja,Rosario Vera Peñaloza,La Rioja,2020-05-08,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,112,2020-06-02,,27,25-29,0,1,0
+901813,M,30,Años,Argentina,La Rioja,Castro Barros,La Rioja,2020-05-03,2020-05-09,19,2020-05-08,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,021,2020-06-02,,30,30-34,0,1,0
+901834,F,61,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,61,60-64,0,1,0
+901839,F,62,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,62,60-64,0,1,0
+901845,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-22,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,25,25-29,0,1,0
+901914,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,39,35-39,0,1,0
+901918,M,32,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-08,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,32,30-34,0,1,0
+901936,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,50,50-54,0,1,0
+901951,F,77,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-02,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,77,75-79,0,1,0
+901999,F,44,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,44,40-44,0,1,0
+902014,M,26,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,26,25-29,0,1,0
+902021,F,4,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,2020-04-28,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,4,1-9,0,1,0
+902023,F,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,39,35-39,0,1,0
+902031,F,22,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-05,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,22,20-24,0,1,0
+902049,M,73,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-09,19,2020-05-04,SI,2020-05-04,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,73,70-74,0,1,0
+902057,F,88,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,014,2020-06-02,,88,80+,0,1,0
+902064,F,58,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-09,19,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,58,55-59,0,1,0
+902075,M,41,Años,Argentina,La Rioja,Arauco,La Rioja,2020-05-07,2020-05-09,19,2020-05-08,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-09,007,2020-06-02,,41,40-44,0,1,0
+903455,F,55,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-05-06,2020-05-10,20,2020-05-09,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,55,55-59,0,1,0
+903466,M,89,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-09,2020-05-10,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,89,80+,0,1,0
+903467,M,75,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-08,2020-05-10,20,2020-05-09,SI,2020-05-09,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,042,2020-06-02,,75,75-79,0,1,0
+903502,M,66,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-10,20,2020-05-09,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,66,65-69,0,1,0
+903519,M,98,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-10,20,2020-05-10,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,98,80+,0,1,0
+904106,M,21,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-10,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-10,014,2020-06-02,,21,20-24,0,1,0
+905935,M,38,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-29,014,2020-06-02,,38,35-39,0,1,0
+906836,F,37,Años,Argentina,La Rioja,Capital,CABA,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,02,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,37,35-39,0,1,0
+906843,F,8,Meses,Argentina,La Rioja,Capital,CABA,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,02,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,0,0,0,1,0
+908021,F,54,Años,Argentina,La Rioja,San Blas de los Sauces,La Rioja,2020-05-05,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,119,2020-06-02,,54,50-54,0,1,0
+908050,F,88,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-04,2020-05-11,20,2020-05-10,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,88,80+,0,1,0
+908071,F,24,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-10,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,24,20-24,0,1,0
+908101,F,18,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,18,15-19,0,1,0
+908171,F,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-09,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,49,45-49,0,1,0
+908201,M,23,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-05-08,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,23,20-24,0,1,0
+908223,F,46,Años,Argentina,La Rioja,Vinchina,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,098,2020-06-02,,46,45-49,0,1,0
+908240,M,59,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,59,55-59,0,1,0
+908247,M,39,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,39,35-39,0,1,0
+908251,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-27,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,41,40-44,0,1,0
+908264,M,37,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,37,35-39,0,1,0
+908285,F,25,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-10,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,25,25-29,0,1,0
+908302,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,28,25-29,0,1,0
+908305,M,2,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-09,2020-05-11,20,2020-05-09,SI,2020-05-09,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-30,014,2020-06-02,,2,1-9,0,1,0
+908314,F,16,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso sospechosos de nuevo coronavirus (2019-ncov),descartado,46,2020-05-11,014,2020-06-02,,16,15-19,0,1,0
+908319,F,58,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-01,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso sospechosos de nuevo coronavirus (2019-ncov),descartado,46,2020-05-11,014,2020-06-02,,58,55-59,0,1,0
+908410,M,10,Meses,Argentina,La Rioja,Capital,La Rioja,2020-05-08,2020-05-11,20,2020-05-08,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,0,0,0,1,0
+908427,M,41,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,41,40-44,0,1,0
+908445,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-30,2020-05-11,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-11,014,2020-06-02,,31,30-34,0,1,0
+911963,M,23,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-05,2020-05-12,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,23,20-24,0,1,0
+911980,M,36,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-12,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,36,35-39,0,1,0
+912055,M,28,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-07,2020-05-12,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,28,25-29,0,1,0
+912132,M,92,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-10,2020-05-12,20,2020-05-11,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,92,80+,0,1,0
+912187,M,63,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-05-11,2020-05-12,20,2020-05-11,SI,2020-05-11,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,63,60-64,0,1,0
+912232,F,18,Años,Argentina,La Rioja,General Belgrano,La Rioja,2020-05-08,2020-05-12,20,2020-05-11,SI,2020-05-11,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,063,2020-06-02,,18,15-19,0,1,0
+912351,M,81,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-10,2020-05-12,20,2020-05-11,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,81,80+,0,1,0
+916566,M,48,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-09,2020-05-13,20,2020-05-09,SI,2020-05-09,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,48,45-49,0,1,0
+916602,M,76,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-03,2020-05-13,20,2020-05-10,SI,2020-05-10,0,NA,NO,46,Privado,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,76,75-79,0,1,0
+916663,F,71,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-12,2020-05-13,20,2020-05-12,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,71,70-74,0,1,0
+916699,M,74,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-13,20,2020-05-12,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,74,70-74,0,1,0
+916743,M,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-13,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,31,30-34,0,1,0
+916818,M,4,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-12,2020-05-13,20,2020-05-13,SI,2020-05-13,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,4,1-9,0,1,0
+916824,M,19,Años,Argentina,La Rioja,Rosario Vera Peñaloza,La Rioja,2020-05-02,2020-05-13,20,2020-05-02,SI,2020-05-02,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-13,112,2020-06-02,,19,15-19,0,1,0
+916873,M,43,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-13,20,2020-04-28,SI,2020-04-28,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,43,40-44,0,1,0
+916917,F,30,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-13,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,30,30-34,0,1,0
+916941,M,7,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-13,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,7,1-9,0,1,0
+917104,M,45,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-13,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-13,014,2020-06-02,,45,45-49,0,1,0
+918036,M,67,Años,Argentina,La Rioja,Capital,Córdoba,2020-05-06,2020-05-14,20,2020-05-06,NO,NA,0,NA,NO,14,Privado,caso descartado,sospechoso,46,NA,014,2020-06-02,,67,65-69,0,0,1
+919012,F,50,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-12,014,2020-06-02,,50,50-54,0,1,0
+921106,NR,60,Años,Argentina,La Rioja,General Belgrano,La Rioja,NA,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,063,2020-06-02,,60,60-64,0,1,0
+921126,F,30,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,014,2020-06-02,,30,30-34,0,1,0
+921146,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-10,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,014,2020-06-02,,29,25-29,0,1,0
+921345,M,29,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-12,2020-05-14,20,2020-05-13,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,014,2020-06-02,,29,25-29,0,1,0
+921393,F,69,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-13,2020-05-14,20,2020-05-13,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,014,2020-06-02,,69,65-69,0,1,0
+921444,M,69,Años,Argentina,La Rioja,Arauco,La Rioja,2020-05-12,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,007,2020-06-02,,69,65-69,0,1,0
+921648,F,49,Años,Argentina,La Rioja,Capital,La Rioja,2020-04-28,2020-05-14,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-14,014,2020-06-02,,49,45-49,0,1,0
+925571,M,88,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-15,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-04-23,014,2020-06-02,,88,80+,0,1,0
+925897,M,47,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-05-15,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,035,2020-06-02,,47,45-49,0,1,0
+925994,F,31,Años,Argentina,La Rioja,Capital,La Rioja,NA,2020-05-15,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,31,30-34,0,1,0
+926016,M,82,Años,SIN ESPECIFICAR,La Rioja,Capital,La Rioja,2020-04-17,2020-05-15,20,2020-04-17,SI,2020-04-17,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,82,80+,0,1,0
+926031,M,69,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-14,2020-05-15,20,2020-05-15,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,69,65-69,0,1,0
+926075,F,50,Años,Argentina,La Rioja,Chamical,La Rioja,NA,2020-05-15,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,035,2020-06-02,,50,50-54,0,1,0
+926098,M,68,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-05,2020-05-15,20,2020-05-15,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,68,65-69,0,1,0
+926155,M,85,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-15,20,2020-05-14,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,85,80+,0,1,0
+926173,M,64,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-12,2020-05-15,20,2020-05-14,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,64,60-64,0,1,0
+926184,M,31,Años,Argentina,La Rioja,General Ocampo,La Rioja,2020-05-11,2020-05-15,20,2020-05-14,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,084,2020-06-02,,31,30-34,0,1,0
+926213,M,39,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-14,2020-05-15,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-15,014,2020-06-02,,39,35-39,0,1,0
+928837,F,44,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-13,2020-05-16,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,014,2020-06-02,,44,40-44,0,1,0
+928849,F,41,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-14,2020-05-16,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,014,2020-06-02,,41,40-44,0,1,0
+928850,M,25,Años,Argentina,La Rioja,Famatina,La Rioja,2020-05-09,2020-05-16,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,049,2020-06-02,,25,25-29,0,1,0
+928861,M,31,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-16,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,014,2020-06-02,,31,30-34,0,1,0
+928868,F,61,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-13,2020-05-16,20,NA,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,014,2020-06-02,,61,60-64,0,1,0
+928885,M,5,Años,Argentina,La Rioja,Chamical,La Rioja,2020-05-15,2020-05-16,20,2020-05-15,SI,2020-05-15,0,NA,SI,46,Público,caso descartado,descartado,46,2020-05-16,035,2020-06-02,,5,1-9,0,1,0
+928893,M,54,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-14,2020-05-16,20,2020-05-15,NO,NA,0,NA,NO,46,Público,caso confirmado de nuevo coronavirus (2019-ncov),confirmado,46,2020-05-16,014,2020-06-02,,54,50-54,1,0,0
+928896,M,73,Años,Argentina,La Rioja,General Belgrano,La Rioja,2020-05-15,2020-05-16,20,2020-05-15,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,063,2020-06-02,,73,70-74,0,1,0
+928914,M,11,Años,Argentina,La Rioja,Chilecito,La Rioja,2020-05-12,2020-05-16,20,2020-05-16,NO,NA,0,NA,NO,46,Público,caso descartado,descartado,46,2020-05-16,042,2020-06-02,,11,10-14,0,1,0
+928967,M,59,Años,Argentina,La Rioja,Capital,La Rioja,2020-05-11,2020-05-16,20,2020-05-11,SI,2020-05-11,0,NA,SI,46,Público,caso sospechosos de nuevo coronavirus (2019-ncov),sospechoso,46,NA,014,2020-06-02,,59,55-59,0,0,1

@@ -9,3 +9,6 @@ normalizeString(text, lowercase = TRUE)
 \description{
 normalizeString
 }
+\author{
+kenarab
+}

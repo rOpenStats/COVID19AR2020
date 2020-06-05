@@ -15,6 +15,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     edad.coder          = NA,
     curated             = FALSE,
     fields.temporal         = c("sepi_apertura", "fecha_apertura"),
+    data.fields         = NA,
     data                = NA,
     data.summary        = NA,
     logger              = NA,
@@ -55,6 +56,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      self$data <- read_delim(file.path,
                                  delim = self$cols.delim[[self$specification]],
                              col_types = self$cols.specifications[[self$specification]])
+     self$data.fields <- names(self$data)
      self$edad.coder <- EdadCoder$new()
      self$edad.coder$setupCoder()
      self
@@ -118,22 +120,43 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         self$curated <- TRUE
       }
     },
-
+    checkDataFields = function(current.data){
+      errors <- ""
+      if (!inherits(current.data, "data.frame")){
+        classes <- class(current.data)
+        errors <- paste(errors, "current.data doesn't inherits a data.frame. It is a", classes[1])
+      }
+      if (nchar(errors) == 0){
+        missing.fields <- setdiff(self$data.fields, names(current.data))
+        if (length(missing.fields) > 0){
+          errors <- paste(errors, "Missing fields in current.data:", paste(missing.fields, collapse = ","))
+        }
+      }
+      if (nchar(errors) > 0){
+        stop(errors)
+      }
+    },
     makeSummary = function(group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
-                           current.data = self$data,
+                           data2process = self$data,
                            temporal.acum = TRUE){
      logger <- getLogger(self)
-     self$curateData()
+     if (!self$curated){
+       stop("Data must be curated before execuitng makeSummary")
+     }
+     #debug
+     data2process <<- data2process
+
+     self$checkDataFields(data2process)
      #self$data$edad.rango <- NA
      #levels(self$data$edad.rango) <- self$edad.coder$agelabels
      temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
      non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
-     non.temporal.groups <- current.data %>%
+     non.temporal.groups <- data2process %>%
        group_by_at(non.temporal.fields.agg) %>%
        summarise( .groups = "keep") %>%
        arrange_at(non.temporal.fields.agg)
      if(length(temporal.fields.agg) == 0){
-       self$data.summary <- self$getAggregatedData(group.fields = group.vars, current.data = self$data)
+       self$data.summary <- self$getAggregatedData(group.fields = group.vars, current.data = data2process)
      }
      else{
        self$data.summary <- NULL
@@ -141,7 +164,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
          current.group <- non.temporal.groups[i,]
          logger$info("Processing", current.group = paste(names(current.group), current.group,
                                                          sep =" = ", collapse = "|"))
-         current.group.data <- current.data %>% inner_join(current.group, by = non.temporal.fields.agg)
+         current.group.data <- data2process %>% inner_join(current.group, by = non.temporal.fields.agg)
          temporal.groups <- current.group.data %>%
                              group_by_at(temporal.fields.agg) %>%
                              summarise( .groups = "keep") %>%
@@ -269,6 +292,9 @@ COVID19ARCurator200519 <- R6Class("COVID19ARCurator200519",
       self$edad.coder$setupCoder()
       self
     },
+    getData = function(){
+      self$data
+    },
     curateData = function(){
       if (is.null(self$specification)){
         stop("Specification not defined")
@@ -300,7 +326,7 @@ COVID19ARCurator200519 <- R6Class("COVID19ARCurator200519",
       self$curateData()
       #self$data$edad.rango <- NA
       #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-      self$data.summary <- current.data %>%
+      self$data.summary <- self$data %>%
           group_by_at(group.vars) %>%
           summarize(n = n(),
                     confirmados = sum(ifelse(confirmado, 1, 0)),
@@ -370,13 +396,15 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
                                                                edad_rango_sexo = c("edad.rango", "sexo"),
                                                                provincia_residencia_sepi_apertura = c("provincia_residencia", "sepi_apertura"),
                                                                provincia_departamento_residencia_sepi_apertura = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
-                                                               provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")))
+                                                               provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")),
+                                   data2process = covid.ar.curator$getData(),
+                                   file.prefix = "covid19ar_")
   {
   logger <- lgr
   for (group.vars in aggrupation.criteria){
-    current.filename <- paste("covid19ar_",paste(group.vars, collapse = "-"), ".csv", sep = "")
+    current.filename <- paste(file.prefix, paste(group.vars, collapse = "-"), ".csv", sep = "")
     logger$info("Generating ", filename = current.filename)
-    data.summary <- covid.ar.curator$makeSummary(group.vars = group.vars)
+    data.summary <- covid.ar.curator$makeSummary(group.vars = group.vars, data2process = data2process)
     output.path <- file.path(output.dir, current.filename)
     write_csv(data.summary, output.path)
   }

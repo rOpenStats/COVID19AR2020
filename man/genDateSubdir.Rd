@@ -9,3 +9,6 @@ genDateSubdir(home.dir, create.dir = TRUE)
 \description{
 genDateSubdir
 }
+\author{
+kenarab
+}

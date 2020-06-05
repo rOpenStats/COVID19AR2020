@@ -9,3 +9,6 @@ removeAccents(text)
 \description{
 removeAccents
 }
+\author{
+kenarab
+}

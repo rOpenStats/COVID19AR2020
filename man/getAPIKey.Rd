@@ -9,3 +9,6 @@ getAPIKey()
 \description{
 getAPIKey
 }
+\author{
+kenarab
+}

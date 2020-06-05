@@ -18,6 +18,7 @@ COVID19ARCurator
 \item \href{#method-checkSoundness}{\code{COVID19ARCurator$checkSoundness()}}
 \item \href{#method-normalize}{\code{COVID19ARCurator$normalize()}}
 \item \href{#method-curateData200603}{\code{COVID19ARCurator$curateData200603()}}
+\item \href{#method-checkDataFields}{\code{COVID19ARCurator$checkDataFields()}}
 \item \href{#method-makeSummary}{\code{COVID19ARCurator$makeSummary()}}
 \item \href{#method-getAggregatedData}{\code{COVID19ARCurator$getAggregatedData()}}
 \item \href{#method-clone}{\code{COVID19ARCurator$clone()}}
@@ -83,6 +84,15 @@ COVID19ARCurator
 \subsection{Method \code{curateData200603()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$curateData200603()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-checkDataFields"></a>}}
+\if{latex}{\out{\hypertarget{method-checkDataFields}{}}}
+\subsection{Method \code{checkDataFields()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$checkDataFields(current.data)}\if{html}{\out{</div>}}
 }
 
 }
