@@ -65,7 +65,8 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
 }
 
 
-#' @noRd
+
+#'
 #' @export
 getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
  ret <- "credit @ken4rab"

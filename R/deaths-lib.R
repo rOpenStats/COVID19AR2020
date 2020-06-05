@@ -1,6 +1,6 @@
 
 
-#'
+#' retrieveArgentinasDeathsStatistics
 #' @export
 retrieveArgentinasDeathsStatistics <- function(){
  data.dir <- getEnv("data_dir")

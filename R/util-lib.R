@@ -175,7 +175,7 @@ getLogger <- function(r6.object){
 }
 
 
-#'
+#' installAnalytics
 #' @export
 installAnalytics <- function(){
   devtools::install_github("RopenStats/COVID19analytics")
