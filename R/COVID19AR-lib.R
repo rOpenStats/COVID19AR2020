@@ -120,6 +120,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     },
 
     makeSummary = function(group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
+                           current.data = self$data,
                            temporal.acum = TRUE){
      logger <- getLogger(self)
      self$curateData()
@@ -127,7 +128,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      #levels(self$data$edad.rango) <- self$edad.coder$agelabels
      temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
      non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
-     non.temporal.groups <- self$data %>%
+     non.temporal.groups <- current.data %>%
        group_by_at(non.temporal.fields.agg) %>%
        summarise( .groups = "keep") %>%
        arrange_at(non.temporal.fields.agg)
@@ -140,7 +141,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
          current.group <- non.temporal.groups[i,]
          logger$info("Processing", current.group = paste(names(current.group), current.group,
                                                          sep =" = ", collapse = "|"))
-         current.group.data <- self$data %>% inner_join(current.group, by = non.temporal.fields.agg)
+         current.group.data <- current.data %>% inner_join(current.group, by = non.temporal.fields.agg)
          temporal.groups <- current.group.data %>%
                              group_by_at(temporal.fields.agg) %>%
                              summarise( .groups = "keep") %>%
@@ -178,13 +179,6 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 
        }
      }
-     # if ("sepi_apertura" %in% group.vars){
-     #   semanas <- self$data %>% group_by(sepi_apertura) %>% summarize(min.fecha = min(fecha_apertura),
-     #                                                                  max.fecha = max(fecha_apertura)
-     #                                                                  #,dias = max.fecha -min.fecha +1
-     #   )
-     #   self$data.summary %>% inner_join(semanas, by = "sepi_apertura")
-     # }
      self$data.summary
      },
      getAggregatedData = function(group.fields, current.data, min.confirmados = 0){
@@ -195,10 +189,11 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                    descartados        = sum(ifelse(descartado, 1, 0)),
                    sospechosos        = sum(ifelse(sospechoso, 1, 0)),
                    fallecidos         = sum(ifelse(fallecido, 1, 0)),
+                   tests              = sum(ifelse(!is.na(fecha_diagnostico), 1, 0)),
                    sin.clasificar     = sum(ifelse(clasificacion_resumen == "sin clasificar", 1, 0)),
                    letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
                    letalidad.max.porc = round(fallecidos / confirmados, 3),
-                   positividad.porc   = round(confirmados / (confirmados+descartados), 3),
+                   positividad.porc   = round(confirmados / tests, 3),
                    internados         = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
                    internados.porc    = round(internados/confirmados, 3),
                    cuidado.intensivo  = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),

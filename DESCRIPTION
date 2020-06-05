@@ -11,24 +11,23 @@ License: copyright
 Encoding: UTF-8
 LazyData: true
 Suggests:
-         COVID19analytics
+         COVID19analytics,
+         testthat
 Depends: R (>= 3.6),
          R6,
-         checkmate,
+         dplyr,
+         knitr,
+         magrittr,
+         ggplot2,
          readr,
          readxl,
-         rvest,
-         dplyr,
-         ggplot2,
+         lgr
+Imports: checkmate,
+         scales,
          RColorBrewer,
-         magrittr,
-         lgr,
          reshape2,
-         knitr,
          httr,
-         jsonlite,
-         knitr,
-         testthat
+         jsonlite
 Collate:
         'deaths-lib.R'
         'COVID19AR-lib.R'

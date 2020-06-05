@@ -6,6 +6,7 @@ reprex({
  #library(ggplot2)
  #library(dplyr)
  #library(RColorBrewer)
+ knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 300, warning = FALSE)
 
  covid19.curator <- COVID19ARCurator$new()
  self <- covid19.curator
@@ -28,22 +29,23 @@ reprex({
  total.dates <- length(dates)
 
  report.date <- max(dates)
- ggplot <- data2plot %>%
+ covplot <- data2plot %>%
   ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
   geom_line() +
-  facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
- ggplot <- ggplot +
+  facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
+  labs(title = "Porcentajes de positividad, uso de UCI, respirador y letalidad\n en provincias > 100 confirmados")
+ covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
- ggplot <- ggplot  +
+ covplot <- covplot  +
   geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc"))+
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
- ggplot <- ggplot +
+ covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = letalidad.min.porc, color = "letalidad.min.porc")) +
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
 
- ggplot <- setupTheme(ggplot, report.date = report.date, x.values = dates, x.type = "dates",
+ covplot <- setupTheme(covplot, report.date = report.date, x.values = dates, x.type = "dates",
                       total.colors = 4,
                       data.provider.abv = "@msalnacion", base.size = 6)
- ggplot
+ covplot
 })
