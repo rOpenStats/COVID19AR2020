@@ -18,8 +18,9 @@ TestCaseCOVID19ARGenerator.class <-
     data                = NA,
     agg.criteria        = NA,
     logger              = NA,
-    initialize = function(name, testcase.dir, url.dir, filters,
-                          agg.criteria){
+    initialize = function(name, testcase.dir, agg.criteria,
+                          filters = NULL, url.dir = NULL
+                          ){
       self$name         <- name
       self$testcase.dir <- testcase.dir
       self$url.dir      <- url.dir
@@ -29,9 +30,12 @@ TestCaseCOVID19ARGenerator.class <-
       self
     },
     generateTestCase = function(){
+      logger <- getLogger(self)
       self$loadCurator()
       self$applyFilters()
-      write_csv(self$data, file.path(self$testcase.dir, paste(self$getCaseFilename(), "csv", sep = ".")))
+      source.path <- file.path(source.dir, paste(self$getCaseFilename(), "csv", sep = "."))
+      logger$info("Saving source file at", path = source.path)
+      write_csv(self$data, path = source.path)
     },
     loadCurator = function(){
      self$curator <- COVID19ARCurator$new()
@@ -40,6 +44,9 @@ TestCaseCOVID19ARGenerator.class <-
      self$curator$curateData()
      self$data <- self$curator$data
      self
+    },
+    setCurator = function(curator){
+      self$curator <- curator
     },
     applyFilters = function(){
      logger <- getLogger(self)
