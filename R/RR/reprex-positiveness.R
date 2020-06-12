@@ -20,7 +20,8 @@ reprex({
 
  data2plot <- covid19.ar.summary %>%
   filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre) %>%
-  filter(confirmados > 0 )
+  filter(confirmados > 0 ) %>%
+  filter(positividad.porc <=0.6 | confirmados >= 20)
 
  sepi.fechas <- covid19.curator$data %>%
                   group_by(sepi_apertura) %>%
@@ -30,6 +31,26 @@ reprex({
  total.dates <- length(dates)
 
  report.date <- max(dates)
+
+
+ covplot <- data2plot %>%
+   ggplot(aes(x = ultima_fecha_sepi, y = confirmados, color = "confirmados")) +
+   geom_line() +
+   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
+   labs(title = "Evolución de casos confirmados y tests\n en provincias > 100 confirmados")
+ covplot <- covplot +
+   geom_line(aes(x = ultima_fecha_sepi, y = tests, color = "tests")) +
+   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
+ covplot <- setupTheme(covplot, report.date = report.date, x.values = dates, x.type = "dates",
+                       total.colors = 2,
+                       data.provider.abv = "@msalnacion", base.size = 6)
+ covplot <- covplot + scale_y_log10()
+ covplot
+ ggsave(file.path(data.dir, paste("provincias-confirmados-tests",".png", sep ="")),
+        covplot,
+        width = 7, height = 5, dpi = 300)
+
+
  covplot <- data2plot %>%
   ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
   geom_line() +
@@ -49,4 +70,8 @@ reprex({
                       total.colors = 4,
                       data.provider.abv = "@msalnacion", base.size = 6)
  covplot
+ ggsave(file.path(data.dir, paste("provincias-positividad",".png", sep ="")),
+        covplot,
+        width = 7, height = 5, dpi = 300)
+
 })

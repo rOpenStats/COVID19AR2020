@@ -3,7 +3,7 @@ library(reprex)
 
 reprex({
  library(COVID19AR)
- #library(ggplot2)
+ library(ggplot2)
  #library(dplyr)
  #library(RColorBrewer)
  knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 300, warning = FALSE)
