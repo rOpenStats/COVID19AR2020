@@ -86,6 +86,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       self$data %<>% filter(sepi_apertura <= current_sepi + 1)
 
     },
+    getData = function(){
+      self$data
+    },
     normalize = function(){
       logger <- getLogger(self)
       logger$info("Normalize")
