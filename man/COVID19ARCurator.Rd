@@ -16,6 +16,7 @@ COVID19ARCurator
 \item \href{#method-loadData}{\code{COVID19ARCurator$loadData()}}
 \item \href{#method-curateData}{\code{COVID19ARCurator$curateData()}}
 \item \href{#method-checkSoundness}{\code{COVID19ARCurator$checkSoundness()}}
+\item \href{#method-getData}{\code{COVID19ARCurator$getData()}}
 \item \href{#method-normalize}{\code{COVID19ARCurator$normalize()}}
 \item \href{#method-curateData200603}{\code{COVID19ARCurator$curateData200603()}}
 \item \href{#method-checkDataFields}{\code{COVID19ARCurator$checkDataFields()}}
@@ -70,6 +71,15 @@ COVID19ARCurator
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getData"></a>}}
+\if{latex}{\out{\hypertarget{method-getData}{}}}
+\subsection{Method \code{getData()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$getData()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-normalize"></a>}}
 \if{latex}{\out{\hypertarget{method-normalize}{}}}
 \subsection{Method \code{normalize()}}{
@@ -104,7 +114,8 @@ COVID19ARCurator
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$makeSummary(
   group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
   data2process = self$data,
-  temporal.acum = TRUE
+  temporal.acum = TRUE,
+  cache.filename = NULL
 )}\if{html}{\out{</div>}}
 }
 

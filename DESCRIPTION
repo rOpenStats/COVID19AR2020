@@ -27,7 +27,8 @@ Imports: R6,
          RColorBrewer,
          reshape2,
          httr,
-         jsonlite
+         jsonlite,
+         testthat
 Collate:
         'deaths-lib.R'
         'test-lib.R'

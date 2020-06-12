@@ -431,4 +431,6 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
 retrieveFromCache <- function(filename, subfolder = "curated/"){
   path <- paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata/master/", subfolder, sep = "")
   read_csv(paste(path, filename, sep =""))
+  #TODO check the names of the destination filename matches with expected names
+
 }
