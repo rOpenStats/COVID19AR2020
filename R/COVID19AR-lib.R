@@ -143,7 +143,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     },
     makeSummary = function(group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
                            data2process = self$data,
-                           temporal.acum = TRUE){
+                           temporal.acum = TRUE,
+                           cache.filename = NULL){
      logger <- getLogger(self)
      if (!self$curated){
        stop("Data must be curated before execuitng makeSummary")
@@ -152,62 +153,69 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      data2process <<- data2process
 
      self$checkDataFields(data2process)
-     #self$data$edad.rango <- NA
-     #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-     temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
-     non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
-     non.temporal.groups <- data2process %>%
-       group_by_at(non.temporal.fields.agg) %>%
-       summarise( .groups = "keep") %>%
-       arrange_at(non.temporal.fields.agg)
-     if(length(temporal.fields.agg) == 0){
-       self$data.summary <- self$getAggregatedData(group.fields = group.vars, current.data = data2process)
+     ret <- NULL
+     if (nrow(self$data) == nrow(data2process) & !is.null(cache.filename)){
+       ret <- retrieveFromCache(cache.filename)
      }
-     else{
-       self$data.summary <- NULL
-       for (i in seq_len(nrow(non.temporal.groups))){
-         current.group <- non.temporal.groups[i,]
-         logger$info("Processing", current.group = paste(names(current.group), current.group,
-                                                         sep =" = ", collapse = "|"))
-         current.group.data <- data2process %>% inner_join(current.group, by = non.temporal.fields.agg)
-         temporal.groups <- current.group.data %>%
-                             group_by_at(temporal.fields.agg) %>%
-                             summarise( .groups = "keep") %>%
-                             arrange_at(temporal.fields.agg)
-         current.temporal.group.acum <- NULL
-         current.group.data.agg <- NULL
-         for (j in seq_len(nrow(temporal.groups))){
-           current.temporal.group <- temporal.groups[j,]
-           if (!temporal.acum){
-             current.temporal.group.acum <- NULL
-           }
-           current.temporal.group.acum <- rbind(current.temporal.group.acum,
-                                                current.temporal.group)
-           current.temporal.group.data <- current.group.data %>% inner_join(current.temporal.group.acum,
-                                                                            by = names(current.temporal.group))
-           for (field in names(current.temporal.group)){
-             current.temporal.group.data[, field] <- current.temporal.group[, field]
-           }
-           if (nrow(current.temporal.group.data) > 0){
-             logger$debug("Summarizing adding temporal group",
-                         group = paste(names(current.temporal.group),
-                                       current.temporal.group, sep = "=", collapse = ","),
-                         nrow = nrow(current.temporal.group.data))
-             current.temporal.group.data.agg <- self$getAggregatedData(group.fields = group.vars,
-                                                                       current.data = current.temporal.group.data)
-
-             current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
-           }
-         }
-         self$data.summary <- rbind(self$data.summary, current.group.data.agg)
-         logger$debug("Total data after aggregating group",
-                     current.group = paste(names(current.group), current.group,
-                                                   sep =" = ", collapse = "|"),
-                     nrow = nrow(self$data.summary))
-
+     if (is.null(ret)){
+       #self$data$edad.rango <- NA
+       #levels(self$data$edad.rango) <- self$edad.coder$agelabels
+       temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
+       non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
+       non.temporal.groups <- data2process %>%
+         group_by_at(non.temporal.fields.agg) %>%
+         summarise( .groups = "keep") %>%
+         arrange_at(non.temporal.fields.agg)
+       if(length(temporal.fields.agg) == 0){
+         ret <- self$getAggregatedData(group.fields = group.vars, current.data = data2process)
        }
-     }
-     self$data.summary
+       else{
+         ret <- NULL
+         for (i in seq_len(nrow(non.temporal.groups))){
+           current.group <- non.temporal.groups[i,]
+           logger$info("Processing", current.group = paste(names(current.group), current.group,
+                                                           sep =" = ", collapse = "|"))
+           current.group.data <- data2process %>% inner_join(current.group, by = non.temporal.fields.agg)
+           temporal.groups <- current.group.data %>%
+             group_by_at(temporal.fields.agg) %>%
+             summarise( .groups = "keep") %>%
+             arrange_at(temporal.fields.agg)
+           current.temporal.group.acum <- NULL
+           current.group.data.agg <- NULL
+           for (j in seq_len(nrow(temporal.groups))){
+             current.temporal.group <- temporal.groups[j,]
+             if (!temporal.acum){
+               current.temporal.group.acum <- NULL
+             }
+             current.temporal.group.acum <- rbind(current.temporal.group.acum,
+                                                  current.temporal.group)
+             current.temporal.group.data <- current.group.data %>% inner_join(current.temporal.group.acum,
+                                                                              by = names(current.temporal.group))
+             for (field in names(current.temporal.group)){
+               current.temporal.group.data[, field] <- current.temporal.group[, field]
+             }
+             if (nrow(current.temporal.group.data) > 0){
+               logger$debug("Summarizing adding temporal group",
+                            group = paste(names(current.temporal.group),
+                                          current.temporal.group, sep = "=", collapse = ","),
+                            nrow = nrow(current.temporal.group.data))
+               current.temporal.group.data.agg <- self$getAggregatedData(group.fields = group.vars,
+                                                                         current.data = current.temporal.group.data)
+
+               current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
+             }
+           }
+           ret <- rbind(ret, current.group.data.agg)
+           logger$debug("Total data after aggregating group",
+                        current.group = paste(names(current.group), current.group,
+                                              sep =" = ", collapse = "|"),
+                        nrow = nrow(ret))
+
+         }
+       }
+       }
+       self$data.summary <- ret
+       self$data.summary
      },
      getAggregatedData = function(group.fields, current.data, min.confirmados = 0){
        current.data %>%
@@ -409,8 +417,18 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
   for (group.vars in aggrupation.criteria){
     current.filename <- paste(file.prefix, paste(group.vars, collapse = "-"), ".csv", sep = "")
     logger$info("Generating ", filename = current.filename)
-    data.summary <- covid.ar.curator$makeSummary(group.vars = group.vars, data2process = data2process)
+    data.summary <- covid.ar.curator$makeSummary(group.vars = group.vars, data2process = data2process,
+                                                 #cache.filename = current.filename
+                                                 cache.filename = NULL
+                                                 )
     output.path <- file.path(output.dir, current.filename)
     write_csv(data.summary, output.path)
   }
+}
+
+#' retrieveFromCache
+#' @export
+retrieveFromCache <- function(filename, subfolder = "curated/"){
+  path <- paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata/master/", subfolder, sep = "")
+  read_csv(paste(path, filename, sep =""))
 }

@@ -3,7 +3,7 @@ library(reprex)
 
 reprex({
  library(COVID19AR)
- #library(ggplot2)
+ library(ggplot2)
  #library(dplyr)
  #library(RColorBrewer)
  knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 300, warning = FALSE)
@@ -11,6 +11,7 @@ reprex({
  covid19.curator <- COVID19ARCurator$new()
  self <- covid19.curator
  dummy <- covid19.curator$loadData()
+ dummy <- covid19.curator$curateData()
 
  covid19.ar.provincia.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
  covid19.ar.provincia.summary.selected <- covid19.ar.provincia.summary %>% filter(confirmados >= 100)

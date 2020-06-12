@@ -3,6 +3,8 @@ library(reprex)
 
 reprex({
  library(COVID19AR)
+ library(ggplot2)
+
  knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 200, warning = FALSE)
 
  covid19.curator <- COVID19ARCurator$new()
@@ -66,7 +68,7 @@ reprex({
    ggplot(aes(x = edad.rango, y = respirador.porc, fill = edad.rango)) +
    geom_bar(stat = "identity") +
    facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
-   labs(title = "Porcentaje de pacientes con requerimientos de respirador mecánico por rango etario\n en provincias > 100 confirmados")
+   labs(title = "Porcentaje de pacientes con requerimiento de respirador mecánico por rango etario\n en provincias > 100 confirmados")
  covidplot <- setupTheme(covidplot, report.date = report.date, x.values = NULL, x.type = NULL,
                       total.colors = length(unique(data2plot$edad.rango)),
                       data.provider.abv = "@msalnacion", base.size = 6)
