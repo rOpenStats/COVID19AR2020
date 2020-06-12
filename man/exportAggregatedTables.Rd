@@ -13,7 +13,9 @@ exportAggregatedTables(
     c("provincia_residencia", "sepi_apertura"),
     provincia_departamento_residencia_sepi_apertura = c("residencia_provincia_nombre",
     "residencia_departamento_nombre", "sepi_apertura"),
-    provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura"))
+    provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")),
+  data2process = covid.ar.curator$getData(),
+  file.prefix = "covid19ar_"
 )
 }
 \description{

@@ -14,6 +14,7 @@ COVID19ARCurator200519
 \item \href{#method-new}{\code{COVID19ARCurator200519$new()}}
 \item \href{#method-setupColsSpecifications}{\code{COVID19ARCurator200519$setupColsSpecifications()}}
 \item \href{#method-loadData}{\code{COVID19ARCurator200519$loadData()}}
+\item \href{#method-getData}{\code{COVID19ARCurator200519$getData()}}
 \item \href{#method-curateData}{\code{COVID19ARCurator200519$curateData()}}
 \item \href{#method-curateData200519}{\code{COVID19ARCurator200519$curateData200519()}}
 \item \href{#method-makeSummary}{\code{COVID19ARCurator200519$makeSummary()}}
@@ -44,6 +45,15 @@ COVID19ARCurator200519
 \subsection{Method \code{loadData()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator200519$loadData()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getData"></a>}}
+\if{latex}{\out{\hypertarget{method-getData}{}}}
+\subsection{Method \code{getData()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator200519$getData()}\if{html}{\out{</div>}}
 }
 
 }

@@ -55,6 +55,7 @@ COVID19AR_data_dir = "~/.R/COVID19AR"
 
 ```{r, library}
 library(COVID19AR)
+library(ggplot2)
 ```
 
 
@@ -134,7 +135,7 @@ covplot <- data2plot %>%
  ggplot(aes(x = ultima_fecha_sepi, y = confirmados, color = "confirmados")) +
  geom_line() +
  facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
- labs(title = "Porcentajes de positividad, uso de UCI, respirador y letalidad\n en provincias > 100 confirmados")
+ labs(title = "Evolución de casos confirmados y tests\n en provincias > 100 confirmados")
 covplot <- covplot +
  geom_line(aes(x = ultima_fecha_sepi, y = tests, color = "tests")) +
  facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")

@@ -116,6 +116,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         self$data %<>% mutate(confirmado = ifelse(clasificacion_resumen == "confirmado", 1, 0))
         self$data %<>% mutate(descartado = ifelse(clasificacion_resumen == "descartado", 1, 0))
         self$data %<>% mutate(sospechoso = ifelse(clasificacion_resumen == "sospechoso", 1, 0))
+        self$data %<>% mutate(fallecido.original = fallecido)
+        self$data %<>% mutate(fallecido = ifelse(is.na(fallecido), "no", fallecido))
         self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "si", 1, 0))
         self$curated <- TRUE
       }

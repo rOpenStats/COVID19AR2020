@@ -103,7 +103,7 @@ COVID19ARCurator
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$makeSummary(
   group.vars = c("residencia_provincia_nombre", "sepi_apertura"),
-  current.data = self$data,
+  data2process = self$data,
   temporal.acum = TRUE
 )}\if{html}{\out{</div>}}
 }
