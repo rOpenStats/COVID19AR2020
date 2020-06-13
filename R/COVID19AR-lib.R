@@ -21,7 +21,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     logger              = NA,
     initialize = function(data.dir = getEnv("data_dir")){
      self$data.dir <- data.dir
-     self$url      <- "http://170.150.153.128/covid/Covid19Casos.csv"
+     self$url      <- "https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.utf8.csv"
      self$logger   <- genLogger(self)
      self$setupColsSpecifications()
      self
@@ -54,10 +54,10 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      filename <- filename[length(filename)]
      self$specification <- "200603"
      self$data <- read_delim(file.path,
-                                 delim = self$cols.delim[[self$specification]],
-                             col_types = self$cols.specifications[[self$specification]])
-     self$data.fields <- names(self$data)
-     self$edad.coder <- EdadCoder$new()
+                                 delim = self$cols.delim[[self$specification]]
+                             ,col_types = self$cols.specifications[[self$specification]]
+                             )
+     self$edad.coder  <- EdadCoder$new()
      self$edad.coder$setupCoder()
      self
     },
@@ -81,10 +81,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 
       #self$data %>% filter(abs(fecha_apertura- fecha_inicio_sintomas) > 60) %>% select(fecha_apertura, fecha_inicio_sintomas, confirmado, fallecido) %>% group_by(confirmado, fallecido) %>% summarize(n = n())
 
-      current_sepi <- as.numeric(as.character(max(self$data$fecha_apertura), format = "%V"))
+      current_sepi <- as.numeric(as.character(max(self$data$fecha_apertura, na.rm = TRUE), format = "%V"))
       # Removing data from future sepi
       self$data %<>% filter(sepi_apertura <= current_sepi + 1)
-
     },
     getData = function(){
       self$data
@@ -92,6 +91,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     normalize = function(){
       logger <- getLogger(self)
       logger$info("Normalize")
+      # Normalize column names of self$data
+      names(self$data) <- tolower(names(self$data))
+      self$data.fields <- names(self$data)
       self$data$fixed <- ""
       self$data %<>% mutate(clasificacion = tolower(clasificacion))
       self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
@@ -100,6 +102,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     curateData200603 = function(){
       logger <- getLogger(self)
       if (!self$curated){
+        nrows.before <- nrow(self$data)
         self$normalize()
         self$checkSoundness()
         logger$info("Mutating data")
@@ -123,6 +126,12 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         self$data %<>% mutate(fallecido = ifelse(is.na(fallecido), "no", fallecido))
         self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "si", 1, 0))
         self$curated <- TRUE
+        nrows.after <- nrow(self$data)
+        if (nrows.after < nrows.before*.99){
+          # If in curation we loose more than 1% of records. SHow a warning
+          logger$warn("Too much data filtered in curation",
+                      nrows.before = nrows.before, nrows.after = nrows.after)
+        }
       }
     },
     checkDataFields = function(current.data){

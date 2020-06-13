@@ -79,8 +79,8 @@ dummy <- covid19.curator$loadData()
 dummy <- covid19.curator$curateData()
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
-
 # Inicio de síntomas
+
 max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
 
 # Ultima muerte
