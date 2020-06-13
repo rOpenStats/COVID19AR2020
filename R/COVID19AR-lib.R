@@ -21,7 +21,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     logger              = NA,
     initialize = function(data.dir = getEnv("data_dir")){
      self$data.dir <- data.dir
-     self$url      <- "https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.utf8.csv"
+     self$url      <- "https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.csv"
      self$logger   <- genLogger(self)
      self$setupColsSpecifications()
      self
@@ -49,10 +49,14 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 
     },
     loadData = function(){
-     file.path <- retrieveURL(self$url, dest.dir = self$data.dir)
-     filename <- strsplit(file.path, split = "/")[[1]]
-     filename <- filename[length(filename)]
-     self$specification <- "200603"
+      self$specification <- "200603"
+      file.path <- retrieveURL(self$url, dest.dir = self$data.dir)
+      file.path <- retrieveURL(data.url = self$url, dest.dir = self$data.dir,
+                               col.types = self$cols.specifications[[self$specification]])
+     # Check encoding
+     file.path <- fixEncoding(file.path)
+     file.info(file.path)
+
      self$data <- read_delim(file.path,
                                  delim = self$cols.delim[[self$specification]]
                              ,col_types = self$cols.specifications[[self$specification]]
@@ -158,8 +162,6 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      if (!self$curated){
        stop("Data must be curated before execuitng makeSummary")
      }
-     #debug
-     data2process <<- data2process
 
      self$checkDataFields(data2process)
      ret <- NULL
@@ -252,134 +254,6 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
          )  %>% filter (confirmados >= min.confirmados)
      }
     ))
-
-#' COVID19ARCurator200519
-#' @importFrom R6 R6Class
-#' @import dplyr
-#' @import magrittr
-#' @import readr
-#' @export
-COVID19ARCurator200519 <- R6Class("COVID19ARCurator200519",
-  public = list(
-    data.dir            = NA,
-    url                 = NA,
-    #specification
-    specification       = NA,
-    cols.delim          = NA,
-    cols.specifications = NA,
-    curate.functions     = NA,
-    edad.coder          = NA,
-    curated             = FALSE,
-    fields.date         = c("sepi_apertura", "fecha_apertura"),
-    data                = NA,
-    data.summary        = NA,
-    logger              = NA,
-    initialize = function(url, data.dir = getEnv("data_dir")){
-      self$data.dir <- data.dir
-      self$url      <- url
-      self$logger   <- genLogger(self)
-      self$setupColsSpecifications()
-      self
-    },
-    setupColsSpecifications = function(){
-      self$cols.delim <- list()
-      self$cols.specifications <- list()
-      self$curate.functions <- list()
-      self$curate.functions[["200519"]] <- self$curateData200519
-      self$cols.delim[["200519"]] <- ";"
-      self$cols.specifications[["200519"]] <- cols(
-        .default = col_character(),
-        id_evento_caso      = col_integer(),
-        edad_actual_anios   = col_integer(),
-        prov_residencia_id  = col_integer(),
-        prov_carga_id       = col_integer(),
-        fis                 = col_date(format = ""),
-        fecha_apertura      = col_date(format = ""),
-        sepi_apertura       = col_double(),
-        #fecha_cui_intensivo = col_date(format = ""),
-        fecha_internacion   = col_date(format = ""),
-        fecha_fallecimiento = col_date(format = ""),
-        fecha_diagnostico   = col_date(format = "")
-      )
-    },
-    loadData = function(){
-      file.path <- retrieveURL(self$url, dest.dir = self$data.dir)
-      filename <- strsplit(file.path, split = "/")[[1]]
-      filename <- filename[length(filename)]
-      self$specification <- "200519"
-      self$data <- read_delim(file.path,
-                              delim = self$cols.delim[[self$specification]],
-                              col_types = self$cols.specifications[[self$specification]])
-      self$edad.coder <- EdadCoder$new()
-      self$edad.coder$setupCoder()
-      self
-    },
-    getData = function(){
-      self$data
-    },
-    curateData = function(){
-      if (is.null(self$specification)){
-        stop("Specification not defined")
-      }
-      self$curate.functions[[self$specification]]()
-    },
-    curateData200519 = function(){
-      logger <- getLogger(self)
-      if (!self$curated){
-        logger$info("Mutating data")
-        #self$data$edad.rango <- NA
-        #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-        self$data$edad.rango <- vapply(self$data$edad_actual_anios,
-                                       FUN = self$edad.coder$codeEdad,
-                                       FUN.VALUE = character(1))
-        # TODO import as date
-        self$data$fecha_cui_intensivo <- as.Date(self$data$fecha_cui_intensivo, format = "%d/%m/%Y")
-
-        self$data %<>% mutate(confirmado = ifelse(clasificacion_resumen == "Confirmado", 1, 0))
-        self$data %<>% mutate(descartado = ifelse(clasificacion_resumen == "Descartado", 1, 0))
-        self$data %<>% mutate(sospechoso = ifelse(clasificacion_resumen == "Sospechoso", 1, 0))
-        #self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "SI", 1, 0))
-        self$data$fallecido
-        self$curated <- TRUE
-      }
-    },
-    makeSummary = function(group.vars = c("provincia_residencia", "edad.rango", "sepi_apertura", "origen_financiamiento")){
-      logger <- getLogger(self)
-      self$curateData()
-      #self$data$edad.rango <- NA
-      #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-      self$data.summary <- self$data %>%
-          group_by_at(group.vars) %>%
-          summarize(n = n(),
-                    confirmados = sum(ifelse(confirmado, 1, 0)),
-                    descartados = sum(ifelse(descartado, 1, 0)),
-                    sospechosos = sum(ifelse(sospechoso, 1, 0)),
-                    fallecidos  = sum(ifelse(confirmado & !is.na(fallecido) & fallecido == "SI", 1, 0)),
-                    sin.clasificar = sum(ifelse(clasificacion_resumen == "Sin Clasificar", 1, 0)),
-                    letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
-                    letalidad.max.porc = round(fallecidos / confirmados, 3),
-                    positividad.porc = round(confirmados / (confirmados+descartados), 3),
-                    internados  = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
-                    internados.porc = round(internados/confirmados, 3),
-                    cuidado.intensivo = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
-                    cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
-                    respirador  = sum(ifelse(confirmado & !is.na(asist_resp_mecanica) & asist_resp_mecanica == "SI", 1, 0)),
-                    respirador.porc = round(respirador / confirmados, 3),
-                    dias.diagnostico = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_apertura), NA), na.rm = TRUE), 1),
-                    dias.atencion = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fis), NA), na.rm = TRUE), 1),
-                    dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fis), NA), na.rm = TRUE), 1),
-                    dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fis), NA), na.rm = TRUE), 1)
-          )  %>% filter (confirmados > 0)
-      # if ("sepi_apertura" %in% group.vars){
-      #   semanas <- self$data %>% group_by(sepi_apertura) %>% summarize(min.fecha = min(fecha_apertura),
-      #                                                                  max.fecha = max(fecha_apertura)
-      #                                                                  #,dias = max.fecha -min.fecha +1
-      #   )
-      #   self$data.summary %>% inner_join(semanas, by = "sepi_apertura")
-      # }
-      self$data.summary
-    }
-  ))
 
 
 #' EdadCoder

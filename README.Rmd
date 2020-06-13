@@ -126,7 +126,9 @@ sepi.fechas <- covid19.curator$data %>%
 
 data2plot <- covid19.ar.summary %>%
                 filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.100.confirmed$residencia_provincia_nombre) %>%
-                filter(confirmados > 0 )
+                filter(confirmados > 0 ) %>%
+                filter(positividad.porc <=0.6 | confirmados >= 20)
+
                 
 data2plot %<>% inner_join(sepi.fechas, by = "sepi_apertura")
 dates <- sort(unique(data2plot$ultima_fecha_sepi))

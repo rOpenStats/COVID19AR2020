@@ -23,15 +23,41 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
 #' @import lgr
 #' @author kenarab
 #' @export
-retrieveURL <- function(url, dest.dir = getEnv("data_dir"), force = FALSE){
+retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
+                        force = FALSE, daily.update.time = "20:00:00"){
   logger <- lgr
-  url.splitted <- strsplit(url, split = "/")[[1]]
+  url.splitted <- strsplit(data.url, split = "/")[[1]]
   filename <- url.splitted[length(url.splitted)]
   dest.path <- file.path(dest.dir, filename)
   ret <- FALSE
   exists.dest.path <- file.exists(dest.path)
   lgr$info("Exists dest path?", dest.path = dest.path, exists.dest.path = exists.dest.path)
-  if (!exists.dest.path | force){
+  download.flag <- dir.exists(dest.dir)
+  if (download.flag){
+      download.flag <- !file.exists(dest.path) | force
+      if (!download.flag & file.exists(dest.path)){
+        dest.path <- fixEncoding(dest.path)
+        data.check <- read_csv(dest.path, col_types = col.types)
+        max.date <- max(data.check$fecha_apertura, na.rm = TRUE)
+        current.datetime <- Sys.time()
+        current.date <- as.Date(current.datetime, tz = Sys.timezone())
+        current.time <- format(current.datetime, format = "%H:%M:%S")
+        if (max.date < current.date - 1 | (max.date < current.date & current.time >= daily.update.time)){
+          download.flag <- TRUE
+        }
+        else{
+          download.flag <- FALSE
+        }
+        logger$info("Checking required downloaded ", downloaded.max.date = max.date,
+                    daily.update.time = daily.update.time,
+                    current.datetime = current.datetime,
+                    download.flag = download.flag)
+      }
+    }
+    else{
+        stop("Dest dir does not exists", dest.dir = dest.dir)
+    }
+  if (download.flag | force){
     lgr$info("Retrieving", url = url, dest.path = dest.path)
     download.file(url = url, destfile = dest.path)
     ret <- TRUE
@@ -181,6 +207,55 @@ getLogger <- function(r6.object){
     }
   }
   ret
+}
+
+#' fixEncoding return filepath with encoding in UTF8
+#' @export
+fixEncoding <- function(file.path){
+  filename <- strsplit(file.path, split = "/")[[1]]
+  filename <- filename[length(filename)]
+  file.metadata <- tolower(system(paste("file ",file.path), intern = TRUE))
+  if (grepl("(utf16|utf-16)", file.metadata)){
+    # Has utf16 encoding
+    file.path.original <- file.path
+    file.path <- gsub("\\.csv$", ".utf8.csv", file.path)
+    current.os <- getOS()
+    if (current.os == "macos"){
+      utf16.encoding <- "utf-16"
+      utf8.encoding  <- "utf-8"
+    }
+    if (current.os == "linux"){
+      utf16.encoding <- "UTF16"
+      utf8.encoding  <- "UTF8"
+    }
+    if (current.os == "windows"){
+      stop("File encoding conversion from UTF16 to UTF8 not implemented yet in Windows OS")
+    }
+
+    # iconv -f UTF16 -t UTF8 Covid19Casos.csv > Covid19Casos.utf8.csv
+    iconv.command <- paste("iconv -f", utf16.encoding, "-t", utf8.encoding, file.path.original, ">", file.path)
+    command.result <- system(iconv.command, intern = TRUE)
+    file.path
+  }
+
+}
+
+#' getOS returns linux, windows or macos
+#' @export
+getOS <- function(){
+  sysinf <- Sys.info()
+  if (!is.null(sysinf)){
+    os <- sysinf['sysname']
+    if (os == 'Darwin')
+      os <- "MacOS"
+  } else { ## mystery machine
+    os <- .Platform$OS.type
+    if (grepl("^darwin", R.version$os))
+      os <- "MacOS"
+    if (grepl("linux-gnu", R.version$os))
+      os <- "linux"
+  }
+  tolower(os)
 }
 
 

@@ -4,7 +4,13 @@
 \alias{retrieveURL}
 \title{retrieveURL}
 \usage{
-retrieveURL(url, dest.dir = getEnv("data_dir"), force = FALSE)
+retrieveURL(
+  data.url,
+  col.types,
+  dest.dir = getEnv("data_dir"),
+  force = FALSE,
+  daily.update.time = "20:00:00"
+)
 }
 \description{
 retrieveURL
