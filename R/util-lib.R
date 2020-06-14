@@ -39,8 +39,9 @@ retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
       download.flag <- !file.exists(dest.path)
       if (!download.flag & file.exists(dest.path)){
         if (download.new.data){
-          dest.path  <- fixEncoding(dest.path)
-          data.check <- read_csv(dest.path, col_types = col.types)
+          dest.path.check <- dest.path
+          dest.path.check  <- fixEncoding(dest.path.check)
+          data.check <- read_csv(dest.path.check, col_types = col.types)
           max.date <- getMaxDate(data.check)
           current.datetime <- Sys.time()
           current.date <- as.Date(current.datetime, tz = Sys.timezone())

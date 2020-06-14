@@ -12,7 +12,6 @@ reprex({
  dir.create(report.dir, showWarnings = FALSE, recursive = TRUE)
  covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
- self <- covid19.curator
  dummy <- covid19.curator$loadData()
  dummy <- covid19.curator$curateData()
  covid19.curator$max.date
