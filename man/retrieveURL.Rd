@@ -8,7 +8,8 @@ retrieveURL(
   data.url,
   col.types,
   dest.dir = getEnv("data_dir"),
-  force = FALSE,
+  force.download = FALSE,
+  download.new.data = TRUE,
   daily.update.time = "20:00:00"
 )
 }

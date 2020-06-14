@@ -10,14 +10,14 @@ retrieveArgentinasDeathsStatistics <- function(){
  #deaths.stats.html %>% html_nodes("") %>% html_attr('href')
  #deaths.stats.html %>% html_attr('href')
 
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2019/01/DescDef1.xlsx")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2020/01/DefWeb18.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2019/01/DefWeb17.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb16.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb15.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb14.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb13.csv")
- retrieveURL(url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb12.csv")
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2019/01/DescDef1.xlsx", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2020/01/DefWeb18.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2019/01/DefWeb17.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb16.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb15.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb14.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb13.csv", download.new.data = FALSE)
+ retrieveURL(data.url = "http://www.deis.msal.gov.ar/wp-content/uploads/2018/06/DefWeb12.csv", download.new.data = FALSE)
 
 }
 

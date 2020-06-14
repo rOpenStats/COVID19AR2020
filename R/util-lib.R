@@ -24,7 +24,9 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
 #' @author kenarab
 #' @export
 retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
-                        force = FALSE, daily.update.time = "20:00:00"){
+                        force.download = FALSE,
+                        download.new.data = TRUE,
+                        daily.update.time = "20:00:00"){
   logger <- lgr
   url.splitted <- strsplit(data.url, split = "/")[[1]]
   filename <- url.splitted[length(url.splitted)]
@@ -34,32 +36,34 @@ retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
   lgr$info("Exists dest path?", dest.path = dest.path, exists.dest.path = exists.dest.path)
   download.flag <- dir.exists(dest.dir)
   if (download.flag){
-      download.flag <- !file.exists(dest.path) | force
+      download.flag <- !file.exists(dest.path)
       if (!download.flag & file.exists(dest.path)){
-        dest.path <- fixEncoding(dest.path)
-        data.check <- read_csv(dest.path, col_types = col.types)
-        max.date <- max(data.check$fecha_apertura, na.rm = TRUE)
-        current.datetime <- Sys.time()
-        current.date <- as.Date(current.datetime, tz = Sys.timezone())
-        current.time <- format(current.datetime, format = "%H:%M:%S")
-        if (max.date < current.date - 1 | (max.date < current.date & current.time >= daily.update.time)){
-          download.flag <- TRUE
+        if (download.new.data){
+          dest.path  <- fixEncoding(dest.path)
+          data.check <- read_csv(dest.path, col_types = col.types)
+          data.fields <- names(data.check)
+          date.fields <- data.fields[grep("fecha\\_", data.fields)]
+          max.dates <- apply(data.check[,date.fields], MARGIN = 2, FUN = function(x){max(x, na.rm = TRUE)})
+          max.date <- max(max.dates)
+          current.datetime <- Sys.time()
+          current.date <- as.Date(current.datetime, tz = Sys.timezone())
+          current.time <- format(current.datetime, format = "%H:%M:%S")
+          if (max.date < current.date - 1 | (max.date < current.date & current.time >= daily.update.time)){
+            download.flag <- TRUE
+          }
+          logger$info("Checking required downloaded ", downloaded.max.date = max.date,
+                      daily.update.time = daily.update.time,
+                      current.datetime = current.datetime,
+                      download.flag = download.flag)
         }
-        else{
-          download.flag <- FALSE
-        }
-        logger$info("Checking required downloaded ", downloaded.max.date = max.date,
-                    daily.update.time = daily.update.time,
-                    current.datetime = current.datetime,
-                    download.flag = download.flag)
       }
     }
     else{
         stop("Dest dir does not exists", dest.dir = dest.dir)
     }
-  if (download.flag | force){
-    lgr$info("Retrieving", url = url, dest.path = dest.path)
-    download.file(url = url, destfile = dest.path)
+  if (download.flag | force.download){
+    lgr$info("Retrieving", url = data.url, dest.path = dest.path)
+    download.file(url = data.url, destfile = dest.path)
     ret <- TRUE
   }
   dest.path
@@ -235,9 +239,8 @@ fixEncoding <- function(file.path){
     # iconv -f UTF16 -t UTF8 Covid19Casos.csv > Covid19Casos.utf8.csv
     iconv.command <- paste("iconv -f", utf16.encoding, "-t", utf8.encoding, file.path.original, ">", file.path)
     command.result <- system(iconv.command, intern = TRUE)
-    file.path
   }
-
+  file.path
 }
 
 #' getOS returns linux, windows or macos

@@ -5,6 +5,7 @@
 #' @export
 COVID19ARCurator <- R6Class("COVID19ARCurator",
    public = list(
+    download.new.data = NA,
     data.dir            = NA,
     url                 = NA,
     #specification
@@ -19,9 +20,11 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     data                = NA,
     data.summary        = NA,
     logger              = NA,
-    initialize = function(data.dir = getEnv("data_dir")){
+    initialize = function(data.dir = getEnv("data_dir"),
+                          download.new.data = TRUE){
      self$data.dir <- data.dir
      self$url      <- "https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.csv"
+     self$download.new.data <- download.new.data
      self$logger   <- genLogger(self)
      self$setupColsSpecifications()
      self
@@ -50,20 +53,21 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     },
     loadData = function(){
       self$specification <- "200603"
-      file.path <- retrieveURL(self$url, dest.dir = self$data.dir)
       file.path <- retrieveURL(data.url = self$url, dest.dir = self$data.dir,
-                               col.types = self$cols.specifications[[self$specification]])
-     # Check encoding
-     file.path <- fixEncoding(file.path)
-     file.info(file.path)
+                               col.types = self$cols.specifications[[self$specification]],
+                               download.new.data = self$download.new.data)
 
-     self$data <- read_delim(file.path,
+      # Fix encoding
+      file.path <- fixEncoding(file.path)
+      file.info(file.path)
+
+      self$data <- read_delim(file.path,
                                  delim = self$cols.delim[[self$specification]]
                              ,col_types = self$cols.specifications[[self$specification]]
                              )
-     self$edad.coder  <- EdadCoder$new()
-     self$edad.coder$setupCoder()
-     self
+      self$edad.coder  <- EdadCoder$new()
+      self$edad.coder$setupCoder()
+      self
     },
     curateData = function(){
       if (is.null(self$specification)){
