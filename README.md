@@ -81,14 +81,14 @@ lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
 
 # Data from
 # http://datos.salud.gob.ar/dataset/covid-19-casos-registrados-en-la-republica-argentina
-covid19.curator <- COVID19ARCurator$new()
+covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
 dummy <- covid19.curator$loadData()
-#> INFO  [13:41:58.758] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.utf8.csv, exists.dest.path: TRUE}
+#> INFO  [14:12:22.232] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [13:41:59.799] Normalize 
-#> INFO  [13:42:00.103] checkSoundness 
-#> INFO  [13:42:00.294] Mutating data
+#> INFO  [14:12:24.024] Normalize 
+#> INFO  [14:12:24.443] checkSoundness 
+#> INFO  [14:12:24.570] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
 #> [1] "2020-06-12"
@@ -150,7 +150,7 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
-#> INFO  [13:42:20.431] Processing {current.group: }
+#> INFO  [14:12:46.253] Processing {current.group: }
 nrow(covid19.ar.summary)
 #> [1] 20
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -179,31 +179,31 @@ kable(covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(sepi_apertura, 
 
 ```r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [13:42:23.887] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
-#> INFO  [13:42:26.014] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [13:42:27.793] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [13:42:28.907] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [13:42:30.164] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [13:42:31.329] Processing {current.group: residencia_provincia_nombre = Córdoba}
-#> INFO  [13:42:32.828] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [13:42:34.126] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [13:42:35.314] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [13:42:36.565] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [13:42:37.706] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [13:42:38.837] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [13:42:40.044] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [13:42:41.399] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [13:42:42.510] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [13:42:43.667] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [13:42:44.975] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [13:42:46.608] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [13:42:48.052] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [13:42:49.284] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [13:42:50.428] Processing {current.group: residencia_provincia_nombre = Santa Fe}
-#> INFO  [13:42:51.782] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [13:42:52.969] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
-#> INFO  [13:42:54.295] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [13:42:55.796] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [14:12:49.485] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [14:12:51.861] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [14:12:53.757] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [14:12:54.929] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [14:12:56.369] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [14:12:57.722] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [14:12:59.303] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [14:13:00.578] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [14:13:01.828] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [14:13:03.147] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [14:13:04.357] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [14:13:05.681] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [14:13:07.034] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [14:13:08.462] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [14:13:09.674] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [14:13:10.987] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [14:13:12.266] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [14:13:13.489] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [14:13:14.773] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [14:13:16.037] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [14:13:17.274] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [14:13:18.938] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [14:13:20.289] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [14:13:21.728] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [14:13:23.243] Processing {current.group: residencia_provincia_nombre = Tucumán}
 nrow(covid19.ar.summary)
 #> [1] 376
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -217,7 +217,9 @@ sepi.fechas <- covid19.curator$data %>%
 
 data2plot <- covid19.ar.summary %>%
                 filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.100.confirmed$residencia_provincia_nombre) %>%
-                filter(confirmados > 0 )
+                filter(confirmados > 0 ) %>%
+                filter(positividad.porc <=0.6 | confirmados >= 20)
+
                 
 data2plot %<>% inner_join(sepi.fechas, by = "sepi_apertura")
 dates <- sort(unique(data2plot$ultima_fecha_sepi))
