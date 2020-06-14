@@ -41,10 +41,7 @@ retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
         if (download.new.data){
           dest.path  <- fixEncoding(dest.path)
           data.check <- read_csv(dest.path, col_types = col.types)
-          data.fields <- names(data.check)
-          date.fields <- data.fields[grep("fecha\\_", data.fields)]
-          max.dates <- apply(data.check[,date.fields], MARGIN = 2, FUN = function(x){max(x, na.rm = TRUE)})
-          max.date <- max(max.dates)
+          max.date <- getMaxDate(data.check)
           current.datetime <- Sys.time()
           current.date <- as.Date(current.datetime, tz = Sys.timezone())
           current.time <- format(current.datetime, format = "%H:%M:%S")
@@ -261,6 +258,15 @@ getOS <- function(){
   tolower(os)
 }
 
+#' getMaxDate
+#' @export
+getMaxDate <- function(covid19ar.data){
+  data.fields <- names(covid19ar.data)
+  date.fields <- data.fields[grep("fecha\\_", data.fields)]
+  max.dates <- apply(covid19ar.data[,date.fields], MARGIN = 2, FUN = function(x){max(x, na.rm = TRUE)})
+  max.date <- max(max.dates)
+  max.date
+}
 
 #' installAnalytics
 #' @export

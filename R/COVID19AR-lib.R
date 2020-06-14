@@ -18,6 +18,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     fields.temporal         = c("sepi_apertura", "fecha_apertura"),
     data.fields         = NA,
     data                = NA,
+    max.date            = NA,
     data.summary        = NA,
     logger              = NA,
     initialize = function(data.dir = getEnv("data_dir"),
@@ -140,6 +141,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
           logger$warn("Too much data filtered in curation",
                       nrows.before = nrows.before, nrows.after = nrows.after)
         }
+
+        self$max.date <- getMaxDate(self$data)
       }
     },
     checkDataFields = function(current.data){
