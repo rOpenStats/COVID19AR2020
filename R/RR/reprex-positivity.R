@@ -7,9 +7,9 @@ reprex({
  #library(dplyr)
  #library(RColorBrewer)
  knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 300, warning = FALSE)
-
- covid19.curator <- COVID19ARCurator$new()
- self <- covid19.curator
+ report.dir = file.path(getEnv("data_dir"), "reports")
+ dir.create(report.dir, showWarnings = FALSE, recursive = TRUE)
+ covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
  dummy <- covid19.curator$loadData()
  dummy <- covid19.curator$curateData()
 
@@ -46,7 +46,7 @@ reprex({
                        data.provider.abv = "@msalnacion", base.size = 6)
  covplot <- covplot + scale_y_log10()
  covplot
- ggsave(file.path(data.dir, paste("provincias-confirmados-tests",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("provincias-confirmados-tests",".png", sep ="")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
@@ -70,7 +70,7 @@ reprex({
                       total.colors = 4,
                       data.provider.abv = "@msalnacion", base.size = 6)
  covplot
- ggsave(file.path(data.dir, paste("provincias-positividad",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("provincias-positividad",".png", sep ="")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
