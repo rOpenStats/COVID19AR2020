@@ -1,10 +1,82 @@
+#' getDepartamentosExponentialGrowthPlot
+#' @export
+getDepartamentosExponentialGrowthPlot <- function(covid19ar.curator, ma.n = 7,
+                                                  n.highlighted = 10){
+
+   max.date.complete <- as.Date(covid19ar.curator$max.date) - 1
+
+   covid19.ar.summary <- covid19ar.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
+                                                     cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
+
+   # CABA reports data twice
+   nrow(covid19.ar.summary)
+   covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
+   nrow(covid19.ar.summary)
+
+   covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.date.complete)
+   covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
+   covid19.ar.summary.last %<>% arrange(rank)
+   confirmados.tot <- sum(covid19.ar.summary.last$confirmados)
+   covid19.ar.summary.last %<>% mutate(confirmados.prop = confirmados / confirmados.tot)
+   covid19.ar.summary.last %<>% mutate(confirmados.cum = cumsum(confirmados))
+   covid19.ar.summary.last %<>% mutate(confirmados.cumprop = confirmados.cum / confirmados.tot)
+   covid19.ar.summary.last %<>% select(residencia_departamento_nombre, residencia_provincia_nombre, fecha_apertura, n,
+                                       confirmados, rank, confirmados.cumprop, confirmados.cum, confirmados.prop)
+   covid19.ar.summary.last %<>% mutate(departamento = paste(sprintf("%02d", round(rank)), residencia_provincia_nombre, residencia_departamento_nombre, sep = "-"))
+
+   covid19.ar.summary %<>% inner_join(covid19.ar.summary.last %>% select(residencia_departamento_nombre, residencia_provincia_nombre, confirmados.prop, confirmados.cumprop, rank),
+                                      by = c("residencia_departamento_nombre", "residencia_provincia_nombre"))
+   covid19.ar.summary %<>% mutate(departamento = paste(sprintf("%02d", round(rank)), residencia_provincia_nombre, residencia_departamento_nombre, sep = "-"))
+
+   nrow(covid19.ar.summary)
+   length(unique(covid19.ar.summary$departamento))
+   departamentos.calculate <- covid19.ar.summary %>%
+      group_by(departamento) %>%
+      summarise(observations = n()) %>%
+      filter(observations >= ma.n) %>%
+      arrange(observations)
+   covid19.ar.summary %<>% inner_join(departamentos.calculate, by = "departamento")
+   nrow(covid19.ar.summary)
+   length(unique(covid19.ar.summary$departamento))
+   covid19.ar.summary %<>% group_by(departamento) %>% mutate(confirmados.smoothed = runMean(confirmados, ma.n))
+
+   names(covid19.ar.summary)
+
+
+
+   data2plot <- covid19.ar.summary %>% filter(confirmados >= 20 & confirmados.smoothed >= 20)
+   dates <- sort(unique(data2plot$fecha_apertura))
+
+   data2plot.highlighed <- data2plot %>% filter(rank <= n.highlighted)
+   data2plot.gray <- data2plot %>% filter(rank > n.highlighted)
+   covplot <- data2plot.gray %>%
+      ggplot(aes(x = fecha_apertura, y = confirmados.smoothed, color = " otros", group = departamento)) +
+      geom_line() +
+      labs(title = "Evolución de casos confirmados por Departamento") +
+      ylab("Confirmados -observado y promedio 7 días- (log)")
+   covplot <- covplot +
+      geom_point(data = data2plot.highlighed, aes(x = fecha_apertura, y = confirmados, color = departamento))
+   covplot <- covplot +
+      geom_line(data = data2plot.highlighed, aes(x = fecha_apertura, y = confirmados.smoothed, color = departamento))
+   covplot <- setupTheme(covplot, report.date = report.date, x.values = dates,
+                         x.type = "dates",
+                         total.colors = n.highlighted,
+                         manual.colors = brewer.pal(n = 9, name = "Greys")[4],
+                         data.provider.abv = "@msalnacion", base.size = 6)
+   covplot <- covplot + scale_y_log10()
+   covplot
+
+}
+
+
 #' setup Dataviz theme
 #' @import RColorBrewer
 #' @importFrom grDevices colorRampPalette
 #' @import scales
 #' @import ggplot2
 #' @export
-setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.colors, x.type = "dates", base.size = 6){
+setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.colors, manual.colors = NULL,
+                       x.type = "dates", base.size = 6){
  if (!is.null(x.type)){
   if (x.type == "dates"){
    dates    <- x.values
@@ -39,13 +111,16 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
  if (!is.null(total.colors)){
   #, selected.palette = "Paired"
   #colors.palette <- colorRampPalette(brewer.pal(8, selected.palette))(total.colors)
-  colors.palette <- c(brewer.pal(n = 9, name = "Set1"), brewer.pal(n = 8, name = "Set2"), brewer.pal(n = 12, name = "Set3"))
+  colors.palette <- c(brewer.pal(n = 9, name = "Set1")[1:8], # Gray removed
+                      brewer.pal(n = 8, name = "Set2")[1:7], # Gray removed
+                      brewer.pal(n = 12, name = "Set3"))
   if ( total.colors > length(colors.palette)){
    colors.palette <- colorRampPalette(colors.palette)(total.colors)
   }
   else{
    colors.palette <- colors.palette[seq_len(total.colors)]
   }
+  colors.palette <- c(manual.colors, colors.palette)
   ggplot <- ggplot +
    #scale_fill_brewer(palette = selected.palette)
    scale_fill_manual(values = colors.palette) +

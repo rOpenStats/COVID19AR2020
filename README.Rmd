@@ -14,6 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+<img src="man/figures/COVID19AR.png" height="139" align="right" />
 
 
 # COVID19AR
@@ -100,6 +101,10 @@ nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmados))) %>% 
         select_at(c("residencia_provincia_nombre", "confirmados", "tests", "fallecidos", "dias.fallecimiento",porc.cols)))
+```
+
+```{r, exponential_growth}
+getDepartamentosExponentialGrowthPlot(covid19.curator)
 ```
 
 ```{r, sepi_apertura}

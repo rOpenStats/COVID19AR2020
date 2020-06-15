@@ -10,6 +10,7 @@ setupTheme(
   x.values,
   data.provider.abv,
   total.colors,
+  manual.colors = NULL,
   x.type = "dates",
   base.size = 6
 )
