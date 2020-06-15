@@ -77,7 +77,8 @@ reprex({
    geom_line() +
    facet_wrap(~group.name,
               ncol = 2, scales = "free_y") +
-   labs(title = paste("volución de casos confirmados y tests\n", top.n, "departamentos del país > 20 casos confirmados con máxima positividad - CABA", sep = ""))
+   labs(title = paste("Evolución de casos confirmados y tests\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - CABA", sep = "")) +
+   ylab("confirmados (log)")
  covplot <- covplot +
    geom_line(aes(x = ultima_fecha_sepi, y = tests, color = "tests")) +
    facet_wrap(~group.name,
@@ -95,7 +96,7 @@ reprex({
   ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
   geom_line() +
   facet_wrap(~group.name , ncol = 2, scales = "free_y") +
-  labs(title = paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, "departamentos del país > 20 casos confirmados con máxima positividad - CABA", sep = ""))
+  labs(title = paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - CABA", sep = ""))
  covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
   facet_wrap(~group.name, ncol = 2, scales = "free_y")
@@ -120,8 +121,8 @@ reprex({
    geom_line() +
    facet_wrap(~group.name,
               ncol = 2, scales = "free_y") +
-   labs(title =  paste("Evolución de casos confirmados y tests\n", top.n, "departamentos del país > 20 casos confirmados con máxima positividad - Resto", sep = ""))
-
+   labs(title =  paste("Evolución de casos confirmados y tests\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - Resto", sep = "")) +
+   ylab("confirmados (log)")
  covplot <- covplot +
    geom_line(aes(x = ultima_fecha_sepi, y = tests, color = "tests")) +
    facet_wrap(~group.name,
@@ -139,7 +140,7 @@ reprex({
    ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
    geom_line() +
    facet_wrap(~group.name , ncol = 2, scales = "free_y") +
-   labs(title =  paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, "departamentos del país > 20 casos confirmados con máxima positividad - Resto", sep = ""))
+   labs(title =  paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - Resto", sep = ""))
 
  covplot <- covplot +
    geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
