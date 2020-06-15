@@ -212,12 +212,17 @@ getLogger <- function(r6.object){
 }
 
 #' fixEncoding return filepath with encoding in UTF8
+#' @import readr
 #' @export
 fixEncoding <- function(file.path){
   filename <- strsplit(file.path, split = "/")[[1]]
   filename <- filename[length(filename)]
-  file.metadata <- tolower(system(paste("file ",file.path), intern = TRUE))
-  if (grepl("(utf16|utf-16)", file.metadata)){
+  encoding.matches <- guess_encoding(file.path)
+  encoding.utf16 <- FALSE
+  if (grep("(utf16|utf-16)", tolower(encoding.matches[1,"encoding"])) & encoding.matches[1,]$confidence > 0.8){
+    encoding.utf16 <- TRUE
+  }
+  if (encoding.utf16){
     # Has utf16 encoding
     file.path.original <- file.path
     file.path <- gsub("\\.csv$", ".utf8.csv", file.path)
