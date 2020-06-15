@@ -1,4 +1,5 @@
 #' getDepartamentosExponentialGrowthPlot
+#' @import TTR
 #' @export
 getDepartamentosExponentialGrowthPlot <- function(covid19ar.curator, ma.n = 7,
                                                   n.highlighted = 10){

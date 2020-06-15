@@ -28,7 +28,8 @@ Imports: R6,
          reshape2,
          httr,
          jsonlite,
-         testthat
+         testthat,
+         TTR
 Collate:
         'deaths-lib.R'
         'test-lib.R'
