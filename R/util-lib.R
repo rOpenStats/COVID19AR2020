@@ -219,7 +219,8 @@ fixEncoding <- function(file.path){
   filename <- filename[length(filename)]
   encoding.matches <- guess_encoding(file.path)
   encoding.utf16 <- FALSE
-  if (grep("(utf16|utf-16)", tolower(encoding.matches[1,"encoding"])) & encoding.matches[1,]$confidence > 0.8){
+  best.match <- encoding.matches[1,]
+  if (grepl("(utf16|utf-16)", tolower(best.match[,"encoding"])) & best.match[,"confidence"] > 0.8){
     encoding.utf16 <- TRUE
   }
   if (encoding.utf16){
