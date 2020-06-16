@@ -200,6 +200,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
              arrange_at(temporal.fields.agg)
            current.temporal.group.acum <- NULL
            current.group.data.agg <- NULL
+           dias.contador <- 0
            for (j in seq_len(nrow(temporal.groups))){
              current.temporal.group <- temporal.groups[j,]
              if (!temporal.acum){
@@ -219,10 +220,18 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                             nrow = nrow(current.temporal.group.data))
                current.temporal.group.data.agg <- self$getAggregatedData(group.fields = group.vars,
                                                                          current.data = current.temporal.group.data)
-
+               current.temporal.group.data.agg$dias.inicio <- dias.contador
                current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
+               dias.contador <- dias.contador + 1
              }
            }
+           # Indicators
+           current.group.data.agg %<>%  mutate(confirmados.inc = ifelse(dias.inicio >= 1, confirmados - lag(confirmados, n = 1), NA))
+           current.group.data.agg %<>%  mutate(confirmados.rate = ifelse(dias.inicio >= 1, confirmados.inc/lag(confirmados, n = 1), NA))
+           current.group.data.agg %<>%  mutate(fallecidos.inc = ifelse(dias.inicio >= 1, fallecidos - lag(fallecidos, n = 1), NA))
+           current.group.data.agg %<>%  mutate(tests.inc = ifelse(dias.inicio >= 1, tests - lag(tests, n = 1), NA))
+           current.group.data.agg %<>%  mutate(tests.rate = ifelse(dias.inicio >= 1, tests.inc / lag(tests, n = 1), NA))
+           current.group.data.agg %<>%  mutate(sospechosos.inc = ifelse(dias.inicio >= 1, sospechosos - lag(sospechosos, n = 1), NA))
            ret <- rbind(ret, current.group.data.agg)
            logger$debug("Total data after aggregating group",
                         current.group = paste(names(current.group), current.group,
