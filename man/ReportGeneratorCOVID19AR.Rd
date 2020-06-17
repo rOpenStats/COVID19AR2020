@@ -52,7 +52,9 @@ ReportGeneratorCOVID19AR
 \if{latex}{\out{\hypertarget{method-getDepartamentosCrossSectionConfirmedPostitivyPlot}{}}}
 \subsection{Method \code{getDepartamentosCrossSectionConfirmedPostitivyPlot()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostitivyPlot()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostitivyPlot(
+  n.highlighted = 10
+)}\if{html}{\out{</div>}}
 }
 
 }

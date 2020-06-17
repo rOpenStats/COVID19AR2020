@@ -86,11 +86,11 @@ lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
 covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
 dummy <- covid19.curator$loadData()
-#> INFO  [00:34:33.480] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
+#> INFO  [02:29:45.478] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [00:34:35.215] Normalize 
-#> INFO  [00:34:35.645] checkSoundness 
-#> INFO  [00:34:35.791] Mutating data
+#> INFO  [02:29:47.314] Normalize 
+#> INFO  [02:29:47.755] checkSoundness 
+#> INFO  [02:29:47.896] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
 #> [1] "2020-06-16"
@@ -193,7 +193,8 @@ kable(covid19.ar.summary.last %>% filter(rank <= 10) %>% arrange(rank))
 
 ``` r
 
-getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
+rg <- ReportGeneratorCOVID19AR$new(covid19ar.curator = covid19.curator)
+rg$preprocess()
 #> Parsed with column specification:
 #> cols(
 #>   .default = col_double(),
@@ -202,6 +203,7 @@ getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
 #>   fecha_apertura = col_date(format = "")
 #> )
 #> See spec(...) for full column specifications.
+rg$getDepartamentosExponentialGrowthPlot()
 #> Scale for 'y' is already present. Adding another scale for 'y', which will
 #> replace the existing scale.
 ```
@@ -209,8 +211,14 @@ getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
 <img src="man/figures/README-exponential_growth-1.png" width="100%" />
 
 ``` r
+rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
+```
+
+<img src="man/figures/README-exponential_growth-2.png" width="100%" />
+
+``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
-#> INFO  [00:35:05.082] Processing {current.group: }
+#> INFO  [02:30:18.132] Processing {current.group: }
 nrow(covid19.ar.summary)
 #> [1] 21
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -240,31 +248,31 @@ kable(covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(sepi_apertura, 
 
 ```r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [00:35:08.946] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
-#> INFO  [00:35:11.527] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [00:35:13.412] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [00:35:14.610] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [00:35:16.041] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [00:35:17.364] Processing {current.group: residencia_provincia_nombre = Córdoba}
-#> INFO  [00:35:19.009] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [00:35:20.476] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [00:35:21.894] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [00:35:23.281] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [00:35:24.512] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [00:35:25.748] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [00:35:27.090] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [00:35:28.572] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [00:35:30.042] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [00:35:31.568] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [00:35:33.414] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [00:35:35.065] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [00:35:36.715] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [00:35:38.491] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [00:35:40.008] Processing {current.group: residencia_provincia_nombre = Santa Fe}
-#> INFO  [00:35:41.597] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [00:35:42.890] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
-#> INFO  [00:35:44.324] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [00:35:45.858] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [02:30:22.152] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [02:30:24.776] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [02:30:26.819] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [02:30:28.096] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [02:30:29.553] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [02:30:30.882] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [02:30:32.788] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [02:30:34.362] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [02:30:35.908] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [02:30:37.627] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [02:30:39.178] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [02:30:40.499] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [02:30:41.933] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [02:30:43.569] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [02:30:44.810] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [02:30:46.103] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [02:30:47.453] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [02:30:48.752] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [02:30:50.189] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [02:30:51.526] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [02:30:52.927] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [02:30:54.490] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [02:30:55.796] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [02:30:57.236] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [02:30:58.683] Processing {current.group: residencia_provincia_nombre = Tucumán}
 nrow(covid19.ar.summary)
 #> [1] 401
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
