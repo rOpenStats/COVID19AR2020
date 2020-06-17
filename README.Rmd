@@ -104,7 +104,22 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 ```
 
 ```{r, exponential_growth}
-getDepartamentosExponentialGrowthPlot(covid19.curator)
+max.date.complete <- as.Date(covid19ar.curator$max.date)
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
+                                                   cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
+
+max(covid19.ar.summary$fecha_apertura)
+ # CABA reports data twice
+nrow(covid19.ar.summary)
+covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
+nrow(covid19.ar.summary)
+
+covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.date.complete)
+covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
+kable(covid19.ar.summary.last %>% filter(rank <= 10) %>% arrange(rank))
+
+getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
 ```
 
 ```{r, sepi_apertura}

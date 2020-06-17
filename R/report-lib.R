@@ -4,11 +4,12 @@
 getDepartamentosExponentialGrowthPlot <- function(covid19ar.curator, ma.n = 7,
                                                   n.highlighted = 10){
 
-   max.date.complete <- as.Date(covid19ar.curator$max.date) - 1
+   max.date.complete <- as.Date(covid19ar.curator$max.date)
 
    covid19.ar.summary <- covid19ar.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
                                                      cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
 
+   max(covid19.ar.summary$fecha_apertura)
    # CABA reports data twice
    nrow(covid19.ar.summary)
    covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
@@ -66,7 +67,6 @@ getDepartamentosExponentialGrowthPlot <- function(covid19ar.curator, ma.n = 7,
                          data.provider.abv = "@msalnacion", base.size = 6)
    covplot <- covplot + scale_y_log10()
    covplot
-
 }
 
 
