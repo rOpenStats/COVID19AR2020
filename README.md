@@ -86,11 +86,11 @@ lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
 covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
 dummy <- covid19.curator$loadData()
-#> INFO  [00:14:07.855] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
+#> INFO  [00:34:33.480] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [00:14:09.694] Normalize 
-#> INFO  [00:14:10.098] checkSoundness 
-#> INFO  [00:14:10.229] Mutating data
+#> INFO  [00:34:35.215] Normalize 
+#> INFO  [00:34:35.645] checkSoundness 
+#> INFO  [00:34:35.791] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
 #> [1] "2020-06-16"
@@ -151,7 +151,49 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 | La Pampa                      |           6 |   294 |          0 |                NaN |              0.000 |              0.000 |            0.020 |           0.167 |                  0.000 |           0.000 |
 
 ``` r
-getDepartamentosExponentialGrowthPlot(covid19.curator)
+max.date.complete <- as.Date(covid19.curator$max.date)
+
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
+                                                   cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
+#> Parsed with column specification:
+#> cols(
+#>   .default = col_double(),
+#>   residencia_provincia_nombre = col_character(),
+#>   residencia_departamento_nombre = col_character(),
+#>   fecha_apertura = col_date(format = "")
+#> )
+#> See spec(...) for full column specifications.
+
+max(covid19.ar.summary$fecha_apertura)
+#> [1] "2020-06-16"
+ # CABA reports data twice
+nrow(covid19.ar.summary)
+#> [1] 19285
+covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
+nrow(covid19.ar.summary)
+#> [1] 19176
+
+covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.date.complete)
+covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
+kable(covid19.ar.summary.last %>% filter(rank <= 10) %>% arrange(rank))
+```
+
+| residencia\_provincia\_nombre | residencia\_departamento\_nombre | fecha\_apertura |    n | confirmados | descartados | sospechosos | fallecidos | tests | sin.clasificar | letalidad.min.porc | letalidad.max.porc | positividad.porc | internados | internados.porc | cuidado.intensivo | cuidado.intensivo.porc | respirador | respirador.porc | dias.diagnostico | dias.apertura | dias.cuidado.intensivo | dias.fallecimiento | dias.inicio | confirmados.inc | confirmados.rate | fallecidos.inc | tests.inc | tests.rate | sospechosos.inc | rank |
+| :---------------------------- | :------------------------------- | :-------------- | ---: | ----------: | ----------: | ----------: | ---------: | ----: | -------------: | -----------------: | -----------------: | ---------------: | ---------: | --------------: | ----------------: | ---------------------: | ---------: | --------------: | ---------------: | ------------: | ---------------------: | -----------------: | ----------: | --------------: | ---------------: | -------------: | --------: | ---------: | --------------: | ---: |
+| CABA                          | COMUNA 1                         | 2020-06-16      | 3686 |        2078 |        1446 |         162 |         26 |  3520 |              0 |              0.012 |              0.013 |            0.590 |        522 |           0.251 |                45 |                  0.022 |         29 |           0.014 |              4.7 |          33.0 |                    5.3 |               17.6 |          94 |               1 |        0.0004815 |              0 |         2 |  0.0005685 |              31 |    1 |
+| Buenos Aires                  | La Matanza                       | 2020-06-16      | 9657 |        2000 |        6772 |         885 |         40 |  8764 |              0 |              0.014 |              0.020 |            0.228 |        462 |           0.231 |                41 |                  0.020 |         20 |           0.010 |              5.3 |          21.8 |                    5.7 |               11.9 |          99 |              34 |        0.0172940 |              0 |        50 |  0.0057379 |             199 |    2 |
+| CABA                          | COMUNA 7                         | 2020-06-16      | 3613 |        1909 |        1422 |         282 |         28 |  3330 |              0 |              0.013 |              0.015 |            0.573 |        438 |           0.229 |                43 |                  0.023 |         22 |           0.012 |              4.6 |          24.3 |                    6.9 |               12.4 |          93 |               0 |        0.0000000 |              0 |         1 |  0.0003004 |              46 |    3 |
+| Chaco                         | San Fernando                     | 2020-06-16      | 8141 |        1319 |        6156 |         666 |         73 |  7469 |              0 |              0.037 |              0.055 |            0.177 |        188 |           0.143 |                82 |                  0.062 |         48 |           0.036 |              6.8 |          39.5 |                    5.7 |               13.6 |          98 |               6 |        0.0045697 |              0 |        23 |  0.0030889 |             120 |    4 |
+| Buenos Aires                  | Quilmes                          | 2020-06-16      | 5858 |        1301 |        4034 |         523 |         15 |  5315 |              0 |              0.008 |              0.012 |            0.245 |        246 |           0.189 |                24 |                  0.018 |          5 |           0.004 |              6.1 |          25.0 |                    6.2 |               14.1 |         100 |               9 |        0.0069659 |              0 |        20 |  0.0037771 |             142 |    5 |
+| CABA                          | COMUNA 4                         | 2020-06-16      | 3226 |        1082 |        1849 |         295 |          8 |  2927 |              0 |              0.006 |              0.007 |            0.370 |        148 |           0.137 |                15 |                  0.014 |          8 |           0.007 |              4.3 |          18.3 |                    5.5 |               12.7 |          88 |              16 |        0.0150094 |              0 |        27 |  0.0093103 |             127 |    6 |
+| Buenos Aires                  | Avellaneda                       | 2020-06-16      | 3637 |         959 |        2197 |         481 |         19 |  3146 |              0 |              0.013 |              0.020 |            0.305 |        213 |           0.222 |                22 |                  0.023 |         10 |           0.010 |              5.2 |          22.2 |                    4.0 |                9.2 |          95 |              24 |        0.0256684 |              0 |        40 |  0.0128783 |              78 |    7 |
+| CABA                          | COMUNA 8                         | 2020-06-16      | 2047 |         811 |         997 |         239 |          3 |  1807 |              0 |              0.003 |              0.004 |            0.449 |        100 |           0.123 |                 5 |                  0.006 |          3 |           0.004 |              4.3 |          15.9 |                    4.0 |               15.0 |          85 |               1 |        0.0012346 |              0 |         2 |  0.0011080 |             109 |    8 |
+| Buenos Aires                  | Lanús                            | 2020-06-16      | 4203 |         757 |        2972 |         474 |          9 |  3720 |              0 |              0.007 |              0.012 |            0.203 |        174 |           0.230 |                16 |                  0.021 |          4 |           0.005 |              6.0 |          21.9 |                    4.4 |                9.2 |          95 |              10 |        0.0133869 |              0 |        21 |  0.0056772 |             115 |    9 |
+| Buenos Aires                  | Lomas de Zamora                  | 2020-06-16      | 5096 |         756 |        3572 |         768 |         16 |  4316 |              0 |              0.010 |              0.021 |            0.175 |        192 |           0.254 |                19 |                  0.025 |          8 |           0.011 |              5.5 |          21.0 |                    3.8 |                7.6 |         102 |              20 |        0.0271739 |              0 |        31 |  0.0072345 |             132 |   10 |
+
+``` r
+
+getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
 #> Parsed with column specification:
 #> cols(
 #>   .default = col_double(),
@@ -168,7 +210,7 @@ getDepartamentosExponentialGrowthPlot(covid19.curator)
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
-#> INFO  [00:14:38.902] Processing {current.group: }
+#> INFO  [00:35:05.082] Processing {current.group: }
 nrow(covid19.ar.summary)
 #> [1] 21
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -198,31 +240,31 @@ kable(covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(sepi_apertura, 
 
 ```r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [00:14:43.153] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
-#> INFO  [00:14:45.828] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [00:14:47.877] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [00:14:49.214] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [00:14:50.661] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [00:14:51.927] Processing {current.group: residencia_provincia_nombre = Córdoba}
-#> INFO  [00:14:53.641] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [00:14:55.064] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [00:14:56.421] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [00:14:57.825] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [00:14:59.087] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [00:15:00.349] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [00:15:01.685] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [00:15:03.097] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [00:15:04.514] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [00:15:05.817] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [00:15:07.228] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [00:15:08.525] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [00:15:09.850] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [00:15:11.130] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [00:15:12.436] Processing {current.group: residencia_provincia_nombre = Santa Fe}
-#> INFO  [00:15:14.176] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [00:15:15.453] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
-#> INFO  [00:15:16.895] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [00:15:18.328] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [00:35:08.946] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [00:35:11.527] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [00:35:13.412] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [00:35:14.610] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [00:35:16.041] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [00:35:17.364] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [00:35:19.009] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [00:35:20.476] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [00:35:21.894] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [00:35:23.281] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [00:35:24.512] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [00:35:25.748] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [00:35:27.090] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [00:35:28.572] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [00:35:30.042] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [00:35:31.568] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [00:35:33.414] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [00:35:35.065] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [00:35:36.715] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [00:35:38.491] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [00:35:40.008] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [00:35:41.597] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [00:35:42.890] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [00:35:44.324] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [00:35:45.858] Processing {current.group: residencia_provincia_nombre = Tucumán}
 nrow(covid19.ar.summary)
 #> [1] 401
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]

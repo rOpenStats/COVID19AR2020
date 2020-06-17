@@ -104,7 +104,7 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 ```
 
 ```{r, exponential_growth}
-max.date.complete <- as.Date(covid19ar.curator$max.date)
+max.date.complete <- as.Date(covid19.curator$max.date)
 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
                                                    cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
