@@ -4,7 +4,6 @@
 #' @importFrom R6 R6Class
 #' @import TTR
 #' @import magrittr
-#' @import lubridate
 #' @import ggplot2
 #' @export
 ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
@@ -14,7 +13,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
    departamentos.ranking = NA,
    covid19.ar.summary = NA,
    ma.n = NA,
-   initialize = function(covid19ar.curator, ma.n = 7){
+   initialize = function(covid19ar.curator, ma.n = 3){
       # Manual type check
       stopifnot(inherits(covid19ar.curator, "COVID19ARCurator"))
       self$covid19ar.curator <- covid19ar.curator
@@ -70,7 +69,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
          ggplot(aes(x = fecha_apertura, y = confirmados.smoothed, color = " otros", group = departamento)) +
          geom_line() +
          labs(title = "Evolución de casos confirmados por Departamento") +
-         ylab("Confirmados -observado y promedio 7 días- (log)")
+         ylab(paste("Confirmados -observado y promedio", self$ma.n, "días- (log)"))
       covplot <- covplot +
          geom_point(data = data2plot.highlighed, aes(x = fecha_apertura, y = confirmados, color = departamento))
       covplot <- covplot +

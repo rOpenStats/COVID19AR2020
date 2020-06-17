@@ -23,7 +23,7 @@ ReportGeneratorCOVID19AR
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$new(covid19ar.curator, ma.n = 7)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$new(covid19ar.curator, ma.n = 3)}\if{html}{\out{</div>}}
 }
 
 }
