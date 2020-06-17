@@ -119,7 +119,10 @@ covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.d
 covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
 kable(covid19.ar.summary.last %>% filter(rank <= 10) %>% arrange(rank))
 
-getDepartamentosExponentialGrowthPlot(covid19ar.curator = covid19.curator)
+rg <- ReportGeneratorCOVID19AR$new(covid19ar.curator = covid19.curator)
+rg$preprocess()
+rg$getDepartamentosExponentialGrowthPlot()
+rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
 ```
 
 ```{r, sepi_apertura}

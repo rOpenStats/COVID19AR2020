@@ -70,6 +70,110 @@ getDepartamentosExponentialGrowthPlot <- function(covid19ar.curator, ma.n = 7,
 }
 
 
+#' ReportGeneratorCOVID19AR
+#' @importFrom R6 R6Class
+#' @import magrittr
+#' @import lubridate
+#' @import ggplot2
+#' @export
+ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
+  public = list(
+   covid19ar.curator = NA,
+   report.date = NA,
+   departamentos.ranking = NA,
+   covid19.ar.summary = NA,
+   ma.n = NA,
+   initialize = function(covid19ar.curator, ma.n = 7){
+      # Manual type check
+      stopifnot(inherits(covid19ar.curator, "COVID19ARCurator"))
+      self$covid19ar.curator <- covid19ar.curator
+      self$ma.n <- ma.n
+      self
+   },
+   preprocess = function(){
+      self$report.date <- as.Date(self$covid19ar.curator$max.date)
+
+      covid19.ar.summary <- self$covid19ar.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
+                                                          cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
+
+      # CABA reports data twice
+      nrow(covid19.ar.summary)
+      covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
+      nrow(covid19.ar.summary)
+
+      covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.date.complete)
+      covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
+      covid19.ar.summary.last %<>% arrange(rank)
+      confirmados.tot <- sum(covid19.ar.summary.last$confirmados)
+      covid19.ar.summary.last %<>% mutate(confirmados.prop = confirmados / confirmados.tot)
+      covid19.ar.summary.last %<>% mutate(confirmados.cum = cumsum(confirmados))
+      covid19.ar.summary.last %<>% mutate(confirmados.cumprop = confirmados.cum / confirmados.tot)
+      covid19.ar.summary.last %<>% select(residencia_departamento_nombre, residencia_provincia_nombre, fecha_apertura, n,
+                                          confirmados, rank, confirmados.cumprop, confirmados.cum, confirmados.prop)
+      covid19.ar.summary.last %<>% mutate(departamento = paste(sprintf("%02d", round(rank)), residencia_provincia_nombre, residencia_departamento_nombre, sep = "-"))
+
+      self$departamentos.ranking <- covid19.ar.summary.last
+      covid19.ar.summary %<>% inner_join(covid19.ar.summary.last %>% select(residencia_departamento_nombre, residencia_provincia_nombre, confirmados.prop, confirmados.cumprop, rank),
+                                         by = c("residencia_departamento_nombre", "residencia_provincia_nombre"))
+      covid19.ar.summary %<>% mutate(departamento = paste(sprintf("%02d", round(rank)), residencia_provincia_nombre, residencia_departamento_nombre, sep = "-"))
+      nrow(covid19.ar.summary)
+      length(unique(covid19.ar.summary$departamento))
+      departamentos.calculate <- covid19.ar.summary %>%
+         group_by(departamento) %>%
+         summarise(observations = n()) %>%
+         filter(observations >= self$ma.n) %>%
+         arrange(observations)
+      covid19.ar.summary %<>% inner_join(departamentos.calculate, by = "departamento")
+      nrow(covid19.ar.summary)
+      length(unique(covid19.ar.summary$departamento))
+      covid19.ar.summary %<>% group_by(departamento) %>% mutate(confirmados.smoothed = runMean(confirmados, self$ma.n))
+      self$covid19.ar.summary <- covid19.ar.summary
+   },
+   getDepartamentosExponentialGrowthPlot = function(n.highlighted = 10){
+      data2plot <- self$covid19.ar.summary %>% filter(confirmados >= 20 & confirmados.smoothed >= 20)
+      dates <- sort(unique(data2plot$fecha_apertura))
+
+      data2plot.highlighed <- data2plot %>% filter(rank <= n.highlighted)
+      data2plot.gray <- data2plot %>% filter(rank > n.highlighted)
+      covplot <- data2plot.gray %>%
+         ggplot(aes(x = fecha_apertura, y = confirmados.smoothed, color = " otros", group = departamento)) +
+         geom_line() +
+         labs(title = "Evolución de casos confirmados por Departamento") +
+         ylab("Confirmados -observado y promedio 7 días- (log)")
+      covplot <- covplot +
+         geom_point(data = data2plot.highlighed, aes(x = fecha_apertura, y = confirmados, color = departamento))
+      covplot <- covplot +
+         geom_line(data = data2plot.highlighed, aes(x = fecha_apertura, y = confirmados.smoothed, color = departamento))
+      covplot <- setupTheme(covplot, report.date = report.date, x.values = dates,
+                            x.type = "dates",
+                            total.colors = n.highlighted,
+                            manual.colors = brewer.pal(n = 9, name = "Greys")[4],
+                            data.provider.abv = "@msalnacion", base.size = 6)
+      covplot <- covplot + scale_y_log10()
+      covplot
+   },
+   getDepartamentosCrossSectionConfirmedPostitivyPlot = function(n.highlighted = 10){
+      data2plot <- self$covid19.ar.summary %>% filter(confirmados >= 20 & confirmados.smoothed >= 20)
+      data2plot.highlighed <- data2plot %>% filter(rank <= n.highlighted)
+      data2plot.gray <- data2plot %>% filter(rank > n.highlighted)
+      covplot <- data2plot.gray %>%
+         ggplot(aes(x = confirmados.smoothed, y = positividad.porc, color = " otros", group = departamento)) +
+         geom_line() +
+         labs(title = "Evolución de casos confirmados por Departamento") +
+         xlab("Positividad") + ylab("Positividad")
+      covplot <- covplot +
+         geom_line(data = data2plot.highlighed, aes(x = confirmados.smoothed, y = positividad.porc, color = departamento))
+      covplot <- setupTheme(covplot, report.date = report.date,
+                            x.values = covplot[, "confirmados"], x.type = "field.x",
+                            total.colors = n.highlighted,
+                            manual.colors = brewer.pal(n = 9, name = "Greys")[4],
+                            data.provider.abv = "@msalnacion", base.size = 6)
+      covplot <- covplot + scale_x_log10()
+      covplot
+   }
+   ))
+
+
 #' setup Dataviz theme
 #' @import RColorBrewer
 #' @importFrom grDevices colorRampPalette
