@@ -91,7 +91,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
          ggplot(aes(x = confirmados.smoothed, y = positividad.porc, color = " otros", group = departamento)) +
          geom_line() +
          labs(title = "Evolución de casos confirmados por Departamento") +
-         xlab("Positividad") + ylab("Positividad")
+         xlab("Confirmados (log)") + ylab("Positividad")
       covplot <- covplot +
          geom_line(data = data2plot.highlighed, aes(x = confirmados.smoothed, y = positividad.porc, color = departamento))
       covplot <- setupTheme(covplot, report.date = report.date,
