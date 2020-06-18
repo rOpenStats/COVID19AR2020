@@ -15,7 +15,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     curate.functions    = NA,
     edad.coder          = NA,
     curated             = FALSE,
-    fields.temporal         = c("sepi_apertura", "fecha_apertura"),
+    fields.temporal     = NA,
     data.fields         = NA,
     data                = NA,
     max.date            = NA,
@@ -75,6 +75,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         stop("Specification not defined")
       }
       self$curate.functions[[self$specification]]()
+      names.data <- names(self$data)
+      self$fields.temporal <- c("sepi_apertura", names.data[grep("fecha", names.data)])
     },
     checkSoundness = function(fix.dates = TRUE){
       logger <- getLogger(self)
