@@ -250,6 +250,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        current.data %>%
          group_by_at(group.fields) %>%
          summarize(n = n(),
+                   max_fecha_diagnostico     = max(fecha_diagnostico, na.rm = TRUE),
+                   max_fecha_inicio_sintomas = max(fecha_inicio_sintomas, na.rm = TRUE),
+                   count_fecha_diagnostico   = n_distinct(fecha_diagnostico, na.rm = TRUE),
                    confirmados        = sum(ifelse(confirmado, 1, 0)),
                    descartados        = sum(ifelse(descartado, 1, 0)),
                    sospechosos        = sum(ifelse(sospechoso, 1, 0)),

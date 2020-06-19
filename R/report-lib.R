@@ -22,7 +22,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
    },
    preprocess = function(){
       self$report.date <- as.Date(self$covid19ar.curator$max.date)
-
+      max.date.complete <- self$report.date - 1
       covid19.ar.summary <- self$covid19ar.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
                                                           cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
 

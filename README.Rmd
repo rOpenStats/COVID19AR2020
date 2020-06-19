@@ -88,11 +88,16 @@ max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
 max(covid19.curator$data$fecha_fallecimiento,  na.rm = TRUE)
 
 report.date <- max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
+covid19.ar.summary <- covid19.curator$makeSummary(group.vars = NULL)
+
+kable(covid19.ar.summary %>% select(max_fecha_diagnostico, confirmados, fallecidos, letalidad.min.porc, letalidad.max.porc, count_fecha_diagnostico, tests, positividad.porc))
 
 covid19.ar.provincia.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
-covid19.ar.provincia.summary.100.confirmed <- covid19.ar.provincia.summary %>% filter(confirmados >= 100)
+covid19.ar.provincia.summary.100.confirmed <- covid19.ar.provincia.summary %>% 
+  filter(confirmados >= 100) %>%
+  arrange(desc(confirmados))
 # Provinces with > 100 confirmed cases
-covid19.ar.provincia.summary.100.confirmed$residencia_provincia_nombre
+kable(covid19.ar.provincia.summary.100.confirmed %>% select(residencia_provincia_nombre, confirmados, fallecidos, confirmados, fallecidos, letalidad.min.porc, letalidad.max.porc, count_fecha_diagnostico, tests, positividad.porc))
 ```
 
 ```{r, residencia_provincia_nombre}
@@ -104,20 +109,6 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 ```
 
 ```{r, exponential_growth}
-max.date.complete <- as.Date(covid19.curator$max.date)
-
-covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "fecha_apertura"),
-                                                   cache.filename = "covid19ar_residencia_provincia_nombre-residencia_departamento_nombre-fecha_apertura.csv")
-
-max(covid19.ar.summary$fecha_apertura)
- # CABA reports data twice
-nrow(covid19.ar.summary)
-covid19.ar.summary %<>% filter(!(residencia_provincia_nombre == "CABA" & residencia_departamento_nombre == "SIN ESPECIFICAR"))
-nrow(covid19.ar.summary)
-
-covid19.ar.summary.last <- covid19.ar.summary %>% filter(fecha_apertura == max.date.complete)
-covid19.ar.summary.last %<>% mutate(rank = rank(desc(confirmados)))
-kable(covid19.ar.summary.last %>% filter(rank <= 10) %>% arrange(rank))
 
 rg <- ReportGeneratorCOVID19AR$new(covid19ar.curator = covid19.curator)
 rg$preprocess()
@@ -129,7 +120,10 @@ rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-kable(covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(sepi_apertura, desc(confirmados)) %>% select_at(c("sepi_apertura", "sepi_apertura", "confirmados", "tests", "internados", "fallecidos",  porc.cols)))
+kable(covid19.ar.summary %>% 
+        filter(confirmados > 0) %>% 
+        arrange(sepi_apertura, desc(confirmados)) %>% 
+        select_at(c("sepi_apertura", "max_fecha_diagnostico", "count_fecha_diagnostico", "confirmados", "tests", "internados", "fallecidos",  porc.cols)))
 
 ```
 
@@ -138,10 +132,6 @@ kable(covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(sepi_apertura, 
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
 nrow(covid19.ar.summary)
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
-
-```
-
-```{r, residencia_provincia_nombre-sepi_apertura-plot-tests}
 sepi.fechas <- covid19.curator$data %>% 
   group_by(sepi_apertura) %>% 
   summarize(ultima_fecha_sepi = max(fecha_apertura), .groups = "keep")
