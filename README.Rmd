@@ -48,10 +48,12 @@ devtools::install_github("rOpenStats/COVID19AR")
 
 # How to use it
 
-First add variable with your preferred data dir configuration in `~/.Renviron`. You will receive a message if you didn't. 
+First add variable with your preferred configurations in `~/.Renviron`. COVID19AR_data_dir is mandatory while COVID19AR_credits can be configured if you want to publish your own research.
+ 
 
 ```.Renviron
 COVID19AR_data_dir = "~/.R/COVID19AR"
+COVID19AR_credits = "@youralias"
 ```
 
 ```{r, library}

@@ -86,11 +86,11 @@ lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
 covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
 dummy <- covid19.curator$loadData()
-#> INFO  [21:02:50.747] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
+#> INFO  [21:22:40.721] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [21:02:52.920] Normalize 
-#> INFO  [21:02:53.308] checkSoundness 
-#> INFO  [21:02:53.455] Mutating data
+#> INFO  [21:22:42.646] Normalize 
+#> INFO  [21:22:43.023] checkSoundness 
+#> INFO  [21:22:43.151] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
 #> [1] "2020-06-20"
@@ -203,7 +203,7 @@ rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
-#> INFO  [21:03:28.926] Processing {current.group: }
+#> INFO  [21:23:16.277] Processing {current.group: }
 nrow(covid19.ar.summary)
 #> [1] 21
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
@@ -236,45 +236,45 @@ kable(covid19.ar.summary %>%
 
 ```r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [21:03:34.230] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [21:23:20.605] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
 #> Warning in max.default(structure(c(NA_real_, NA_real_), class = "Date"), : no
 #> non-missing arguments to max; returning -Inf
 #> Warning in max.default(structure(c(NA_real_, NA_real_, NA_real_), class =
 #> "Date"), : no non-missing arguments to max; returning -Inf
 #> Warning in max.default(structure(c(NA_real_, NA_real_, NA_real_, NA_real_: no
 #> non-missing arguments to max; returning -Inf
-#> INFO  [21:03:37.051] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [21:03:39.246] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [21:03:40.690] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [21:03:42.222] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [21:03:43.618] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [21:23:23.310] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [21:23:25.429] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [21:23:26.712] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [21:23:28.270] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [21:23:29.642] Processing {current.group: residencia_provincia_nombre = Córdoba}
 #> Warning in max.default(structure(NA_real_, class = "Date"), na.rm = TRUE): no
 #> non-missing arguments to max; returning -Inf
-#> INFO  [21:03:45.442] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [21:03:46.937] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [21:03:48.420] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [21:03:50.067] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [21:03:51.475] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [21:03:52.804] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [21:03:54.242] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [21:03:55.814] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [21:03:57.111] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [21:03:58.630] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [21:04:00.199] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [21:04:02.715] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [21:04:05.040] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [21:04:06.619] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [21:04:08.409] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [21:23:31.390] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [21:23:32.812] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [21:23:34.228] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [21:23:35.866] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [21:23:37.208] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [21:23:38.495] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [21:23:39.878] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [21:23:41.339] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [21:23:42.799] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [21:23:44.433] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [21:23:45.997] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [21:23:47.339] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [21:23:48.699] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [21:23:50.053] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [21:23:51.386] Processing {current.group: residencia_provincia_nombre = Santa Fe}
 #> Warning in max.default(structure(NA_real_, class = "Date"), na.rm = TRUE): no
 #> non-missing arguments to max; returning -Inf
 #> Warning in max.default(structure(c(NA_real_, NA_real_, NA_real_, NA_real_, : no
 #> non-missing arguments to max; returning -Inf
-#> INFO  [21:04:10.247] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [21:04:11.828] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [21:23:53.005] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [21:23:54.366] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
 #> Warning in max.default(structure(c(NA_real_, NA_real_), class = "Date"), : no
 #> non-missing arguments to max; returning -Inf
-#> INFO  [21:04:13.385] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [21:04:14.901] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [21:23:55.886] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [21:23:57.441] Processing {current.group: residencia_provincia_nombre = Tucumán}
 nrow(covid19.ar.summary)
 #> [1] 401
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]

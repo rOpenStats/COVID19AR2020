@@ -222,24 +222,27 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                             nrow = nrow(current.temporal.group.data))
                current.temporal.group.data.agg <- self$getAggregatedData(group.fields = group.vars,
                                                                          current.data = current.temporal.group.data)
-               current.temporal.group.data.agg$dias.inicio <- dias.contador
-               current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
+               if (!is.null(current.temporal.group.data.agg)){
+                 current.temporal.group.data.agg$dias.inicio <- dias.contador
+                 current.group.data.agg <- rbind(current.group.data.agg, current.temporal.group.data.agg)
+               }
                dias.contador <- dias.contador + 1
              }
            }
-           # Indicators
-           current.group.data.agg %<>%  mutate(confirmados.inc = ifelse(dias.inicio >= 1, confirmados - lag(confirmados, n = 1), NA))
-           current.group.data.agg %<>%  mutate(confirmados.rate = ifelse(dias.inicio >= 1, confirmados.inc/lag(confirmados, n = 1), NA))
-           current.group.data.agg %<>%  mutate(fallecidos.inc = ifelse(dias.inicio >= 1, fallecidos - lag(fallecidos, n = 1), NA))
-           current.group.data.agg %<>%  mutate(tests.inc = ifelse(dias.inicio >= 1, tests - lag(tests, n = 1), NA))
-           current.group.data.agg %<>%  mutate(tests.rate = ifelse(dias.inicio >= 1, tests.inc / lag(tests, n = 1), NA))
-           current.group.data.agg %<>%  mutate(sospechosos.inc = ifelse(dias.inicio >= 1, sospechosos - lag(sospechosos, n = 1), NA))
-           ret <- rbind(ret, current.group.data.agg)
-           logger$debug("Total data after aggregating group",
-                        current.group = paste(names(current.group), current.group,
-                                              sep =" = ", collapse = "|"),
-                        nrow = nrow(ret))
-
+           if (!is.null(current.group.data.agg)){
+             # Indicators
+             current.group.data.agg %<>%  mutate(confirmados.inc = ifelse(dias.inicio >= 1, confirmados - lag(confirmados, n = 1), NA))
+             current.group.data.agg %<>%  mutate(confirmados.rate = ifelse(dias.inicio >= 1, confirmados.inc/lag(confirmados, n = 1), NA))
+             current.group.data.agg %<>%  mutate(fallecidos.inc = ifelse(dias.inicio >= 1, fallecidos - lag(fallecidos, n = 1), NA))
+             current.group.data.agg %<>%  mutate(tests.inc = ifelse(dias.inicio >= 1, tests - lag(tests, n = 1), NA))
+             current.group.data.agg %<>%  mutate(tests.rate = ifelse(dias.inicio >= 1, tests.inc / lag(tests, n = 1), NA))
+             current.group.data.agg %<>%  mutate(sospechosos.inc = ifelse(dias.inicio >= 1, sospechosos - lag(sospechosos, n = 1), NA))
+             ret <- rbind(ret, current.group.data.agg)
+             logger$debug("Total data after aggregating group",
+                          current.group = paste(names(current.group), current.group,
+                                                sep =" = ", collapse = "|"),
+                          nrow = nrow(ret))
+           }
          }
        }
        }
@@ -247,41 +250,23 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        self$data.summary
      },
      getAggregatedData = function(group.fields, current.data, min.confirmados = 0){
-       #debug
-       current.data <<- current.data
-
+       logger <- getLogger(self)
        keys.confirmados <- current.data %>%
          group_by_at(group.fields) %>%
          summarize(n = n(),
-                   confirmados = sum(ifelse(confirmado, 1, 0)),
-                   .groups = "keep")
+                   confirmados = sum(ifelse(confirmado, 1, 0)))
        keys.confirmados  %<>% filter(confirmados > 0)
        keys.confirmados$key <- apply(keys.confirmados[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
 
-       # count.confirmados %>% group_by(residencia_provincia_nombre, con.casos = ifelse(confirmados >0, 1,0)) %>%
-       #   summarize(n = n())
-       # for (field in group.fields){
-       #
-       # }
-
-       # current.data.casos <- current.data %>% filter_at(vars(group.fields),
-       #                                                  all_vars(. %in% count.confirmados[,group.fields]))
        current.data$key <- apply(current.data[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
-       nrow(current.data)
-       current.data.casos <- current.data %>% filter(key %in% (2 %>% select(key)))
-       #current.data.casos <- current.data %>% filter(key %in% (keys.confirmados[,"key"]))
-       nrow(current.data.casos)
-       logger$info("After filter", field = field, filter = self$filters[[field]], nrow = nrow(self$data))
-       for (field in group.fields){
-         print(field)
-         current.data.casos <- current.data %>% filter(across(vars(field),
-                                                              all_vars(. %in% (keys.confirmados[, field]))))
-       }
-       nrow(current.data.casos)
-       (count.confirmados %>% select_at(group.fields)))
+       key.fields <- paste(group.fields, collapse = "|")
+       nrow <- nrow(current.data)
+       current.data.casos <- current.data %>% filter(key %in% keys.confirmados$key)
+       nrow.filtered <- nrow(current.data.casos)
+       logger$trace("After filter", field = key.fields, nrow = nrow, nrow.filtered = nrow.filtered)
        ret <- NULL
-       if (count.confirmados >= min.confirmados){
-         ret <- current.data %>%
+       if (nrow(current.data.casos) > 0){
+         ret <- current.data.casos %>%
            group_by_at(group.fields) %>%
            summarize(n = n(),
                      max_fecha_diagnostico     = max(fecha_diagnostico, na.rm = TRUE),
