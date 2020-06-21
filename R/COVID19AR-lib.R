@@ -247,32 +247,69 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
        self$data.summary
      },
      getAggregatedData = function(group.fields, current.data, min.confirmados = 0){
-       current.data %>%
+       #debug
+       current.data <<- current.data
+
+       keys.confirmados <- current.data %>%
          group_by_at(group.fields) %>%
          summarize(n = n(),
-                   max_fecha_diagnostico     = max(fecha_diagnostico, na.rm = TRUE),
-                   max_fecha_inicio_sintomas = max(fecha_inicio_sintomas, na.rm = TRUE),
-                   count_fecha_diagnostico   = n_distinct(fecha_diagnostico, na.rm = TRUE),
-                   confirmados        = sum(ifelse(confirmado, 1, 0)),
-                   descartados        = sum(ifelse(descartado, 1, 0)),
-                   sospechosos        = sum(ifelse(sospechoso, 1, 0)),
-                   fallecidos         = sum(ifelse(fallecido, 1, 0)),
-                   tests              = sum(ifelse(!is.na(fecha_diagnostico), 1, 0)),
-                   sin.clasificar     = sum(ifelse(clasificacion_resumen == "sin clasificar", 1, 0)),
-                   letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
-                   letalidad.max.porc = round(fallecidos / confirmados, 3),
-                   positividad.porc   = round(confirmados / tests, 3),
-                   internados         = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
-                   internados.porc    = round(internados/confirmados, 3),
-                   cuidado.intensivo  = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
-                   cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
-                   respirador         = sum(ifelse(confirmado & !is.na(asistencia_respiratoria_mecanica) & asistencia_respiratoria_mecanica == "SI", 1, 0)),
-                   respirador.porc    = round(respirador / confirmados, 3),
-                   dias.diagnostico   = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
-                   dias.apertura      = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
-                   dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
-                   dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fecha_inicio_sintomas), NA), na.rm = TRUE), 1)
-         )  %>% filter (confirmados >= min.confirmados)
+                   confirmados = sum(ifelse(confirmado, 1, 0)),
+                   .groups = "keep")
+       keys.confirmados  %<>% filter(confirmados > 0)
+       keys.confirmados$key <- apply(keys.confirmados[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
+
+       # count.confirmados %>% group_by(residencia_provincia_nombre, con.casos = ifelse(confirmados >0, 1,0)) %>%
+       #   summarize(n = n())
+       # for (field in group.fields){
+       #
+       # }
+
+       # current.data.casos <- current.data %>% filter_at(vars(group.fields),
+       #                                                  all_vars(. %in% count.confirmados[,group.fields]))
+       current.data$key <- apply(current.data[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
+       nrow(current.data)
+       current.data.casos <- current.data %>% filter(key %in% (2 %>% select(key)))
+       #current.data.casos <- current.data %>% filter(key %in% (keys.confirmados[,"key"]))
+       nrow(current.data.casos)
+       logger$info("After filter", field = field, filter = self$filters[[field]], nrow = nrow(self$data))
+       for (field in group.fields){
+         print(field)
+         current.data.casos <- current.data %>% filter(across(vars(field),
+                                                              all_vars(. %in% (keys.confirmados[, field]))))
+       }
+       nrow(current.data.casos)
+       (count.confirmados %>% select_at(group.fields)))
+       ret <- NULL
+       if (count.confirmados >= min.confirmados){
+         ret <- current.data %>%
+           group_by_at(group.fields) %>%
+           summarize(n = n(),
+                     max_fecha_diagnostico     = max(fecha_diagnostico, na.rm = TRUE),
+                     max_fecha_inicio_sintomas = max(fecha_inicio_sintomas, na.rm = TRUE),
+                     count_fecha_diagnostico   = n_distinct(fecha_diagnostico, na.rm = TRUE),
+                     confirmados        = sum(ifelse(confirmado, 1, 0)),
+                     descartados        = sum(ifelse(descartado, 1, 0)),
+                     sospechosos        = sum(ifelse(sospechoso, 1, 0)),
+                     fallecidos         = sum(ifelse(fallecido, 1, 0)),
+                     tests              = sum(ifelse(!is.na(fecha_diagnostico), 1, 0)),
+                     sin.clasificar     = sum(ifelse(clasificacion_resumen == "sin clasificar", 1, 0)),
+                     letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
+                     letalidad.max.porc = round(fallecidos / confirmados, 3),
+                     positividad.porc   = round(confirmados / tests, 3),
+                     internados         = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
+                     internados.porc    = round(internados/confirmados, 3),
+                     cuidado.intensivo  = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
+                     cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
+                     respirador         = sum(ifelse(confirmado & !is.na(asistencia_respiratoria_mecanica) & asistencia_respiratoria_mecanica == "SI", 1, 0)),
+                     respirador.porc    = round(respirador / confirmados, 3),
+                     dias.diagnostico   = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                     dias.apertura      = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                     dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                     dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
+                     , .groups = "keep"
+           )  %>% filter (confirmados >= min.confirmados)
+       }
+       ret
      }
     ))
 
