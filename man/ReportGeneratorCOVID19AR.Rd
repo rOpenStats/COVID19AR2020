@@ -8,6 +8,9 @@ ReportGeneratorCOVID19AR
 
 ReportGeneratorCOVID19AR
 }
+\author{
+kenarab
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

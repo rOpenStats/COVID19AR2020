@@ -1,6 +1,7 @@
 
 
 #' ReportGeneratorCOVID19AR
+#' @author kenarab
 #' @importFrom R6 R6Class
 #' @import TTR
 #' @import magrittr
@@ -105,6 +106,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
 
 
 #' setup Dataviz theme
+#' @author kenarab
 #' @import RColorBrewer
 #' @importFrom grDevices colorRampPalette
 #' @import scales
@@ -175,8 +177,23 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
 }
 
 
+#' getCredits
+#' @author kenarab
+#'@noRd
+getCredits <- function(){
+   original.author <- "@ken4rab"
+   user.defined.authors <- getEnv("credits", fail.on.empty = FALSE)
+   if (nchar(user.defined.authors) > 0){
+      ret <- user.defined.authors
+   }else{
+      ret <- original.author
+   }
+   ret
+}
+
 
 #'
+#' @author kenarab
 #' @export
 getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
  ret <- "credit @ken4rab"

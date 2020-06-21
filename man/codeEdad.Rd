@@ -9,3 +9,6 @@ codeEdad(data.deaths)
 \description{
 codeEdad
 }
+\author{
+kenarab
+}

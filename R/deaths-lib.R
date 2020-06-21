@@ -1,6 +1,7 @@
 
 
 #' retrieveArgentinasDeathsStatistics
+#' @author kenarab
 #' @export
 retrieveArgentinasDeathsStatistics <- function(){
  data.dir <- getEnv("data_dir")
@@ -23,6 +24,7 @@ retrieveArgentinasDeathsStatistics <- function(){
 
 
 #' readMetadata
+#' @author kenarab
 #' @import readxl
 #' @export
 readMetadata <- function(file.path){
@@ -49,6 +51,7 @@ readMetadata <- function(file.path){
 
 
 #' codeEdad
+#' @author kenarab
 #' @export
 codeEdad <- function(data.deaths){
  logger <- lgr

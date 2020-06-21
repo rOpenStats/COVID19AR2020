@@ -9,3 +9,6 @@ readMetadata(file.path)
 \description{
 readMetadata
 }
+\author{
+kenarab
+}

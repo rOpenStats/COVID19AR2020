@@ -18,3 +18,6 @@ setupTheme(
 \description{
 setup Dataviz theme
 }
+\author{
+kenarab
+}

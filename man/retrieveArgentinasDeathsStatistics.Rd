@@ -9,3 +9,6 @@ retrieveArgentinasDeathsStatistics()
 \description{
 retrieveArgentinasDeathsStatistics
 }
+\author{
+kenarab
+}

@@ -8,6 +8,9 @@ COVID19ARCurator
 
 COVID19ARCurator
 }
+\author{
+kenarab
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

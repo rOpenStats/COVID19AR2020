@@ -1,4 +1,5 @@
 #' COVID19ARCurator
+#' @author kenarab
 #' @importFrom R6 R6Class
 #' @import dplyr
 #' @import magrittr
