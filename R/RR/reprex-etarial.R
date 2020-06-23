@@ -23,16 +23,45 @@ reprex({
  covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "edad.rango"))
 
  # Share per province
- provinces.deaths <-covid19.ar.summary %>%
+ provinces.cases <-covid19.ar.summary %>%
     group_by(residencia_provincia_nombre) %>%
-    summarise(fallecidos.total.provincia = sum(fallecidos), .groups = "keep")
- covid19.ar.summary %<>% inner_join(provinces.deaths, by = "residencia_provincia_nombre")
+    summarise(fallecidos.total.provincia = sum(fallecidos),
+              confirmados.total.provincia = sum(confirmados),
+              .groups = "keep")
+ covid19.ar.summary %<>% inner_join(provinces.cases, by = "residencia_provincia_nombre")
  covid19.ar.summary %<>% mutate(fallecidos.prop = fallecidos/fallecidos.total.provincia)
+ covid19.ar.summary %<>% mutate(confirmados.prop = confirmados/confirmados.total.provincia)
 
  # Data 2 plot
  data2plot <- covid19.ar.summary %>% filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre)
 
- #Plot of deaths share
+ covidplot <-
+   data2plot %>%
+   ggplot(aes(x = edad.rango, y = confirmados.prop, fill = edad.rango)) +
+   geom_bar(stat = "identity") + facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
+   labs(title = "Proporción de confirmados por rango etario\n en provincias > 100 confirmados")
+
+ covidplot <- setupTheme(covidplot, report.date = report.date, x.values = NULL, x.type = NULL,
+                         total.colors = length(unique(data2plot$edad.rango)),
+                         data.provider.abv = "@msalnacion", base.size = 6)
+ # Proporción de muertos por rango etario
+ covidplot
+
+
+ covidplot <-
+   data2plot %>%
+   ggplot(aes(x = edad.rango, y = fallecidos.prop, fill = edad.rango)) +
+   geom_bar(stat = "identity") + facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y") +
+   labs(title = "Proporción de confirmados por rango etario\n en provincias > 100 confirmados")
+
+ covidplot <- setupTheme(covidplot, report.date = report.date, x.values = NULL, x.type = NULL,
+                         total.colors = length(unique(data2plot$edad.rango)),
+                         data.provider.abv = "@msalnacion", base.size = 6)
+ # Proporción de muertos por rango etario
+ covidplot
+
+
+#Plot of deaths share
  covidplot <-
     data2plot %>%
     ggplot(aes(x = edad.rango, y = fallecidos.prop, fill = edad.rango)) +
