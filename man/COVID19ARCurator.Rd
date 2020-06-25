@@ -17,6 +17,7 @@ kenarab
 \item \href{#method-new}{\code{COVID19ARCurator$new()}}
 \item \href{#method-setupColsSpecifications}{\code{COVID19ARCurator$setupColsSpecifications()}}
 \item \href{#method-loadData}{\code{COVID19ARCurator$loadData()}}
+\item \href{#method-readFile}{\code{COVID19ARCurator$readFile()}}
 \item \href{#method-curateData}{\code{COVID19ARCurator$curateData()}}
 \item \href{#method-checkSoundness}{\code{COVID19ARCurator$checkSoundness()}}
 \item \href{#method-getData}{\code{COVID19ARCurator$getData()}}
@@ -51,7 +52,20 @@ kenarab
 \if{latex}{\out{\hypertarget{method-loadData}{}}}
 \subsection{Method \code{loadData()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$loadData()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$loadData(
+  url = self$url,
+  force.download = FALSE,
+  dest.filename = NULL
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-readFile"></a>}}
+\if{latex}{\out{\hypertarget{method-readFile}{}}}
+\subsection{Method \code{readFile()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$readFile(file.path)}\if{html}{\out{</div>}}
 }
 
 }

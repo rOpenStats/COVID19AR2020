@@ -23,14 +23,14 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
 #' @import lgr
 #' @author kenarab
 #' @export
-retrieveURL <- function(data.url, col.types, dest.dir = getEnv("data_dir"),
+retrieveURL <- function(data.url, col.types,
+                        dest.filename,
+                        dest.dir = getEnv("data_dir"),
                         force.download = FALSE,
                         download.new.data = TRUE,
                         daily.update.time = "20:00:00"){
   logger <- lgr
-  url.splitted <- strsplit(data.url, split = "/")[[1]]
-  filename <- url.splitted[length(url.splitted)]
-  dest.path <- file.path(dest.dir, filename)
+  dest.path <- file.path(dest.dir, dest.filename)
   ret <- FALSE
   exists.dest.path <- file.exists(dest.path)
   lgr$info("Exists dest path?", dest.path = dest.path, exists.dest.path = exists.dest.path)
@@ -245,6 +245,14 @@ fixEncoding <- function(file.path){
     command.result <- system(iconv.command, intern = TRUE)
   }
   file.path
+}
+
+#' mutate_cond
+#' @export
+mutate_cond <- function(.data, condition, ..., envir = parent.frame()) {
+  condition <- eval(substitute(condition), .data, envir)
+  .data[condition, ] <- .data[condition, ] %>% mutate(...)
+  .data
 }
 
 #' getOS returns linux, windows or macos

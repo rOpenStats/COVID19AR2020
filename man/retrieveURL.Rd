@@ -7,6 +7,7 @@
 retrieveURL(
   data.url,
   col.types,
+  dest.filename,
   dest.dir = getEnv("data_dir"),
   force.download = FALSE,
   download.new.data = TRUE,

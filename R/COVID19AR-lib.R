@@ -51,25 +51,35 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                 fecha_diagnostico = col_date(format = ""),
                 ultima_actualizacion = col_date(format = "")
               )
-
+      self$edad.coder  <- EdadCoder$new()
+      self$edad.coder$setupCoder()
+      self
     },
-    loadData = function(){
+    loadData = function(url = self$url,
+                        force.download = FALSE,
+                        dest.filename = NULL){
       self$specification <- "200603"
-      file.path <- retrieveURL(data.url = self$url, dest.dir = self$data.dir,
+      if (is.null(dest.filename)){
+        url.splitted <- strsplit(url, split = "/")[[1]]
+        dest.filename <- url.splitted[length(url.splitted)]
+      }
+      file.path <- retrieveURL(data.url = url, dest.dir = self$data.dir,
+                               dest.filename = dest.filename,
                                col.types = self$cols.specifications[[self$specification]],
-                               download.new.data = self$download.new.data)
-
+                               download.new.data = self$download.new.data,
+                               force.download = force.download)
+      self$curated <- FALSE
       # Fix encoding
       file.path <- fixEncoding(file.path)
       file.info(file.path)
 
-      self$data <- read_delim(file.path,
-                                 delim = self$cols.delim[[self$specification]]
-                             ,col_types = self$cols.specifications[[self$specification]]
-                             )
-      self$edad.coder  <- EdadCoder$new()
-      self$edad.coder$setupCoder()
-      self
+      self$data <- self$readFile(file.path)
+      self$data
+    },
+    readFile = function(file.path){
+      read_delim(file.path,
+                 delim = self$cols.delim[[self$specification]]
+                 ,col_types = self$cols.specifications[[self$specification]])
     },
     curateData = function(){
       if (is.null(self$specification)){
@@ -361,3 +371,157 @@ retrieveFromCache <- function(filename, subfolder = "curated/"){
   #TODO check the names of the destination filename matches with expected names
 
 }
+
+
+
+#' COVID19ARDiff
+#' @author kenarab
+#' @importFrom R6 R6Class
+#' @import dplyr
+#' @import magrittr
+#' @export
+COVID19ARDiff <- R6Class("COVID19ARDiff",
+public = list(
+  report.url           = NA,
+  report.filename      = NA,
+  report.diff.dir      = NA,
+  report.diff.filename = NA,
+  min.rebuilt.date     = NA,
+  # state
+  report               = NA,
+  report.prev          = NULL,
+  report.prev.diff     = NA,
+  report.diff          = NA,
+  curator              = NA,
+  logger               = NA,
+  initialize = function(min.rebuilt.date = '2020-06-16', report.diff.dir = "../COVID19ARdata/sources/COVID19AR"){
+    self$min.rebuilt.date     <- min.rebuilt.date
+    self$curator              <- COVID19ARCurator$new(download.new.data = FALSE)
+    self$report.diff.dir      <- report.diff.dir
+    self$report.diff.filename <- "Covid19CasosReporte.csv"
+    self$logger               <- genLogger(self)
+    self
+  },
+  loadReports = function(commit.id, max.date){
+    self$report.url       <- self$getReportUrl(commit.id)
+    self$report.filename <- "Covid19CasosReporteNew.csv"
+    self$curator$loadData(url = self$report.url, force.download = TRUE,
+                                         dest.filename = self$report.filename)
+    self$curator$curateData()
+    self$report <- self$curator$getData()
+    if (max(self$report$fecha_diagnostico, na.rm =  TRUE) < max.date){
+      stop(paste("File doesn't reach expected date", max.date,". Max date in data is", max(self$report$fecha_diagnostico), " for ", commit.id))
+    }
+    report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
+    if (file.exists(report.diff.path)){
+      self$curator$readFile(file.path = report.diff.path)
+      self$curator$curateData()
+      self$report.prev <- self$curator$getData()
+    }
+    self
+  },
+  getReportUrl = function(commit.id){
+    paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata",
+          commit.id,
+          "sources/msalnacion/Covid19Casos.csv", sep = "/")
+  },
+  #' processDiff
+  #' binds report.prev and report adding rows from self$report with fecha_diagnostico to self$report.prev
+  processDiff = function(){
+    logger <- getLogger(self)
+    self$report.diff <- self$report
+
+    if (!is.null(self$report.prev)){
+      self$report.prev.diff <- self$report.prev
+      fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
+
+      #debug
+      stop("Under construction")
+
+      if (!"fecha_reporte" %in% names(self$report.diff.prev)){
+        max.fecha <- apply(self$report.prev.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
+        self$report.prev.diff %<>% mutate(fecha_reporte = fecha_diagnostico)
+        self$report.prev.diff$fecha_actualizacion <- max.fecha
+        self$report.prev.diff %<>% mutate(diff_obs = "")
+      }
+
+      sospechosos.prev.ids <- self$report.prev.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
+      diagnosticados.ids   <- self$report.prev.diff %>% filter(!is.na(fecha_reporte)) %>% select (id_evento_caso)
+      report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, fecha_actualizacion, diff_obs)
+      nrow(self$report.diff)
+      max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
+      nrow(self$report.prev.diff)
+      max(self$report.prev.diff$fecha_diagnostico, na.rm = TRUE)
+
+      logger$info("Joining fecha reporte", nrow = nrow(self$report.diff), nrow.prev = nrow(report.prev.diff.reporte))
+      self$report.diff %<>% left_join(report.prev.diff.reporte, by = "id_evento_caso")
+      self$report.diff %>% filter(is.na(fecha_reporte)) %>% select(fecha_apertura)
+      report.date <- max(self$report$fecha_diagnostico, na.rm = TRUE)
+
+      sospechosos.remaining.ids <- self$report.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
+      logger$info("Filling report date for ", report.date = report.date, nrow(sospechosos.remaining.ids))
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% sospechosos.remaining.ids$id_evento_caso &
+                                          !is.na(fecha_diagnostico) & fecha_diagnostico >= self$min.rebuilt.date, fecha_reporte = report.date)
+      # For days previous to min.rebuilt.date report date is fecha_diagnostico
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% sospechosos.remaining.ids$id_evento_caso &
+                                          !is.na(fecha_diagnostico) & fecha_diagnostico < self$min.rebuilt.date, fecha_reporte = fecha_diagnostico)
+      max.fecha <- apply(self$report.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
+      #updated.rows <- which(self$report.diff$fecha_actualizacion != max.fecha)
+      #self$report %<>% mutate(fecha_actualizacion = across( = max(fecha_))
+      self$report.diff$ultima_actualizacion <- max.fecha
+      tail(self$report.diff %>%
+             group_by(fecha_reporte, fecha_diagnostico) %>%
+             summarise(n = n(),
+                       confirmados = sum(confirmado),
+                       descartados = sum(descartado),
+                       sospechosos = sum(sospechoso)) %>% filter(fecha_reporte >= report.date - 2), n = 45)
+    }
+    self$report.diff
+  },
+  #' processDiffMethod1
+  #' Is self$report  with  fecha_reporte updated from report.diff
+  #' All data is updated and fecha_reporte (when diagnostic was filled in db) is correct
+  processDiffMethod1 = function(){
+    self$report.diff <- self$report.prev
+    if (!"fecha_reporte" %in% names(self$report.diff)){
+      self$report.diff %<>% mutate(fecha_reporte = fecha_diagnostico)
+      self$report.diff %<>% mutate(fecha_actualizacion = fecha_reporte)
+      self$report.diff %<>% mutate(diff_obs = "")
+    }
+    sospechosos.prev.ids <- self$report.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
+    diagnosticados.ids   <- self$report.diff %>% filter(!is.na(fecha_reporte)) %>% select (id_evento_caso)
+    report.new <- self$report %>% filter(!id_evento_caso %in% diagnosticados.ids$id_evento_caso)
+    report.date <- max(report.new$fecha_apertura, na.rm = TRUE)
+    if (!"fecha_reporte" %in% names(report.new)){
+      #report.new %<>% mutate(fecha_reporte = ifelse(!is.na(fecha_diagnostico), as.Date(max(fecha_diagnostico, na.rm = TRUE)), NA))
+      report.new %<>% mutate(fecha_reporte = as.Date(NA))
+      report.new %<>% mutate_cond(!is.na(fecha_diagnostico), fecha_reporte = report.date)
+      report.new %<>% mutate(fecha_actualizacion = fecha_reporte)
+      report.new %<>% mutate(diff_obs = "")
+    }
+
+    report.new[which(!is.na(report.new$fecha_reporte)),]$fecha_reporte
+    report.new %>%
+      group_by(fecha_reporte, fecha_diagnostico) %>%
+      summarise(n = n(),
+                confirmados = sum(confirmado),
+                descartados = sum(descartado),
+                sospechosos = sum(sospechoso))
+    tail(report.new %>%
+           group_by(fecha_reporte, fecha_diagnostico) %>%
+           summarise(n = n(),
+                     confirmados = sum(confirmado),
+                     descartados = sum(descartado),
+                     sospechosos = sum(sospechoso)),
+         n = 20)
+    # Fix update info
+    self$report.diff %<>%  bind_rows(self$report.diff, report.new)
+  },
+  saveReportDiff = function(){
+    report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
+    applied.delim <- self$curator$cols.delim[[self$curator$specification]]
+    # No way of setting quotes in readr function
+    #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
+    write.table(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
+  }
+  ))
