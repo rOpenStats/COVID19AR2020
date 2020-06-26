@@ -568,9 +568,10 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                                                         fechas_diagnostico_n  = length(sort(unique(fecha_diagnostico))),
                                                         fechas_diagnostico    = paste(sort(unique(fecha_diagnostico)), collapse = ", ")),
                                             n = 10)
-         }
-         self$report.diff.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
-         self$report.diff.summary %<>% bind_rows(report.building.summary)
+           self$report.diff.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
+           self$report.diff.summary %<>% bind_rows(report.building.summary)
+           self$saveReportDiffSummary()
+        }
        }
      }
      self$report.diff.summary
@@ -585,11 +586,11 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
      }
      self$report.diff.summary
    },
-   saveReportDiff = function(){
+   saveReportDiffSummary = function(){
      report.diff.summary.path <- file.path(self$report.diff.dir, self$report.diff.summary.filename)
      applied.delim <- ","
      # No way of setting quotes in readr function
      #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
-     write.table(self$report.diff, file = report.diff.summary.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
+     write.table(self$report.diff.summary, file = report.diff.summary.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
    }
    ))
