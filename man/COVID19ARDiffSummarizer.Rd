@@ -18,7 +18,7 @@ kenarab
 \item \href{#method-buildCasosMapping}{\code{COVID19ARDiffSummarizer$buildCasosMapping()}}
 \item \href{#method-buildCasosReport}{\code{COVID19ARDiffSummarizer$buildCasosReport()}}
 \item \href{#method-loadReportDiffSummary}{\code{COVID19ARDiffSummarizer$loadReportDiffSummary()}}
-\item \href{#method-saveReportDiff}{\code{COVID19ARDiffSummarizer$saveReportDiff()}}
+\item \href{#method-saveReportDiffSummary}{\code{COVID19ARDiffSummarizer$saveReportDiffSummary()}}
 \item \href{#method-clone}{\code{COVID19ARDiffSummarizer$clone()}}
 }
 }
@@ -62,11 +62,11 @@ kenarab
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-saveReportDiff"></a>}}
-\if{latex}{\out{\hypertarget{method-saveReportDiff}{}}}
-\subsection{Method \code{saveReportDiff()}}{
+\if{html}{\out{<a id="method-saveReportDiffSummary"></a>}}
+\if{latex}{\out{\hypertarget{method-saveReportDiffSummary}{}}}
+\subsection{Method \code{saveReportDiffSummary()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$saveReportDiff()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$saveReportDiffSummary()}\if{html}{\out{</div>}}
 }
 
 }

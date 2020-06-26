@@ -18,7 +18,6 @@ kenarab
 \item \href{#method-loadReports}{\code{COVID19ARDiff$loadReports()}}
 \item \href{#method-getReportUrl}{\code{COVID19ARDiff$getReportUrl()}}
 \item \href{#method-processDiff}{\code{COVID19ARDiff$processDiff()}}
-\item \href{#method-processDiffMethod1}{\code{COVID19ARDiff$processDiffMethod1()}}
 \item \href{#method-saveReportDiff}{\code{COVID19ARDiff$saveReportDiff()}}
 \item \href{#method-clone}{\code{COVID19ARDiff$clone()}}
 }
@@ -28,10 +27,7 @@ kenarab
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$new(
-  min.rebuilt.date = "2020-06-16",
-  report.diff.dir = "../COVID19ARdata/sources/COVID19AR"
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$new(min.rebuilt.date, report.diff.dir)}\if{html}{\out{</div>}}
 }
 
 }
@@ -59,15 +55,6 @@ kenarab
 \subsection{Method \code{processDiff()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$processDiff()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-processDiffMethod1"></a>}}
-\if{latex}{\out{\hypertarget{method-processDiffMethod1}{}}}
-\subsection{Method \code{processDiffMethod1()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$processDiffMethod1()}\if{html}{\out{</div>}}
 }
 
 }

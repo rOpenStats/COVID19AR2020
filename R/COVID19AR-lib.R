@@ -524,14 +524,14 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                             c("1f3dfe30d87d18530b53205c83dbddb7b17578c7", "2020-06-17"))
      casos.mapping <- rbind(casos.mapping,
                             c("414090f440649265bd5e9e6835271306f318208f", "2020-06-16"))
-     casos.mapping <- rbind(casos.mapping,
-                            c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
-     casos.mapping <- rbind(casos.mapping,
-                            c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
-     casos.mapping <- rbind(casos.mapping,
-                            c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
-     casos.mapping <- rbind(casos.mapping,
-                            c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
+     # casos.mapping <- rbind(casos.mapping,
+     #                        c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
+     # casos.mapping <- rbind(casos.mapping,
+     #                        c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
+     # casos.mapping <- rbind(casos.mapping,
+     #                        c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
+     # casos.mapping <- rbind(casos.mapping,
+     #                        c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
      casos.mapping <- rbind(casos.mapping,
                             c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
 
@@ -542,12 +542,12 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
    buildCasosReport = function(max.n = 0){
      logger <- getLogger(self)
      report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
-     n <- nrow(casos.mapping)
+     n <- nrow(self$casos.mapping)
      if (max.n > 0){
        n <- min(n, max.n)
      }
      for (i in seq_len(n)){
-       current.case <- casos.mapping[i,]
+       current.case <- self$casos.mapping[i,]
        if (!current.case$update.date %in% report.days.processed){
          logger$info("Processing current date", current.date = current.case$update.date)
          # Starting from diff
@@ -557,7 +557,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
          self$report.diff.builder$saveReportDiff()
          if ("fecha_reporte" %in% names(self$report.diff.builder$report.diff)){
            # Will start making summary after first diff (second month)
-           self$report.diff.summary <- tail(self$report.diff.builder$report.diff %>%
+           report.building.summary <- tail(self$report.diff.builder$report.diff %>%
                                               group_by(fecha_reporte) %>%
                                               summarize(n = n(),
                                                         confirmados           = sum(confirmado),
@@ -568,7 +568,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                                                         fechas_diagnostico_n  = length(sort(unique(fecha_diagnostico))),
                                                         fechas_diagnostico    = paste(sort(unique(fecha_diagnostico)), collapse = ", ")),
                                             n = 10)
-           self$report.diff.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
+           report.building.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
            self$report.diff.summary %<>% bind_rows(report.building.summary)
            self$saveReportDiffSummary()
         }
@@ -579,10 +579,21 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
    loadReportDiffSummary = function(){
      report.diff.summary.path <- file.path(self$report.diff.dir, self$report.diff.summary.filename)
      applied.delim <- ","
-     # No way of setting quotes in readr function
-     #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
      if (file.exists(report.diff.summary.path)){
-       self$report.diff.summary <- read_csv(file = report.diff.summary.path, delim = applied.delim)
+       #self$report.diff.summary <- read_csv(file = report.diff.summary.path, delim = applied.delim)
+       self$report.diff.summary <- read_csv(file = report.diff.summary.path,
+                                            col_types = cols(
+                                              fecha_reporte_ejecutado = col_date(format = ""),
+                                              fecha_reporte = col_date(format = ""),
+                                              n = col_double(),
+                                              confirmados = col_integer(),
+                                              descartados = col_integer(),
+                                              fallecidos = col_integer(),
+                                              max_fecha_diagnostico = col_date(format = ""),
+                                              min_fecha_diagnostico = col_date(format = ""),
+                                              fechas_diagnostico_n = col_integer(),
+                                              fechas_diagnostico = col_character()
+                                            ))
      }
      self$report.diff.summary
    },
