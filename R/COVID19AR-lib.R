@@ -440,14 +440,12 @@ public = list(
     if (!is.null(self$report.prev)){
       self$report.prev.diff <- self$report.prev
       fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
-
       if (!"fecha_reporte" %in% names(self$report.diff.prev)){
         max.fecha <- apply(self$report.prev.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
         self$report.prev.diff %<>% mutate(fecha_reporte = fecha_diagnostico)
         self$report.prev.diff$fecha_actualizacion <- max.fecha
         self$report.prev.diff %<>% mutate(diff_obs = "")
       }
-
       sospechosos.prev.ids <- self$report.prev.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
       diagnosticados.ids   <- self$report.prev.diff %>% filter(!is.na(fecha_reporte)) %>% select (id_evento_caso)
       report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, fecha_actualizacion, diff_obs)
@@ -472,57 +470,9 @@ public = list(
       #updated.rows <- which(self$report.diff$fecha_actualizacion != max.fecha)
       #self$report %<>% mutate(fecha_actualizacion = across( = max(fecha_))
       self$report.diff$ultima_actualizacion <- max.fecha
-      tail(self$report.diff %>%
-             group_by(fecha_reporte, fecha_diagnostico) %>%
-             summarise(n = n(),
-                       confirmados = sum(confirmado),
-                       descartados = sum(descartado),
-                       sospechosos = sum(sospechoso)) %>%
-             filter(fecha_reporte < fecha_diagnostico)
-             #filter(fecha_reporte >= report.date - 2)
-             , n = 45)
 
     }
     self$report.diff
-  },
-  #' processDiffMethod1
-  #' Is self$report  with  fecha_reporte updated from report.diff
-  #' All data is updated and fecha_reporte (when diagnostic was filled in db) is correct
-  processDiffMethod1 = function(){
-    self$report.diff <- self$report.prev
-    if (!"fecha_reporte" %in% names(self$report.diff)){
-      self$report.diff %<>% mutate(fecha_reporte = fecha_diagnostico)
-      self$report.diff %<>% mutate(fecha_actualizacion = fecha_reporte)
-      self$report.diff %<>% mutate(diff_obs = "")
-    }
-    sospechosos.prev.ids <- self$report.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
-    diagnosticados.ids   <- self$report.diff %>% filter(!is.na(fecha_reporte)) %>% select (id_evento_caso)
-    report.new <- self$report %>% filter(!id_evento_caso %in% diagnosticados.ids$id_evento_caso)
-    report.date <- max(report.new$fecha_apertura, na.rm = TRUE)
-    if (!"fecha_reporte" %in% names(report.new)){
-      #report.new %<>% mutate(fecha_reporte = ifelse(!is.na(fecha_diagnostico), as.Date(max(fecha_diagnostico, na.rm = TRUE)), NA))
-      report.new %<>% mutate(fecha_reporte = as.Date(NA))
-      report.new %<>% mutate_cond(!is.na(fecha_diagnostico), fecha_reporte = report.date)
-      report.new %<>% mutate(fecha_actualizacion = fecha_reporte)
-      report.new %<>% mutate(diff_obs = "")
-    }
-
-    report.new[which(!is.na(report.new$fecha_reporte)),]$fecha_reporte
-    report.new %>%
-      group_by(fecha_reporte, fecha_diagnostico) %>%
-      summarise(n = n(),
-                confirmados = sum(confirmado),
-                descartados = sum(descartado),
-                sospechosos = sum(sospechoso))
-    tail(report.new %>%
-           group_by(fecha_reporte, fecha_diagnostico) %>%
-           summarise(n = n(),
-                     confirmados = sum(confirmado),
-                     descartados = sum(descartado),
-                     sospechosos = sum(sospechoso)),
-         n = 20)
-    # Fix update info
-    self$report.diff %<>%  bind_rows(self$report.diff, report.new)
   },
   saveReportDiff = function(){
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
@@ -605,17 +555,20 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
          #TODO automatically commit
          self$report.diff.builder$processDiff()
          self$report.diff.builder$saveReportDiff()
-         self$report.diff.summary <- tail(self$report.diff.builder$report.diff %>%
-                                            group_by(fecha_reporte ) %>%
-                                            summarize(n = n(),
-                                                      confirmados           = sum(confirmado),
-                                                      descartados           = sum(descartado),
-                                                      fallecidos            = sum(fallecido),
-                                                      max_fecha_diagnostico = max(fecha_diagnostico, na.rm = TRUE),
-                                                      min_fecha_diagnostico = min(fecha_diagnostico, na.rm = TRUE),
-                                                      fechas_diagnostico_n  = length(sort(unique(fecha_diagnostico))),
-                                                      fechas_diagnostico    = paste(sort(unique(fecha_diagnostico)), collapse = ", ")),
-                                          n = 10)
+         if ("fecha_reporte" %in% names(self$report.diff.builder$report.diff)){
+           # Will start making summary after first diff (second month)
+           self$report.diff.summary <- tail(self$report.diff.builder$report.diff %>%
+                                              group_by(fecha_reporte) %>%
+                                              summarize(n = n(),
+                                                        confirmados           = sum(confirmado),
+                                                        descartados           = sum(descartado),
+                                                        fallecidos            = sum(fallecido),
+                                                        max_fecha_diagnostico = max(fecha_diagnostico, na.rm = TRUE),
+                                                        min_fecha_diagnostico = min(fecha_diagnostico, na.rm = TRUE),
+                                                        fechas_diagnostico_n  = length(sort(unique(fecha_diagnostico))),
+                                                        fechas_diagnostico    = paste(sort(unique(fecha_diagnostico)), collapse = ", ")),
+                                            n = 10)
+         }
          self$report.diff.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
          self$report.diff.summary %<>% bind_rows(report.building.summary)
        }
