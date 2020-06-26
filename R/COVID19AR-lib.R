@@ -398,7 +398,7 @@ public = list(
   report.diff          = NA,
   curator              = NA,
   logger               = NA,
-  initialize = function(min.rebuilt.date = '2020-06-16', report.diff.dir = "../COVID19ARdata/sources/COVID19AR"){
+  initialize = function(min.rebuilt.date, report.diff.dir){
     self$min.rebuilt.date     <- min.rebuilt.date
     self$curator              <- COVID19ARCurator$new(download.new.data = FALSE)
     self$report.diff.dir      <- report.diff.dir
@@ -433,6 +433,9 @@ public = list(
   #' binds report.prev and report adding rows from self$report with fecha_diagnostico to self$report.prev
   processDiff = function(){
     logger <- getLogger(self)
+    if (!dir.exists(self$report.diff.dir)){
+      stop("Folder", self$report.diff.dir, "must be manually created for running processDiff")
+    }
     self$report.diff <- self$report
     if (!is.null(self$report.prev)){
       self$report.prev.diff <- self$report.prev
@@ -529,3 +532,111 @@ public = list(
     write.table(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
   }
   ))
+
+#' COVID19ARDiffBuilder
+#' @author kenarab
+#' @importFrom R6 R6Class
+#' @import dplyr
+#' @import magrittr
+#' @export
+COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
+ public = list(
+   report.diff.dir = NA,
+   report.diff.summary.filename = NA,
+   # state
+   casos.mapping        = NA,
+   report.diff.builder  = NA,
+   report.diff.summary  = NULL,
+   logger               = NA,
+   initialize = function(min.rebuilt.date = '2020-06-16', report.diff.dir = "../COVID19ARdata/sources/COVID19AR"){
+     self$report.diff.dir      <- report.diff.dir
+     self$report.diff.summary.filename      <- "Covid19CasosReportSummary.csv"
+     self$report.diff.builder  <- COVID19ARDiff$new(min.rebuilt.date = min.rebuilt.date, report.diff.dir)
+     self$logger               <- genLogger(self)
+     self
+   },
+   buildCasosMapping = function(){
+     self$loadReportDiffSummary()
+     casos.mapping <- data.frame(git.id = "7903a570c65736ad931ac25e05c92c4c7315cd8d", update.date = as.Date("2020-06-24"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("6732da9116949a47eb5d76230565ebaa1552a250", "2020-06-23"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("302a212eddb1c7b21a8806c2d589868e58c8c63a", "2020-06-22"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("92086347aa6eb88e57cf6bee5c4ddd6cc17e26f3", "2020-06-21"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("9f334f0d679f0af8731c6c5d001a36bf61f7e360", "2020-06-20"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("3d9409aae05c14d6ba6fc570e866eac24e404b6e", "2020-06-19"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("c61cdf724c8676ed9a995f69b624a9cc4fc526ac", "2020-06-18"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("1f3dfe30d87d18530b53205c83dbddb7b17578c7", "2020-06-17"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("414090f440649265bd5e9e6835271306f318208f", "2020-06-16"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
+
+     casos.mapping %<>% arrange(update.date)
+     self$casos.mapping <- casos.mapping
+     self$casos.mapping
+   },
+   buildCasosReport = function(max.n = 0){
+     logger <- getLogger(self)
+     report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
+     n <- nrow(casos.mapping)
+     if (max.n > 0){
+       n <- min(n, max.n)
+     }
+     for (i in seq_len(n)){
+       current.case <- casos.mapping[i,]
+       if (!current.case$update.date %in% report.days.processed){
+         logger$info("Processing current date", current.date = current.case$update.date)
+         # Starting from diff
+         self$report.diff.builder$loadReports(commit = current.case$git.id, max.date = current.case$update.date)
+         #TODO automatically commit
+         self$report.diff.builder$processDiff()
+         self$report.diff.builder$saveReportDiff()
+         self$report.diff.summary <- tail(self$report.diff.builder$report.diff %>%
+                                            group_by(fecha_reporte ) %>%
+                                            summarize(n = n(),
+                                                      confirmados           = sum(confirmado),
+                                                      descartados           = sum(descartado),
+                                                      fallecidos            = sum(fallecido),
+                                                      max_fecha_diagnostico = max(fecha_diagnostico, na.rm = TRUE),
+                                                      min_fecha_diagnostico = min(fecha_diagnostico, na.rm = TRUE),
+                                                      fechas_diagnostico_n  = length(sort(unique(fecha_diagnostico))),
+                                                      fechas_diagnostico    = paste(sort(unique(fecha_diagnostico)), collapse = ", ")),
+                                          n = 10)
+         self$report.diff.summary <- bind_cols(fecha_reporte_ejecutado = current.case$update.date, report.building.summary)
+         self$report.diff.summary %<>% bind_rows(report.building.summary)
+       }
+     }
+     self$report.diff.summary
+   },
+   loadReportDiffSummary = function(){
+     report.diff.summary.path <- file.path(self$report.diff.dir, self$report.diff.summary.filename)
+     applied.delim <- ","
+     # No way of setting quotes in readr function
+     #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
+     if (file.exists(report.diff.summary.path)){
+       self$report.diff.summary <- read_csv(file = report.diff.summary.path, delim = applied.delim)
+     }
+     self$report.diff.summary
+   },
+   saveReportDiff = function(){
+     report.diff.summary.path <- file.path(self$report.diff.dir, self$report.diff.summary.filename)
+     applied.delim <- ","
+     # No way of setting quotes in readr function
+     #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
+     write.table(self$report.diff, file = report.diff.summary.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
+   }
+   ))
