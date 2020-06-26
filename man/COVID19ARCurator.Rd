@@ -65,7 +65,7 @@ kenarab
 \if{latex}{\out{\hypertarget{method-readFile}{}}}
 \subsection{Method \code{readFile()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$readFile(file.path)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARCurator$readFile(file.path, assign = TRUE)}\if{html}{\out{</div>}}
 }
 
 }

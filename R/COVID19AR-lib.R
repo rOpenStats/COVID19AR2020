@@ -73,13 +73,17 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       file.path <- fixEncoding(file.path)
       file.info(file.path)
 
-      self$data <- self$readFile(file.path)
+      self$readFile(file.path)
       self$data
     },
-    readFile = function(file.path){
-      read_delim(file.path,
+    readFile = function(file.path, assign = TRUE){
+      ret <- read_delim(file.path,
                  delim = self$cols.delim[[self$specification]]
                  ,col_types = self$cols.specifications[[self$specification]])
+      if (assign){
+        self$data <- ret
+      }
+      ret
     },
     curateData = function(){
       if (is.null(self$specification)){
@@ -414,7 +418,7 @@ public = list(
     }
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
     if (file.exists(report.diff.path)){
-      self$curator$readFile(file.path = report.diff.path)
+      self$curator$readFile(file.path = report.diff.path, assign = TRUE)
       self$curator$curateData()
       self$report.prev <- self$curator$getData()
     }
@@ -430,13 +434,9 @@ public = list(
   processDiff = function(){
     logger <- getLogger(self)
     self$report.diff <- self$report
-
     if (!is.null(self$report.prev)){
       self$report.prev.diff <- self$report.prev
       fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
-
-      #debug
-      stop("Under construction")
 
       if (!"fecha_reporte" %in% names(self$report.diff.prev)){
         max.fecha <- apply(self$report.prev.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
@@ -474,7 +474,11 @@ public = list(
              summarise(n = n(),
                        confirmados = sum(confirmado),
                        descartados = sum(descartado),
-                       sospechosos = sum(sospechoso)) %>% filter(fecha_reporte >= report.date - 2), n = 45)
+                       sospechosos = sum(sospechoso)) %>%
+             filter(fecha_reporte < fecha_diagnostico)
+             #filter(fecha_reporte >= report.date - 2)
+             , n = 45)
+
     }
     self$report.diff
   },
