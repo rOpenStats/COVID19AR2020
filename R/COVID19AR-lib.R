@@ -446,31 +446,73 @@ public = list(
         self$report.prev.diff$fecha_actualizacion <- max.fecha
         self$report.prev.diff %<>% mutate(diff_obs = "")
       }
-      sospechosos.prev.ids <- self$report.prev.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
-      diagnosticados.ids   <- self$report.prev.diff %>% filter(!is.na(fecha_reporte)) %>% select (id_evento_caso)
-      report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, fecha_actualizacion, diff_obs)
+      sospechosos.prev.ids <- self$report.prev.diff %>%
+                                filter(is.na(fecha_reporte)) %>%
+                                select (id_evento_caso)
+      diagnosticados.ids   <- self$report.prev.diff %>%
+                                    filter(!is.na(fecha_reporte)) %>%
+                                    select (id_evento_caso)
+      report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, fecha_actualizacion, fecha_diagnostico_prev = fecha_diagnostico, clasificacion_resumen_prev = clasificacion_resumen, diff_obs)
       nrow(self$report.diff)
       max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
       nrow(self$report.prev.diff)
       max(self$report.prev.diff$fecha_diagnostico, na.rm = TRUE)
 
-      logger$info("Joining fecha reporte", nrow = nrow(self$report.diff), nrow.prev = nrow(report.prev.diff.reporte))
+      logger$info("Joining fecha reporte",
+                  nrow = nrow(self$report.diff),
+                  nrow.prev = nrow(report.prev.diff.reporte))
       self$report.diff %<>% left_join(report.prev.diff.reporte, by = "id_evento_caso")
-      self$report.diff %>% filter(is.na(fecha_reporte)) %>% select(fecha_apertura)
-      report.date <- max(self$report$fecha_diagnostico, na.rm = TRUE)
+      report.date <- max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
+      # Checked PK in report.diff
+      self$report.diff %>%
+        group_by(id_evento_caso) %>%
+        summarise(n = n()) %>% filter(n >1)
+      sospechosos.remaining.ids <- self$report.diff %>%
+                                    filter(is.na(fecha_reporte)) %>%
+                                    select (id_evento_caso)
+      #new diagnostics
+      nuevos.diagnosticos.id <- self$report.diff %>%
+        filter(id_evento_caso %in% sospechosos.remaining.ids$id_evento_caso &
+                 !is.na(fecha_diagnostico)) %>% select(id_evento_caso)
+      #rectifications
+      rectification.diagnostico.ids <-  self$report.diff %>%
+                                          filter(!is.na(fecha_reporte) & fecha_diagnostico != fecha_diagnostico_prev) %>%
+                                          select (id_evento_caso)
+      rectification.clasificacion.ids <- self$report.diff %>%
+                                          filter(!is.na(fecha_reporte) & clasificacion_resumen != clasificacion_resumen_prev) %>%
+                                          select (id_evento_caso)
+      # news
+      diagnosticos.date <- unique(nuevos.diagnosticos.id$id_evento_caso, rectification.diagnostico.ids$id_evento_caso, rectification.clasificacion.ids$id_evento_caso)
+      logger$info("Filling report date for ", report.date = report.date,
+                  diagnosticos.fecha          = length(diagnosticos.date),
+                  nuevos.diagnosticos         = nrow(nuevos.diagnosticos.id),
+                  rectificacion.diagnostico   = nrow(rectification.diagnostico.ids),
+                  rectificacion.clasificacion = nrow(rectification.clasificacion.ids))
+      # Update fecha_reporte current.date
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% diagnosticos.date &
+                                          !is.na(fecha_diagnostico) & fecha_diagnostico >= self$min.rebuilt.date,
+                                        fecha_reporte = report.date)
+      # Update fecha_reporte fecha_diagnostico (previous to min.rebuilt.date)
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% diagnosticos.date &
+                                          !is.na(fecha_diagnostico) & fecha_diagnostico < self$min.rebuilt.date,
+                                        fecha_reporte = fecha_diagnostico)
+      # Update diff_obs with rectification diagnostico
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% rectification.diagnostico.ids$id_evento_caso,
+                                        diff_obs = paste(diff_obs, "|rectFD=", fecha_diagnostico_prev, sep = ""))
+      self$report.diff %<>% mutate_cond(id_evento_caso %in% rectification.clasificacion.ids$id_evento_caso,
+                                        diff_obs = paste(diff_obs, "|rectCla=", clasificacion_resumen_prev, sep = ""))
+      #check
+      self$report.diff %>% filter(id_evento_caso %in% rectification.clasificacion.ids$id_evento_caso) %>% select(fecha_diagnostico, clasificacion_resumen, diff_obs)
 
-      sospechosos.remaining.ids <- self$report.diff %>% filter(is.na(fecha_reporte)) %>% select (id_evento_caso)
-      logger$info("Filling report date for ", report.date = report.date, nrow(sospechosos.remaining.ids))
-      self$report.diff %<>% mutate_cond(id_evento_caso %in% sospechosos.remaining.ids$id_evento_caso &
-                                          !is.na(fecha_diagnostico) & fecha_diagnostico >= self$min.rebuilt.date, fecha_reporte = report.date)
-      # For days previous to min.rebuilt.date report date is fecha_diagnostico
-      self$report.diff %<>% mutate_cond(id_evento_caso %in% sospechosos.remaining.ids$id_evento_caso &
-                                          !is.na(fecha_diagnostico) & fecha_diagnostico < self$min.rebuilt.date, fecha_reporte = fecha_diagnostico)
+      # Remove aux columns
+      self$report.diff %<>% select(-fecha_diagnostico_prev, -clasificacion_resumen_prev)
+      # Not useful as it is not consistent
+      self$report.diff %<>% select(-clasificacion)
+
       max.fecha <- apply(self$report.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
       #updated.rows <- which(self$report.diff$fecha_actualizacion != max.fecha)
       #self$report %<>% mutate(fecha_actualizacion = across( = max(fecha_))
       self$report.diff$ultima_actualizacion <- max.fecha
-
     }
     self$report.diff
   },
@@ -524,30 +566,35 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                             c("1f3dfe30d87d18530b53205c83dbddb7b17578c7", "2020-06-17"))
      casos.mapping <- rbind(casos.mapping,
                             c("414090f440649265bd5e9e6835271306f318208f", "2020-06-16"))
-     # casos.mapping <- rbind(casos.mapping,
-     #                        c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
-     # casos.mapping <- rbind(casos.mapping,
-     #                        c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
-     # casos.mapping <- rbind(casos.mapping,
-     #                        c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
-     # casos.mapping <- rbind(casos.mapping,
-     #                        c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
      casos.mapping <- rbind(casos.mapping,
                             c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
-
+     casos.mapping <- rbind(casos.mapping,
+                            c("224b24155b79e13a4edbb76a367f5cf326ab3194", "2020-06-26"))
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
      self$casos.mapping
    },
-   buildCasosReport = function(max.n = 0){
+   buildCasosReport = function(max.n = 0, min.date = NULL){
      logger <- getLogger(self)
      report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
+     casos.mapping <- self$casos.mapping
+     if (!is.null(min.date)){
+       casos.mapping %<>% filter(update.date >= min.date)
+     }
      n <- nrow(self$casos.mapping)
      if (max.n > 0){
        n <- min(n, max.n)
      }
      for (i in seq_len(n)){
-       current.case <- self$casos.mapping[i,]
+       current.case <- casos.mapping[i,]
        if (!current.case$update.date %in% report.days.processed){
          logger$info("Processing current date", current.date = current.case$update.date)
          # Starting from diff
@@ -605,3 +652,31 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
      write.table(self$report.diff.summary, file = report.diff.summary.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
    }
    ))
+
+#' loadMapacheData
+#' @import readr
+#' @export
+loadMapacheData <- function(){
+  read_csv('https://docs.google.com/spreadsheets/d/16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA/export?format=csv&id=16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA&gid=0',
+           col_types = cols(
+             fecha = col_character(),
+             dia_inicio = col_double(),
+             dia_cuarentena_dnu260 = col_double(),
+             osm_admin_level_2 = col_character(),
+             osm_admin_level_4 = col_character(),
+             osm_admin_level_8 = col_character(),
+             tot_casosconf = col_double(),
+             nue_casosconf_diff = col_double(),
+             tot_fallecidos = col_double(),
+             nue_fallecidos_diff = col_double(),
+             tot_recuperados = col_double(),
+             tot_terapia = col_double(),
+             `test_RT-PCR_negativos` = col_double(),
+             `test_RT-PCR_total` = col_double(),
+             transmision_tipo = col_character(),
+             informe_tipo = col_character(),
+             informe_link = col_character(),
+             observacion = col_character(),
+             covid19argentina_admin_level_4 = col_character()
+           ))
+}
