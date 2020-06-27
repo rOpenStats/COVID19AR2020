@@ -16,7 +16,9 @@ kenarab
 \itemize{
 \item \href{#method-new}{\code{COVID19ARDiffSummarizer$new()}}
 \item \href{#method-buildCasosMapping}{\code{COVID19ARDiffSummarizer$buildCasosMapping()}}
+\item \href{#method-buildMapacheData}{\code{COVID19ARDiffSummarizer$buildMapacheData()}}
 \item \href{#method-buildCasosReport}{\code{COVID19ARDiffSummarizer$buildCasosReport()}}
+\item \href{#method-generateReportDaySummary}{\code{COVID19ARDiffSummarizer$generateReportDaySummary()}}
 \item \href{#method-loadReportDiffSummary}{\code{COVID19ARDiffSummarizer$loadReportDiffSummary()}}
 \item \href{#method-saveReportDiffSummary}{\code{COVID19ARDiffSummarizer$saveReportDiffSummary()}}
 \item \href{#method-clone}{\code{COVID19ARDiffSummarizer$clone()}}
@@ -44,11 +46,29 @@ kenarab
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-buildMapacheData"></a>}}
+\if{latex}{\out{\hypertarget{method-buildMapacheData}{}}}
+\subsection{Method \code{buildMapacheData()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$buildMapacheData()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-buildCasosReport"></a>}}
 \if{latex}{\out{\hypertarget{method-buildCasosReport}{}}}
 \subsection{Method \code{buildCasosReport()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$buildCasosReport(max.n = 0)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$buildCasosReport(max.n = 0, min.date = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-generateReportDaySummary"></a>}}
+\if{latex}{\out{\hypertarget{method-generateReportDaySummary}{}}}
+\subsection{Method \code{generateReportDaySummary()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiffSummarizer$generateReportDaySummary(update.date)}\if{html}{\out{</div>}}
 }
 
 }
