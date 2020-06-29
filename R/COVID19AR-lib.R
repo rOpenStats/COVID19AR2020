@@ -120,7 +120,6 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       # Normalize column names of self$data
       names(self$data) <- tolower(names(self$data))
       self$data.fields <- names(self$data)
-      self$data$fixed <- ""
       self$data %<>% mutate(clasificacion = tolower(clasificacion))
       self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
       self$data %<>% mutate(fallecido = tolower(fallecido))
@@ -602,6 +601,8 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                             c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
      casos.mapping <- rbind(casos.mapping,
                             c("224b24155b79e13a4edbb76a367f5cf326ab3194", "2020-06-26"))
+
+
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
      self$buildMapacheData()

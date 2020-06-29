@@ -57,7 +57,7 @@ retrieveURL <- function(data.url, col.types,
       }
     }
     else{
-        stop("Dest dir does not exists", dest.dir = dest.dir)
+        stop(paste("Dest dir does not exists", dest.dir = dest.dir))
     }
   if (download.flag | force.download){
     lgr$info("Retrieving", url = data.url, dest.path = dest.path)
