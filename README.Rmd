@@ -35,6 +35,10 @@ A package for analysing COVID-19 Argentina's outbreak
 |||[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)|
 
 
+# Argentina COVID19 open data
+
+* [Casos daily file](https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.csv)
+* [Determinaciones daily file](https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Determinaciones.csv)
 
 
 # How to get started (Development version)
