@@ -7,7 +7,7 @@ reprex({
  #library(dplyr)
  #library(RColorBrewer)
  knitr::opts_chunk$set(fig.width = 4, fig.height = 6, dpi = 300, warning = FALSE)
- report.dir = file.path(getEnv("data_dir"), "reports")
+ report.dir <- file.path(getEnv("data_dir"), "reports")
  dir.create(report.dir, showWarnings = FALSE, recursive = TRUE)
  covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
  dummy <- covid19.curator$loadData()
@@ -21,7 +21,7 @@ reprex({
  data2plot <- covid19.ar.summary %>%
   filter(residencia_provincia_nombre %in% covid19.ar.provincia.summary.selected$residencia_provincia_nombre) %>%
   filter(confirmados > 0 ) %>%
-  filter(positividad.porc <=0.6 | confirmados >= 20)
+  filter(positividad.porc <= 0.6 | confirmados >= 20)
 
  sepi.fechas <- covid19.curator$data %>%
                   group_by(sepi_apertura) %>%
@@ -46,7 +46,7 @@ reprex({
                        data.provider.abv = "@msalnacion", base.size = 6)
  covplot <- covplot + scale_y_log10()
  covplot
- ggsave(file.path(report.dir, paste("provincias-confirmados-tests",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("provincias-confirmados-tests", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
@@ -60,7 +60,7 @@ reprex({
   geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
  covplot <- covplot  +
-  geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc"))+
+  geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc")) +
   facet_wrap(~residencia_provincia_nombre, ncol = 2, scales = "free_y")
  covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = letalidad.min.porc, color = "letalidad.min.porc")) +
@@ -70,7 +70,7 @@ reprex({
                       total.colors = 4,
                       data.provider.abv = "@msalnacion", base.size = 6)
  covplot
- ggsave(file.path(report.dir, paste("provincias-positividad",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("provincias-positividad", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 

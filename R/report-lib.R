@@ -122,8 +122,8 @@ setupTheme <- function(ggplot, report.date, x.values, data.provider.abv, total.c
    date.breaks.freq  <- "7 day"
    minor.breaks.freq <- "1 day"
    date.labels.format <- "%y-%m-%d"
-   neg.date.breaks.freq <- paste("-", date.breaks.freq, sep ="")
-   neg.minor.breaks.freq <- paste("-", minor.breaks.freq, sep ="")
+   neg.date.breaks.freq <- paste("-", date.breaks.freq, sep = "")
+   neg.minor.breaks.freq <- paste("-", minor.breaks.freq, sep = "")
    date.breaks  <- sort(seq(max.date,
                             min.date,
                             by = neg.date.breaks.freq))
@@ -203,5 +203,3 @@ getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){
  ret <- paste(ret, "\nsource: https://github.com/rOpenStats/COVID19AR/ based on", data.provider.abv)
  ret
 }
-
-

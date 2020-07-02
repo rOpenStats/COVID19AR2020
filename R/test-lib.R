@@ -57,7 +57,7 @@ TestCaseCOVID19ARGenerator.class <-
      }
     },
     getCaseFilename = function(){
-      paste("covid19ar", self$name, sep ="_")
+      paste("covid19ar", self$name, sep = "_")
     },
     generateExpectedSummaries = function(){
      expected.dir <- file.path(self$testcase.dir, "expected")

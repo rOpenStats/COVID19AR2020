@@ -4,7 +4,6 @@
 #' @author kenarab
 #' @export
 retrieveArgentinasDeathsStatistics <- function(){
- data.dir <- getEnv("data_dir")
  #http://www.deis.msal.gov.ar/index.php/base-de-datos/
  # TODO link scrape automation with rvest
  #deaths.stats.html <- read_html("http://www.deis.msal.gov.ar/index.php/base-de-datos/")
@@ -34,15 +33,15 @@ readMetadata <- function(file.path){
  ret[["metadata"]] <- metadata
  for (i in seq_len(nrow(metadata))){
   current.field.row <- metadata[i,]
-  field.name <- as.character(current.field.row[,1])
-  if (!is.na(current.field.row[,3]) & current.field.row[,3]== "Ver códigos"){
+  field.name <- as.character(current.field.row[, 1])
+  if (!is.na(current.field.row[, 3]) & current.field.row[, 3] == "Ver códigos"){
     if (field.name == "CAUSA"){
      sheet.name <- "CODMUER"
     }
     else{
      sheet.name <- field.name
     }
-    current.field.sheet <-read_xlsx(file.path, sheet = sheet.name)
+    current.field.sheet <- read_xlsx(file.path, sheet = sheet.name)
     ret[[field.name]] <- current.field.sheet
   }
  }
@@ -67,7 +66,7 @@ codeEdad <- function(data.deaths){
  data.deaths[rows2correct, "EDAD_MIN"] <- as.numeric(gsub(edad.regexp, "\\2", data2correct))
  data.deaths[rows2correct, "EDAD_MAX"] <- as.numeric(gsub(edad.regexp, "\\3", data2correct))
  codes.not.recognized <- sort(setdiff(all.codes, codes2correct))
- codes.na <- sort(unique(data.deaths[is.na(data.deaths$EDAD_CODE),]$GRUPEDAD))
+ codes.na <- sort(unique(data.deaths[is.na(data.deaths$EDAD_CODE), ]$GRUPEDAD))
  stopifnot(identical( codes.not.recognized, codes.na))
  for (manual.code in codes.not.recognized){
   rows2correct <- which(data.deaths$GRUPEDAD == manual.code)
@@ -94,13 +93,13 @@ codeEdad <- function(data.deaths){
   #debug
   print(manual.code)
 
-  data.deaths[rows2correct,]$EDAD_CODE <- EDAD_CODE
-  data.deaths[rows2correct,]$EDAD_MIN <- EDAD_MIN
-  data.deaths[rows2correct,]$EDAD_MAX <- EDAD_MAX
+  data.deaths[rows2correct, ]$EDAD_CODE <- EDAD_CODE
+  data.deaths[rows2correct, ]$EDAD_MIN <- EDAD_MIN
+  data.deaths[rows2correct, ]$EDAD_MAX <- EDAD_MAX
   logger$info(paste("Correct", length(rows2correct), "for manual.code", manual.code), EDAD_MIN = EDAD_MIN, EDAD_MAX = EDAD_MAX)
 
  }
- data.deaths[, "EDAD_MEDIA"] <- (data.deaths[, "EDAD_MIN"] + data.deaths[, "EDAD_MAX"]-1)/2
+ data.deaths[, "EDAD_MEDIA"] <- (data.deaths[, "EDAD_MIN"] + data.deaths[, "EDAD_MAX"] - 1) / 2
  data.deaths
 }
 
@@ -134,7 +133,8 @@ ConsolidatedDeathsData.class <- R6Class("ConsolidatedDeathsData",
         self$data
     },
     postProcess = function(){
-      self$data$codigo.causas <- apply(self$data[, c("CAUSA", "CAUSA_description")], MARGIN = 1, FUN = function(x){paste(x, collapse ="|")})
+      self$data$codigo.causas <- apply(self$data[, c("CAUSA", "CAUSA_description")], MARGIN = 1,
+                                       FUN = function(x){paste(x, collapse = "|")})
       self$data
     },
     readDeathsStats = function(filename, fail.on.error = FALSE){
@@ -167,14 +167,14 @@ ConsolidatedDeathsData.class <- R6Class("ConsolidatedDeathsData",
           field.description <- paste(field, "description", sep = "_")
           metadata.df <- as.data.frame(self$metadata[[field]], stringsAsFactors = TRUE)
           names(metadata.df) <- c(field, field.description)
-          metadata.df[,field.description] <- as.factor(metadata.df[,field.description])
+          metadata.df[, field.description] <- as.factor(metadata.df[, field.description])
           data.deaths <- data.deaths %>% left_join(metadata.df, by = field)
           # check missing values
-          rows.not.coded <- which(is.na(data.deaths[,field.description]))
+          rows.not.coded <- which(is.na(data.deaths[, field.description]))
           codes.not.metadata <- unique(data.deaths[rows.not.coded, field])
-          cases <- sum(data.deaths[rows.not.coded,]$CUENTA)
+          cases <- sum(data.deaths[rows.not.coded, ]$CUENTA)
           if ( length(codes.not.metadata) > 0 ){
-            if (length(codes.not.metadata)==1 & is.na(codes.not.metadata)){
+            if (length(codes.not.metadata) == 1 & is.na(codes.not.metadata)){
               lgr$info("NA values", count = length(rows.not.coded), field = field)
             }
             else{

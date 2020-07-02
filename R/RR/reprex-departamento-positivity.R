@@ -23,7 +23,8 @@ reprex({
                                               group_by(residencia_provincia_nombre) %>%
                                               summarise(min_sepi_apertura = min(sepi_apertura),
                                                         max_confirmados = max(confirmados), .groups = "keep") %>%
-                                              filter(max_confirmados >=100) %>% arrange(desc(max_confirmados))
+                                              filter(max_confirmados >= 100) %>%
+                                              arrange(desc(max_confirmados))
  kable(covid19.ar.provincia.summary.selected)
 
  covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
@@ -57,7 +58,7 @@ reprex({
               inner_join(departamentos2plot %>%
                            select(residencia_provincia_nombre, residencia_departamento_nombre, rank),
                          by = c("residencia_provincia_nombre", "residencia_departamento_nombre")) %>%
-              filter(positividad.porc <=0.6 | confirmados >= 20) %>%
+              filter(positividad.porc <= 0.6 | confirmados >= 20) %>%
               arrange(rank, sepi_apertura)
 
  data2plot %<>% mutate(group.name = paste(sprintf("%02d", round(rank)), residencia_provincia_nombre, residencia_departamento_nombre, sep = "-"))
@@ -88,20 +89,20 @@ reprex({
                        data.provider.abv = "@msalnacion", base.size = 6)
  covplot <- covplot + scale_y_log10()
  covplot
- ggsave(file.path(report.dir, paste("caba-provincias-departamentos-confirmados-tests",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("caba-provincias-departamentos-confirmados-tests", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
  covplot <- data2plot.caba %>%
   ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
   geom_line() +
-  facet_wrap(~group.name , ncol = 2, scales = "free_y") +
+  facet_wrap(~group.name, ncol = 2, scales = "free_y") +
   labs(title = paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - CABA", sep = ""))
  covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
   facet_wrap(~group.name, ncol = 2, scales = "free_y")
  covplot <- covplot  +
-  geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc"))+
+  geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc")) +
   facet_wrap(~group.name, ncol = 2, scales = "free_y")
  covplot <- covplot +
   geom_line(aes(x = ultima_fecha_sepi, y = letalidad.min.porc, color = "letalidad.min.porc")) +
@@ -111,7 +112,7 @@ reprex({
                       total.colors = 4,
                       data.provider.abv = "@msalnacion", base.size = 6)
  covplot
- ggsave(file.path(report.dir, paste("caba-provincias-departamentos-positividad",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("caba-provincias-departamentos-positividad", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
@@ -132,21 +133,21 @@ reprex({
                        data.provider.abv = "@msalnacion", base.size = 6)
  covplot <- covplot + scale_y_log10()
  covplot
- ggsave(file.path(report.dir, paste("resto-provincias-departamentos-confirmados-tests",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("resto-provincias-departamentos-confirmados-tests", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 
  covplot <- data2plot.resto %>%
    ggplot(aes(x = ultima_fecha_sepi, y = positividad.porc, color = "positividad.porc")) +
    geom_line() +
-   facet_wrap(~group.name , ncol = 2, scales = "free_y") +
+   facet_wrap(~group.name, ncol = 2, scales = "free_y") +
    labs(title =  paste("Porcentajes de positividad, uso de UCI, respirador y letalidad\n", top.n, " departamentos del país > 20 casos confirmados con máxima positividad - Resto", sep = ""))
 
  covplot <- covplot +
    geom_line(aes(x = ultima_fecha_sepi, y = cuidado.intensivo.porc, color = "cuidado.intensivo.porc")) +
    facet_wrap(~group.name, ncol = 2, scales = "free_y")
  covplot <- covplot  +
-   geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc"))+
+   geom_line(aes(x = ultima_fecha_sepi, y = respirador.porc, color = "respirador.porc")) +
    facet_wrap(~group.name, ncol = 2, scales = "free_y")
  covplot <- covplot +
    geom_line(aes(x = ultima_fecha_sepi, y = letalidad.min.porc, color = "letalidad.min.porc")) +
@@ -156,7 +157,7 @@ reprex({
                        total.colors = 4,
                        data.provider.abv = "@msalnacion", base.size = 6)
  covplot
- ggsave(file.path(report.dir, paste("resto-provincias-departamentos-positividad",".png", sep ="")),
+ ggsave(file.path(report.dir, paste("resto-provincias-departamentos-positividad", ".png", sep = "")),
         covplot,
         width = 7, height = 5, dpi = 300)
 })

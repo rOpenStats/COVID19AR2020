@@ -115,6 +115,3 @@ reprex({
                       data.provider.abv = "@msalnacion", base.size = 6)
  covidplot
 })
-
-
-
