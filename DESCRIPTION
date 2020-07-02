@@ -1,6 +1,6 @@
 Package: COVID19AR
 Type: Package
-Title:  for analysing COVID-19 Argentina's outbreak
+Title: for analysing COVID-19 Argentina's outbreak
 Version: 0.1.0
 Authors@R: c(
     person("Alejandro", "Baranek",,"abaranek@dc.uba.ar", c("aut","com","cre", "cph"))
@@ -36,4 +36,4 @@ Collate:
         'COVID19AR-lib.R'
         'report-lib.R'
         'util-lib.R'
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

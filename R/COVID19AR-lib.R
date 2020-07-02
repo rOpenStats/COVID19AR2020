@@ -78,8 +78,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     },
     readFile = function(file.path, assign = TRUE){
       ret <- read_delim(file.path,
-                 delim = self$cols.delim[[self$specification]]
-                 ,col_types = self$cols.specifications[[self$specification]])
+                 delim = self$cols.delim[[self$specification]],
+                 col_types = self$cols.specifications[[self$specification]])
       if (assign){
         self$data <- ret
       }
@@ -137,7 +137,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         unique(self$data$edad_años_meses)
         #Generate edad_actual_anios
         self$data$edad_actual_anios <- self$data$edad
-        self$data[self$data$edad_años_meses == "Meses",]$edad_actual_anios <- 0
+        self$data[self$data$edad_años_meses == "Meses", ]$edad_actual_anios <- 0
         self$data$edad.rango <- vapply(self$data$edad_actual_anios,
                                        FUN = self$edad.coder$codeEdad,
                                        FUN.VALUE = character(1))
@@ -152,7 +152,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
         self$data %<>% mutate(fallecido  = ifelse(confirmado & fallecido == "si", 1, 0))
         self$curated <- TRUE
         nrows.after <- nrow(self$data)
-        if (nrows.after < nrows.before*.99){
+        if (nrows.after < nrows.before * .99){
           # If in curation we loose more than 1% of records. SHow a warning
           logger$warn("Too much data filtered in curation",
                       nrows.before = nrows.before, nrows.after = nrows.after)
@@ -194,21 +194,21 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
      if (is.null(ret)){
        #self$data$edad.rango <- NA
        #levels(self$data$edad.rango) <- self$edad.coder$agelabels
-       temporal.fields.agg<- group.vars[group.vars %in% self$fields.temporal]
+       temporal.fields.agg <- group.vars[group.vars %in% self$fields.temporal]
        non.temporal.fields.agg <- setdiff(group.vars, temporal.fields.agg)
        non.temporal.groups <- data2process %>%
          group_by_at(non.temporal.fields.agg) %>%
          summarise( .groups = "keep") %>%
          arrange_at(non.temporal.fields.agg)
-       if(length(temporal.fields.agg) == 0){
+       if (length(temporal.fields.agg) == 0){
          ret <- self$getAggregatedData(group.fields = group.vars, current.data = data2process)
        }
        else{
          ret <- NULL
          for (i in seq_len(nrow(non.temporal.groups))){
-           current.group <- non.temporal.groups[i,]
+           current.group <- non.temporal.groups[i, ]
            logger$info("Processing", current.group = paste(names(current.group), current.group,
-                                                           sep =" = ", collapse = "|"))
+                                                           sep = " = ", collapse = "|"))
            current.group.data <- data2process %>% inner_join(current.group, by = non.temporal.fields.agg)
            temporal.groups <- current.group.data %>%
              group_by_at(temporal.fields.agg) %>%
@@ -218,7 +218,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
            current.group.data.agg <- NULL
            dias.contador <- 0
            for (j in seq_len(nrow(temporal.groups))){
-             current.temporal.group <- temporal.groups[j,]
+             current.temporal.group <- temporal.groups[j, ]
              if (!temporal.acum){
                current.temporal.group.acum <- NULL
              }
@@ -246,7 +246,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
            if (!is.null(current.group.data.agg)){
              # Indicators
              current.group.data.agg %<>%  mutate(confirmados.inc = ifelse(dias.inicio >= 1, confirmados - lag(confirmados, n = 1), NA))
-             current.group.data.agg %<>%  mutate(confirmados.rate = ifelse(dias.inicio >= 1, confirmados.inc/lag(confirmados, n = 1), NA))
+             current.group.data.agg %<>%  mutate(confirmados.rate = ifelse(dias.inicio >= 1, confirmados.inc / lag(confirmados, n = 1), NA))
              current.group.data.agg %<>%  mutate(fallecidos.inc = ifelse(dias.inicio >= 1, fallecidos - lag(fallecidos, n = 1), NA))
              current.group.data.agg %<>%  mutate(tests.inc = ifelse(dias.inicio >= 1, tests - lag(tests, n = 1), NA))
              current.group.data.agg %<>%  mutate(tests.rate = ifelse(dias.inicio >= 1, tests.inc / lag(tests, n = 1), NA))
@@ -270,9 +270,13 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
          summarize(n = n(),
                    confirmados = sum(ifelse(confirmado, 1, 0)))
        keys.confirmados  %<>% filter(confirmados > 0)
-       keys.confirmados$key <- apply(keys.confirmados[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
+       keys.confirmados$key <- apply(keys.confirmados[, group.fields], MARGIN = 1,
+                                     FUN = function(x){paste(x, collapse = "|")})
 
-       current.data$key <- apply(current.data[, group.fields], MARGIN = 1, FUN = function(x){paste(x, collapse = "|")})
+       current.data$key <- apply(current.data[, group.fields], MARGIN = 1,
+                                 FUN = function(x){
+                                   paste(x, collapse = "|")
+                                   })
        key.fields <- paste(group.fields, collapse = "|")
        nrow <- nrow(current.data)
        current.data.casos <- current.data %>% filter(key %in% keys.confirmados$key)
@@ -292,21 +296,21 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                      fallecidos         = sum(ifelse(fallecido, 1, 0)),
                      tests              = sum(ifelse(!is.na(fecha_diagnostico), 1, 0)),
                      sin.clasificar     = sum(ifelse(clasificacion_resumen == "sin clasificar", 1, 0)),
-                     letalidad.min.porc = round(fallecidos / (confirmados+sospechosos), 3),
+                     letalidad.min.porc = round(fallecidos / (confirmados + sospechosos), 3),
                      letalidad.max.porc = round(fallecidos / confirmados, 3),
                      positividad.porc   = round(confirmados / tests, 3),
-                     internados         = sum(ifelse(confirmado &!is.na(fecha_internacion), 1, 0)),
-                     internados.porc    = round(internados/confirmados, 3),
+                     internados         = sum(ifelse(confirmado & !is.na(fecha_internacion), 1, 0)),
+                     internados.porc    = round(internados / confirmados, 3),
                      cuidado.intensivo  = sum(ifelse(confirmado & !is.na(cuidado_intensivo) & cuidado_intensivo == "SI", 1, 0)),
-                     cuidado.intensivo.porc = round(cuidado.intensivo/confirmados, 3),
+                     cuidado.intensivo.porc = round(cuidado.intensivo / confirmados, 3),
                      respirador         = sum(ifelse(confirmado & !is.na(asistencia_respiratoria_mecanica) & asistencia_respiratoria_mecanica == "SI", 1, 0)),
                      respirador.porc    = round(respirador / confirmados, 3),
                      dias.diagnostico   = round(mean(ifelse(confirmado, as.numeric(fecha_diagnostico - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
                      dias.apertura      = round(mean(ifelse(confirmado, as.numeric(fecha_apertura - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
                      dias.cuidado.intensivo = round( mean(ifelse(confirmado, as.numeric(fecha_cui_intensivo - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
                      dias.fallecimiento = round( mean(ifelse(confirmado, as.numeric(fecha_fallecimiento - fecha_inicio_sintomas), NA), na.rm = TRUE), 1),
-                     , .groups = "keep"
-           )  %>% filter (confirmados >= min.confirmados)
+                     , .groups = "keep")  %>%
+                filter (confirmados >= min.confirmados)
        }
        ret
      }
@@ -326,9 +330,9 @@ EdadCoder <- R6Class("EdadCoder",
   },
   setupCoder = function(){
    self$agebreaks <- c(0, 1, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 120)
-   self$agelabels <- c("0","1-9","10-14","15-19","20-24","25-29","30-34",
-                  "35-39","40-44","45-49","50-54","55-59","60-64","65-69",
-                  "70-74","75-79","80+")
+   self$agelabels <- c("0", "1-9", "10-14", "15-19", "20-24", "25-29", "30-34",
+                  "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69",
+                  "70-74", "75-79", "80+")
    self
   },
   codeEdad = function(edad){
@@ -351,8 +355,7 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
                                                                provincia_departamento_residencia_sepi_apertura = c("residencia_provincia_nombre", "residencia_departamento_nombre", "sepi_apertura"),
                                                                provincia_residencia_fecha_apertura = c("provincia_residencia", "fecha_apertura")),
                                    data2process = covid.ar.curator$getData(),
-                                   file.prefix = "covid19ar_")
-  {
+                                   file.prefix = "covid19ar_"){
   logger <- lgr
   for (group.vars in aggrupation.criteria){
     current.filename <- paste(file.prefix, paste(group.vars, collapse = "-"), ".csv", sep = "")
@@ -370,7 +373,7 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
 #' @export
 retrieveFromCache <- function(filename, subfolder = "curated/"){
   path <- paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata/master/", subfolder, sep = "")
-  read_csv(paste(path, filename, sep =""))
+  read_csv(paste(path, filename, sep = ""))
   #TODO check the names of the destination filename matches with expected names
 
 }
@@ -415,7 +418,7 @@ public = list(
     self$curator$curateData()
     self$report <- self$curator$getData()
     if (max(self$report$fecha_diagnostico, na.rm =  TRUE) < max.date){
-      stop(paste("File doesn't reach expected date", max.date,". Max date in data is", max(self$report$fecha_diagnostico), " for ", commit.id))
+      stop(paste("File doesn't reach expected date", max.date, ". Max date in data is", max(self$report$fecha_diagnostico), " for ", commit.id))
     }
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
     if (file.exists(report.diff.path)){
@@ -444,10 +447,10 @@ public = list(
       fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
       sospechosos.prev.ids <- self$report.prev.diff %>%
                                 filter(is.na(fecha_reporte)) %>%
-                                select (id_evento_caso)
+                                select(id_evento_caso)
       diagnosticados.ids   <- self$report.prev.diff %>%
                                     filter(!is.na(fecha_reporte)) %>%
-                                    select (id_evento_caso)
+                                    select(id_evento_caso)
       report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, ultima_actualizacion, fecha_diagnostico_prev = fecha_diagnostico, clasificacion_resumen_prev = clasificacion_resumen, diff_obs)
       nrow(self$report.diff)
       max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
@@ -461,7 +464,8 @@ public = list(
       # Checked PK in report.diff
       self$report.diff %>%
         group_by(id_evento_caso) %>%
-        summarise(n = n()) %>% filter(n >1)
+        summarise(n = n()) %>%
+        filter(n > 1)
       # sospechosos.remaining.ids <- self$report.diff %>%
       #                               filter(is.na(fecha_reporte)) %>%
       #                               select (id_evento_caso)
@@ -528,7 +532,7 @@ public = list(
       self$report.diff %<>% mutate(diff_obs = "")
     }
 
-    max.fecha <- apply(self$report.diff[,fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
+    max.fecha <- apply(self$report.diff[, fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
     #updated.rows <- which(self$report.diff$ultima_actualizacion != max.fecha)
     #self$report %<>% mutate(ultima_actualizacion = across( = max(fecha_))
     self$report.diff$ultima_actualizacion <- max.fecha
@@ -537,7 +541,7 @@ public = list(
   },
   saveReportDiff = function(){
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
-    report.date.path <- gsub("\\.csv", paste("_", as.character(self$report.date, "%Y%m%d"),".csv", sep = ""), report.diff.path)
+    report.date.path <- gsub("\\.csv", paste("_", as.character(self$report.date, "%Y%m%d"), ".csv", sep = ""), report.diff.path)
     applied.delim <- self$curator$cols.delim[[self$curator$specification]]
     # No way of setting quotes in readr function
     #write_delim(self$report.diff, file = report.diff.path, sep = applied.delim, quote = TRUE)
@@ -563,7 +567,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
    report.diff.summary  = NULL,
    mapache.data.agg     = NA,
    logger               = NA,
-   initialize = function(min.rebuilt.date = '2020-06-16', report.diff.dir = "../COVID19ARdata/sources/COVID19AR"){
+   initialize = function(min.rebuilt.date = "2020-06-16", report.diff.dir = "../COVID19ARdata/sources/COVID19AR"){
      self$report.diff.dir      <- report.diff.dir
      self$report.diff.summary.filename      <- "Covid19CasosReportSummary.csv"
      self$report.diff.builder  <- COVID19ARDiff$new(min.rebuilt.date = min.rebuilt.date, report.diff.dir)
@@ -610,8 +614,9 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
    },
    buildMapacheData = function(){
      mapache.data <- loadMapacheData()
-     tail(mapache.data %>% filter(osm_admin_level_4 == "Indeterminado") %>%
-            select(fecha,dia_inicio, dia_cuarentena_dnu260, tot_casosconf, nue_casosconf_diff)
+     tail(mapache.data %>%
+            filter(osm_admin_level_4 == "Indeterminado") %>%
+            select(fecha, dia_inicio, dia_cuarentena_dnu260, tot_casosconf, nue_casosconf_diff)
      )
      mapache.data %<>% mutate(date = dmy(fecha))
      names(mapache.data)
@@ -636,7 +641,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
        n <- min(n, max.n)
      }
      for (i in seq_len(n)){
-       current.case <- casos.mapping[i,]
+       current.case <- casos.mapping[i, ]
        if (!current.case$update.date %in% report.days.processed){
          logger$info("Processing current date", current.date = current.case$update.date)
          # Starting from diff
@@ -705,7 +710,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
 #' @import readr
 #' @export
 loadMapacheData <- function(){
-  read_csv('https://docs.google.com/spreadsheets/d/16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA/export?format=csv&id=16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA&gid=0',
+  read_csv("https://docs.google.com/spreadsheets/d/16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA/export?format=csv&id=16-bnsDdmmgtSxdWbVMboIHo5FRuz76DBxsz_BbsEVWA&gid=0",
            col_types = cols(
              fecha = col_character(),
              dia_inicio = col_double(),
