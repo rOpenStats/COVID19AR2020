@@ -551,13 +551,14 @@ public = list(
   }
   ))
 
-#' COVID19ARDiffBuilder
+#' COVID19ARDailyReports
 #' @author kenarab
 #' @importFrom R6 R6Class
 #' @import dplyr
+#' @import lubridate
 #' @import magrittr
 #' @export
-COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
+COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
  public = list(
    report.diff.dir = NA,
    report.diff.summary.filename = NA,
@@ -605,8 +606,18 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
                             c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
      casos.mapping <- rbind(casos.mapping,
                             c("224b24155b79e13a4edbb76a367f5cf326ab3194", "2020-06-26"))
-
-
+     casos.mapping <- rbind(casos.mapping,
+                            c("1f001f367d63b4413497ea7fb68b8704e710995f", "2020-06-27"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("5e121f76e31ddae57f5d991e7dd9296de453b952", "2020-06-28"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("f217d13707738a0b2f9442365460bce4a538b9ab", "2020-06-29"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("8ca97731452fa62d6755c4ace9141acf7d68bc7d", "2020-06-30"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("c7051a08952f48b747ba4b0eadfd4ba15aa0ddbb", "2020-07-01"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("d0fa4b764fd742c9d8c846e245c80700b759c302", "2020-07-02"))
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
      self$buildMapacheData()
@@ -705,6 +716,99 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
      write.table(self$report.diff.summary, file = report.diff.summary.path, sep = applied.delim, quote = TRUE, row.names = FALSE)
    }
    ))
+
+#' COVID19ARSampleGenerator
+#' @author kenarab
+#' @importFrom R6 R6Class
+#' @import dplyr
+#' @import lubridate
+#' @import magrittr
+#' @export
+COVID19ARSampleGenerator <- R6Class("COVID19ARSampleGenerator",
+  public = list(
+     daily.reports = NA,
+     sample.name   = NA,
+     sample.ratio  = NA,
+     seed          = NA,
+     output.dir    = NA,
+     min.date      = NA,
+     # state
+     sampled.data  = NA,
+     samples       = NA,
+     logger        = NA,
+   initialize = function(daily.reports,
+                         sample.name,
+                         sample.ratio = 0.01, seed = 0,
+                         output.dir = "../COVID19ARdata/dev/samples",
+                         min.date = NULL){
+     self$daily.reports      <- daily.reports
+     self$sample.name        <- sample.name
+     self$sample.ratio       <- sample.ratio
+     self$seed               <- seed
+     self$output.dir <- file.path(output.dir, sample.name)
+     self$min.date           <- min.date
+     self$logger             <- genLogger(self)
+     #state
+     self$samples            <- list()
+
+     self
+   },
+   genSample = function(current.case){
+     logger <- getLogger(self)
+     current.date.c <- as.character(current.case$update.date)
+     self$daily.reports$report.diff.builder$loadReports(commit = current.case$git.id, max.date = current.case$update.date)
+     covid19.data <- self$daily.reports$report.diff.builder$curator$data
+     all.dates <- sort(unique(covid19.data$fecha_inicio_sintomas))
+     dates.samples <- list()
+     self$sampled.data <- NULL
+     set.seed(self$seed)
+     sample.size <- NA
+     for (j in seq_len(length(all.dates))){
+       current.date.sample <- all.dates[j]
+       cases.current.date <- covid19.data %>% filter(fecha_inicio_sintomas == current.date.sample)
+       n.current.date <- nrow(cases.current.date)
+       sample.size    <- max(ceiling(n.current.date * self$sample.ratio), sample.size, na.rm = TRUE)
+       current.sample <- sample(1:n.current.date,
+                                size = sample.size,
+                                replace = FALSE)
+       self$sampled.data %<>% bind_rows(cases.current.date[current.sample, ])
+       dates.samples[[as.character(current.date.sample)]] <- current.sample
+       logger$debug("generating sample:", current.fis = as.character(current.date.sample),
+                    current.fis.size = n.current.date, current.sample.size = sample.size,
+                    percent = round(sample.size / n.current.date, 3))
+     }
+     self$samples[[current.date]] <- dates.samples
+     current.output.filename <- self$getCaseFileName(current.case)
+     current.output.path <- file.path(self$output.dir, current.output.filename)
+     write.csv(self$sampled.data, file = current.output.path, quote = TRUE, row.names = FALSE)
+     # TODO save output file
+   },
+   getCaseFileName = function(current.case){
+     paste("Covid19Casos_", self$sample.name, "_", as.character(current.case$update.date, format = "%Y%m%d"), ".csv", sep = "")
+   },
+   genSampleBatch = function(max.n = 0,
+                             min.date = NULL){
+     logger <- getLogger(self)
+     report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
+     casos.mapping <- self$daily.reports$casos.mapping
+     if (!is.null(min.date)){
+       casos.mapping %<>% filter(update.date >= self$min.date)
+     }
+     total.cases <- nrow(self$casos.mapping)
+     if (max.n > 0){
+       total.cases <- min(total.cases, max.n)
+     }
+     if (!dir.exists(self$output.dir)){
+       stop(paste("Target dir", output.dir, "must be manually created for running genSample"))
+     }
+     for (i in seq_len(total.cases)){
+       current.case <- casos.mapping[i,]
+       self$genSample(current.case = current.case)
+     }
+   }
+  ))
+
+
 
 #' loadMapacheData
 #' @import readr

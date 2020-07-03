@@ -29,6 +29,7 @@ Imports: R6,
          httr,
          jsonlite,
          testthat,
+         lubridate,
          TTR
 Collate:
         'deaths-lib.R'
