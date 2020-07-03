@@ -656,7 +656,7 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
        if (!current.case$update.date %in% report.days.processed){
          logger$info("Processing current date", current.date = current.case$update.date)
          # Starting from diff
-         self$report.diff.builder$loadReports(commit = current.case$git.id, max.date = current.case$update.date)
+         self$report.diff.builder$loadReports(commit.id = current.case$git.id, max.date = current.case$update.date)
          #TODO automatically commit
          self$report.diff.builder$processDiff()
          self$report.diff.builder$saveReportDiff()
@@ -756,8 +756,8 @@ COVID19ARSampleGenerator <- R6Class("COVID19ARSampleGenerator",
    genSample = function(current.case){
      logger <- getLogger(self)
      current.date.c <- as.character(current.case$update.date)
-     self$daily.reports$report.diff.builder$loadReports(commit = current.case$git.id, max.date = current.case$update.date)
-     covid19.data <- self$daily.reports$report.diff.builder$curator$data
+     self$daily.reports$report.diff.builder$loadReports(commit.id = current.case$git.id, max.date = current.case$update.date)
+     covid19.data <- self$daily.reports$report.diff.builder$report
      all.dates <- sort(unique(covid19.data$fecha_inicio_sintomas))
      dates.samples <- list()
      self$sampled.data <- NULL
@@ -777,7 +777,7 @@ COVID19ARSampleGenerator <- R6Class("COVID19ARSampleGenerator",
                     current.fis.size = n.current.date, current.sample.size = sample.size,
                     percent = round(sample.size / n.current.date, 3))
      }
-     self$samples[[current.date]] <- dates.samples
+     self$samples[[current.date.c]] <- dates.samples
      current.output.filename <- self$getCaseFileName(current.case)
      current.output.path <- file.path(self$output.dir, current.output.filename)
      write.csv(self$sampled.data, file = current.output.path, quote = TRUE, row.names = FALSE)

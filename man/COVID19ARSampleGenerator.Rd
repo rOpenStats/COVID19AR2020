@@ -16,6 +16,7 @@ kenarab
 \itemize{
 \item \href{#method-new}{\code{COVID19ARSampleGenerator$new()}}
 \item \href{#method-genSample}{\code{COVID19ARSampleGenerator$genSample()}}
+\item \href{#method-getCaseFileName}{\code{COVID19ARSampleGenerator$getCaseFileName()}}
 \item \href{#method-genSampleBatch}{\code{COVID19ARSampleGenerator$genSampleBatch()}}
 \item \href{#method-clone}{\code{COVID19ARSampleGenerator$clone()}}
 }
@@ -41,7 +42,16 @@ kenarab
 \if{latex}{\out{\hypertarget{method-genSample}{}}}
 \subsection{Method \code{genSample()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARSampleGenerator$genSample()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARSampleGenerator$genSample(current.case)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getCaseFileName"></a>}}
+\if{latex}{\out{\hypertarget{method-getCaseFileName}{}}}
+\subsection{Method \code{getCaseFileName()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARSampleGenerator$getCaseFileName(current.case)}\if{html}{\out{</div>}}
 }
 
 }
@@ -50,14 +60,7 @@ kenarab
 \if{latex}{\out{\hypertarget{method-genSampleBatch}{}}}
 \subsection{Method \code{genSampleBatch()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARSampleGenerator$genSampleBatch(
-  sample.name,
-  sample.ratio = 0.001,
-  seed = 0,
-  output.dir = "../COVID19ARdata/dev/samples",
-  max.n = 0,
-  min.date = NULL
-)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARSampleGenerator$genSampleBatch(max.n = 0, min.date = NULL)}\if{html}{\out{</div>}}
 }
 
 }
