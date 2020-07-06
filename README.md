@@ -95,14 +95,14 @@ lgr::threshold("info", lgr::get_logger("COVID19ARCurator"))
 covid19.curator <- COVID19ARCurator$new(download.new.data = FALSE)
 
 dummy <- covid19.curator$loadData()
-#> INFO  [10:13:36.698] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
+#> INFO  [12:40:55.274] Exists dest path? {dest.path: ~/.R/COVID19AR/Covid19Casos.csv, exists.dest.path: TRUE}
 dummy <- covid19.curator$curateData()
-#> INFO  [10:13:40.086] Normalize 
-#> INFO  [10:13:40.706] checkSoundness 
-#> INFO  [10:13:40.915] Mutating data
+#> INFO  [12:40:57.965] Normalize 
+#> INFO  [12:40:58.494] checkSoundness 
+#> INFO  [12:40:58.644] Mutating data
 # Dates of current processed file
 max(covid19.curator$data$fecha_apertura, na.rm = TRUE)
-#> [1] "2020-07-04"
+#> [1] "2020-07-05"
 # Inicio de síntomas
 
 max(covid19.curator$data$fecha_inicio_sintomas,  na.rm = TRUE)
@@ -120,7 +120,7 @@ kable(covid19.ar.summary %>% select(max_fecha_diagnostico, confirmados, fallecid
 
 | max\_fecha\_diagnostico | confirmados | fallecidos | letalidad.min.porc | letalidad.max.porc | count\_fecha\_diagnostico |  tests | positividad.porc |
 | :---------------------- | ----------: | ---------: | -----------------: | -----------------: | ------------------------: | -----: | ---------------: |
-| 2020-07-04              |       75363 |       1481 |              0.014 |               0.02 |                       129 | 329734 |            0.229 |
+| 2020-07-04              |       76513 |       1490 |              0.014 |              0.019 |                       129 | 332283 |             0.23 |
 
 ``` r
 
@@ -134,20 +134,20 @@ kable(covid19.ar.provincia.summary.100.confirmed %>% select(residencia_provincia
 
 | residencia\_provincia\_nombre | confirmados | fallecidos | letalidad.min.porc | letalidad.max.porc | count\_fecha\_diagnostico |  tests | positividad.porc |
 | :---------------------------- | ----------: | ---------: | -----------------: | -----------------: | ------------------------: | -----: | ---------------: |
-| Buenos Aires                  |       38292 |        683 |              0.012 |              0.018 |                       128 | 152654 |            0.251 |
-| CABA                          |       30166 |        563 |              0.015 |              0.019 |                       127 |  85437 |            0.353 |
-| Chaco                         |        2262 |        107 |              0.033 |              0.047 |                       115 |  12918 |            0.175 |
-| Río Negro                     |         962 |         41 |              0.038 |              0.043 |                       110 |   4556 |            0.211 |
+| Buenos Aires                  |       39140 |        689 |              0.012 |              0.018 |                       128 | 154397 |            0.254 |
+| CABA                          |       30409 |        564 |              0.015 |              0.019 |                       127 |  85890 |            0.354 |
+| Chaco                         |        2297 |        107 |              0.033 |              0.047 |                       115 |  13011 |            0.177 |
+| Río Negro                     |         963 |         41 |              0.038 |              0.043 |                       110 |   4561 |            0.211 |
 | Córdoba                       |         688 |         37 |              0.023 |              0.054 |                       117 |  21218 |            0.032 |
-| Neuquén                       |         551 |         14 |              0.019 |              0.025 |                       112 |   2630 |            0.210 |
-| SIN ESPECIFICAR               |         469 |          2 |              0.003 |              0.004 |                       105 |   1323 |            0.354 |
-| Santa Fe                      |         434 |          6 |              0.008 |              0.014 |                       113 |  13783 |            0.031 |
-| Entre Ríos                    |         324 |          0 |              0.000 |              0.000 |                       110 |   2712 |            0.119 |
-| Mendoza                       |         185 |         10 |              0.027 |              0.054 |                       115 |   3276 |            0.056 |
-| Jujuy                         |         161 |          1 |              0.001 |              0.006 |                       106 |   2818 |            0.057 |
-| Chubut                        |         147 |          1 |              0.004 |              0.007 |                        95 |   1471 |            0.100 |
-| Tierra del Fuego              |         141 |          1 |              0.006 |              0.007 |                       109 |   1660 |            0.085 |
-| Corrientes                    |         119 |          0 |              0.000 |              0.000 |                       108 |   3470 |            0.034 |
+| Neuquén                       |         552 |         16 |              0.021 |              0.029 |                       112 |   2634 |            0.210 |
+| SIN ESPECIFICAR               |         475 |          2 |              0.003 |              0.004 |                       105 |   1330 |            0.357 |
+| Santa Fe                      |         437 |          6 |              0.008 |              0.014 |                       113 |  13865 |            0.032 |
+| Entre Ríos                    |         324 |          0 |              0.000 |              0.000 |                       110 |   2714 |            0.119 |
+| Mendoza                       |         190 |         10 |              0.029 |              0.053 |                       116 |   3319 |            0.057 |
+| Jujuy                         |         162 |          1 |              0.001 |              0.006 |                       106 |   2819 |            0.057 |
+| Chubut                        |         150 |          1 |              0.004 |              0.007 |                        96 |   1499 |            0.100 |
+| Tierra del Fuego              |         141 |          1 |              0.006 |              0.007 |                       109 |   1664 |            0.085 |
+| Corrientes                    |         119 |          0 |              0.000 |              0.000 |                       108 |   3474 |            0.034 |
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre"))
@@ -160,31 +160,31 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 
 | residencia\_provincia\_nombre | confirmados |  tests | fallecidos | dias.fallecimiento | letalidad.min.porc | letalidad.max.porc | positividad.porc | internados.porc | cuidado.intensivo.porc | respirador.porc |
 | :---------------------------- | ----------: | -----: | ---------: | -----------------: | -----------------: | -----------------: | ---------------: | --------------: | ---------------------: | --------------: |
-| Buenos Aires                  |       38292 | 152654 |        683 |               12.5 |              0.012 |              0.018 |            0.251 |           0.173 |                  0.020 |           0.008 |
-| CABA                          |       30166 |  85437 |        563 |               13.9 |              0.015 |              0.019 |            0.353 |           0.245 |                  0.022 |           0.010 |
-| Chaco                         |        2262 |  12918 |        107 |               14.0 |              0.033 |              0.047 |            0.175 |           0.115 |                  0.064 |           0.026 |
-| Río Negro                     |         962 |   4556 |         41 |               12.7 |              0.038 |              0.043 |            0.211 |           0.402 |                  0.028 |           0.018 |
+| Buenos Aires                  |       39140 | 154397 |        689 |               12.4 |              0.012 |              0.018 |            0.254 |           0.171 |                  0.020 |           0.007 |
+| CABA                          |       30409 |  85890 |        564 |               13.9 |              0.015 |              0.019 |            0.354 |           0.245 |                  0.022 |           0.010 |
+| Chaco                         |        2297 |  13011 |        107 |               14.0 |              0.033 |              0.047 |            0.177 |           0.114 |                  0.064 |           0.026 |
+| Río Negro                     |         963 |   4561 |         41 |               12.7 |              0.038 |              0.043 |            0.211 |           0.403 |                  0.028 |           0.018 |
 | Córdoba                       |         688 |  21218 |         37 |               24.3 |              0.023 |              0.054 |            0.032 |           0.188 |                  0.045 |           0.017 |
-| Neuquén                       |         551 |   2630 |         14 |               18.9 |              0.019 |              0.025 |            0.210 |           0.550 |                  0.013 |           0.009 |
-| SIN ESPECIFICAR               |         469 |   1323 |          2 |               34.5 |              0.003 |              0.004 |            0.354 |           0.183 |                  0.013 |           0.006 |
-| Santa Fe                      |         434 |  13783 |          6 |               20.5 |              0.008 |              0.014 |            0.031 |           0.159 |                  0.039 |           0.018 |
-| Entre Ríos                    |         324 |   2712 |          0 |                NaN |              0.000 |              0.000 |            0.119 |           0.247 |                  0.003 |           0.000 |
-| Mendoza                       |         185 |   3276 |         10 |               13.1 |              0.027 |              0.054 |            0.056 |           0.946 |                  0.065 |           0.027 |
-| Jujuy                         |         161 |   2818 |          1 |               22.0 |              0.001 |              0.006 |            0.057 |           0.012 |                  0.006 |           0.006 |
-| Chubut                        |         147 |   1471 |          1 |               19.0 |              0.004 |              0.007 |            0.100 |           0.034 |                  0.007 |           0.007 |
-| Tierra del Fuego              |         141 |   1660 |          1 |               24.0 |              0.006 |              0.007 |            0.085 |           0.050 |                  0.021 |           0.021 |
-| Corrientes                    |         119 |   3470 |          0 |                NaN |              0.000 |              0.000 |            0.034 |           0.008 |                  0.008 |           0.000 |
-| La Rioja                      |          97 |   2224 |          9 |               11.7 |              0.067 |              0.093 |            0.044 |           0.155 |                  0.052 |           0.010 |
-| Tucumán                       |          81 |   8003 |          4 |               14.2 |              0.009 |              0.049 |            0.010 |           0.222 |                  0.111 |           0.025 |
+| Neuquén                       |         552 |   2634 |         16 |               18.0 |              0.021 |              0.029 |            0.210 |           0.553 |                  0.014 |           0.011 |
+| SIN ESPECIFICAR               |         475 |   1330 |          2 |               34.5 |              0.003 |              0.004 |            0.357 |           0.183 |                  0.013 |           0.006 |
+| Santa Fe                      |         437 |  13865 |          6 |               20.5 |              0.008 |              0.014 |            0.032 |           0.158 |                  0.039 |           0.018 |
+| Entre Ríos                    |         324 |   2714 |          0 |                NaN |              0.000 |              0.000 |            0.119 |           0.247 |                  0.003 |           0.000 |
+| Mendoza                       |         190 |   3319 |         10 |               13.1 |              0.029 |              0.053 |            0.057 |           0.926 |                  0.063 |           0.026 |
+| Jujuy                         |         162 |   2819 |          1 |               22.0 |              0.001 |              0.006 |            0.057 |           0.012 |                  0.006 |           0.006 |
+| Chubut                        |         150 |   1499 |          1 |               19.0 |              0.004 |              0.007 |            0.100 |           0.033 |                  0.007 |           0.007 |
+| Tierra del Fuego              |         141 |   1664 |          1 |               24.0 |              0.006 |              0.007 |            0.085 |           0.050 |                  0.021 |           0.021 |
+| Corrientes                    |         119 |   3474 |          0 |                NaN |              0.000 |              0.000 |            0.034 |           0.008 |                  0.008 |           0.000 |
+| La Rioja                      |          98 |   2226 |          9 |               11.7 |              0.048 |              0.092 |            0.044 |           0.153 |                  0.051 |           0.010 |
+| Tucumán                       |          84 |   8052 |          4 |               14.2 |              0.009 |              0.048 |            0.010 |           0.214 |                  0.107 |           0.024 |
 | Formosa                       |          76 |    773 |          0 |                NaN |              0.000 |              0.000 |            0.098 |           0.013 |                  0.000 |           0.000 |
-| Salta                         |          55 |   1167 |          0 |                NaN |              0.000 |              0.000 |            0.047 |           0.436 |                  0.000 |           0.000 |
-| Santa Cruz                    |          52 |    645 |          0 |                NaN |              0.000 |              0.000 |            0.081 |           0.404 |                  0.077 |           0.038 |
+| Salta                         |          56 |   1169 |          0 |                NaN |              0.000 |              0.000 |            0.048 |           0.446 |                  0.018 |           0.000 |
+| Santa Cruz                    |          51 |    644 |          0 |                NaN |              0.000 |              0.000 |            0.079 |           0.412 |                  0.078 |           0.039 |
 | Misiones                      |          41 |   1559 |          2 |                6.5 |              0.032 |              0.049 |            0.026 |           0.707 |                  0.146 |           0.073 |
-| Santiago del Estero           |          26 |   2883 |          0 |                NaN |              0.000 |              0.000 |            0.009 |           0.038 |                  0.038 |           0.000 |
+| Santiago del Estero           |          26 |   2886 |          0 |                NaN |              0.000 |              0.000 |            0.009 |           0.038 |                  0.038 |           0.000 |
 | San Luis                      |          12 |    569 |          0 |                NaN |              0.000 |              0.000 |            0.021 |           0.667 |                  0.083 |           0.000 |
-| San Juan                      |           8 |    832 |          0 |                NaN |              0.000 |              0.000 |            0.010 |           0.625 |                  0.125 |           0.000 |
-| Catamarca                     |           7 |    704 |          0 |                NaN |              0.000 |              0.000 |            0.010 |           0.000 |                  0.000 |           0.000 |
-| La Pampa                      |           7 |    449 |          0 |                NaN |              0.000 |              0.000 |            0.016 |           0.143 |                  0.000 |           0.000 |
+| San Juan                      |           8 |    834 |          0 |                NaN |              0.000 |              0.000 |            0.010 |           0.625 |                  0.125 |           0.000 |
+| Catamarca                     |           7 |    723 |          0 |                NaN |              0.000 |              0.000 |            0.010 |           0.000 |                  0.000 |           0.000 |
+| La Pampa                      |           7 |    453 |          0 |                NaN |              0.000 |              0.000 |            0.015 |           0.143 |                  0.000 |           0.000 |
 
 ``` r
 
@@ -221,9 +221,9 @@ rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
 
 ``` r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("sepi_apertura"))
-#> INFO  [10:14:50.203] Processing {current.group: }
+#> INFO  [12:41:50.637] Processing {current.group: }
 nrow(covid19.ar.summary)
-#> [1] 18
+#> [1] 19
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 kable(covid19.ar.summary %>% 
         filter(confirmados > 0) %>% 
@@ -241,48 +241,49 @@ kable(covid19.ar.summary %>%
 |             15 | 2020-07-03              |                       121 |        2384 |  20233 |       1289 |        170 |              0.056 |              0.071 |            0.118 |           0.541 |                  0.091 |           0.051 |
 |             16 | 2020-07-03              |                       126 |        3138 |  31825 |       1625 |        225 |              0.055 |              0.072 |            0.099 |           0.518 |                  0.082 |           0.044 |
 |             17 | 2020-07-03              |                       128 |        4173 |  45872 |       2112 |        325 |              0.061 |              0.078 |            0.091 |           0.506 |                  0.075 |           0.039 |
-|             18 | 2020-07-04              |                       129 |        5101 |  59052 |       2491 |        388 |              0.059 |              0.076 |            0.086 |           0.488 |                  0.068 |           0.036 |
-|             19 | 2020-07-04              |                       129 |        6461 |  73170 |       3041 |        458 |              0.056 |              0.071 |            0.088 |           0.471 |                  0.062 |           0.032 |
-|             20 | 2020-07-04              |                       129 |        8734 |  90517 |       3845 |        532 |              0.049 |              0.061 |            0.096 |           0.440 |                  0.056 |           0.029 |
-|             21 | 2020-07-04              |                       129 |       12925 | 113902 |       5084 |        661 |              0.041 |              0.051 |            0.113 |           0.393 |                  0.049 |           0.025 |
-|             22 | 2020-07-04              |                       129 |       17976 | 139224 |       6452 |        806 |              0.037 |              0.045 |            0.129 |           0.359 |                  0.044 |           0.022 |
-|             23 | 2020-07-04              |                       129 |       24155 | 167384 |       7901 |        969 |              0.033 |              0.040 |            0.144 |           0.327 |                  0.040 |           0.019 |
-|             24 | 2020-07-04              |                       129 |       33455 | 202294 |       9887 |       1129 |              0.028 |              0.034 |            0.165 |           0.296 |                  0.035 |           0.016 |
-|             25 | 2020-07-04              |                       129 |       45888 | 243229 |      11945 |       1288 |              0.023 |              0.028 |            0.189 |           0.260 |                  0.030 |           0.013 |
-|             26 | 2020-07-04              |                       129 |       62683 | 293657 |      14343 |       1428 |              0.019 |              0.023 |            0.213 |           0.229 |                  0.025 |           0.011 |
-|             27 | 2020-07-04              |                       129 |       75363 | 329734 |      15642 |       1481 |              0.014 |              0.020 |            0.229 |           0.208 |                  0.022 |           0.009 |
+|             18 | 2020-07-04              |                       129 |        5103 |  59052 |       2491 |        388 |              0.059 |              0.076 |            0.086 |           0.488 |                  0.068 |           0.036 |
+|             19 | 2020-07-04              |                       129 |        6463 |  73170 |       3041 |        458 |              0.056 |              0.071 |            0.088 |           0.471 |                  0.062 |           0.032 |
+|             20 | 2020-07-04              |                       129 |        8742 |  90517 |       3846 |        532 |              0.049 |              0.061 |            0.097 |           0.440 |                  0.056 |           0.029 |
+|             21 | 2020-07-04              |                       129 |       12935 | 113902 |       5085 |        661 |              0.041 |              0.051 |            0.114 |           0.393 |                  0.049 |           0.025 |
+|             22 | 2020-07-04              |                       129 |       17990 | 139225 |       6456 |        807 |              0.037 |              0.045 |            0.129 |           0.359 |                  0.044 |           0.022 |
+|             23 | 2020-07-04              |                       129 |       24170 | 167385 |       7906 |        970 |              0.033 |              0.040 |            0.144 |           0.327 |                  0.040 |           0.019 |
+|             24 | 2020-07-04              |                       129 |       33473 | 202300 |       9895 |       1131 |              0.028 |              0.034 |            0.165 |           0.296 |                  0.035 |           0.016 |
+|             25 | 2020-07-04              |                       129 |       45916 | 243239 |      11956 |       1291 |              0.023 |              0.028 |            0.189 |           0.260 |                  0.030 |           0.013 |
+|             26 | 2020-07-04              |                       129 |       62745 | 293725 |      14363 |       1432 |              0.019 |              0.023 |            0.214 |           0.229 |                  0.025 |           0.011 |
+|             27 | 2020-07-04              |                       129 |       76513 | 332283 |      15798 |       1490 |              0.014 |              0.019 |            0.230 |           0.206 |                  0.022 |           0.009 |
+|             28 | 2020-07-04              |                       129 |       76513 | 332283 |      15798 |       1490 |              0.014 |              0.019 |            0.230 |           0.206 |                  0.022 |           0.009 |
 
 ```` 
 
 ```r
 covid19.ar.summary <- covid19.curator$makeSummary(group.vars = c("residencia_provincia_nombre", "sepi_apertura"))
-#> INFO  [10:15:13.134] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
-#> INFO  [10:15:23.632] Processing {current.group: residencia_provincia_nombre = CABA}
-#> INFO  [10:15:30.693] Processing {current.group: residencia_provincia_nombre = Catamarca}
-#> INFO  [10:15:31.794] Processing {current.group: residencia_provincia_nombre = Chaco}
-#> INFO  [10:15:34.499] Processing {current.group: residencia_provincia_nombre = Chubut}
-#> INFO  [10:15:36.348] Processing {current.group: residencia_provincia_nombre = Córdoba}
-#> INFO  [10:15:39.736] Processing {current.group: residencia_provincia_nombre = Corrientes}
-#> INFO  [10:15:41.954] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
-#> INFO  [10:15:44.209] Processing {current.group: residencia_provincia_nombre = Formosa}
-#> INFO  [10:15:45.656] Processing {current.group: residencia_provincia_nombre = Jujuy}
-#> INFO  [10:15:47.815] Processing {current.group: residencia_provincia_nombre = La Pampa}
-#> INFO  [10:15:50.190] Processing {current.group: residencia_provincia_nombre = La Rioja}
-#> INFO  [10:15:53.734] Processing {current.group: residencia_provincia_nombre = Mendoza}
-#> INFO  [10:15:56.668] Processing {current.group: residencia_provincia_nombre = Misiones}
-#> INFO  [10:15:58.779] Processing {current.group: residencia_provincia_nombre = Neuquén}
-#> INFO  [10:16:01.059] Processing {current.group: residencia_provincia_nombre = Río Negro}
-#> INFO  [10:16:04.555] Processing {current.group: residencia_provincia_nombre = Salta}
-#> INFO  [10:16:07.077] Processing {current.group: residencia_provincia_nombre = San Juan}
-#> INFO  [10:16:09.915] Processing {current.group: residencia_provincia_nombre = San Luis}
-#> INFO  [10:16:12.875] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
-#> INFO  [10:16:15.044] Processing {current.group: residencia_provincia_nombre = Santa Fe}
-#> INFO  [10:16:18.062] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
-#> INFO  [10:16:20.146] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
-#> INFO  [10:16:22.261] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
-#> INFO  [10:16:24.559] Processing {current.group: residencia_provincia_nombre = Tucumán}
+#> INFO  [12:42:11.443] Processing {current.group: residencia_provincia_nombre = Buenos Aires}
+#> INFO  [12:42:21.479] Processing {current.group: residencia_provincia_nombre = CABA}
+#> INFO  [12:42:27.365] Processing {current.group: residencia_provincia_nombre = Catamarca}
+#> INFO  [12:42:28.377] Processing {current.group: residencia_provincia_nombre = Chaco}
+#> INFO  [12:42:30.886] Processing {current.group: residencia_provincia_nombre = Chubut}
+#> INFO  [12:42:32.611] Processing {current.group: residencia_provincia_nombre = Córdoba}
+#> INFO  [12:42:35.724] Processing {current.group: residencia_provincia_nombre = Corrientes}
+#> INFO  [12:42:37.672] Processing {current.group: residencia_provincia_nombre = Entre Ríos}
+#> INFO  [12:42:39.605] Processing {current.group: residencia_provincia_nombre = Formosa}
+#> INFO  [12:42:40.902] Processing {current.group: residencia_provincia_nombre = Jujuy}
+#> INFO  [12:42:42.972] Processing {current.group: residencia_provincia_nombre = La Pampa}
+#> INFO  [12:42:44.789] Processing {current.group: residencia_provincia_nombre = La Rioja}
+#> INFO  [12:42:46.702] Processing {current.group: residencia_provincia_nombre = Mendoza}
+#> INFO  [12:42:48.709] Processing {current.group: residencia_provincia_nombre = Misiones}
+#> INFO  [12:42:50.419] Processing {current.group: residencia_provincia_nombre = Neuquén}
+#> INFO  [12:42:52.362] Processing {current.group: residencia_provincia_nombre = Río Negro}
+#> INFO  [12:42:54.560] Processing {current.group: residencia_provincia_nombre = Salta}
+#> INFO  [12:42:56.426] Processing {current.group: residencia_provincia_nombre = San Juan}
+#> INFO  [12:42:58.190] Processing {current.group: residencia_provincia_nombre = San Luis}
+#> INFO  [12:43:00.084] Processing {current.group: residencia_provincia_nombre = Santa Cruz}
+#> INFO  [12:43:01.959] Processing {current.group: residencia_provincia_nombre = Santa Fe}
+#> INFO  [12:43:04.742] Processing {current.group: residencia_provincia_nombre = Santiago del Estero}
+#> INFO  [12:43:06.704] Processing {current.group: residencia_provincia_nombre = SIN ESPECIFICAR}
+#> INFO  [12:43:08.750] Processing {current.group: residencia_provincia_nombre = Tierra del Fuego}
+#> INFO  [12:43:10.979] Processing {current.group: residencia_provincia_nombre = Tucumán}
 nrow(covid19.ar.summary)
-#> [1] 385
+#> [1] 387
 porc.cols <- names(covid19.ar.summary)[grep("porc", names(covid19.ar.summary))]
 sepi.fechas <- covid19.curator$data %>% 
   group_by(sepi_apertura) %>% 
@@ -353,46 +354,46 @@ kable((covid19.ar.summary %>% filter(confirmados >= 10) %>% arrange(desc(confirm
 
 | residencia\_provincia\_nombre | sexo | confirmados | internados | fallecidos | letalidad.min.porc | letalidad.max.porc | positividad.porc | internados.porc | cuidado.intensivo.porc | respirador.porc |
 | :---------------------------- | :--- | ----------: | ---------: | ---------: | -----------------: | -----------------: | ---------------: | --------------: | ---------------------: | --------------: |
-| Buenos Aires                  | M    |       19521 |       3557 |        395 |              0.014 |              0.020 |            0.266 |           0.182 |                  0.023 |           0.009 |
-| Buenos Aires                  | F    |       18617 |       3043 |        286 |              0.010 |              0.015 |            0.236 |           0.163 |                  0.016 |           0.006 |
-| CABA                          | F    |       15117 |       3666 |        249 |              0.013 |              0.016 |            0.338 |           0.243 |                  0.016 |           0.006 |
-| CABA                          | M    |       14914 |       3689 |        306 |              0.017 |              0.021 |            0.371 |           0.247 |                  0.027 |           0.013 |
-| Chaco                         | M    |        1133 |        133 |         66 |              0.041 |              0.058 |            0.177 |           0.117 |                  0.074 |           0.036 |
-| Chaco                         | F    |        1127 |        128 |         41 |              0.026 |              0.036 |            0.173 |           0.114 |                  0.054 |           0.016 |
-| Río Negro                     | F    |         490 |        192 |         13 |              0.024 |              0.027 |            0.200 |           0.392 |                  0.016 |           0.008 |
-| Río Negro                     | M    |         472 |        195 |         28 |              0.053 |              0.059 |            0.225 |           0.413 |                  0.040 |           0.028 |
+| Buenos Aires                  | M    |       19951 |       3602 |        399 |              0.014 |              0.020 |            0.269 |           0.181 |                  0.023 |           0.009 |
+| Buenos Aires                  | F    |       19033 |       3076 |        288 |              0.010 |              0.015 |            0.239 |           0.162 |                  0.016 |           0.006 |
+| CABA                          | F    |       15236 |       3703 |        249 |              0.013 |              0.016 |            0.338 |           0.243 |                  0.016 |           0.006 |
+| CABA                          | M    |       15038 |       3723 |        307 |              0.017 |              0.020 |            0.372 |           0.248 |                  0.027 |           0.013 |
+| Chaco                         | F    |        1151 |        128 |         41 |              0.025 |              0.036 |            0.175 |           0.111 |                  0.053 |           0.016 |
+| Chaco                         | M    |        1144 |        134 |         66 |              0.040 |              0.058 |            0.178 |           0.117 |                  0.074 |           0.036 |
+| Río Negro                     | F    |         490 |        193 |         13 |              0.024 |              0.027 |            0.200 |           0.394 |                  0.016 |           0.008 |
+| Río Negro                     | M    |         473 |        195 |         28 |              0.054 |              0.059 |            0.225 |           0.412 |                  0.040 |           0.027 |
 | Córdoba                       | M    |         353 |         55 |         18 |              0.024 |              0.051 |            0.034 |           0.156 |                  0.048 |           0.023 |
 | Córdoba                       | F    |         333 |         73 |         19 |              0.023 |              0.057 |            0.031 |           0.219 |                  0.042 |           0.012 |
-| Neuquén                       | F    |         288 |        159 |          6 |              0.016 |              0.021 |            0.224 |           0.552 |                  0.010 |           0.010 |
-| Neuquén                       | M    |         263 |        144 |          8 |              0.021 |              0.030 |            0.196 |           0.548 |                  0.015 |           0.008 |
-| SIN ESPECIFICAR               | F    |         256 |         42 |          0 |              0.000 |              0.000 |            0.331 |           0.164 |                  0.008 |           0.000 |
-| Santa Fe                      | M    |         220 |         43 |          5 |              0.013 |              0.023 |            0.033 |           0.195 |                  0.055 |           0.032 |
-| Santa Fe                      | F    |         214 |         26 |          1 |              0.002 |              0.005 |            0.030 |           0.121 |                  0.023 |           0.005 |
-| SIN ESPECIFICAR               | M    |         211 |         43 |          1 |              0.004 |              0.005 |            0.392 |           0.204 |                  0.014 |           0.009 |
+| Neuquén                       | F    |         288 |        159 |          7 |              0.018 |              0.024 |            0.224 |           0.552 |                  0.010 |           0.010 |
+| Neuquén                       | M    |         264 |        146 |          9 |              0.024 |              0.034 |            0.196 |           0.553 |                  0.019 |           0.011 |
+| SIN ESPECIFICAR               | F    |         257 |         43 |          0 |              0.000 |              0.000 |            0.332 |           0.167 |                  0.008 |           0.000 |
+| Santa Fe                      | M    |         222 |         43 |          5 |              0.013 |              0.023 |            0.033 |           0.194 |                  0.054 |           0.032 |
+| SIN ESPECIFICAR               | M    |         216 |         43 |          1 |              0.004 |              0.005 |            0.397 |           0.199 |                  0.014 |           0.009 |
+| Santa Fe                      | F    |         215 |         26 |          1 |              0.003 |              0.005 |            0.030 |           0.121 |                  0.023 |           0.005 |
 | Entre Ríos                    | M    |         172 |         47 |          0 |              0.000 |              0.000 |            0.126 |           0.273 |                  0.006 |           0.000 |
-| Buenos Aires                  | NR   |         154 |         20 |          2 |              0.007 |              0.013 |            0.306 |           0.130 |                  0.026 |           0.000 |
+| Buenos Aires                  | NR   |         156 |         20 |          2 |              0.007 |              0.013 |            0.304 |           0.128 |                  0.026 |           0.000 |
 | Entre Ríos                    | F    |         151 |         33 |          0 |              0.000 |              0.000 |            0.112 |           0.219 |                  0.000 |           0.000 |
-| CABA                          | NR   |         135 |         39 |          8 |              0.033 |              0.059 |            0.335 |           0.289 |                  0.052 |           0.037 |
-| Mendoza                       | M    |          95 |         91 |         10 |              0.056 |              0.105 |            0.056 |           0.958 |                  0.105 |           0.042 |
+| CABA                          | NR   |         135 |         39 |          8 |              0.034 |              0.059 |            0.333 |           0.289 |                  0.052 |           0.037 |
+| Mendoza                       | M    |          97 |         92 |         10 |              0.058 |              0.103 |            0.057 |           0.948 |                  0.103 |           0.041 |
 | Jujuy                         | M    |          93 |          2 |          1 |              0.002 |              0.011 |            0.050 |           0.022 |                  0.011 |           0.011 |
-| Mendoza                       | F    |          90 |         84 |          0 |              0.000 |              0.000 |            0.057 |           0.933 |                  0.022 |           0.011 |
-| Chubut                        | M    |          82 |          4 |          1 |              0.008 |              0.012 |            0.108 |           0.049 |                  0.012 |           0.012 |
-| Tierra del Fuego              | M    |          81 |          4 |          1 |              0.011 |              0.012 |            0.092 |           0.049 |                  0.037 |           0.037 |
+| Mendoza                       | F    |          93 |         84 |          0 |              0.000 |              0.000 |            0.058 |           0.903 |                  0.022 |           0.011 |
+| Chubut                        | M    |          83 |          4 |          1 |              0.008 |              0.012 |            0.107 |           0.048 |                  0.012 |           0.012 |
+| Tierra del Fuego              | M    |          81 |          4 |          1 |              0.011 |              0.012 |            0.091 |           0.049 |                  0.037 |           0.037 |
 | Corrientes                    | M    |          74 |          1 |          0 |              0.000 |              0.000 |            0.038 |           0.014 |                  0.000 |           0.000 |
-| Jujuy                         | F    |          67 |          0 |          0 |              0.000 |              0.000 |            0.071 |           0.000 |                  0.000 |           0.000 |
-| Chubut                        | F    |          64 |          1 |          0 |              0.000 |              0.000 |            0.092 |           0.016 |                  0.000 |           0.000 |
+| Jujuy                         | F    |          68 |          0 |          0 |              0.000 |              0.000 |            0.072 |           0.000 |                  0.000 |           0.000 |
+| Chubut                        | F    |          66 |          1 |          0 |              0.000 |              0.000 |            0.093 |           0.015 |                  0.000 |           0.000 |
 | Formosa                       | M    |          63 |          0 |          0 |              0.000 |              0.000 |            0.137 |           0.000 |                  0.000 |           0.000 |
-| Tierra del Fuego              | F    |          59 |          3 |          0 |              0.000 |              0.000 |            0.077 |           0.051 |                  0.000 |           0.000 |
-| La Rioja                      | F    |          51 |         10 |          6 |              0.087 |              0.118 |            0.048 |           0.196 |                  0.059 |           0.020 |
-| Tucumán                       | M    |          49 |         10 |          2 |              0.008 |              0.041 |            0.010 |           0.204 |                  0.061 |           0.000 |
-| La Rioja                      | M    |          46 |          5 |          3 |              0.046 |              0.065 |            0.040 |           0.109 |                  0.043 |           0.000 |
+| Tierra del Fuego              | F    |          59 |          3 |          0 |              0.000 |              0.000 |            0.076 |           0.051 |                  0.000 |           0.000 |
+| La Rioja                      | F    |          51 |         10 |          6 |              0.062 |              0.118 |            0.048 |           0.196 |                  0.059 |           0.020 |
+| Tucumán                       | M    |          51 |         10 |          2 |              0.008 |              0.039 |            0.010 |           0.196 |                  0.059 |           0.000 |
+| La Rioja                      | M    |          47 |          5 |          3 |              0.033 |              0.064 |            0.041 |           0.106 |                  0.043 |           0.000 |
 | Corrientes                    | F    |          45 |          0 |          0 |              0.000 |              0.000 |            0.030 |           0.000 |                  0.022 |           0.000 |
-| Salta                         | M    |          33 |         16 |          0 |              0.000 |              0.000 |            0.041 |           0.485 |                  0.000 |           0.000 |
+| Salta                         | M    |          34 |         17 |          0 |              0.000 |              0.000 |            0.042 |           0.500 |                  0.029 |           0.000 |
+| Tucumán                       | F    |          33 |          8 |          2 |              0.011 |              0.061 |            0.011 |           0.242 |                  0.182 |           0.061 |
 | Santa Cruz                    | M    |          32 |         12 |          0 |              0.000 |              0.000 |            0.086 |           0.375 |                  0.094 |           0.031 |
-| Tucumán                       | F    |          32 |          8 |          2 |              0.010 |              0.062 |            0.011 |           0.250 |                  0.188 |           0.062 |
 | Misiones                      | M    |          23 |         16 |          1 |              0.029 |              0.043 |            0.027 |           0.696 |                  0.174 |           0.087 |
 | Salta                         | F    |          22 |          8 |          0 |              0.000 |              0.000 |            0.063 |           0.364 |                  0.000 |           0.000 |
-| Santa Cruz                    | F    |          20 |          9 |          0 |              0.000 |              0.000 |            0.073 |           0.450 |                  0.050 |           0.050 |
+| Santa Cruz                    | F    |          19 |          9 |          0 |              0.000 |              0.000 |            0.070 |           0.474 |                  0.053 |           0.053 |
 | Misiones                      | F    |          18 |         13 |          1 |              0.037 |              0.056 |            0.025 |           0.722 |                  0.111 |           0.056 |
 | Santiago del Estero           | M    |          18 |          1 |          0 |              0.000 |              0.000 |            0.009 |           0.056 |                  0.056 |           0.000 |
 | Formosa                       | F    |          13 |          1 |          0 |              0.000 |              0.000 |            0.042 |           0.077 |                  0.000 |           0.000 |
