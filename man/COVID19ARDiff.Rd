@@ -16,7 +16,6 @@ kenarab
 \itemize{
 \item \href{#method-new}{\code{COVID19ARDiff$new()}}
 \item \href{#method-loadReports}{\code{COVID19ARDiff$loadReports()}}
-\item \href{#method-getReportUrl}{\code{COVID19ARDiff$getReportUrl()}}
 \item \href{#method-processDiff}{\code{COVID19ARDiff$processDiff()}}
 \item \href{#method-saveReportDiff}{\code{COVID19ARDiff$saveReportDiff()}}
 \item \href{#method-clone}{\code{COVID19ARDiff$clone()}}
@@ -36,16 +35,7 @@ kenarab
 \if{latex}{\out{\hypertarget{method-loadReports}{}}}
 \subsection{Method \code{loadReports()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$loadReports(commit.id, max.date)}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getReportUrl"></a>}}
-\if{latex}{\out{\hypertarget{method-getReportUrl}{}}}
-\subsection{Method \code{getReportUrl()}}{
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$getReportUrl(commit.id)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$loadReports(current.case, curate = TRUE)}\if{html}{\out{</div>}}
 }
 
 }

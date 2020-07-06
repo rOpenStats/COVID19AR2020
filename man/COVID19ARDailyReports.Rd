@@ -16,7 +16,10 @@ kenarab
 \itemize{
 \item \href{#method-new}{\code{COVID19ARDailyReports$new()}}
 \item \href{#method-buildCasosMapping}{\code{COVID19ARDailyReports$buildCasosMapping()}}
+\item \href{#method-buildCasosPlan}{\code{COVID19ARDailyReports$buildCasosPlan()}}
+\item \href{#method-getReportUrl}{\code{COVID19ARDailyReports$getReportUrl()}}
 \item \href{#method-buildMapacheData}{\code{COVID19ARDailyReports$buildMapacheData()}}
+\item \href{#method-resetMerge}{\code{COVID19ARDailyReports$resetMerge()}}
 \item \href{#method-buildCasosReport}{\code{COVID19ARDailyReports$buildCasosReport()}}
 \item \href{#method-generateReportDaySummary}{\code{COVID19ARDailyReports$generateReportDaySummary()}}
 \item \href{#method-loadReportDiffSummary}{\code{COVID19ARDailyReports$loadReportDiffSummary()}}
@@ -46,11 +49,38 @@ kenarab
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-buildCasosPlan"></a>}}
+\if{latex}{\out{\hypertarget{method-buildCasosPlan}{}}}
+\subsection{Method \code{buildCasosPlan()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDailyReports$buildCasosPlan(casos.dir = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-getReportUrl"></a>}}
+\if{latex}{\out{\hypertarget{method-getReportUrl}{}}}
+\subsection{Method \code{getReportUrl()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDailyReports$getReportUrl(commit.id)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-buildMapacheData"></a>}}
 \if{latex}{\out{\hypertarget{method-buildMapacheData}{}}}
 \subsection{Method \code{buildMapacheData()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARDailyReports$buildMapacheData()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-resetMerge"></a>}}
+\if{latex}{\out{\hypertarget{method-resetMerge}{}}}
+\subsection{Method \code{resetMerge()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDailyReports$resetMerge()}\if{html}{\out{</div>}}
 }
 
 }

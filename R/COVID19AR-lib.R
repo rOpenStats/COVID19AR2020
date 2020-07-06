@@ -58,7 +58,6 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     loadData = function(url = self$url,
                         force.download = FALSE,
                         dest.filename = NULL){
-      self$specification <- "200603"
       if (is.null(dest.filename)){
         url.splitted <- strsplit(url, split = "/")[[1]]
         dest.filename <- url.splitted[length(url.splitted)]
@@ -77,11 +76,13 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       self$data
     },
     readFile = function(file.path, assign = TRUE){
+      self$specification <- "200603"
       ret <- read_delim(file.path,
                  delim = self$cols.delim[[self$specification]],
                  col_types = self$cols.specifications[[self$specification]])
       if (assign){
         self$data <- ret
+        self$curated <- FALSE
       }
       ret
     },
@@ -120,6 +121,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
       # Normalize column names of self$data
       names(self$data) <- tolower(names(self$data))
       self$data.fields <- names(self$data)
+      logger$debug("Normalizing values in data", fields = paste(self$data.fields, collapse = ", "))
+
       self$data %<>% mutate(clasificacion = tolower(clasificacion))
       self$data %<>% mutate(clasificacion_resumen = tolower(clasificacion_resumen))
       self$data %<>% mutate(fallecido = tolower(fallecido))
@@ -410,12 +413,27 @@ public = list(
     self$logger               <- genLogger(self)
     self
   },
-  loadReports = function(commit.id, max.date){
-    self$report.url       <- self$getReportUrl(commit.id)
+  loadReports = function(current.case, curate = TRUE){
+    max.date = current.case$update.date
+
     self$report.filename <- "Covid19CasosReporteNew.csv"
-    self$curator$loadData(url = self$report.url, force.download = TRUE,
-                                         dest.filename = self$report.filename)
-    self$curator$curateData()
+    if ("url" %in% names(current.case)){
+      self$curator$loadData(url = current.case$url, force.download = TRUE,
+                            dest.filename = self$report.filename)
+    }
+
+    if ("file" %in% names(current.case)){
+      source.path <- file.path(current.case$dir, current.case$file)
+      dest.path   <- file.path(self$curator$data.dir, self$report.filename)
+      file.copy(from = source.path,
+                to   = dest.path,
+                overwrite = TRUE)
+      self$curator$readFile(dest.path, assign = TRUE)
+    }
+    if (curate){
+
+      self$curator$curateData()
+    }
     self$report <- self$curator$getData()
     if (max(self$report$fecha_diagnostico, na.rm =  TRUE) < max.date){
       stop(paste("File doesn't reach expected date", max.date, ". Max date in data is", max(self$report$fecha_diagnostico), " for ", commit.id))
@@ -423,15 +441,12 @@ public = list(
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
     if (file.exists(report.diff.path)){
       self$curator$readFile(file.path = report.diff.path, assign = TRUE)
-      self$curator$curateData()
+      if (curate){
+        self$curator$curateData()
+      }
       self$report.prev <- self$curator$getData()
     }
     self
-  },
-  getReportUrl = function(commit.id){
-    paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata",
-          commit.id,
-          "sources/msalnacion/Covid19Casos.csv", sep = "/")
   },
   #' processDiff
   #' binds report.prev and report adding rows from self$report with fecha_diagnostico to self$report.prev
@@ -440,18 +455,22 @@ public = list(
     if (!dir.exists(self$report.diff.dir)){
       stop("Folder", self$report.diff.dir, "must be manually created for running processDiff")
     }
+    fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
     self$report.diff <- self$report
     self$report.date <- max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
     if (!is.null(self$report.prev)){
       self$report.prev.diff <- self$report.prev
-      fechas.fields <- names(self$report)[grepl("fecha_", names(self$report))]
       sospechosos.prev.ids <- self$report.prev.diff %>%
                                 filter(is.na(fecha_reporte)) %>%
                                 select(id_evento_caso)
       diagnosticados.ids   <- self$report.prev.diff %>%
                                     filter(!is.na(fecha_reporte)) %>%
                                     select(id_evento_caso)
-      report.prev.diff.reporte  <- self$report.prev.diff %>% select(id_evento_caso, fecha_reporte, ultima_actualizacion, fecha_diagnostico_prev = fecha_diagnostico, clasificacion_resumen_prev = clasificacion_resumen, diff_obs)
+      report.prev.diff.reporte  <- self$report.prev.diff %>%
+                                      select(id_evento_caso, fecha_reporte,
+                                             ultima_actualizacion_prev = ultima_actualizacion,
+                                             fecha_diagnostico_prev = fecha_diagnostico,
+                                             clasificacion_resumen_prev = clasificacion_resumen, diff_obs)
       nrow(self$report.diff)
       max(self$report.diff$fecha_diagnostico, na.rm = TRUE)
       nrow(self$report.prev.diff)
@@ -461,6 +480,9 @@ public = list(
                   nrow = nrow(self$report.diff),
                   nrow.prev = nrow(report.prev.diff.reporte))
       self$report.diff %<>% left_join(report.prev.diff.reporte, by = "id_evento_caso")
+
+      #debug
+      print(str(self$report.diff %>% select (confirmado, fallecido)))
       # Checked PK in report.diff
       self$report.diff %>%
         group_by(id_evento_caso) %>%
@@ -492,9 +514,6 @@ public = list(
                   nuevos.diagnosticos         = nrow(nuevos.diagnosticos.id),
                   rectificacion.diagnostico   = nrow(rectification.diagnostico.ids),
                   rectificacion.clasificacion = nrow(rectification.clasificacion.ids))
-      #debug
-      self.debug <<- self
-      diagnosticos.date <<- diagnosticos.date
 
       # Check no NA row name
       is.na(self$report.diff$id_evento_caso %in% diagnosticos.date &
@@ -506,6 +525,13 @@ public = list(
         stop(paste("Cannot asssign NA rows and having", length(na.rows), "rows"))
       }
       # Update fecha_reporte report.date
+
+      self$report.diff %>% filter(id_evento_caso %in% diagnosticos.date &
+                                          ifelse(!is.na(fecha_diagnostico), fecha_diagnostico >= self$min.rebuilt.date, TRUE))
+
+      # TODO fecha_reporte should be date at this point
+      self$report.diff %<>% mutate(fecha_reporte = as.Date(fecha_reporte))
+
       self$report.diff %<>% mutate_cond(id_evento_caso %in% diagnosticos.date &
                                         ifelse(!is.na(fecha_diagnostico), fecha_diagnostico >= self$min.rebuilt.date, TRUE),
                                         fecha_reporte = self$report.date)
@@ -526,12 +552,12 @@ public = list(
       self$report.diff %<>% select(-fecha_diagnostico_prev, -clasificacion_resumen_prev)
         # Not useful as it is not consistent
     }
-    self$report.diff %<>% select(-clasificacion)
     if (!"fecha_reporte" %in% names(self$report.diff)){
       self$report.diff %<>% mutate(fecha_reporte = fecha_diagnostico)
       self$report.diff %<>% mutate(diff_obs = "")
     }
 
+    self$report.date
     max.fecha <- apply(self$report.diff[, fechas.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
     #updated.rows <- which(self$report.diff$ultima_actualizacion != max.fecha)
     #self$report %<>% mutate(ultima_actualizacion = across( = max(fecha_))
@@ -563,7 +589,9 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
    report.diff.dir = NA,
    report.diff.summary.filename = NA,
    # state
+   case.name            = NA,
    casos.mapping        = NA,
+   casos.plan           = NULL,
    report.diff.builder  = NA,
    report.diff.summary  = NULL,
    mapache.data.agg     = NA,
@@ -576,7 +604,6 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
      self
    },
    buildCasosMapping = function(){
-     self$loadReportDiffSummary()
      casos.mapping <- data.frame(git.id = "7903a570c65736ad931ac25e05c92c4c7315cd8d", update.date = as.Date("2020-06-24"))
      casos.mapping <- rbind(casos.mapping,
                             c("6732da9116949a47eb5d76230565ebaa1552a250", "2020-06-23"))
@@ -620,8 +647,37 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
                             c("d0fa4b764fd742c9d8c846e245c80700b759c302", "2020-07-02"))
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
-     self$buildMapacheData()
      self$casos.mapping
+   },
+   buildCasosPlan = function(casos.dir = NULL){
+     self$loadReportDiffSummary()
+     self$buildCasosMapping()
+     if (is.null(casos.dir)){
+       # Build from casos mapping
+       n.casos.mapping <- nrow(self$casos.mapping)
+       for (i in seq_len(n.casos.mapping)){
+         current.caso <- self$casos.mapping[i,]
+         caso.plan <- data.frame(url = self$getReportUrl(current.caso$git.id),
+                                 update.date = current.caso$update.date,
+                                 stringsAsFactors = FALSE)
+         self$casos.plan %<>% bind_rows(caso.plan)
+       }
+     }
+     else{
+       casos.files <- dir(casos.dir)
+       parse.regexp <- "Covid19Casos\\_([[:alnum:]]+)\\_([0-9]{8})\\.csv"
+       self$casos.plan <- data.frame(dir = casos.dir, file = casos.files, stringsAsFactors = FALSE)
+       self$casos.plan$update.date.parsed <- gsub(parse.regexp, "\\2", self$casos.plan$file)
+       self$casos.plan$update.date <- as.Date(self$casos.plan$update.date.parsed, "%Y%m%d")
+       self$case.name <- sort(unique(gsub(parse.regexp, "\\1", self$casos.plan$file)))
+     }
+     self$buildMapacheData()
+     self$casos.plan
+   },
+   getReportUrl = function(commit.id){
+     paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata",
+           commit.id,
+           "sources/msalnacion/Covid19Casos.csv", sep = "/")
    },
    buildMapacheData = function(){
      mapache.data <- loadMapacheData()
@@ -640,23 +696,28 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
                  tot_recuperados     = max(tot_recuperados))
      self$mapache.data.agg
    },
+   resetMerge = function(){
+     self$report.diff.summary <- NULL
+     self$report.diff.builder$report.diff <- NULL
+   },
    buildCasosReport = function(max.n = 0, min.date = NULL){
      logger <- getLogger(self)
      report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
-     casos.mapping <- self$casos.mapping
+     casos.plan <- self$casos.plan
      if (!is.null(min.date)){
-       casos.mapping %<>% filter(update.date >= min.date)
+       casos.plan %<>% filter(update.date >= min.date)
      }
-     n <- nrow(self$casos.mapping)
+     n.casos.plan <- nrow(casos.plan)
      if (max.n > 0){
-       n <- min(n, max.n)
+       n.casos.plan <- min(n.casos.plan, max.n)
      }
-     for (i in seq_len(n)){
-       current.case <- casos.mapping[i, ]
+     for (i in seq_len(n.casos.plan)){
+       current.case <- casos.plan[i, ]
        if (!current.case$update.date %in% report.days.processed){
          logger$info("Processing current date", current.date = current.case$update.date)
          # Starting from diff
-         self$report.diff.builder$loadReports(commit.id = current.case$git.id, max.date = current.case$update.date)
+
+         self$report.diff.builder$loadReports(current.case = current.case)
          #TODO automatically commit
          self$report.diff.builder$processDiff()
          self$report.diff.builder$saveReportDiff()
@@ -666,7 +727,8 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
      self$report.diff.summary
    },
    generateReportDaySummary  = function(update.date){
-       report.building.summary <- tail(self$report.diff.builder$report.diff %>%
+
+     report.building.summary <- tail(self$report.diff.builder$report.diff %>%
                                          group_by(fecha_reporte) %>%
                                          summarize(n = n(),
                                                    confirmados           = sum(confirmado),
@@ -717,96 +779,6 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
    }
    ))
 
-#' COVID19ARSampleGenerator
-#' @author kenarab
-#' @importFrom R6 R6Class
-#' @import dplyr
-#' @import lubridate
-#' @import magrittr
-#' @export
-COVID19ARSampleGenerator <- R6Class("COVID19ARSampleGenerator",
-  public = list(
-     daily.reports = NA,
-     sample.name   = NA,
-     sample.ratio  = NA,
-     seed          = NA,
-     output.dir    = NA,
-     min.date      = NA,
-     # state
-     sampled.data  = NA,
-     samples       = NA,
-     logger        = NA,
-   initialize = function(daily.reports,
-                         sample.name,
-                         sample.ratio = 0.01, seed = 0,
-                         output.dir = "../COVID19ARdata/dev/samples",
-                         min.date = NULL){
-     self$daily.reports      <- daily.reports
-     self$sample.name        <- sample.name
-     self$sample.ratio       <- sample.ratio
-     self$seed               <- seed
-     self$output.dir <- file.path(output.dir, sample.name)
-     self$min.date           <- min.date
-     self$logger             <- genLogger(self)
-     #state
-     self$samples            <- list()
-
-     self
-   },
-   genSample = function(current.case){
-     logger <- getLogger(self)
-     current.date.c <- as.character(current.case$update.date)
-     self$daily.reports$report.diff.builder$loadReports(commit.id = current.case$git.id, max.date = current.case$update.date)
-     covid19.data <- self$daily.reports$report.diff.builder$report
-     all.dates <- sort(unique(covid19.data$fecha_inicio_sintomas))
-     dates.samples <- list()
-     self$sampled.data <- NULL
-     set.seed(self$seed)
-     sample.size <- NA
-     for (j in seq_len(length(all.dates))){
-       current.date.sample <- all.dates[j]
-       cases.current.date <- covid19.data %>% filter(fecha_inicio_sintomas == current.date.sample)
-       n.current.date <- nrow(cases.current.date)
-       sample.size    <- max(ceiling(n.current.date * self$sample.ratio), sample.size, na.rm = TRUE)
-       current.sample <- sample(1:n.current.date,
-                                size = sample.size,
-                                replace = FALSE)
-       self$sampled.data %<>% bind_rows(cases.current.date[current.sample, ])
-       dates.samples[[as.character(current.date.sample)]] <- current.sample
-       logger$debug("generating sample:", current.fis = as.character(current.date.sample),
-                    current.fis.size = n.current.date, current.sample.size = sample.size,
-                    percent = round(sample.size / n.current.date, 3))
-     }
-     self$samples[[current.date.c]] <- dates.samples
-     current.output.filename <- self$getCaseFileName(current.case)
-     current.output.path <- file.path(self$output.dir, current.output.filename)
-     write.csv(self$sampled.data, file = current.output.path, quote = TRUE, row.names = FALSE)
-     # TODO save output file
-   },
-   getCaseFileName = function(current.case){
-     paste("Covid19Casos_", self$sample.name, "_", as.character(current.case$update.date, format = "%Y%m%d"), ".csv", sep = "")
-   },
-   genSampleBatch = function(max.n = 0,
-                             min.date = NULL){
-     logger <- getLogger(self)
-     report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
-     casos.mapping <- self$daily.reports$casos.mapping
-     if (!is.null(min.date)){
-       casos.mapping %<>% filter(update.date >= self$min.date)
-     }
-     total.cases <- nrow(self$casos.mapping)
-     if (max.n > 0){
-       total.cases <- min(total.cases, max.n)
-     }
-     if (!dir.exists(self$output.dir)){
-       stop(paste("Target dir", output.dir, "must be manually created for running genSample"))
-     }
-     for (i in seq_len(total.cases)){
-       current.case <- casos.mapping[i,]
-       self$genSample(current.case = current.case)
-     }
-   }
-  ))
 
 
 
