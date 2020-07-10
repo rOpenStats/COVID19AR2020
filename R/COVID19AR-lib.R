@@ -431,7 +431,6 @@ public = list(
       self$curator$readFile(dest.path, assign = TRUE)
     }
     if (curate){
-
       self$curator$curateData()
     }
     self$report <- self$curator$getData()
@@ -482,7 +481,7 @@ public = list(
       self$report.diff %<>% left_join(report.prev.diff.reporte, by = "id_evento_caso")
 
       #debug
-      print(str(self$report.diff %>% select (confirmado, fallecido)))
+      #print(str(self$report.diff %>% select (confirmado, fallecido)))
       # Checked PK in report.diff
       self$report.diff %>%
         group_by(id_evento_caso) %>%
@@ -645,6 +644,23 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
                             c("c7051a08952f48b747ba4b0eadfd4ba15aa0ddbb", "2020-07-01"))
      casos.mapping <- rbind(casos.mapping,
                             c("d0fa4b764fd742c9d8c846e245c80700b759c302", "2020-07-02"))
+
+     casos.mapping <- rbind(casos.mapping,
+                            c("25b8d6b7a2e51b988f65900dd2738494bb318e3d", "2020-07-03"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("8e0d93a5ede2c4a55ed053e4bea1071a2b1a7125", "2020-07-04"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("e0c4bca62362d9b10278d94209538f18cd1c5cfa", "2020-07-05"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("3120ce6dab8515195d977b9d4933a162c3507ce9", "2020-07-06"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("64ece3070f1ebedbd57b3605b92a323eae1c9068", "2020-07-07"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("973232f299d8185fbb63a5f7ca917242597d726e", "2020-07-08"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("cfdafefc1f023ed032ad434058683328928780b0", "2020-07-09"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("5cb28eee2aaba93e457705742bd97b5dc1707ccc", "2020-07-10"))
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
      self$casos.mapping
