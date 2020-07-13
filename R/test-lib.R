@@ -149,7 +149,7 @@ COVID19ARSampleGenerator <- R6Class("COVID19ARSampleGenerator",
       report.days.processed <- sort(unique(self$report.diff.summary$fecha_reporte_ejecutado))
       casos.plan <- self$daily.reports$casos.plan
       if (!is.null(min.date)){
-        casos.plan %<>% filter(update.date >= self$min.date)
+        casos.plan %<>% filter(update.date >= min.date)
       }
       total.cases <- nrow(casos.plan)
       if (max.n > 0){

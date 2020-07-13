@@ -396,6 +396,7 @@ public = list(
   report.diff.dir      = NA,
   report.diff.filename = NA,
   min.rebuilt.date     = NA,
+  warning.dates        = NULL,
   # state
   report.date          = NA,
   report               = NA,
@@ -414,12 +415,13 @@ public = list(
     self
   },
   loadReports = function(current.case, curate = TRUE){
-    max.date = current.case$update.date
+    update.date <- current.case$update.date
 
     self$report.filename <- "Covid19CasosReporteNew.csv"
     if ("url" %in% names(current.case)){
       self$curator$loadData(url = current.case$url, force.download = TRUE,
                             dest.filename = self$report.filename)
+      case.id <- current.case$url
     }
 
     if ("file" %in% names(current.case)){
@@ -429,13 +431,17 @@ public = list(
                 to   = dest.path,
                 overwrite = TRUE)
       self$curator$readFile(dest.path, assign = TRUE)
+      case.id <- source.path
+
     }
     if (curate){
       self$curator$curateData()
     }
     self$report <- self$curator$getData()
-    if (max(self$report$fecha_diagnostico, na.rm =  TRUE) < max.date){
-      stop(paste("File doesn't reach expected date", max.date, ". Max date in data is", max(self$report$fecha_diagnostico), " for ", commit.id))
+    max.date.observed <- max(self$report$fecha_diagnostico, na.rm =  TRUE)
+    if (max.date.observed < update.date && !update.date %in% self$warning.dates$date){
+      stop(paste("File doesn't reach expected date", update.date, ". Max date in data is", max.date.observed,
+                 " for ", case.id))
     }
     report.diff.path <- file.path(self$report.diff.dir, self$report.diff.filename)
     if (file.exists(report.diff.path)){
@@ -447,10 +453,17 @@ public = list(
     }
     self
   },
+  setupWarningDates = function(){
+    if(is.null(self$warning.dates)){
+      self$warning.dates <- data.frame(date = as.Date("2020-07-05"), obs = "Date does not reach 2020-07-05 but there is 2000 rows more than in 2020-07-04")
+    }
+  },
   #' processDiff
   #' binds report.prev and report adding rows from self$report with fecha_diagnostico to self$report.prev
   processDiff = function(){
     logger <- getLogger(self)
+    self$setupWarningDates()
+
     if (!dir.exists(self$report.diff.dir)){
       stop("Folder", self$report.diff.dir, "must be manually created for running processDiff")
     }
@@ -651,6 +664,8 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
                             c("8e0d93a5ede2c4a55ed053e4bea1071a2b1a7125", "2020-07-04"))
      casos.mapping <- rbind(casos.mapping,
                             c("e0c4bca62362d9b10278d94209538f18cd1c5cfa", "2020-07-05"))
+     #362739 Covid19CasosReporte20200705.csv but max(date) = 2020-07-04
+     #360610 Covid19CasosReporte20200704.csv
      casos.mapping <- rbind(casos.mapping,
                             c("3120ce6dab8515195d977b9d4933a162c3507ce9", "2020-07-06"))
      casos.mapping <- rbind(casos.mapping,
@@ -661,6 +676,10 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
                             c("cfdafefc1f023ed032ad434058683328928780b0", "2020-07-09"))
      casos.mapping <- rbind(casos.mapping,
                             c("5cb28eee2aaba93e457705742bd97b5dc1707ccc", "2020-07-10"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("e7f3ec1b851b485d6066519cf5b2b9b502053387", "2020-07-11"))
+     casos.mapping <- rbind(casos.mapping,
+                            c("f0afdfeab9547f3fe90aa255f4be5849e46d359e", "2020-07-12"))
      casos.mapping %<>% arrange(update.date)
      self$casos.mapping <- casos.mapping
      self$casos.mapping
