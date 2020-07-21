@@ -83,7 +83,7 @@ ReportGeneratorCOVID19AR <- R6Class("ReportGeneratorCOVID19AR",
       covplot <- covplot + scale_y_log10()
       covplot
    },
-   getDepartamentosCrossSectionConfirmedPostitivyPlot = function(n.highlighted = 10){
+   getDepartamentosCrossSectionConfirmedPostivityPlot = function(n.highlighted = 10){
       data2plot <- self$covid19.ar.summary %>% filter(confirmados >= 20 & confirmados.smoothed >= 20)
       data2plot.highlighed <- data2plot %>% filter(rank <= n.highlighted)
       data2plot.gray <- data2plot %>% filter(rank > n.highlighted)
