@@ -1,5 +1,4 @@
 
-TestCaseCOVID19ARGenerator.class <-
 
  #' TestCaseCOVID19ARGenerator
  #' @importFrom R6 R6Class

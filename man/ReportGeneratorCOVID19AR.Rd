@@ -17,7 +17,7 @@ kenarab
 \item \href{#method-new}{\code{ReportGeneratorCOVID19AR$new()}}
 \item \href{#method-preprocess}{\code{ReportGeneratorCOVID19AR$preprocess()}}
 \item \href{#method-getDepartamentosExponentialGrowthPlot}{\code{ReportGeneratorCOVID19AR$getDepartamentosExponentialGrowthPlot()}}
-\item \href{#method-getDepartamentosCrossSectionConfirmedPostitivyPlot}{\code{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostitivyPlot()}}
+\item \href{#method-getDepartamentosCrossSectionConfirmedPostivityPlot}{\code{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostivityPlot()}}
 \item \href{#method-clone}{\code{ReportGeneratorCOVID19AR$clone()}}
 }
 }
@@ -51,11 +51,11 @@ kenarab
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-getDepartamentosCrossSectionConfirmedPostitivyPlot"></a>}}
-\if{latex}{\out{\hypertarget{method-getDepartamentosCrossSectionConfirmedPostitivyPlot}{}}}
-\subsection{Method \code{getDepartamentosCrossSectionConfirmedPostitivyPlot()}}{
+\if{html}{\out{<a id="method-getDepartamentosCrossSectionConfirmedPostivityPlot"></a>}}
+\if{latex}{\out{\hypertarget{method-getDepartamentosCrossSectionConfirmedPostivityPlot}{}}}
+\subsection{Method \code{getDepartamentosCrossSectionConfirmedPostivityPlot()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostitivyPlot(
+\if{html}{\out{<div class="r">}}\preformatted{ReportGeneratorCOVID19AR$getDepartamentosCrossSectionConfirmedPostivityPlot(
   n.highlighted = 10
 )}\if{html}{\out{</div>}}
 }

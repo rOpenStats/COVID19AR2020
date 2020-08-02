@@ -115,11 +115,10 @@ kable((covid19.ar.summary %>% filter(confirmados > 0) %>% arrange(desc(confirmad
 ```
 
 ```{r, exponential_growth}
-
 rg <- ReportGeneratorCOVID19AR$new(covid19ar.curator = covid19.curator)
 rg$preprocess()
 rg$getDepartamentosExponentialGrowthPlot()
-rg$getDepartamentosCrossSectionConfirmedPostitivyPlot()
+rg$getDepartamentosCrossSectionConfirmedPostivityPlot()
 ```
 
 ```{r, sepi_apertura}
