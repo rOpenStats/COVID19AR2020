@@ -5,14 +5,24 @@
 \title{zipFile}
 \usage{
 zipFile(
-  home.dir,
+  source.dir,
   current.file,
+  dest.dir = source.dir,
   rm.original = TRUE,
-  overwrite = FALSE,
-  minimum.size.accepted = 2000
+  overwrite = FALSE
+)
+
+zipFile(
+  source.dir,
+  current.file,
+  dest.dir = source.dir,
+  rm.original = TRUE,
+  overwrite = FALSE
 )
 }
 \description{
+zipFile
+
 zipFile
 }
 \author{

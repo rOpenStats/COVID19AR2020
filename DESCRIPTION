@@ -18,7 +18,8 @@ Depends: R (>= 3.6),
          knitr,
          magrittr,
          lgr
-Imports: R6,
+Imports: utils,
+         R6,
          ggplot2,
          readr,
          readxl,
@@ -35,6 +36,7 @@ Collate:
         'deaths-lib.R'
         'test-lib.R'
         'COVID19AR-lib.R'
+        'rr-lib.R'
         'report-lib.R'
         'util-lib.R'
 RoxygenNote: 7.1.1

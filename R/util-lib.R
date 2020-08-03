@@ -141,18 +141,18 @@ zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALS
     stop(message)
    }
    # Original file has to exists
-   current.file.zipped <- paste(current.filepath, "zip", sep = ".")
+   dest.file.zipped <- paste(current.filepath, "zip", sep = ".")
 
    current.filepath <- gsub("\\/\\/", "/", current.filepath)
-   current.file.zipped <- gsub("\\/\\/", "/", current.file.zipped)
+   dest.file.zipped <- gsub("\\/\\/", "/", dest.file.zipped)
 
-   if (!file.exists(current.file.zipped) | overwrite){
+   if (!file.exists(dest.file.zipped) | overwrite){
     # Expand paths
     current.filepath <- path.expand(current.filepath)
-    current.file.zipped <- path.expand(current.file.zipped)
+    dest.file.zipped <- path.expand(dest.file.zipped)
     #current.filepath <- normalizePath(current.filepath)
     lgr$info(paste("Zipping", current.filepath))
-    ret <- utils::zip(current.file.zipped, files = current.filepath)
+    ret <- utils::zip(dest.file.zipped, files = current.filepath)
     if (rm.original){
      unlink(current.filepath)
     }
@@ -288,3 +288,43 @@ getMaxDate <- function(covid19ar.data){
 installAnalytics <- function(){
   devtools::install_github("RopenStats/COVID19analytics")
 }
+
+
+#' zipFile
+#' @export
+zipFile <- function(source.dir, current.file,
+                    dest.dir = source.dir,
+                    rm.original = TRUE, overwrite = FALSE){
+  logger <- lgr
+  # Do not zip zip files
+  if (!grepl("zip$", current.file)){
+    current.filepath <- file.path(source.dir, current.file)
+    if (file.exists(current.filepath)){
+      file.info.current.filepath <- file.info(current.filepath)
+      minimum.size.accepted <- 10000
+      # TODO change 10000 with a statistics based threshold
+      if (file.info.current.filepath$size < minimum.size.accepted){
+        message <- paste("Cannot process file", current.filepath, " with less than", minimum.size.accepted, "size. And was", file.info.current.filepath$size)
+        logger$error(message)
+        stop(message)
+      }
+      # Original file has to exists
+      dest.file.zipped <- file.path(dest.dir, paste(current.file, "zip", sep = "."))
+      current.filepath <- gsub("\\/\\/", "/", current.filepath)
+      dest.file.zipped <- gsub("\\/\\/", "/", dest.file.zipped)
+
+      if (!file.exists(dest.file.zipped) | overwrite){
+        # Expand paths
+        current.filepath <- path.expand(current.filepath)
+        dest.file.zipped <- path.expand(dest.file.zipped)
+        #current.filepath <- normalizePath(current.filepath)
+        lgr$info(paste("Zipping", current.filepath))
+        ret <- utils::zip(dest.file.zipped, files = current.filepath)
+        if (rm.original){
+          unlink(current.filepath)
+        }
+      }
+    }
+  }
+}
+
