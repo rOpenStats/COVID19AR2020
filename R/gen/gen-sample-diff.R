@@ -10,7 +10,7 @@ lgr::threshold("debug", lgr::get_logger("COVID19ARSampleGenerator"))
 lgr::threshold("debug", lgr::get_logger("COVID19ARCurator"))
 
 
-covid19.report.diff.summarizer <- COVID19ARDailyReports$new(min.rebuilt.date = "2020-06-16",
+covid19.report.diff.summarizer <- COVID19ARDailyReportsPlain$new(min.rebuilt.date = "2020-06-16",
                                                             report.diff.dir = "../COVID19ARdata/sources/COVID19AR")
 
 dummy <- covid19.report.diff.summarizer$buildCasosPlan()
@@ -30,7 +30,7 @@ sample.gen$genSampleBatch(max.n = 0, min.date = "2020-07-05")
 
 # Now build the diff file from samples
 #
-covid19.report.diff.summarizer <- COVID19ARDailyReports$new(min.rebuilt.date = "2020-06-16",
+covid19.report.diff.summarizer <- COVID19ARDailyReportsPlain$new(min.rebuilt.date = "2020-06-16",
                                                             report.diff.dir = "../COVID19ARdata/sources/COVID19AR")
 
 self <- covid19.report.diff.summarizer

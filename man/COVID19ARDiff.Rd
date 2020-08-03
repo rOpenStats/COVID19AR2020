@@ -16,6 +16,7 @@ kenarab
 \itemize{
 \item \href{#method-new}{\code{COVID19ARDiff$new()}}
 \item \href{#method-loadReports}{\code{COVID19ARDiff$loadReports()}}
+\item \href{#method-setupWarningDates}{\code{COVID19ARDiff$setupWarningDates()}}
 \item \href{#method-processDiff}{\code{COVID19ARDiff$processDiff()}}
 \item \href{#method-saveReportDiff}{\code{COVID19ARDiff$saveReportDiff()}}
 \item \href{#method-clone}{\code{COVID19ARDiff$clone()}}
@@ -36,6 +37,15 @@ kenarab
 \subsection{Method \code{loadReports()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$loadReports(current.case, curate = TRUE)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-setupWarningDates"></a>}}
+\if{latex}{\out{\hypertarget{method-setupWarningDates}{}}}
+\subsection{Method \code{setupWarningDates()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARDiff$setupWarningDates()}\if{html}{\out{</div>}}
 }
 
 }
