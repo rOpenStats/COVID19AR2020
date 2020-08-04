@@ -75,4 +75,36 @@ covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-03")
 # 3509223f1cfd29954132f11c246229946b6aec10
 covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-04")
 # git commit -am " Updated CovidCasos.csv.zip up to 2020-07-04"
+# 58a091be24048aac50c4a0535193f070150acb4a
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-05")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-05"
+# e03aa80d9a85ec2c78434e4091cbde9ad2d0f216
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-06")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-06"
+# b7e6a50f61cb6fe7a9c8fd786d8085da36bd3ab4
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-07")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-07"
+# 73c12d7b38c1e3592a765deb7e6032fcf8b91e3b
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-08")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-08"
+# dc5b1f06ed524d7d16f81b3532319f1400639fe7
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-09")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-09"
+# 6032f75358d27dfcdf546aaa029bfecd4f428246
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-10")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-10"
+# 4acd00d2d81a87348bc3c9adecec4190dc3ee5cb
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-11")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-11"
+# 6d411a1aa38916d8ef0869f46a07ba3eda5fd76f
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-12")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-11"
 #
