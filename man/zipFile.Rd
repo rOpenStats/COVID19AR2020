@@ -8,21 +8,12 @@ zipFile(
   source.dir,
   current.file,
   dest.dir = source.dir,
-  rm.original = TRUE,
-  overwrite = FALSE
-)
-
-zipFile(
-  source.dir,
-  current.file,
-  dest.dir = source.dir,
+  flags = "",
   rm.original = TRUE,
   overwrite = FALSE
 )
 }
 \description{
-zipFile
-
 zipFile
 }
 \author{
