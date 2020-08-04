@@ -122,47 +122,6 @@ genDateSubdir <- function(home.dir, create.dir = TRUE){
 }
 
 
-#' zipFile
-#' @import utils
-#' @author kenarab
-#' @export
-zipFile <- function(home.dir, current.file,
-                    flags = "",
-                    rm.original = TRUE, overwrite = FALSE,
-                    minimum.size.accepted = 2000){
- logger <- lgr
- # Do not zip zip files
- if (!grepl("zip$", current.file)){
-  current.filepath <- file.path(home.dir, current.file)
-  if (file.exists(current.filepath)){
-   file.info.current.filepath <- file.info(current.filepath)
-
-   # TODO change 10000 with a statistics based threshold
-   if (file.info.current.filepath$size < minimum.size.accepted){
-    message <- paste("Cannot process file", current.filepath, " with less than", minimum.size.accepted, "size. And was", file.info.current.filepath$size)
-    logger$error(message)
-    stop(message)
-   }
-   # Original file has to exists
-   dest.file.zipped <- paste(current.filepath, "zip", sep = ".")
-
-   current.filepath <- gsub("\\/\\/", "/", current.filepath)
-   dest.file.zipped <- gsub("\\/\\/", "/", dest.file.zipped)
-
-   if (!file.exists(dest.file.zipped) | overwrite){
-    # Expand paths
-    current.filepath <- path.expand(current.filepath)
-    dest.file.zipped <- path.expand(dest.file.zipped)
-    #current.filepath <- normalizePath(current.filepath)
-    lgr$info(paste("Zipping", current.filepath))
-    ret <- utils::zip(dest.file.zipped, files = current.filepath, flags = flags)
-    if (rm.original){
-     unlink(current.filepath)
-    }
-   }
-  }
- }
-}
 
 
 #' removeAccents
@@ -294,9 +253,12 @@ installAnalytics <- function(){
 
 
 #' zipFile
+#' @import utils
+#' @author kenarab
 #' @export
 zipFile <- function(source.dir, current.file,
                     dest.dir = source.dir,
+                    flags = "",
                     rm.original = TRUE, overwrite = FALSE){
   logger <- lgr
   # Do not zip zip files
@@ -322,7 +284,7 @@ zipFile <- function(source.dir, current.file,
         dest.file.zipped <- path.expand(dest.file.zipped)
         #current.filepath <- normalizePath(current.filepath)
         lgr$info(paste("Zipping", current.filepath))
-        ret <- utils::zip(dest.file.zipped, files = current.filepath)
+        ret <- utils::zip(dest.file.zipped, files = current.filepath, flags = flags)
         if (rm.original){
           unlink(current.filepath)
         }

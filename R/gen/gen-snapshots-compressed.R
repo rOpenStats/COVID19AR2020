@@ -74,5 +74,5 @@ covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-03")
 # git commit -am " Updated CovidCasos.csv.zip up to 2020-07-03"
 # 3509223f1cfd29954132f11c246229946b6aec10
 covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-04")
-# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-03"
-# 3509223f1cfd29954132f11c246229946b6aec10
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-07-04"
+#
