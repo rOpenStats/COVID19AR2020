@@ -126,7 +126,10 @@ genDateSubdir <- function(home.dir, create.dir = TRUE){
 #' @import utils
 #' @author kenarab
 #' @export
-zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALSE, minimum.size.accepted = 2000){
+zipFile <- function(home.dir, current.file,
+                    flags = "",
+                    rm.original = TRUE, overwrite = FALSE,
+                    minimum.size.accepted = 2000){
  logger <- lgr
  # Do not zip zip files
  if (!grepl("zip$", current.file)){
@@ -152,7 +155,7 @@ zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALS
     dest.file.zipped <- path.expand(dest.file.zipped)
     #current.filepath <- normalizePath(current.filepath)
     lgr$info(paste("Zipping", current.filepath))
-    ret <- utils::zip(dest.file.zipped, files = current.filepath)
+    ret <- utils::zip(dest.file.zipped, files = current.filepath, flags = flags)
     if (rm.original){
      unlink(current.filepath)
     }

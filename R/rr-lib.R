@@ -122,52 +122,54 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
     self
    },
    buildCasosMapping = function(){
-    casos.mapping <- data.frame(git.id = "7903a570c65736ad931ac25e05c92c4c7315cd8d", update.date = as.Date("2020-06-24"))
+    casos.mapping <- data.frame(git.id = "e9cb0d849b63aa0fb33b7dbeb4455d2202fb683a", update.date = as.Date("2020-06-24"))
     casos.mapping <- rbind(casos.mapping,
-                           c("6732da9116949a47eb5d76230565ebaa1552a250", "2020-06-23"))
+                           c("34b0f225559246caf2b04da95cbab7f99abd79e5", "2020-06-23"))
     casos.mapping <- rbind(casos.mapping,
-                           c("302a212eddb1c7b21a8806c2d589868e58c8c63a", "2020-06-22"))
+                           c("6af5a72e3c828d4e6e6375b1593f87f344343d63", "2020-06-22"))
     casos.mapping <- rbind(casos.mapping,
-                           c("92086347aa6eb88e57cf6bee5c4ddd6cc17e26f3", "2020-06-21"))
+                           c("41c024877da0ba0c58bd737ecb2adb2a7a75437f", "2020-06-21"))
     casos.mapping <- rbind(casos.mapping,
-                           c("9f334f0d679f0af8731c6c5d001a36bf61f7e360", "2020-06-20"))
+                           c("ec6d44768f4af6c73bd9cfc1492cbdd52c513519", "2020-06-20"))
     casos.mapping <- rbind(casos.mapping,
-                           c("3d9409aae05c14d6ba6fc570e866eac24e404b6e", "2020-06-19"))
+                           c("cd04f193142edcf502bb5667a136a037abeea2ba", "2020-06-19"))
     casos.mapping <- rbind(casos.mapping,
-                           c("c61cdf724c8676ed9a995f69b624a9cc4fc526ac", "2020-06-18"))
+                           c("56a25dbd7061268308aa037e1a3aa7c207b57cc1", "2020-06-18"))
     casos.mapping <- rbind(casos.mapping,
-                           c("1f3dfe30d87d18530b53205c83dbddb7b17578c7", "2020-06-17"))
+                           c("ce9c7004ba377019fd3c106fe4a526b4371488ab", "2020-06-17"))
     casos.mapping <- rbind(casos.mapping,
-                           c("414090f440649265bd5e9e6835271306f318208f", "2020-06-16"))
+                           c("2bf177b4087db97337c3956f30127eb3a279ed2e", "2020-06-16"))
+    # Redo from 2020-06-12 to 2020-06-15
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
+    #
     casos.mapping <- rbind(casos.mapping,
-                           c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
+                           c("66cba3767a29d2452fff0dd62cd1e0352051aa2a", "2020-06-25"))
     casos.mapping <- rbind(casos.mapping,
-                           c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
+                           c("58a3faf65dd00b48137703bc648dbbf5616677bd", "2020-06-26"))
     casos.mapping <- rbind(casos.mapping,
-                           c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
+                           c("2e7591cf97443260d08be64c115328de2cd85411", "2020-06-27"))
     casos.mapping <- rbind(casos.mapping,
-                           c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
+                           c("051bad4f7e40f81102ce89036c65f75150a1ad9f", "2020-06-28"))
     casos.mapping <- rbind(casos.mapping,
-                           c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
+                           c("f04b4510e3bc70d2d302fbc0d351c20d21360e7f", "2020-06-29"))
     casos.mapping <- rbind(casos.mapping,
-                           c("224b24155b79e13a4edbb76a367f5cf326ab3194", "2020-06-26"))
+                           c("0187dbfe02bc6c6e2267065cf68b7a8537e83f94", "2020-06-30"))
     casos.mapping <- rbind(casos.mapping,
-                           c("1f001f367d63b4413497ea7fb68b8704e710995f", "2020-06-27"))
+                           c("ad8cd697f9023788d8d422cc52b714efe90e0b8e", "2020-07-01"))
     casos.mapping <- rbind(casos.mapping,
-                           c("5e121f76e31ddae57f5d991e7dd9296de453b952", "2020-06-28"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("f217d13707738a0b2f9442365460bce4a538b9ab", "2020-06-29"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("8ca97731452fa62d6755c4ace9141acf7d68bc7d", "2020-06-30"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("c7051a08952f48b747ba4b0eadfd4ba15aa0ddbb", "2020-07-01"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("d0fa4b764fd742c9d8c846e245c80700b759c302", "2020-07-02"))
+                           c("d638ed9082ac1afbc414e2a4ba78609e0f9cb66f", "2020-07-02"))
 
     casos.mapping <- rbind(casos.mapping,
-                           c("25b8d6b7a2e51b988f65900dd2738494bb318e3d", "2020-07-03"))
+                           c("3509223f1cfd29954132f11c246229946b6aec10", "2020-07-03"))
     casos.mapping <- rbind(casos.mapping,
-                           c("8e0d93a5ede2c4a55ed053e4bea1071a2b1a7125", "2020-07-04"))
+                           c("", "2020-07-04"))
     casos.mapping <- rbind(casos.mapping,
                            c("e0c4bca62362d9b10278d94209538f18cd1c5cfa", "2020-07-05"))
     #362739 Covid19CasosReporte20200705.csv but max(date) = 2020-07-04
@@ -328,11 +330,12 @@ COVID19ARDailyReports <- R6Class("COVID19ARDailyReports",
 #' @export
 COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
   public = list(
-   report.source.dir = NA,
+   report.source.dir    = NA,
    report.snapshots.dir = NA,
-   temp.dir = NA,
-   report.diff.summary.filename = NA,
+   temp.dir             = NA,
    # state
+   casos.df             = NA,
+   max.date             = NA,
    casos.mapping        = NA,
    logger               = NA,
    initialize = function(report.source.dir = "~/.R/COVID19AR/",
@@ -419,6 +422,8 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
    },
    compressSnapshot = function(snapshot.date, dest.filename = NULL){
      logger <- getLogger(self)
+
+     snapshot.date <- as.Date(snapshot.date)
      dir.create(self$temp.dir, showWarnings = FALSE, recursive = TRUE)
      snapshot.caso <- self$casos.mapping %>% filter(update.date == snapshot.date)
      covid19casos.filename <- "Covid19Casos.csv"
@@ -440,7 +445,7 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
      else{
       if (nrow(snapshot.caso) == 0){
         source.filepath <- file.path(self$report.source.dir,
-                                 paste("Covid19Casos", as.character(snapshot.caso$update.date, format = "%Y%m%d"), ".csv", sep = ""))
+                                 paste("Covid19Casos", as.character(snapshot.date, format = "%Y%m%d"), ".csv", sep = ""))
         logger$info("Copying file from", path = source.file)
         dest.filepath <- file.path(self$temp.dir, covid19casos.filename)
         copied <- file.copy(source.filepath, dest.filepath)
@@ -454,12 +459,24 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
      }
      #Translate from UTF16 if corresponds
      dest.filepath <- fixEncoding(dest.filepath)
-     covid19casos.filename <- file.path(self$report.snapshots.dir , covid19casos.filename)
+     covid19casos.filepath <- file.path(self$temp.dir , covid19casos.filename)
+     # Check last update
+     self$casos.df <- read_csv(file = covid19casos.filepath)
+     self$max.date <- max(self$casos.df$fecha_apertura, na.rm = TRUE)
+     if (self$max.date < snapshot.date){
+      stop(paste("Snapshot saved does not reach snapshot.date", as.character(snapshot.date),
+                 "max(fecha.apertura) = ", self$max.date))
+     }
+     path.splitted <- strsplit(covid19casos.filepath, split = "/")[[1]]
+     covid19casos.filename <- path.splitted[length(path.splitted)]
      logger$info("Compressing file from", source.dir = self$temp.dir,
                   filename = covid19casos.filename,
                   dest.dir = self$report.snapshots.dir)
-     zipFile(source.dir = self$temp.dir, current.file = covid19casos.filename, dest.dir = self$report.snapshots.dir,
+     zipFile(source.dir = self$temp.dir, current.file = covid19casos.filename,
+             dest.dir = self$report.snapshots.dir,
+             flags = "-j",
              rm.original = FALSE,
              overwrite = TRUE)
+
    }))
 
