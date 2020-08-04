@@ -37,6 +37,7 @@ Collate:
         'test-lib.R'
         'COVID19AR-lib.R'
         'rr-lib.R'
+        'legacy-lib.R'
         'report-lib.R'
         'util-lib.R'
 RoxygenNote: 7.1.1
