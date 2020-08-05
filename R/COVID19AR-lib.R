@@ -23,7 +23,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     max.date            = NA,
     data.summary        = NA,
     logger              = NA,
-    initialize = function(report.date, data.dir = getEnv("data_dir"),
+    initialize = function(report.date = Sys.Date(), data.dir = getEnv("data_dir"),
                           download.new.data = TRUE){
      self$report.date <- report.date
      self$data.dir <- data.dir
