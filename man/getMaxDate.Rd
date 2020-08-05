@@ -4,7 +4,7 @@
 \alias{getMaxDate}
 \title{getMaxDate}
 \usage{
-getMaxDate(covid19ar.data)
+getMaxDate(covid19ar.data, report.date)
 }
 \description{
 getMaxDate

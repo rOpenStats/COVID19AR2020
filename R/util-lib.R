@@ -237,9 +237,18 @@ getOS <- function(){
 
 #' getMaxDate
 #' @export
-getMaxDate <- function(covid19ar.data){
+getMaxDate <- function(covid19ar.data, report.date){
+  logger <- lgr
   data.fields <- names(covid19ar.data)
   date.fields <- data.fields[grep("fecha\\_", data.fields)]
+  covid19ar.data$max.date <- apply(covid19ar.data[,date.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
+  future.rows <- covid19ar.data %>% filter(max.date > report.date)
+  future.rows.agg <- future.rows %>% group_by(max.date) %>% summarise(n = n())
+  for (i in seq_len(nrow(future.rows.agg))){
+    future.row <- future.rows.agg[i,]
+    logger$info("Future rows", date = future.row$max.date, n = future.row$n)
+  }
+  covid19ar.data <- covid19ar.data %>% filter(max.date <= report.date)
   max.dates <- apply(covid19ar.data[,date.fields], MARGIN = 2, FUN = function(x){max(x, na.rm = TRUE)})
   max.date <- max(max.dates)
   max.date

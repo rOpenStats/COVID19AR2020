@@ -6,9 +6,10 @@
 #' @export
 COVID19ARCurator <- R6Class("COVID19ARCurator",
    public = list(
-    download.new.data = NA,
+    download.new.data   = NA,
     data.dir            = NA,
     url                 = NA,
+    report.date         = NA,
     #specification
     specification       = NA,
     cols.delim          = NA,
@@ -22,8 +23,9 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
     max.date            = NA,
     data.summary        = NA,
     logger              = NA,
-    initialize = function(data.dir = getEnv("data_dir"),
+    initialize = function(report.date, data.dir = getEnv("data_dir"),
                           download.new.data = TRUE){
+     self$report.date <- report.date
      self$data.dir <- data.dir
      self$url      <- "https://sisa.msal.gov.ar/datos/descargas/covid-19/files/Covid19Casos.csv"
      self$download.new.data <- download.new.data
@@ -161,7 +163,8 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
                       nrows.before = nrows.before, nrows.after = nrows.after)
         }
 
-        self$max.date <- getMaxDate(self$data)
+        self$max.date <- getMaxDate(covid19ar.data = self$data, self$report.date)
+        self$data <- self$data %>% filter(fecha_apertura <= self$report.date)
       }
     },
     checkDataFields = function(current.data){
