@@ -25,6 +25,7 @@ getEnv <- function(variable.name, package.prefix = getPackagePrefix(),  fail.on.
 #' @export
 retrieveURL <- function(data.url, col.types,
                         dest.filename,
+                        report.date = Sys.Date(),
                         dest.dir = getEnv("data_dir"),
                         force.download = FALSE,
                         download.new.data = TRUE,
@@ -42,9 +43,9 @@ retrieveURL <- function(data.url, col.types,
           dest.path.check <- dest.path
           dest.path.check  <- fixEncoding(dest.path.check)
           data.check <- read_csv(dest.path.check, col_types = col.types)
-          max.date <- getMaxDate(data.check)
           current.datetime <- Sys.time()
           current.date <- as.Date(current.datetime, tz = Sys.timezone())
+          max.date <- getMaxDate(data.check, current.date)
           current.time <- format(current.datetime, format = "%H:%M:%S")
           if (max.date < current.date - 1 | (max.date < current.date & current.time >= daily.update.time)){
             download.flag <- TRUE
@@ -242,8 +243,14 @@ getMaxDate <- function(covid19ar.data, report.date){
   data.fields <- names(covid19ar.data)
   date.fields <- data.fields[grep("fecha\\_", data.fields)]
   covid19ar.data$max.date <- apply(covid19ar.data[,date.fields], MARGIN = 1, FUN = function(x){max(x, na.rm = TRUE)})
+  last.days.rows <- covid19ar.data %>% filter(max.date >= report.date - 1 & max.date <= report.date)
+  last.days.rows.agg <- last.days.rows %>% group_by(max.date) %>% summarise(n = n())
   future.rows <- covid19ar.data %>% filter(max.date > report.date)
   future.rows.agg <- future.rows %>% group_by(max.date) %>% summarise(n = n())
+  for (i in seq_len(nrow(last.days.rows.agg))){
+    future.row <- last.days.rows.agg[i,]
+    logger$info("Last days rows", date = future.row$max.date, n = future.row$n)
+  }
   for (i in seq_len(nrow(future.rows.agg))){
     future.row <- future.rows.agg[i,]
     logger$info("Future rows", date = future.row$max.date, n = future.row$n)
