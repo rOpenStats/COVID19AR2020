@@ -87,7 +87,7 @@ getAPIKey <- function(){
 
 #' apiCall
 #' @import httr
-#' @imort jsonlite
+#' @import jsonlite
 #' @author kenarab
 #' @export
 apiCall <- function(url){
@@ -213,6 +213,7 @@ getLogger <- function(r6.object){
 
 #' fixEncoding return filepath with encoding in UTF8
 #' @import readr
+#' @author kenarab
 #' @export
 fixEncoding <- function(file.path){
   filename <- strsplit(file.path, split = "/")[[1]]
@@ -256,6 +257,7 @@ mutate_cond <- function(.data, condition, ..., envir = parent.frame()) {
 }
 
 #' getOS returns linux, windows or macos
+#' @author kenarab
 #' @export
 getOS <- function(){
   sysinf <- Sys.info()
@@ -274,6 +276,7 @@ getOS <- function(){
 }
 
 #' getMaxDate
+#' @author kenarab
 #' @export
 getMaxDate <- function(covid19ar.data, report.date){
   logger <- lgr
@@ -290,10 +293,4 @@ getMaxDate <- function(covid19ar.data, report.date){
   max.dates <- apply(covid19ar.data[,date.fields], MARGIN = 2, FUN = function(x){max(x, na.rm = TRUE)})
   max.date <- max(max.dates)
   max.date
-}
-
-#' installAnalytics
-#' @export
-installAnalytics <- function(){
-  devtools::install_github("RopenStats/COVID19analytics")
 }

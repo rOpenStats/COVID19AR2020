@@ -321,6 +321,7 @@ COVID19ARCurator <- R6Class("COVID19ARCurator",
 
 
 #' EdadCoder
+#' @author kenarab
 #' @importFrom R6 R6Class
 #' @import dplyr
 #' @export
@@ -347,6 +348,7 @@ EdadCoder <- R6Class("EdadCoder",
   ))
 
 #' exportAggregatedTables
+#' @author kenarab
 #' @import readr
 #' @import lgr
 #' @export
@@ -373,6 +375,7 @@ exportAggregatedTables <- function(covid.ar.curator, output.dir,
 }
 
 #' retrieveFromCache
+#' @author kenarab
 #' @export
 retrieveFromCache <- function(filename, subfolder = "curated/"){
   path <- paste("https://raw.githubusercontent.com/rOpenStats/COVID19ARdata/master/", subfolder, sep = "")
@@ -402,7 +405,7 @@ public = list(
   report.prev          = NULL,
   report.prev.diff     = NA,
   report.diff          = NA,
-  report.last.date          = NA,
+  report.last.date     = NA,
   curator              = NA,
   logger               = NA,
   initialize = function(min.rebuilt.date, report.diff.dir){
@@ -710,6 +713,7 @@ COVID19ARDiffSummarizer <- R6Class("COVID19ARDiffBuilder",
    ))
 
 #' loadMapacheData
+#' @author kenarab
 #' @import readr
 #' @export
 loadMapacheData <- function(){

@@ -9,3 +9,6 @@ getOS()
 \description{
 getOS returns linux, windows or macos
 }
+\author{
+kenarab
+}

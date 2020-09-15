@@ -9,3 +9,6 @@ getMaxDate(covid19ar.data, report.date)
 \description{
 getMaxDate
 }
+\author{
+kenarab
+}
