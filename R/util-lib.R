@@ -29,6 +29,7 @@ retrieveURL <- function(data.url, col.types,
                         force.download = FALSE,
                         download.new.data = TRUE,
                         daily.update.time = "20:00:00"){
+  current.date <- Sys.Date()
   logger <- lgr
   dest.path <- file.path(dest.dir, dest.filename)
   ret <- FALSE
@@ -42,7 +43,7 @@ retrieveURL <- function(data.url, col.types,
           dest.path.check <- dest.path
           dest.path.check  <- fixEncoding(dest.path.check)
           data.check <- read_csv(dest.path.check, col_types = col.types)
-          max.date <- getMaxDate(data.check)
+          max.date <- getMaxDate(data.check, report.date = current.date)
           current.datetime <- Sys.time()
           current.date <- as.Date(current.datetime, tz = Sys.timezone())
           current.time <- format(current.datetime, format = "%H:%M:%S")
