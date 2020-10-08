@@ -11,7 +11,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Suggests:
-         COVID19analytics,
          testthat
 Depends: R (>= 3.6),
          dplyr,
