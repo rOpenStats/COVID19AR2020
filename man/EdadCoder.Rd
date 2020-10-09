@@ -8,6 +8,9 @@ EdadCoder
 
 EdadCoder
 }
+\author{
+kenarab
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

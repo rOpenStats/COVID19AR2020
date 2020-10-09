@@ -9,3 +9,6 @@ retrieveFromCache(filename, subfolder = "curated/")
 \description{
 retrieveFromCache
 }
+\author{
+kenarab
+}

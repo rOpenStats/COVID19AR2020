@@ -9,3 +9,6 @@ fixEncoding(file.path)
 \description{
 fixEncoding return filepath with encoding in UTF8
 }
+\author{
+kenarab
+}

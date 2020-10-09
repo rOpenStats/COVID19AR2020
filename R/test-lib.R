@@ -1,12 +1,13 @@
 
 
- #' TestCaseCOVID19ARGenerator
- #' @importFrom R6 R6Class
- #' @import dplyr
- #' @import magrittr
- #' @import testthat
- #' @export
- TestCaseCOVID19ARGenerator <- R6Class("TestCaseCOVID19ARGenerator",
+#' TestCaseCOVID19ARGenerator
+#' @author kenarab
+#' @importFrom R6 R6Class
+#' @import dplyr
+#' @import magrittr
+#' @import testthat
+#' @export
+TestCaseCOVID19ARGenerator <- R6Class("TestCaseCOVID19ARGenerator",
    public = list(
     name                = NA,
     testcase.dir        = NA,

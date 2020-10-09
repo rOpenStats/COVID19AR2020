@@ -192,7 +192,7 @@ getCredits <- function(){
 }
 
 
-#'
+#' getCitationNote
 #' @author kenarab
 #' @export
 getCitationNote <- function(add.date = TRUE, report.date, data.provider.abv){

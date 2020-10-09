@@ -8,6 +8,9 @@ TestCaseCOVID19ARGenerator
 
 TestCaseCOVID19ARGenerator
 }
+\author{
+kenarab
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{

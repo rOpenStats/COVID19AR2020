@@ -30,6 +30,7 @@ retrieveURL <- function(data.url, col.types,
                         force.download = FALSE,
                         download.new.data = TRUE,
                         daily.update.time = "20:00:00"){
+  current.date <- Sys.Date()
   logger <- lgr
   dest.path <- file.path(dest.dir, dest.filename)
   ret <- FALSE
@@ -43,9 +44,9 @@ retrieveURL <- function(data.url, col.types,
           dest.path.check <- dest.path
           dest.path.check  <- fixEncoding(dest.path.check)
           data.check <- read_csv(dest.path.check, col_types = col.types)
+          max.date <- getMaxDate(data.check, report.date = current.date)
           current.datetime <- Sys.time()
           current.date <- as.Date(current.datetime, tz = Sys.timezone())
-          max.date <- getMaxDate(data.check, current.date)
           current.time <- format(current.datetime, format = "%H:%M:%S")
           if (max.date < current.date - 1 | (max.date < current.date & current.time >= daily.update.time)){
             download.flag <- TRUE
@@ -88,7 +89,7 @@ getAPIKey <- function(){
 
 #' apiCall
 #' @import httr
-#' @imort jsonlite
+#' @import jsonlite
 #' @author kenarab
 #' @export
 apiCall <- function(url){
@@ -123,6 +124,44 @@ genDateSubdir <- function(home.dir, create.dir = TRUE){
 }
 
 
+#' zipFile
+#' @import utils
+#' @author kenarab
+#' @export
+zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALSE, minimum.size.accepted = 2000){
+ logger <- lgr
+ # Do not zip zip files
+ if (!grepl("zip$", current.file)){
+  current.filepath <- file.path(home.dir, current.file)
+  if (file.exists(current.filepath)){
+   file.info.current.filepath <- file.info(current.filepath)
+
+   # TODO change 10000 with a statistics based threshold
+   if (file.info.current.filepath$size < minimum.size.accepted){
+    message <- paste("Cannot process file", current.filepath, " with less than", minimum.size.accepted, "size. And was", file.info.current.filepath$size)
+    logger$error(message)
+    stop(message)
+   }
+   # Original file has to exists
+   current.file.zipped <- paste(current.filepath, "zip", sep = ".")
+
+   current.filepath <- gsub("\\/\\/", "/", current.filepath)
+   current.file.zipped <- gsub("\\/\\/", "/", current.file.zipped)
+
+   if (!file.exists(current.file.zipped) | overwrite){
+    # Expand paths
+    current.filepath <- path.expand(current.filepath)
+    current.file.zipped <- path.expand(current.file.zipped)
+    #current.filepath <- normalizePath(current.filepath)
+    lgr$info(paste("Zipping", current.filepath))
+    ret <- utils::zip(current.file.zipped, files = current.filepath)
+    if (rm.original){
+     unlink(current.filepath)
+    }
+   }
+  }
+ }
+}
 
 
 #' removeAccents
@@ -176,6 +215,7 @@ getLogger <- function(r6.object){
 
 #' fixEncoding return filepath with encoding in UTF8
 #' @import readr
+#' @author kenarab
 #' @export
 fixEncoding <- function(file.path){
   filename <- strsplit(file.path, split = "/")[[1]]
@@ -219,6 +259,7 @@ mutate_cond <- function(.data, condition, ..., envir = parent.frame()) {
 }
 
 #' getOS returns linux, windows or macos
+#' @author kenarab
 #' @export
 getOS <- function(){
   sysinf <- Sys.info()
@@ -237,6 +278,7 @@ getOS <- function(){
 }
 
 #' getMaxDate
+#' @author kenarab
 #' @export
 getMaxDate <- function(covid19ar.data, report.date){
   logger <- lgr
