@@ -63,7 +63,8 @@ retrieveURL <- function(data.url, col.types,
     }
   if (download.flag | force.download){
     lgr$info("Retrieving", url = data.url, dest.path = dest.path)
-    download.file(url = data.url, destfile = dest.path, timeout = download.timeout)
+    options(timeout = download.timeout)
+    download.file(url = data.url, destfile = dest.path)
     ret <- TRUE
   }
   dest.path
