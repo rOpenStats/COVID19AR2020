@@ -22,76 +22,83 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
     self
    },
    buildCasosMapping = function(){
-    casos.mapping <- data.frame(git.id = "7903a570c65736ad931ac25e05c92c4c7315cd8d", update.date = as.Date("2020-06-24"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("6732da9116949a47eb5d76230565ebaa1552a250", "2020-06-23"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("302a212eddb1c7b21a8806c2d589868e58c8c63a", "2020-06-22"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("92086347aa6eb88e57cf6bee5c4ddd6cc17e26f3", "2020-06-21"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("9f334f0d679f0af8731c6c5d001a36bf61f7e360", "2020-06-20"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("3d9409aae05c14d6ba6fc570e866eac24e404b6e", "2020-06-19"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("c61cdf724c8676ed9a995f69b624a9cc4fc526ac", "2020-06-18"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("1f3dfe30d87d18530b53205c83dbddb7b17578c7", "2020-06-17"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("414090f440649265bd5e9e6835271306f318208f", "2020-06-16"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("9de131e67b913b0aeae1e7e5b4db2d5f6d7d4cef", "2020-06-15"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("7f24d251521c371b09eaba351ba2b1e630dbfc0", "2020-06-14"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("c52a91fa61e5131ca5a3da27932430424455ab33", "2020-06-13"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("580a00b169c125e21ae4dfc2a9962b52825a0243", "2020-06-12"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("a0ace6c7bb8393d67d142f0c3d4f67785f32258f", "2020-06-25"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("224b24155b79e13a4edbb76a367f5cf326ab3194", "2020-06-26"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("1f001f367d63b4413497ea7fb68b8704e710995f", "2020-06-27"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("5e121f76e31ddae57f5d991e7dd9296de453b952", "2020-06-28"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("f217d13707738a0b2f9442365460bce4a538b9ab", "2020-06-29"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("8ca97731452fa62d6755c4ace9141acf7d68bc7d", "2020-06-30"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("c7051a08952f48b747ba4b0eadfd4ba15aa0ddbb", "2020-07-01"))
-    casos.mapping <- rbind(casos.mapping,
-                           c("d0fa4b764fd742c9d8c846e245c80700b759c302", "2020-07-02"))
+    # casos.mapping <- data.frame(git.id = "", update.date = as.Date("2020-06-12"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("", "2020-06-13"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("", "2020-06-14"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("", "2020-06-15"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("", "2020-06-16"))
+    # casos.mapping <- rbind(casos.mapping,
+    #                        c("", "2020-06-17"))
+    casos.mapping <- data.frame(git.id = "5933c7b1b1d6990fa57480062013394cebaed59a", update.date = as.Date("2020-06-18"))
 
     casos.mapping <- rbind(casos.mapping,
-                           c("25b8d6b7a2e51b988f65900dd2738494bb318e3d", "2020-07-03"))
+                           c("94201d690f62251b65af484bb9785881bfbebf76", "2020-06-19"))
     casos.mapping <- rbind(casos.mapping,
-                           c("8e0d93a5ede2c4a55ed053e4bea1071a2b1a7125", "2020-07-04"))
+                           c("686f1affde7f75c4752fd6309203926e92ff0072", "2020-06-20"))
     casos.mapping <- rbind(casos.mapping,
-                           c("e0c4bca62362d9b10278d94209538f18cd1c5cfa", "2020-07-05"))
+                           c("ec98db9e295bbafb73936e4e6d131e40efc4f3ca", "2020-06-21"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("c10ce7a0f7a35ca8ff2a3593e50bab3a2595f4a1", "2020-06-22"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("462d1e2b4494a49c9b3affea968ed3bf2d93506a", "2020-06-23"))
+
+    casos.mapping <- rbind(casos.mapping,
+                           c("8cc8266992e51533a5adaedcbda0e3b9094202ee", "2020-06-24"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("20d57bf9713b68efd810f3136cbc6c64307973eb", "2020-06-25"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("aff53d099c28c3887b8db167c48955ca7cf5e3fe", "2020-06-26"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("6761ae7c37df7825b5ea44ebabd760b4477637ca", "2020-06-27"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("614f449554c33c44330354fe9bdd9f228ab42be5", "2020-06-28"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("3d134935eddbbc9415b09ddafee7082452a3c3d4", "2020-06-29"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("7dc36810896e00a48f6bff7b30fdbf7feceb7036", "2020-06-30"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("e6688f4afdf57ba53b2120fed54a8eaac24f4c6f", "2020-07-01"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("7992617b9770f03b6fe53ef2e38913b78cca11f6", "2020-07-02"))
+
+    casos.mapping <- rbind(casos.mapping,
+                           c("138a3b2b77588493d39f7f2d4062e5d89e36e1b8", "2020-07-03"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("294b6d44e48395f1a62656aa33027f455fbf3e7a", "2020-07-04"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("e1f6fb4f6a1b32385a82f4ba2536ae1a26a056b6", "2020-07-05"))
     #362739 Covid19CasosReporte20200705.csv but max(date) = 2020-07-04
     #360610 Covid19CasosReporte20200704.csv
     casos.mapping <- rbind(casos.mapping,
-                           c("3120ce6dab8515195d977b9d4933a162c3507ce9", "2020-07-06"))
+                           c("2604e022106ab630456ee3594501200b48ba3ca9", "2020-07-06"))
     casos.mapping <- rbind(casos.mapping,
-                           c("64ece3070f1ebedbd57b3605b92a323eae1c9068", "2020-07-07"))
+                           c("27477ddd660979cd133dd8026be7659869a1ef33", "2020-07-07"))
     casos.mapping <- rbind(casos.mapping,
-                           c("973232f299d8185fbb63a5f7ca917242597d726e", "2020-07-08"))
+                           c("ad2c06faf1d920643ecc57c774b4e3760dcb39db", "2020-07-08"))
     casos.mapping <- rbind(casos.mapping,
-                           c("cfdafefc1f023ed032ad434058683328928780b0", "2020-07-09"))
+                           c("f9403f480c539eef124a48b2e782baaa623ef9da", "2020-07-09"))
     casos.mapping <- rbind(casos.mapping,
-                           c("5cb28eee2aaba93e457705742bd97b5dc1707ccc", "2020-07-10"))
+                           c("71cef1e9a2ad2896b02b31ebbc3b9b1b87ce238e", "2020-07-10"))
     casos.mapping <- rbind(casos.mapping,
-                           c("e7f3ec1b851b485d6066519cf5b2b9b502053387", "2020-07-11"))
+                           c("7f577d5c36dc4a730c3c12bb9004b51a52214e62", "2020-07-11"))
     casos.mapping <- rbind(casos.mapping,
-                           c("f0afdfeab9547f3fe90aa255f4be5849e46d359e", "2020-07-12"))
+                           c("921553b2705ca1e355b767b6ce3b3bda80860d30", "2020-07-12"))
     casos.mapping <- rbind(casos.mapping,
-                           c("a397b8c6367529dbff2af2f452f81ebd3ac8937b", "2020-07-13"))
+                           c("16873bed9a17996980a6dd839d362d2d8b464b30", "2020-07-13"))
     casos.mapping <- rbind(casos.mapping,
-                           c("e642ea259bb343da478c41665a62c667ba468d0f", "2020-07-14"))
+                           c("a9a39e8b4f68e2454be105df2d9a40f3c2c6fa4a", "2020-07-14"))
     casos.mapping <- rbind(casos.mapping,
-                           c("4f6c4f5b08e265982b17cf6ce02fd8014d22d22e", "2020-07-15"))
+                           c("5b8871269c032697bf8a3292ae9f98ae7d458a89", "2020-07-15"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("58377545ff9a3fb064a065eb37341a5257829e57", "2020-07-16"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("e1447dba1e1faf92dad6d8b143e1609feaa080c6", "2020-07-17"))
+
+
     # From 2020-07-16 to 2020-08-03 was copied from local files
     casos.mapping %<>% arrange(update.date)
     self$casos.mapping <- casos.mapping
