@@ -29,7 +29,8 @@ retrieveURL <- function(data.url, col.types,
                         dest.dir = getEnv("data_dir"),
                         force.download = FALSE,
                         download.new.data = TRUE,
-                        daily.update.time = "20:00:00"){
+                        daily.update.time = "20:00:00",
+                        download.timeout = 240){
   current.date <- Sys.Date()
   logger <- lgr
   dest.path <- file.path(dest.dir, dest.filename)
@@ -63,6 +64,7 @@ retrieveURL <- function(data.url, col.types,
     }
   if (download.flag | force.download){
     lgr$info("Retrieving", url = data.url, dest.path = dest.path)
+    options(timeout = download.timeout)
     download.file(url = data.url, destfile = dest.path)
     ret <- TRUE
   }
