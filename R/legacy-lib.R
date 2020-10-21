@@ -97,6 +97,38 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
                            c("58377545ff9a3fb064a065eb37341a5257829e57", "2020-07-16"))
     casos.mapping <- rbind(casos.mapping,
                            c("e1447dba1e1faf92dad6d8b143e1609feaa080c6", "2020-07-17"))
+    #201021
+    casos.mapping <- rbind(casos.mapping,
+                           c("f50b9dec09ee96df05ec11da5f83aea69823cf18", "2020-07-18"))
+    #TODO missing 2020-07-19
+    casos.mapping <- rbind(casos.mapping,
+                           c("cd78dfebef660ff3cff189407539e56b166c782e", "2020-07-20"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("fc6d366cbbe3bfedd25285fe77cc7621b55908b7", "2020-07-21"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("494c9ed39a263958d87e3ad5bd0f173928cfc2c0", "2020-07-22"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("6d9b3d63ec83afa3deb1c573334d48fff3122722", "2020-07-23"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("ed06e4e18ec5c67af1caed1a71cf82d2a5915dfa", "2020-07-24"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("fca5f5baa387c990cfb689318410b122485af423", "2020-07-25"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("d2c86a10ab54692d8f1a85a44a8c7fe46061aba0", "2020-07-26"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("8f29a27d0db5c3ca328aaddcefc51706506bd3a8", "2020-07-27"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("d39eb53f4f614beb50d033cab44e6ea2c455cb22", "2020-07-28"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("2ae8f463b74e2bdda83c2ae1c810ef6575e40818", "2020-07-29"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("c5aa08d73140de6e0c12a01ed26ffa9d939e462a", "2020-07-30"))
+    casos.mapping <- rbind(casos.mapping,
+                           c("76082e2393a697613f49b5ee3bf9e1dceccd753c", "2020-07-31"))
+
+    #missing
+    casos.mapping <- rbind(casos.mapping,
+                           c("", "2020-07-19"))
 
 
     # From 2020-07-16 to 2020-08-03 was copied from local files
@@ -149,7 +181,20 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
     dest.filepath <- fixEncoding(dest.filepath)
     covid19casos.filepath <- file.path(self$temp.dir , covid19casos.filename)
     # Check last update
-    self$casos.df <- read_csv(file = covid19casos.filepath)
+    self$casos.df <- read_csv(file = covid19casos.filepath,
+                              col_types = cols(
+                                .default = col_character(),
+                                id_evento_caso = col_double(),
+                                edad = col_double(),
+                                fecha_inicio_sintomas = col_date(format = ""),
+                                fecha_apertura = col_date(format = ""),
+                                sepi_apertura = col_double(),
+                                fecha_internacion = col_date(format = ""),
+                                fecha_cui_intensivo = col_date(format = ""),
+                                fecha_fallecimiento = col_date(format = ""),
+                                fecha_diagnostico = col_date(format = ""),
+                                ultima_actualizacion = col_date(format = "")
+                              ))
     self$max.date <- max(self$casos.df$fecha_apertura, na.rm = TRUE)
     if (self$max.date < snapshot.date){
      stop(paste("Snapshot saved does not reach snapshot.date", as.character(snapshot.date),
