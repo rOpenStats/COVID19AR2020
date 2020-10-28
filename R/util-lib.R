@@ -126,11 +126,11 @@ genDateSubdir <- function(home.dir, create.dir = TRUE){
 }
 
 
-#' zipFile
+#' zipFileNotUsed
 #' @import utils
 #' @author kenarab
 #' @export
-zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALSE, minimum.size.accepted = 2000){
+zipFileNotUsed <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALSE, minimum.size.accepted = 2000){
  logger <- lgr
  # Do not zip zip files
  if (!grepl("zip$", current.file)){
@@ -149,20 +149,24 @@ zipFile <- function(home.dir, current.file, rm.original = TRUE, overwrite = FALS
 
    current.filepath <- gsub("\\/\\/", "/", current.filepath)
    current.file.zipped <- gsub("\\/\\/", "/", current.file.zipped)
-
+   ret <- FALSE
    if (!file.exists(current.file.zipped) | overwrite){
+    ret <- TRUE
+    logger$info("Compressing file", filename = current.file.zipped,
+                exists = file.exists(current.file.zipped), overwrite = overwrite)
     # Expand paths
     current.filepath <- path.expand(current.filepath)
     current.file.zipped <- path.expand(current.file.zipped)
     #current.filepath <- normalizePath(current.filepath)
     lgr$info(paste("Zipping", current.filepath))
-    ret <- utils::zip(current.file.zipped, files = current.filepath)
+    utils::zip(current.file.zipped, files = current.filepath)
     if (rm.original){
      unlink(current.filepath)
     }
    }
   }
  }
+ ret
 }
 
 
@@ -338,7 +342,9 @@ zipFile <- function(source.dir, current.file,
       current.filepath <- gsub("\\/\\/", "/", current.filepath)
       dest.file.zipped <- gsub("\\/\\/", "/", dest.file.zipped)
 
+      ret <- FALSE
       if (!file.exists(dest.file.zipped) | overwrite){
+        ret <- TRUE
         # Expand paths
         current.filepath <- path.expand(current.filepath)
         dest.file.zipped <- path.expand(dest.file.zipped)
@@ -351,5 +357,6 @@ zipFile <- function(source.dir, current.file,
       }
     }
   }
+  ret
 }
 

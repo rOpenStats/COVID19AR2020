@@ -211,5 +211,49 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
             rm.original = FALSE,
             overwrite = TRUE)
 
+   },
+   compressFilesInFolder = function(source.dir,
+                                    dest.dir,
+                                    max.files = Inf,
+                                    matching.date.regexp = "[0-9]{6}",
+                                    rm.original = FALSE, overwrite = FALSE){
+     logger <- getLogger(self)
+     covid.casos.regexp <- "Covid19Casos\\.([0-9]{6})\\.csv"
+     all.files <- dir(source.dir)
+     files2process <- all.files[grep(covid.casos.regexp, all.files)]
+     files2process.df <- data.frame(file = files2process, stringsAsFactors = FALSE)
+     files2process.df$date <- gsub(covid.casos.regexp, "\\1", files2process.df$file)
+     files2process.df %<>% filter(grepl(matching.date.regexp, date))
+     files2process.df$size <- as.numeric(NA)
+     nrow.files <- nrow(files2process.df)
+     for (file2compress in files2process.df$file){
+       file2compress.path <- file.path(source.dir, file2compress)
+       file2compress.info <- file.info(file2compress.path)
+       files2process.df %<>% mutate_cond( file == file2compress, size = round(file2compress.info$size/1000000, 2))
+     }
+     total.size <- sum(files2process.df$size)
+     nrow.files <- min(nrow.files, max.files)
+     logger$info("To start compressing files", nrow2process = nrow.files,
+                 total.size = paste(total.size, "MB", sep = ""),
+                 min.date = min(files2process.df$date), max.date = max(files2process.df$date))
+     files2process.df$compressed <- FALSE
+     for (i in seq_len(nrow.files)){
+       file.df <- files2process.df[i,]
+       logger$info("Compressing file", file = paste(names(file.df), file.df, sep = " = ", collapse = "|"))
+       result <- self$compressFile(source.dir = source.dir, source.file = file.df$file, dest.dir = dest.dir,
+                         rm.original = rm.original, overwrite = overwrite)
+       print(result)
+       files2process.df %<>% mutate_cond( file == file.df$file, compressed = result)
+     }
+     files2process.df
+   },
+   compressFile = function(source.dir, source.file, dest.dir = NULL,
+                           rm.original = FALSE, overwrite = FALSE){
+     logger <- getLogger(self)
+     zipFile(source.dir = source.dir, current.file = source.file,
+             dest.dir = dest.dir,
+             flags = "-j",
+             rm.original = rm.original,
+             overwrite = overwrite)
    }))
 

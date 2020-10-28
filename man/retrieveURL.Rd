@@ -8,6 +8,7 @@ retrieveURL(
   data.url,
   col.types,
   dest.filename,
+  report.date = Sys.Date(),
   dest.dir = getEnv("data_dir"),
   force.download = FALSE,
   download.new.data = TRUE,

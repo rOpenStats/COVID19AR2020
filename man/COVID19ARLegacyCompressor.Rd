@@ -18,6 +18,8 @@ kenarab
 \item \href{#method-buildCasosMapping}{\code{COVID19ARLegacyCompressor$buildCasosMapping()}}
 \item \href{#method-getReportUrl}{\code{COVID19ARLegacyCompressor$getReportUrl()}}
 \item \href{#method-compressSnapshot}{\code{COVID19ARLegacyCompressor$compressSnapshot()}}
+\item \href{#method-compressFilesInFolder}{\code{COVID19ARLegacyCompressor$compressFilesInFolder()}}
+\item \href{#method-compressFile}{\code{COVID19ARLegacyCompressor$compressFile()}}
 \item \href{#method-clone}{\code{COVID19ARLegacyCompressor$clone()}}
 }
 }
@@ -57,6 +59,37 @@ kenarab
 \subsection{Method \code{compressSnapshot()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{COVID19ARLegacyCompressor$compressSnapshot(snapshot.date, dest.filename = NULL)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-compressFilesInFolder"></a>}}
+\if{latex}{\out{\hypertarget{method-compressFilesInFolder}{}}}
+\subsection{Method \code{compressFilesInFolder()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARLegacyCompressor$compressFilesInFolder(
+  source.dir,
+  dest.dir,
+  max.files = Inf,
+  matching.date.regexp = "[0-9]{6}",
+  rm.original = FALSE,
+  overwrite = FALSE
+)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-compressFile"></a>}}
+\if{latex}{\out{\hypertarget{method-compressFile}{}}}
+\subsection{Method \code{compressFile()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{COVID19ARLegacyCompressor$compressFile(
+  source.dir,
+  source.file,
+  dest.dir = NULL,
+  rm.original = FALSE,
+  overwrite = FALSE
+)}\if{html}{\out{</div>}}
 }
 
 }

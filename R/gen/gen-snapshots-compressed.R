@@ -169,11 +169,128 @@ covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-30")
 covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-31")
 # git commit -am " Updated CovidCasos.csv.zip up to 2020-07-31"
 
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-01")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-01"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-02")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-02"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-04")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-04"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-05")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-05"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-06")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-06"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-07")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-07"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-08")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-08"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-09")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-09"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-10")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-10"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-12")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-12"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-13")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-13"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-14")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-14"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-15")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-15"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-16")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-16"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-17")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-17"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-18")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-18"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-19")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-19"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-20")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-20"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-21")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-21"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-23")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-23"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-24")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-24"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-25")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-25"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-27")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-27"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-28")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-28"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-30")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-30"
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-31")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-31"
+
+
+# TODO Missing
 
 covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-19")
 # git commit -am " Updated CovidCasos.csv.zip up to 2020-07-18"
 
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-03")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-03"
 
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-11")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-11"
+# Error in covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-11") :
+#  Snapshot saved does not reach snapshot.date 2020-08-11 max(fecha.apertura) =  2020-08-10
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-22")
+# Error in covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-22") :
+#  File not copied
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-26")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-26"
+# Error in covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-26") :
+#  File not copied
+
+
+covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-29")
+# git commit -am " Updated CovidCasos.csv.zip up to 2020-08-29"
+
+# Error in covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-08-29") :
+#  File not copied
 
 covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-26")
 # git commit -am " Updated CovidCasos.csv.zip up to 2020-07-18"
+
+
+
+
+
+
+# Compress to temporal folder
+
+covid19.report.legacy.compressor <- COVID19ARLegacyCompressor$new()
+
+dummy <- covid19.report.legacy.compressor$compressFilesInFolder(source.dir = "~/.R/COVID19AR/",
+                                                       max.files = 5,
+                                                       dest.dir = "/Volumes/alephbet/COVIDARdata/")
+self <- covid19.report.legacy.compressor
+head(dummy)
