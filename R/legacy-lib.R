@@ -218,7 +218,7 @@ COVID19ARLegacyCompressor <- R6Class("COVID19ARLegacyCompressor",
                                     matching.date.regexp = "[0-9]{6}",
                                     rm.original = FALSE, overwrite = FALSE){
      logger <- getLogger(self)
-     covid.casos.regexp <- "Covid19Casos\\.([0-9]{6})\\.csv"
+     covid.casos.regexp <- "Covid19Casos\\.([0-9]{6})\\.csv$"
      all.files <- dir(source.dir)
      files2process <- all.files[grep(covid.casos.regexp, all.files)]
      files2process.df <- data.frame(file = files2process, stringsAsFactors = FALSE)

@@ -325,6 +325,7 @@ zipFile <- function(source.dir, current.file,
                     flags = "",
                     rm.original = TRUE, overwrite = FALSE){
   logger <- lgr
+  ret <- FALSE
   # Do not zip zip files
   if (!grepl("zip$", current.file)){
     current.filepath <- file.path(source.dir, current.file)
@@ -342,7 +343,6 @@ zipFile <- function(source.dir, current.file,
       current.filepath <- gsub("\\/\\/", "/", current.filepath)
       dest.file.zipped <- gsub("\\/\\/", "/", dest.file.zipped)
 
-      ret <- FALSE
       if (!file.exists(dest.file.zipped) | overwrite){
         ret <- TRUE
         # Expand paths

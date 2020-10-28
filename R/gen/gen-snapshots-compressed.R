@@ -290,7 +290,8 @@ covid19.report.legacy.compressor$compressSnapshot(snapshot.date = "2020-07-26")
 covid19.report.legacy.compressor <- COVID19ARLegacyCompressor$new()
 
 dummy <- covid19.report.legacy.compressor$compressFilesInFolder(source.dir = "~/.R/COVID19AR/",
-                                                       max.files = 5,
+                                                       max.files = Inf,
                                                        dest.dir = "/Volumes/alephbet/COVIDARdata/")
 self <- covid19.report.legacy.compressor
 head(dummy)
+tail(dummy)
